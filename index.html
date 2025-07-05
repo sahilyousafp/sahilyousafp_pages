@@ -60,33 +60,244 @@
         </div>
     </section>
 
-        <main class="main">
-            <section class="repositories-section">
-                <div class="section-header">
-                    <h2><i class="fas fa-code-branch"></i> My Repositories</h2>
-                    <p>Explore my projects and their documentation</p>
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="section-container">
+            <div class="about-content">
+                <div class="about-image">
+                    <div class="about-image-container">
+                        <div class="about-glow"></div>
+                        <img src="https://github.com/sahilyousafp.png" alt="Sahil Yousaf" class="about-profile-image">
+                    </div>
+                </div>
+                <div class="about-text">
+                    <h2 class="section-title">About Me</h2>
+                    <h3 class="about-passion">Developing is My Passion</h3>
+                    <div class="bio-content" id="bio-content">
+                        <div class="bio-loading">
+                            <div class="spinner"></div>
+                            <p>Loading bio...</p>
+                        </div>
+                    </div>
+                    <button class="download-cv-btn">
+                        <i class="fas fa-download"></i>
+                        Download CV
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="section-container">
+            <h2 class="section-title">My Skills</h2>
+            <div class="skills-content">
+                <div class="skills-text">
+                    <h3>Skills Reflects Our Knowledge</h3>
+                    <p>I have extensive experience in various technologies and frameworks, constantly learning and adapting to new tools and methodologies.</p>
+                    <div class="experience-counter">
+                        <span class="counter-number">3+</span>
+                        <span class="counter-label">Years Of<br>Experience</span>
+                    </div>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <i class="fab fa-html5"></i>
+                        </div>
+                        <span class="skill-name">HTML</span>
+                        <div class="skill-percentage">90%</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <i class="fab fa-css3-alt"></i>
+                        </div>
+                        <span class="skill-name">CSS</span>
+                        <div class="skill-percentage">85%</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <i class="fab fa-js-square"></i>
+                        </div>
+                        <span class="skill-name">JavaScript</span>
+                        <div class="skill-percentage">80%</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <span class="skill-name">Python</span>
+                        <div class="skill-percentage">75%</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <i class="fab fa-react"></i>
+                        </div>
+                        <span class="skill-name">React</span>
+                        <div class="skill-percentage">70%</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <i class="fab fa-node-js"></i>
+                        </div>
+                        <span class="skill-name">Node.js</span>
+                        <div class="skill-percentage">65%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="section-container">
+            <h2 class="section-title">My Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Web Development</h3>
+                    <p>Creating responsive and modern web applications using latest technologies and best practices.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>UI/UX Design</h3>
+                    <p>Designing beautiful and intuitive user interfaces with focus on user experience and accessibility.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Data Analysis</h3>
+                    <p>Analyzing complex data sets and creating insightful visualizations and reports.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile Development</h3>
+                    <p>Building cross-platform mobile applications with React Native and Flutter.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Machine Learning</h3>
+                    <p>Developing intelligent systems and implementing ML algorithms for various applications.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Cloud Solutions</h3>
+                    <p>Deploying and managing applications on cloud platforms like AWS, Azure, and GCP.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Projects/Repositories Section -->
+    <section id="repositories" class="repositories">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">My Projects</h2>
+                <p class="section-subtitle">Explore my latest work and contributions</p>
+            </div>
+            
+            <div class="repositories-grid" id="repositories-grid">
+                <!-- Repositories will be loaded here -->
+            </div>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Loading repositories...</p>
+            </div>
+
+            <div class="error-message" id="error-message" style="display: none;">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>Unable to load repositories. Please check your internet connection.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="section-container">
+            <h2 class="section-title">Contact Me</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Have Any Project?</h3>
+                    <p>I'm always interested in new opportunities and exciting projects. Let's discuss how we can work together!</p>
+                    
+                    <div class="contact-methods">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Email</h4>
+                                <p>sahilyousafp@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Phone</h4>
+                                <p>+92 300 1234567</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Location</h4>
+                                <p>Pakistan</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="chat-button">
+                        <i class="fas fa-comments"></i>
+                        Let's Chat
+                    </button>
                 </div>
                 
-                <div class="repositories-grid" id="repositories-grid">
-                    <!-- Repositories will be loaded here -->
+                <div class="contact-form">
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Subject" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" rows="6" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Send Message
+                        </button>
+                    </form>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <div class="loading" id="loading">
-                    <div class="spinner"></div>
-                    <p>Loading repositories...</p>
-                </div>
-
-                <div class="error-message" id="error-message" style="display: none;">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <p>Unable to load repositories. Please check your internet connection.</p>
-                </div>
-            </section>
-        </main>
-
-        <footer class="footer">
-            <p>&copy; 2025 Sahil Yousaf. Built with ❤️ for GitHub Pages.</p>
-        </footer>
-    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>Created by sahilyousafp | © 2025 All Rights Reserved</p>
+        </div>
+    </footer>
 
     <!-- Repository Modal -->
     <div class="modal" id="repository-modal">

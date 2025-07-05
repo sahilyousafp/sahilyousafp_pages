@@ -102,6 +102,7 @@ const closeModalBtn = document.getElementById('close-modal');
 document.addEventListener('DOMContentLoaded', function() {
     loadRepositories();
     setupEventListeners();
+    initializeEnhancedFeatures();
 });
 
 // Event listeners
@@ -621,8 +622,191 @@ async function getRepositoryPreviewImage(repository) {
     }
 }
 
-// Initialize additional features
-document.addEventListener('DOMContentLoaded', function() {
-    setupEnhancedSearch();
-    addSmoothScrolling();
-});
+// Load user bio from GitHub profile README
+async function loadUserBio() {
+    const bioContent = document.getElementById('bio-content');
+    
+    try {
+        // Fetch the user's profile README
+        const response = await fetch(`${CONFIG.githubApiUrl}/repos/${CONFIG.username}/${CONFIG.username}/readme`);
+        
+        if (!response.ok) {
+            throw new Error('Profile README not found');
+        }
+        
+        const readmeData = await response.json();
+        const readmeContent = atob(readmeData.content);
+        
+        // Convert markdown to HTML and extract bio section
+        const htmlContent = convertMarkdownToHtml(readmeContent);
+        bioContent.innerHTML = htmlContent;
+        
+    } catch (error) {
+        console.error('Error loading bio:', error);
+        bioContent.innerHTML = `
+            <p>Passionate software developer and researcher from Pakistan, dedicated to creating innovative solutions and contributing to the tech community. With expertise in web development, data analysis, and emerging technologies, I strive to build applications that make a difference.</p>
+            <p>Currently focused on full-stack development, machine learning, and open-source contributions. Always eager to learn new technologies and collaborate on exciting projects.</p>
+        `;
+    }
+}
+
+// Smooth navigation functionality
+function setupSmoothNavigation() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section[id]');
+    
+    // Add click listeners to navigation links
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+            
+            if (targetSection) {
+                const offsetTop = targetSection.offsetTop - 80; // Account for fixed navbar
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+                
+                // Update active nav link
+                updateActiveNavLink(this);
+            }
+        });
+    });
+    
+    // Update active nav link on scroll
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 100;
+            const sectionHeight = section.clientHeight;
+            if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
+                current = section.getAttribute('id');
+            }
+        });
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+    });
+}
+
+function updateActiveNavLink(activeLink) {
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+    });
+    activeLink.classList.add('active');
+}
+
+// Animate skill percentages on scroll
+function animateSkillBars() {
+    const skillItems = document.querySelectorAll('.skill-item');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const percentage = entry.target.querySelector('.skill-percentage');
+                if (percentage && !percentage.classList.contains('animated')) {
+                    percentage.classList.add('animated');
+                    animateCounter(percentage);
+                }
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    skillItems.forEach(item => observer.observe(item));
+}
+
+function animateCounter(element) {
+    const target = parseInt(element.textContent);
+    let current = 0;
+    const increment = target / 50;
+    const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+            current = target;
+            clearInterval(timer);
+        }
+        element.textContent = Math.floor(current) + '%';
+    }, 30);
+}
+
+// Contact form submission
+function setupContactForm() {
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            
+            // Update button to show loading
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+            
+            // Simulate form submission (replace with actual form handling)
+            setTimeout(() => {
+                alert('Thank you for your message! I will get back to you soon.');
+                this.reset();
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
+        });
+    }
+}
+
+// Add parallax effect to hero section
+function setupParallaxEffect() {
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            hero.style.transform = `translateY(${rate}px)`;
+        });
+    }
+}
+
+// Add typing animation to hero title
+function setupTypingAnimation() {
+    const heroTitle = document.querySelector('.hero-title');
+    if (heroTitle) {
+        const text = heroTitle.textContent;
+        heroTitle.textContent = '';
+        heroTitle.style.borderRight = '2px solid #f59e0b';
+        
+        let i = 0;
+        const typeWriter = () => {
+            if (i < text.length) {
+                heroTitle.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            } else {
+                setTimeout(() => {
+                    heroTitle.style.borderRight = 'none';
+                }, 1000);
+            }
+        };
+        
+        // Start typing animation after a delay
+        setTimeout(typeWriter, 1000);
+    }
+}
+
+// Initialize enhanced features
+function initializeEnhancedFeatures() {
+    loadUserBio();
+    setupSmoothNavigation();
+    animateSkillBars();
+    setupContactForm();
+    setupParallaxEffect();
+    setupTypingAnimation();
+}
+
+// ...existing code...

@@ -1,74 +1,117 @@
-# Sahil Yousaf - GitHub Portfolio
+# Sahil Yousaf - Dark Portfolio
 
-A beautiful, responsive GitHub Pages website that showcases your repositories with their README files and provides easy navigation to your projects.
+A stunning, modern dark-themed portfolio website built with violet-900 as the primary color. Features a professional design inspired by contemporary portfolio layouts with smooth animations and responsive design.
 
-## Features
+## ✨ Design Features
 
-- 🎨 **Modern Design**: Clean, responsive design with beautiful gradients and animations
-- 📱 **Mobile Friendly**: Fully responsive layout that works on all devices
-- 🔗 **Repository Links**: Direct links to GitHub repositories and live demos
-- 📖 **README Display**: Shows README content in a beautiful modal interface
+- 🌙 **Dark Theme**: Modern dark design with violet-900 (#581c87) as the primary color
+- 🎨 **Professional Layout**: Clean, portfolio-style design with hero section, about, skills, and projects
+- 📸 **Profile Integration**: Automatically loads your GitHub profile picture and bio
 - 🖼️ **Image Visualization**: Displays images from README files with lightbox gallery
 - 🎯 **Smart Icons**: Dynamic project icons based on language and project type
-- ⚡ **Fast Loading**: Optimized for quick loading and smooth user experience
-- 🔍 **Enhanced Search**: Intuitive search with filtering capabilities
-- 🎪 **Image Gallery**: Click on any README image to view in full-screen lightbox
-- 📊 **Repository Previews**: Shows preview images from repository README files
+- ⚡ **Smooth Animations**: Typing animations, parallax effects, and smooth scrolling
+- 📱 **Mobile Responsive**: Perfectly optimized for all device sizes
+- 🔍 **Enhanced Search**: Advanced filtering and search capabilities
+
+## 🎨 **Color Scheme**
+
+- **Primary**: Violet-900 (#581c87) - Main brand color
+- **Accent**: Amber-500 (#f59e0b) - Highlights and CTAs  
+- **Background**: Dark navy (#0f0f23) - Main background
+- **Cards**: Dark slate (#1a1a2e) - Card backgrounds
+- **Text**: Various shades of white and gray for optimal contrast
+
+## 🏗️ **Website Sections**
+
+### **1. Hero Section**
+- Animated typing effect for name
+- Professional profile picture with glowing effect
+- Call-to-action button with hover animations
+- Parallax background effects
+
+### **2. About Section**
+- Automatically loads bio from your `sahilyousafp/README.md`
+- Professional profile image with purple glow
+- Download CV button (customizable)
+- Clean typography and spacing
+
+### **3. Skills Section**
+- Animated skill percentages on scroll
+- Technology icons with hover effects
+- Experience counter with large numbers
+- Grid layout with purple accents
+
+### **4. Services Section**
+- 6 service cards with icons
+- Hover effects with subtle background gradients
+- Professional service descriptions
+- Responsive grid layout
+
+### **5. Projects Section**
+- GitHub repositories with enhanced cards
+- Preview images from README files
+- Smart project icons based on technology
+- Modal popups for README content with image gallery
+
+### **6. Contact Section**
+- Contact form with dark styling
+- Contact information cards
+- Social media links
+- Professional contact methods
 
 ## Live Demo
 
 Visit the live website: [https://sahilyousafp.github.io/sahilyousafp_pages](https://sahilyousafp.github.io/sahilyousafp_pages)
 
-## Setup Instructions
+## 🚀 **Quick Setup**
 
-1. **Fork or Clone this repository**
-   ```bash
-   git clone https://github.com/sahilyousafp/sahilyousafp_pages.git
-   cd sahilyousafp_pages
-   ```
-
-2. **Customize the website**
-   - Open `script.js`
-   - Change the `username` in the CONFIG object to your GitHub username:
+1. **Update Configuration** in `script.js`:
    ```javascript
    const CONFIG = {
-       username: 'your-github-username', // Change this to your username
-       excludeRepos: ['sahilyousafp_pages'], // Add repos you want to exclude
+       username: 'sahilyousafp', // Change to YOUR GitHub username
+       excludeRepos: ['sahilyousafp_pages'],
        reposPerPage: 20,
        githubApiUrl: 'https://api.github.com'
    };
    ```
 
-3. **Enable GitHub Pages**
-   - Go to your repository settings
-   - Scroll down to "Pages" section
-   - Select "Deploy from a branch"
-   - Choose "main" branch and "/ (root)" folder
-   - Click "Save"
+2. **Create Your Profile README** (if not already created):
+   - Create a repository with the same name as your username
+   - Add a README.md file with your bio
+   - This will automatically load in the About section
 
-4. **Access your website**
-   - Your website will be available at: `https://your-username.github.io/repository-name`
+3. **Enable GitHub Pages**:
+   - Go to Settings → Pages
+   - Source: Deploy from a branch
+   - Branch: main, Folder: / (root)
 
-## Customization Options
+4. **Customize Personal Information**:
+   - Update social media links in `index.html`
+   - Modify contact information in the Contact section
+   - Add your actual phone number and email
 
-### Personal Information
-Edit the `index.html` file to customize:
-- Name and title in the header
-- Profile links
-- Contact information
+## 🎯 **Customization Options**
 
-### Styling
-Modify `styles.css` to change:
-- Color scheme (update the gradient colors)
-- Fonts and typography
-- Layout and spacing
-- Animation effects
+### **Colors**
+Edit the CSS variables in `styles.css`:
+```css
+:root {
+    --primary-color: #581c87; /* Change to your preferred color */
+    --accent-color: #f59e0b;   /* Change accent color */
+    --bg-dark: #0f0f23;        /* Background color */
+}
+```
 
-### Repository Filtering
-In `script.js`, you can:
-- Exclude specific repositories from display
-- Change the number of repositories shown
-- Modify sorting criteria
+### **Content**
+- **Hero Section**: Update name, title, and location in `index.html`
+- **Services**: Modify the 6 service cards with your offerings
+- **Skills**: Update skill percentages and technologies
+- **Contact**: Add your real contact information
+
+### **Profile Picture**
+The website automatically uses your GitHub profile picture:
+- `https://github.com/sahilyousafp.png`
+- Update your GitHub profile picture to change it on the website
 
 ## File Structure
 
