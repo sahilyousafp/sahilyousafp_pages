@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sahil Yousaf - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="brand-text">Portfolio.</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#repositories" class="nav-link">Projects</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-social">
+                <a href="https://github.com/sahilyousafp" target="_blank" class="social-icon">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://linkedin.com/in/sahilyousafp" target="_blank" class="social-icon">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://twitter.com/sahilyousafp" target="_blank" class="social-icon">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <p class="hero-greeting">Hello,</p>
+                    <h1 class="hero-title">I'm Sahil Yousaf</h1>
+                    <p class="hero-subtitle">Software Developer & Researcher</p>
+                    <p class="hero-location">From Pakistan</p>
+                    <button class="cta-button">
+                        <i class="fas fa-user"></i>
+                        Hire Me
+                    </button>
+                </div>
+                <div class="hero-image">
+                    <div class="profile-image-container">
+                        <div class="profile-glow"></div>
+                        <img src="https://github.com/sahilyousafp.png" alt="Sahil Yousaf" class="profile-image" id="profile-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <main class="main">
+            <section class="repositories-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-code-branch"></i> My Repositories</h2>
+                    <p>Explore my projects and their documentation</p>
+                </div>
+                
+                <div class="repositories-grid" id="repositories-grid">
+                    <!-- Repositories will be loaded here -->
+                </div>
+
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p>Loading repositories...</p>
+                </div>
+
+                <div class="error-message" id="error-message" style="display: none;">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p>Unable to load repositories. Please check your internet connection.</p>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2025 Sahil Yousaf. Built with ❤️ for GitHub Pages.</p>
+        </footer>
+    </div>
+
+    <!-- Repository Modal -->
+    <div class="modal" id="repository-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title"></h3>
+                <button class="close-btn" id="close-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="repository-links">
+                    <a id="repo-link" href="#" target="_blank" class="btn btn-primary">
+                        <i class="fab fa-github"></i> View Repository
+                    </a>
+                    <a id="demo-link" href="#" target="_blank" class="btn btn-secondary" style="display: none;">
+                        <i class="fas fa-external-link-alt"></i> Live Demo
+                    </a>
+                </div>
+                <div class="readme-content">
+                    <h4><i class="fas fa-file-alt"></i> README.md</h4>
+                    <div id="readme-display" class="readme-display">
+                        <div class="readme-loading">
+                            <div class="spinner"></div>
+                            <p>Loading README...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
