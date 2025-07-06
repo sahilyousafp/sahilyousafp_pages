@@ -289,6 +289,19 @@ body {
     align-items: center;
 }
 
+.about-content-fullwidth {
+    display: block !important;
+    width: 100%;
+}
+
+.about-text-fullwidth {
+    width: 100% !important;
+    max-width: 100% !important;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+}
+
 .about-image-container {
     position: relative;
     width: 350px;
@@ -356,6 +369,60 @@ body {
     background: var(--primary-light);
     transform: translateY(-2px);
     box-shadow: 0 10px 30px var(--glow-primary);
+}
+
+/* Mobile responsive styles for About section */
+@media (max-width: 768px) {
+    .about-text-fullwidth {
+        padding: 0 1rem;
+    }
+    
+    .about-text-fullwidth .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+    
+    .about-text-fullwidth .section-subtitle {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .about-text-fullwidth .bio-content {
+        margin-bottom: 2rem;
+    }
+    
+    .about-text-fullwidth .download-cv-btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-text-fullwidth {
+        padding: 0 0.5rem;
+    }
+    
+    .about-text-fullwidth .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .about-text-fullwidth .section-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+    
+    .about-text-fullwidth .bio-content {
+        margin-bottom: 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .about-text-fullwidth .download-cv-btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.8rem;
+        width: 100%;
+        text-align: center;
+    }
 }
 
 /* Skills Section */
@@ -1347,6 +1414,22 @@ body {
 
 /* Additional mobile responsive styles */
 @media (max-width: 480px) {
+    .notification {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        min-width: auto;
+        max-width: none;
+    }
+    
+    .notification-content {
+        padding: 0.8rem 1rem;
+    }
+    
+    .notification-message {
+        font-size: 0.9rem;
+    }
+    
     .lightbox-content {
         max-width: 95vw;
         max-height: 95vh;
@@ -1369,12 +1452,47 @@ body {
     }
     
     .hero-title {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
     
     .profile-image-container {
-        width: 250px;
-        height: 250px;
+        width: 150px;
+        height: 150px;
+    }
+    
+    .profile-glow {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .about-image-container {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .about-glow {
+        width: 140px;
+        height: 140px;
+    }
+    
+    .cta-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .download-cv-btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .chat-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .submit-btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
     }
 }
 
