@@ -465,28 +465,56 @@ body {
 }
 
 /* Services Section */
-.services {
+/* Experience Section */
+.experience {
     background: var(--bg-darker);
 }
 
-.services-grid {
+.experience-content, .accreditations-content {
+    margin-bottom: 3rem;
+}
+
+.experience-subtitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+    text-align: center;
+    position: relative;
+}
+
+.experience-subtitle::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    border-radius: 2px;
+}
+
+.experience-grid, .accreditations-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
 }
 
-.service-card {
+.experience-card, .accreditation-card {
     background: var(--bg-card);
-    padding: 2.5rem;
+    padding: 2rem;
     border-radius: 12px;
-    text-align: center;
     border: 1px solid var(--border-color);
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
 }
 
-.service-card::before {
+.experience-card::before, .accreditation-card::before {
     content: '';
     position: absolute;
     top: 0;
@@ -498,45 +526,55 @@ body {
     transition: opacity 0.3s ease;
 }
 
-.service-card:hover::before {
+.experience-card:hover::before, .accreditation-card:hover::before {
     opacity: 0.1;
 }
 
-.service-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+.experience-card:hover, .accreditation-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
 }
 
-.service-icon {
-    width: 70px;
-    height: 70px;
+.experience-icon, .accreditation-icon {
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     background: var(--primary-color);
     color: var(--text-primary);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.8rem;
-    margin: 0 auto 1.5rem;
+    font-size: 1.5rem;
     position: relative;
     z-index: 2;
-    box-shadow: 0 10px 30px var(--glow-primary);
+    box-shadow: 0 8px 25px var(--glow-primary);
+    flex-shrink: 0;
 }
 
-.service-card h3 {
-    font-size: 1.3rem;
+.experience-details, .accreditation-details {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+}
+
+.experience-details h4, .accreditation-details h4 {
+    font-size: 1.2rem;
     font-weight: 600;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     color: var(--text-primary);
-    position: relative;
-    z-index: 2;
 }
 
-.service-card p {
+.company, .organization {
+    font-size: 1rem;
+    color: var(--accent-color);
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+}
+
+.duration {
+    font-size: 0.9rem;
     color: var(--text-secondary);
-    line-height: 1.6;
-    position: relative;
-    z-index: 2;
+    font-style: italic;
 }
 
 /* Repository Section */
@@ -1523,7 +1561,7 @@ body {
         gap: 1rem;
     }
     
-    .services-grid {
+    .experience-grid, .accreditations-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
