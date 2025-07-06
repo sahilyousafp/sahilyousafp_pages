@@ -132,18 +132,29 @@ async function loadRepositories() {
     showLoading();
     
     try {
-        const response = await fetch(`${CONFIG.githubApiUrl}/users/${CONFIG.username}/repos?sort=updated&per_page=${CONFIG.reposPerPage}`);
+        // First, try to fetch pinned repositories using GraphQL API
+        const pinnedRepos = await fetchPinnedRepositories();
         
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+        if (pinnedRepos && pinnedRepos.length > 0) {
+            repositories = pinnedRepos.filter(repo => 
+                !CONFIG.excludeRepos.includes(repo.name)
+            );
+        } else {
+            // Fallback: fetch all repositories and show the most starred/recent ones
+            const response = await fetch(`${CONFIG.githubApiUrl}/users/${CONFIG.username}/repos?sort=updated&per_page=${CONFIG.reposPerPage}`);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const repos = await response.json();
+            
+            // Filter and sort by stars as a proxy for "featured" repositories
+            repositories = repos
+                .filter(repo => !CONFIG.excludeRepos.includes(repo.name))
+                .sort((a, b) => b.stargazers_count - a.stargazers_count)
+                .slice(0, 6); // Show top 6 repositories
         }
-        
-        const repos = await response.json();
-        
-        // Filter out excluded repositories and forks if desired
-        repositories = repos.filter(repo => 
-            !CONFIG.excludeRepos.includes(repo.name)
-        );
         
         hideLoading();
         renderRepositories();
@@ -157,14 +168,82 @@ async function loadRepositories() {
     }
 }
 
+// Fetch pinned repositories using GitHub GraphQL API
+async function fetchPinnedRepositories() {
+    try {
+        // GitHub GraphQL query to get pinned repositories
+        const query = `
+            query {
+                user(login: "${CONFIG.username}") {
+                    pinnedItems(first: 6, types: REPOSITORY) {
+                        nodes {
+                            ... on Repository {
+                                name
+                                description
+                                url
+                                stargazerCount
+                                forkCount
+                                primaryLanguage {
+                                    name
+                                }
+                                updatedAt
+                                isPrivate
+                            }
+                        }
+                    }
+                }
+            }
+        `;
+        
+        const response = await fetch('https://api.github.com/graphql', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ query })
+        });
+        
+        if (!response.ok) {
+            throw new Error('GraphQL query failed');
+        }
+        
+        const data = await response.json();
+        
+        if (data.errors) {
+            throw new Error('GraphQL errors: ' + JSON.stringify(data.errors));
+        }
+        
+        // Convert GraphQL response to match REST API format
+        const pinnedRepos = data.data?.user?.pinnedItems?.nodes?.map(repo => ({
+            name: repo.name,
+            description: repo.description,
+            html_url: repo.url,
+            stargazers_count: repo.stargazerCount,
+            forks_count: repo.forkCount,
+            language: repo.primaryLanguage?.name,
+            updated_at: repo.updatedAt,
+            private: repo.isPrivate
+        })).filter(repo => !repo.private) || [];
+        
+        return pinnedRepos;
+        
+    } catch (error) {
+        console.log('Could not fetch pinned repositories:', error.message);
+        return null; // Fallback to regular repository fetching
+    }
+}
+
 // Render repositories in the grid
 async function renderRepositories() {
     if (repositories.length === 0) {
         repositoriesGrid.innerHTML = `
             <div class="no-repositories">
-                <i class="fas fa-code-branch"></i>
-                <h3>No repositories found</h3>
-                <p>Check back later for new projects!</p>
+                <i class="fas fa-thumbtack"></i>
+                <h3>No Pinned Projects Found</h3>
+                <p>Pin some repositories on GitHub to showcase your featured projects here!</p>
+                <a href="https://github.com/${CONFIG.username}" target="_blank" class="pin-repos-link">
+                    <i class="fab fa-github"></i> Go to GitHub Profile
+                </a>
             </div>
         `;
         return;
