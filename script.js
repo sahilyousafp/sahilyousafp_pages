@@ -124,6 +124,28 @@ function setupEventListeners() {
     });
 }
 
+// Setup chat button
+function setupChatButton() {
+    const chatButton = document.querySelector('.chat-button');
+    if (chatButton) {
+        chatButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const mailtoLink = `mailto:${EMAIL_CONFIG.recipientEmail}?subject=${encodeURIComponent('Let\'s Chat - Portfolio Inquiry')}&body=${encodeURIComponent(
+                'Hi Sahil,\n\nI visited your portfolio and would like to discuss a potential project/opportunity.\n\nBest regards,'
+            )}`;
+            
+            try {
+                window.open(mailtoLink);
+                showNotification('📧 Opening email to start our conversation!', 'info');
+            } catch (error) {
+                console.error('Chat button mailto failed:', error);
+                showNotification('❌ Please email me directly at ' + EMAIL_CONFIG.recipientEmail, 'error');
+            }
+        });
+    }
+}
+
 // Load repositories from GitHub API
 async function loadRepositories() {
     if (isLoading) return;
@@ -1699,31 +1721,136 @@ function animateCounter(element) {
     }, 30);
 }
 
+// Email configuration - Replace these with your actual EmailJS credentials
+const EMAIL_CONFIG = {
+    publicKey: 'YOUR_PUBLIC_KEY', // Replace with your EmailJS public key
+    serviceId: 'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
+    templateId: 'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+    recipientEmail: 'sahil.yousaf@students.iaac.net'
+};
+
 // Contact form submission
 function setupContactForm() {
     const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const submitBtn = this.querySelector('.submit-btn');
-            const originalText = submitBtn.innerHTML;
-            
-            // Update button to show loading
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            submitBtn.disabled = true;
-            
-            // Simulate form submission (replace with actual form handling)
-            setTimeout(() => {
-                alert('Thank you for your message! I will get back to you soon.');
-                this.reset();
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }, 2000);
-        });
+    if (!contactForm) return;
+    
+    // Initialize EmailJS if credentials are provided
+    if (EMAIL_CONFIG.publicKey !== 'YOUR_PUBLIC_KEY') {
+        try {
+            emailjs.init(EMAIL_CONFIG.publicKey);
+        } catch (error) {
+            console.warn('EmailJS initialization failed:', error);
+        }
     }
+    
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const submitBtn = this.querySelector('.submit-btn');
+        const originalText = submitBtn.innerHTML;
+        
+        // Validate form data
+        const formData = {
+            from_name: this.from_name.value.trim(),
+            from_email: this.from_email.value.trim(),
+            subject: this.subject.value.trim(),
+            message: this.message.value.trim()
+        };
+        
+        // Basic validation
+        if (!formData.from_name || !formData.from_email || !formData.subject || !formData.message) {
+            showNotification('❌ Please fill in all fields.', 'error');
+            return;
+        }
+        
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(formData.from_email)) {
+            showNotification('❌ Please enter a valid email address.', 'error');
+            return;
+        }
+        
+        // Update button to show loading
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        submitBtn.disabled = true;
+        
+        // Add recipient email to form data
+        formData.to_email = EMAIL_CONFIG.recipientEmail;
+        
+        // Try to send email using EmailJS
+        if (EMAIL_CONFIG.publicKey !== 'YOUR_PUBLIC_KEY' && typeof emailjs !== 'undefined') {
+            emailjs.send(EMAIL_CONFIG.serviceId, EMAIL_CONFIG.templateId, formData)
+                .then(() => {
+                    showNotification('✅ Message sent successfully! I will get back to you soon.', 'success');
+                    this.reset();
+                })
+                .catch((error) => {
+                    console.error('EmailJS failed:', error);
+                    fallbackToMailto(formData);
+                })
+                .finally(() => {
+                    resetSubmitButton(submitBtn, originalText);
+                });
+        } else {
+            // Fallback to mailto if EmailJS is not configured
+            fallbackToMailto(formData);
+            resetSubmitButton(submitBtn, originalText);
+        }
+    });
+}
+
+// Fallback function to open default email client
+function fallbackToMailto(formData) {
+    const mailtoLink = `mailto:${EMAIL_CONFIG.recipientEmail}?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
+        `From: ${formData.from_name} (${formData.from_email})\n\nMessage:\n${formData.message}\n\n---\nSent from Portfolio Contact Form`
+    )}`;
+    
+    try {
+        window.open(mailtoLink);
+        showNotification('📧 Opening your default email client...', 'info');
+    } catch (error) {
+        console.error('Mailto fallback failed:', error);
+        showNotification('❌ Unable to send email. Please contact directly at ' + EMAIL_CONFIG.recipientEmail, 'error');
+    }
+}
+
+// Reset submit button to original state
+function resetSubmitButton(submitBtn, originalText) {
+    setTimeout(() => {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+    }, 1000);
+}
+
+// Show notification function
+function showNotification(message, type = 'info') {
+    // Remove existing notification
+    const existingNotification = document.querySelector('.notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+    
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+        <div class="notification-content">
+            <span class="notification-message">${message}</span>
+            <button class="notification-close" onclick="this.parentElement.parentElement.remove()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    `;
+    
+    // Add to page
+    document.body.appendChild(notification);
+    
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+        if (notification && notification.parentElement) {
+            notification.remove();
+        }
+    }, 5000);
 }
 
 // Add parallax effect to hero section
@@ -1772,6 +1899,5 @@ function initializeEnhancedFeatures() {
     setupContactForm();
     setupParallaxEffect();
     setupTypingAnimation();
+    setupChatButton();
 }
-
-// ...existing code...
