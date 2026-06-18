@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pardaz — Exhibition Pedestrian Simulation · Sahil Yousaf</title>
+  <link rel="icon" type="image/png" href="References/For website.PNG">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <nav class="nav scrolled" id="mainNav">
+    <div class="nav-brand">Sahil <em>Yousaf</em></div>
+    <ul class="nav-links">
+      <li><a href="index.html#home">Home</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#repositories" class="active">Projects</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-social">
+      <a href="https://github.com/sahilyousafp/Pardaz_Exhibition-Pedestrian-Simulation" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+    </div>
+  </nav>
+
+  <div style="padding-top:64px;">
+    <div class="back-bar" data-reveal>
+      <a href="index.html#repositories" class="back-link"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+    </div>
+
+    <div class="proj-hero">
+      <div class="proj-hero-meta" data-reveal>
+        <span class="proj-hero-index">04 — Simulation Platform</span>
+        <span class="proj-tag accent">React + FastAPI</span>
+        <span class="proj-tag">Exhibition Design</span>
+        <span class="proj-tag">IAAC · 2024–25</span>
+      </div>
+      <h1 class="proj-hero-title" data-reveal data-delay="1">
+        Pardaz<br><em>Exhibition Simulation</em>
+      </h1>
+      <p class="proj-hero-desc" data-reveal data-delay="2">
+        A production-grade pedestrian simulation platform for validating exhibition layouts. 
+        Architects draw a floor plan, configure visitor flows, and the backend runs multi-agent 
+        pedestrian simulation — returning heatmaps, centrality scores, and crowding predictions 
+        to inform spatial design decisions before construction.
+      </p>
+      <div class="proj-hero-actions" data-reveal data-delay="3">
+        <a class="btn btn-fill" href="https://github.com/sahilyousafp/Pardaz_Exhibition-Pedestrian-Simulation" target="_blank" rel="noopener">
+          <i class="fab fa-github"></i> GitHub Repository
+        </a>
+      </div>
+    </div>
+
+    <!-- Hero visual: architecture diagram as styled block -->
+    <div style="max-width:var(--max-w);margin:0 auto;padding:0 3rem 0;" data-reveal>
+      <div class="arch-box" style="margin:0; height:280px; display:flex; align-items:center; justify-content:center; border:1px solid var(--wire);">
+        <pre style="text-align:left; font-size:0.78rem; line-height:1.8;">
+  ┌──────────────────────────────────────────────────────────┐
+  │  <span style="color:#D06030;">Setup Page</span>            <span style="color:#D06030;">Results Page</span>                        │
+  │  AnnotationCanvas     HeatmapOverlay                     │
+  │  Toolbar              CentralityPanel                    │
+  │  FloorPlan Upload     Crowding Analysis                  │
+  └──────────────────┬──────────────────────────────────────┘
+                     │  REST API  /api/*
+                     ▼
+  ┌──────────────────────────────────────────────────────────┐
+  │  FastAPI Backend                                         │
+  │  Pedestrian simulation engine                            │
+  │  Spatial graph + centrality analysis                     │
+  │  Heatmap generation                                      │
+  └──────────────────────────────────────────────────────────┘</pre>
+      </div>
+    </div>
+
+    <div class="hr" style="margin-top:0;"></div>
+
+    <div class="proj-layout">
+      <aside class="proj-sidebar">
+        <div class="proj-sidebar-section">
+          <span class="proj-sidebar-label">Frontend Stack</span>
+          <ul class="proj-sidebar-list">
+            <li>React + Vite</li>
+            <li>Tailwind CSS</li>
+            <li>Canvas API</li>
+            <li>Crimson Text / Fira Sans</li>
+          </ul>
+        </div>
+        <div class="proj-sidebar-section">
+          <span class="proj-sidebar-label">Key Components</span>
+          <ul class="proj-sidebar-list">
+            <li>AnnotationCanvas</li>
+            <li>HeatmapOverlay</li>
+            <li>CentralityPanel</li>
+            <li>Toolbar</li>
+            <li>ErrorBoundary</li>
+          </ul>
+        </div>
+        <div class="proj-sidebar-section">
+          <span class="proj-sidebar-label">Design System</span>
+          <ul class="proj-sidebar-list">
+            <li>Surface: #0d1117</li>
+            <li>Accent: #10b981 (emerald)</li>
+            <li>Border: #30363d</li>
+          </ul>
+        </div>
+        <div class="proj-sidebar-section">
+          <span class="proj-sidebar-label">Use Case</span>
+          <ul class="proj-sidebar-list">
+            <li>Exhibition layout validation</li>
+            <li>Crowd flow analysis</li>
+            <li>Design iteration tool</li>
+          </ul>
+        </div>
+      </aside>
+
+      <main class="proj-main">
+        <div class="proj-section" data-reveal>
+          <p class="proj-section-label">Overview</p>
+          <h2 class="proj-section-title">Validate exhibition spaces before you build them</h2>
+          <div class="proj-body">
+            <p>Exhibition designers traditionally rely on intuition and post-occupancy data to understand visitor flow. Pardaz gives them a <strong>predictive simulation tool</strong> that answers critical questions at the design stage: Where will crowds form? Which paths will be underused? Are there bottlenecks near key exhibits?</p>
+            <p>The architect draws directly on an uploaded floor plan image using the annotation canvas, marking pedestrian entry points, exit gates, exhibit locations, and barriers. The backend converts this annotation into a spatial graph and runs agent-based pedestrian simulation.</p>
+            <p>Results arrive as interactive <strong>heatmap overlays</strong> and <strong>centrality scores</strong> — the same metrics used in urban planning, now applied to interior exhibition design.</p>
+          </div>
+        </div>
+
+        <div class="proj-section" data-reveal>
+          <p class="proj-section-label">User Flow</p>
+          <h2 class="proj-section-title">Two-page workflow</h2>
+          <div class="pipeline">
+            <div class="pipeline-step">
+              <div class="pipeline-step-num">01</div>
+              <div class="pipeline-step-title">Upload Floor Plan</div>
+              <div class="pipeline-step-desc">Upload an image of any exhibition floor plan. The canvas renders it as a live drawing surface.</div>
+            </div>
+            <div class="pipeline-step">
+              <div class="pipeline-step-num">02</div>
+              <div class="pipeline-step-title">Annotate</div>
+              <div class="pipeline-step-desc">Use the Toolbar to mark entrances, exits, barriers, exhibits, and pedestrian zones directly on the plan.</div>
+            </div>
+            <div class="pipeline-step">
+              <div class="pipeline-step-num">03</div>
+              <div class="pipeline-step-title">Run Simulation</div>
+              <div class="pipeline-step-desc">The backend runs multi-agent pedestrian simulation on the spatial graph derived from your annotations.</div>
+            </div>
+            <div class="pipeline-step">
+              <div class="pipeline-step-num">04</div>
+              <div class="pipeline-step-title">Analyse Results</div>
+              <div class="pipeline-step-desc">Heatmap overlay shows density. Centrality Panel ranks nodes by betweenness — pinpointing bottlenecks.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="proj-section" data-reveal>
+          <p class="proj-section-label">Architecture</p>
+          <h2 class="proj-section-title">Frontend design system</h2>
+          <div class="proj-body">
+            <p>The UI was designed with a <strong>production-grade dark design system</strong> — intentionally contrasting with the warm paper tones of the broader portfolio, reflecting the tool's technical, data-driven nature.</p>
+          </div>
+          <table class="bench-table">
+            <thead><tr><th>Token</th><th>Value</th><th>Usage</th></tr></thead>
+            <tbody>
+              <tr><td>Surface</td><td>#0d1117</td><td>Main background</td></tr>
+              <tr><td>Panel</td><td>#161b22</td><td>Card / panel background</td></tr>
+              <tr><td>Border</td><td>#30363d</td><td>Dividers and borders</td></tr>
+              <tr><td>Accent</td><td>#10b981</td><td>Primary action colour (emerald)</td></tr>
+              <tr><td>Text Primary</td><td>#e6edf3</td><td>Main text</td></tr>
+              <tr><td>Text Secondary</td><td>#8b949e</td><td>Labels and metadata</td></tr>
+              <tr><td>Display Font</td><td>Crimson Text</td><td>Headings (serif)</td></tr>
+              <tr><td>Body Font</td><td>Fira Sans</td><td>UI text (sans-serif)</td></tr>
+              <tr><td>Mono Font</td><td>IBM Plex Mono</td><td>Code and data labels</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="proj-section" data-reveal>
+          <p class="proj-section-label">Stack</p>
+          <h2 class="proj-section-title">Technology</h2>
+          <div class="tech-grid">
+            <div class="tech-item"><i class="fab fa-react"></i><span class="tech-name">React</span><span class="tech-role">UI framework</span></div>
+            <div class="tech-item"><i class="fas fa-bolt"></i><span class="tech-name">Vite</span><span class="tech-role">Build tool</span></div>
+            <div class="tech-item"><i class="fas fa-palette"></i><span class="tech-name">Tailwind CSS</span><span class="tech-role">Styling</span></div>
+            <div class="tech-item"><i class="fas fa-draw-polygon"></i><span class="tech-name">Canvas API</span><span class="tech-role">Annotation drawing</span></div>
+            <div class="tech-item"><i class="fas fa-server"></i><span class="tech-name">FastAPI</span><span class="tech-role">Backend</span></div>
+            <div class="tech-item"><i class="fab fa-python"></i><span class="tech-name">Python</span><span class="tech-role">Simulation engine</span></div>
+            <div class="tech-item"><i class="fas fa-fire"></i><span class="tech-name">Heatmap</span><span class="tech-role">Density viz</span></div>
+            <div class="tech-item"><i class="fas fa-project-diagram"></i><span class="tech-name">Graph Centrality</span><span class="tech-role">Spatial analysis</span></div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-copy">© 2025 Sahil Yousaf · Pardaz Exhibition Simulation</p>
+      <div class="footer-links">
+        <a href="index.html">Portfolio</a>
+        <a href="https://github.com/sahilyousafp/Pardaz_Exhibition-Pedestrian-Simulation" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

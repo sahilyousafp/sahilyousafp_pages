@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI4ALL Decision — Land Cover Visualisation · Sahil Yousaf</title>
+  <link rel="icon" type="image/png" href="References/For website.PNG">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <nav class="nav scrolled" id="mainNav">
+    <div class="nav-brand">Sahil <em>Yousaf</em></div>
+    <ul class="nav-links">
+      <li><a href="index.html#home">Home</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#repositories" class="active">Projects</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-social">
+      <a href="https://github.com/sahilyousafp/AI4ALL_Decision" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+    </div>
+  </nav>
+
+  <div style="padding-top:64px;">
+    <div class="back-bar" data-reveal>
+      <a href="index.html#repositories" class="back-link"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+    </div>
+
+    <div class="proj-hero">
+      <div class="proj-hero-meta" data-reveal>
+        <span class="proj-hero-index">06 — Participatory Platform</span>
+        <span class="proj-tag accent">React + TypeScript</span>
+        <span class="proj-tag">Land Cover Analysis</span>
+        <span class="proj-tag">IAAC · 2024–25</span>
+      </div>
+      <h1 class="proj-hero-title" data-reveal data-delay="1">
+        AI4ALL<br><em>Decision Platform</em>
+      </h1>
+      <p class="proj-hero-desc" data-reveal data-delay="2">
+        A participatory land-cover change visualisation platform that makes decades of satellite data 
+        legible to non-experts. Citizens and urban planners can compare historical land cover side-by-side 
+        on an interactive Leaflet map, exploring the AI4ALL thesis that civic engagement requires 
+        accessible environmental data.
+      </p>
+      <div class="proj-hero-actions" data-reveal data-delay="3">
+        <a class="btn btn-fill" href="https://github.com/sahilyousafp/AI4ALL_Decision" target="_blank" rel="noopener">
+          <i class="fab fa-github"></i> GitHub Repository
+        </a>
+      </div>
+    </div>
+
+    <!-- Visual: map comparison concept -->
+    <div style="max-width:var(--max-w);margin:0 auto;padding:0 3rem;" data-reveal>
+      <div class="arch-box" style="margin:0; min-height:260px; display:flex; align-items:center; justify-content:center; background:var(--ink);">
+        <div style="text-align:center; padding:2rem;">
+          <p style="font-family:var(--serif); font-size:2rem; font-weight:300; color:rgba(253,251,247,0.9); margin-bottom:1.5rem; line-height:1.2;">
+            ← 2000 &nbsp;|&nbsp; Drag to compare &nbsp;|&nbsp; 2023 →
+          </p>
+          <p style="font-family:var(--mono); font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:rgba(253,251,247,0.35);">
+            Side-by-side land cover comparison · Leaflet.js · OpenLandMap data
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="hr" style="margin-top:0;"></div>
+
+    <div class="proj-layout">
+      <aside class="proj-sidebar">
+        <div class="proj-sidebar-section">
+          <span class="proj-sidebar-label">Data Coverage</span>
+          <div class="proj-sidebar-stat">
+            <div class="proj-sidebar-stat-n">23yr</div>
+            <div class="proj-sidebar-stat-l">2000–2023 time range</div>
+          </div>
+        </div>
+        <div class="proj-sidebar-section">
+          <span class="proj-sidebar-label">Frontend Stack</span>
+          <ul class="proj-sidebar-list">
+            <li>React + TypeScript</li>
+            <li>Leaflet.js</li>
+            <li>Leaflet Side-by-Side</li>
+            <li>Vite build</li>
+          </ul>
+        </div>
+        <div class="proj-sidebar-section">
+          <span class="proj-sidebar-label">Key Components</span>
+          <ul class="proj-sidebar-list">
+            <li>IdeologyPanel</li>
+            <li>MorphLayer (story mode)</li>
+            <li>LossLayer</li>
+            <li>LoupeLens</li>
+            <li>Split-screen compare</li>
+          </ul>
+        </div>
+        <div class="proj-sidebar-section">
+          <span class="proj-sidebar-label">Data Source</span>
+          <ul class="proj-sidebar-list">
+            <li>OpenLandMap</li>
+            <li>250m global resolution</li>
+            <li>6 land cover classes</li>
+          </ul>
+        </div>
+      </aside>
+
+      <main class="proj-main">
+        <div class="proj-section" data-reveal>
+          <p class="proj-section-label">Overview</p>
+          <h2 class="proj-section-title">Making land change visible to everyone</h2>
+          <div class="proj-body">
+            <p>The AI4ALL project asks a fundamental question: <strong>how do you include citizens in decisions about their environment</strong> when the data that drives those decisions is locked behind technical interfaces?</p>
+            <p>This platform answers by turning OpenLandMap satellite data into an interactive split-screen comparison — anyone can drag a divider to reveal how land cover has changed between any two years from 2000 to 2023. The underlying data is real satellite imagery at 250m resolution, globally.</p>
+            <p>Two modes serve two audiences: <strong>Data mode</strong> for analysts (raw land-cover tiles, opacity controls, quantified legend) and <strong>Story mode</strong> for citizens (narrative overlays that contextualise what the map is showing). A MorphLayer and LoupeLens enable localised magnification for community discussion.</p>
+          </div>
+        </div>
+
+        <div class="proj-section" data-reveal>
+          <p class="proj-section-label">Interface Modes</p>
+          <h2 class="proj-section-title">Data mode vs Story mode</h2>
+          <div class="pipeline">
+            <div class="pipeline-step">
+              <div class="pipeline-step-num" style="color:var(--rust-hover);">🛰</div>
+              <div class="pipeline-step-title">Data Mode</div>
+              <div class="pipeline-step-desc">Raw land-cover tiles. Year comparison slider. Opacity control. Quantified legend with land class breakdown.</div>
+            </div>
+            <div class="pipeline-step">
+              <div class="pipeline-step-num" style="color:var(--rust-hover);">🌱</div>
+              <div class="pipeline-step-title">Story Mode</div>
+              <div class="pipeline-step-desc">Narrative overlays replace technical UI. Real IGN aerial imagery. LoupeLens magnification for community zoom-ins.</div>
+            </div>
+            <div class="pipeline-step">
+              <div class="pipeline-step-num">→</div>
+              <div class="pipeline-step-title">Split Compare</div>
+              <div class="pipeline-step-desc">Leaflet Side-by-Side control: drag the vertical divider to compare any two years of land-cover data simultaneously.</div>
+            </div>
+            <div class="pipeline-step">
+              <div class="pipeline-step-num">⬤</div>
+              <div class="pipeline-step-title">Ideology Panel</div>
+              <div class="pipeline-step-desc">Contextual information panel explaining the participatory decision-making thesis underlying the visualisation.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="proj-section" data-reveal>
+          <p class="proj-section-label">Land Cover Data</p>
+          <h2 class="proj-section-title">OpenLandMap classification</h2>
+          <table class="bench-table">
+            <thead><tr><th>Class</th><th>Coverage</th><th>Change Signal</th></tr></thead>
+            <tbody>
+              <tr><td>Cropland</td><td>Agricultural zones</td><td>Expansion / abandonment visible 2000–2023</td></tr>
+              <tr><td>Forest</td><td>Tree canopy &gt;30%</td><td>Deforestation and reforestation patterns</td></tr>
+              <tr><td>Grassland</td><td>Open vegetation</td><td>Land conversion to agriculture or urban</td></tr>
+              <tr><td>Urban / Built-up</td><td>Impervious surfaces</td><td>City expansion — most dramatic growth signal</td></tr>
+              <tr><td>Water</td><td>Rivers, lakes, wetlands</td><td>Seasonal and long-term water change</td></tr>
+              <tr><td>Bare / Sparse</td><td>Deserts, rock, ice</td><td>Desertification and climate indicators</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="proj-section" data-reveal>
+          <p class="proj-section-label">Architecture</p>
+          <h2 class="proj-section-title">Component structure</h2>
+          <div class="arch-box">
+            <pre>  App.tsx
+  ├── Leaflet Map  (#map div)
+  │   ├── CartoDB basemap
+  │   ├── leftLayer  (year A tile layer)
+  │   └── rightLayer (year B tile layer)
+  │
+  ├── IdeologyPanel   — participatory context
+  ├── LossLayer       — land loss highlighting
+  ├── MorphLayer      — story mode overlays
+  └── LoupeLens       — magnification lens
+
+  Data mode:
+  ├── Split slider (L.control.sideBySide)
+  ├── Year chip labels (left / right)
+  ├── Opacity range control
+  └── Legend panel (hover → popup)
+
+  Story mode:
+  ├── IGN aerial imagery replaces tile layers
+  ├── LoupeLens active
+  └── Data UI hidden</pre>
+          </div>
+        </div>
+
+        <div class="proj-section" data-reveal>
+          <p class="proj-section-label">Stack</p>
+          <h2 class="proj-section-title">Technology</h2>
+          <div class="tech-grid">
+            <div class="tech-item"><i class="fab fa-react"></i><span class="tech-name">React</span><span class="tech-role">UI framework</span></div>
+            <div class="tech-item"><i class="fas fa-code"></i><span class="tech-name">TypeScript</span><span class="tech-role">Type safety</span></div>
+            <div class="tech-item"><i class="fas fa-map"></i><span class="tech-name">Leaflet.js</span><span class="tech-role">Interactive map</span></div>
+            <div class="tech-item"><i class="fas fa-sliders-h"></i><span class="tech-name">Side-by-Side</span><span class="tech-role">Year compare</span></div>
+            <div class="tech-item"><i class="fas fa-bolt"></i><span class="tech-name">Vite</span><span class="tech-role">Build tool</span></div>
+            <div class="tech-item"><i class="fas fa-satellite"></i><span class="tech-name">OpenLandMap</span><span class="tech-role">Satellite data</span></div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-copy">© 2025 Sahil Yousaf · AI4ALL Decision Platform</p>
+      <div class="footer-links">
+        <a href="index.html">Portfolio</a>
+        <a href="https://github.com/sahilyousafp/AI4ALL_Decision" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

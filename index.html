@@ -1,382 +1,404 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sahil Yousaf - Portfolio</title>
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="References/For website.PNG">
-    <link rel="shortcut icon" type="image/png" href="References/For website.PNG">
-    <link rel="apple-touch-icon" href="References/For website.PNG">
-    
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- EmailJS SDK -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sahil Yousaf — Architect &amp; AI Researcher</title>
+  <meta name="description" content="Architect and AI Researcher specialising in computational design and parametric architecture. IAAC Barcelona. Open to architectural and research opportunities.">
+  <meta property="og:title" content="Sahil Yousaf — Architect &amp; AI Researcher">
+  <meta property="og:description" content="Computational design, parametric architecture, AI research. Based in Barcelona.">
+  <link rel="icon" type="image/png" href="References/For website.PNG">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <span class="brand-text">Portfolio.</span>
-            </div>
-            <div class="nav-menu">
-                <a href="#home" class="nav-link active">Home</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#skills" class="nav-link">Skills</a>
-                <a href="#experience" class="nav-link">Experience</a>
-                <a href="#repositories" class="nav-link">Projects</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </div>
-            <div class="nav-social">
-                <a href="https://github.com/sahilyousafp" target="_blank" class="social-icon">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://blog.iaac.net/user/sahilyousafp/" target="_blank" class="social-icon">
-                    <i class="fas fa-blog"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/sahil-yousaf-882a0b132/" target="_blank" class="social-icon">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-            </div>
+
+  <!-- Custom cursor -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- ── Navigation ── -->
+  <nav class="nav" id="mainNav">
+    <div class="nav-brand">Sahil <em>Yousaf</em></div>
+    <ul class="nav-links">
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#repositories">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-social">
+      <a href="https://github.com/sahilyousafp" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/sahil-yousaf-882a0b132/" target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://blog.iaac.net/user/sahilyousafp/" target="_blank" rel="noopener" title="IAAC Blog"><i class="fas fa-blog"></i></a>
+    </div>
+  </nav>
+
+  <!-- ══ 01 · HERO ══════════════════════════════ -->
+  <section id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-inner">
+
+      <div class="hero-left">
+        <p class="hero-eyebrow" data-reveal>01 — Architect &amp; AI Researcher</p>
+        <h1 class="hero-name" data-reveal data-delay="1">
+          Sahil<br><em>Yousaf</em>
+        </h1>
+        <p class="hero-role" data-reveal data-delay="2">
+          Computational Design <span class="sep">·</span>
+          Parametric Architecture <span class="sep">·</span>
+          AI Research
+        </p>
+        <p class="hero-location" data-reveal data-delay="3">
+          41.3851° N, 2.1734° E &nbsp;—&nbsp; Barcelona, Spain
+        </p>
+        <div class="hero-ctas" data-reveal data-delay="4">
+          <a class="btn btn-fill"
+             href="https://drive.google.com/uc?export=download&amp;id=1RI6g6-drvGhHcv2iZP_Sa41B8bmQbSzM"
+             download>
+            <i class="fas fa-download"></i> Portfolio
+          </a>
+          <a class="btn btn-outline"
+             href="https://drive.google.com/file/d/1kKcI2pK1Mxii8Ap2YcYa0GOM_AJOVbJ3/view?usp=sharing">
+            <i class="fas fa-file-alt"></i> CV
+          </a>
+          <a class="btn btn-outline" href="#repositories">
+            View Work ↓
+          </a>
         </div>
-    </nav>
+      </div>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <p class="hero-greeting">Hello,</p>
-                    <h1 class="hero-title">I'm Sahil Yousaf</h1>
-                    <p class="hero-subtitle">Architect & AI Researcher</p>
-                    <a class="download-cv-btn" href="https://drive.google.com/uc?export=download&id=1RI6g6-drvGhHcv2iZP_Sa41B8bmQbSzM" download>
-                        <i class="fas fa-download"></i>
-                        Portfolio
-                    </a>
-                    </div>
-                    <div class="hero-image">
-                        <div class="profile-image-container">
-                            <div class="profile-glow"></div>
-                            <img src="References/For website.PNG" alt="Sahil Yousaf" class="profile-image" id="profile-image">
-                        </div>
-
-                </div>
-
-            </div>
+      <div class="hero-right" data-reveal data-delay="2">
+        <div class="portrait-wrap">
+          <div class="portrait-frame">
+            <div class="cm tl"></div>
+            <div class="cm tr"></div>
+            <div class="cm bl"></div>
+            <div class="cm br"></div>
+            <div class="portrait-border"></div>
+            <img src="References/For website.PNG" alt="Sahil Yousaf — Architect &amp; AI Researcher">
+          </div>
+          <p class="portrait-caption">IAAC · Barcelona · 2024–25</p>
         </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="hr"></div>
+
+  <!-- ══ 02 · ABOUT ═════════════════════════════ -->
+  <div class="section-wrap alt">
+    <section id="about" class="section">
+      <div class="s-head" data-reveal>
+        <p class="s-label">02 — About</p>
+        <h2 class="s-title">Designing at the intersection<br>of space &amp; <em>computation</em></h2>
+      </div>
+
+      <div class="about-grid">
+        <div>
+          <div class="bio-content" id="bio-content">
+            <div class="bio-loading">
+              <div class="spinner"></div>
+              <span>Loading bio…</span>
+            </div>
+          </div>
+          <div class="about-actions" data-reveal>
+            <a class="btn btn-fill"
+               href="https://drive.google.com/file/d/1kKcI2pK1Mxii8Ap2YcYa0GOM_AJOVbJ3/view?usp=sharing">
+              <i class="fas fa-download"></i> Download CV
+            </a>
+            <a class="btn btn-outline" href="#contact">Get in Touch</a>
+          </div>
+        </div>
+
+        <aside class="about-aside">
+          <div class="stats">
+            <div class="stat-card" data-reveal>
+              <span class="stat-n">3+</span>
+              <span class="stat-l">Years of Practice</span>
+            </div>
+            <div class="stat-card" data-reveal data-delay="1">
+              <span class="stat-n">03</span>
+              <span class="stat-l">Architecture Firms</span>
+            </div>
+            <div class="stat-card" data-reveal data-delay="2">
+              <span class="stat-n">01</span>
+              <span class="stat-l">Published Paper</span>
+            </div>
+          </div>
+        </aside>
+      </div>
     </section>
+  </div>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="section-container">
-            <div class="about-content about-content-fullwidth">
-                <div class="about-text about-text-fullwidth">
-                    <h2 class="section-title">About Me</h2>
-                    <p class="section-subtitle">Architect & AI Researcher</p>
-                    <div class="bio-content" id="bio-content">
-                        <div class="bio-loading">
-                            <div class="spinner"></div>
-                            <p>Loading bio...</p>
-                        </div>
-                    </div>
-                    <a class="download-cv-btn" href="https://drive.google.com/file/d/1kKcI2pK1Mxii8Ap2YcYa0GOM_AJOVbJ3/view?usp=sharing" download>
-                        <i class="fas fa-download"></i>
-                        Download CV
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+  <div class="hr"></div>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="section-container">
-            <h2 class="section-title">My Skills</h2>
-            <div class="skills-content-stacked">
-                <div class="skills-text" style="margin-bottom: 3rem;">
-                    <h3>Skills Reflects Our Knowledge</h3>
-                    <p>I have extensive experience in various technologies and frameworks, constantly learning and adapting to new tools and methodologies. Experimenting my limits thorugh coding assistants to deliver quick prototypes.</p>
-                    <div class="experience-counter">
-                        <span class="counter-number">3+</span>
-                        <span class="counter-label">Years Of<br>Experience</span>
-                    </div>
-                </div>
-                <div class="skills-grid">
-                    <div class="skill-item">
-                        <div class="skill-icon">
-                            <i class="fab fa-html5"></i>
-                        </div>
-                        <span class="skill-name">HTML</span>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-icon">
-                            <i class="fab fa-css3-alt"></i>
-                        </div>
-                        <span class="skill-name">CSS</span>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-icon">
-                            <i class="fab fa-js-square"></i>
-                        </div>
-                        <span class="skill-name">JavaScript</span>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-icon">
-                            <i class="fab fa-python"></i>
-                        </div>
-                        <span class="skill-name">Python</span>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-icon">
-                            <i class="fab fa-node-js"></i>
-                        </div>
-                        <span class="skill-name">Node.js</span>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-icon">
-                            <i class="fas fa-cube"></i>
-                        </div>
-                        <span class="skill-name">Rhino</span>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-icon">
-                            <i class="fas fa-project-diagram"></i>
-                        </div>
-                        <span class="skill-name">Grasshopper</span>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-icon">
-                            <i class="fas fa-layer-group"></i>
-                        </div>
-                        <span class="skill-name">Adobe Suite</span>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-icon">
-                            <i class="fas fa-drafting-compass"></i>
-                        </div>
-                        <span class="skill-name">Autodesk</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="experience">
-        <div class="section-container">
-            <h2 class="section-title">My Experience</h2>
-            
-            <!-- Work Experience -->
-            <div class="experience-content">
-                <h3 class="experience-subtitle">Professional Experience</h3>
-                <div class="experience-grid">
-                    <div class="experience-card">
-                        <div class="experience-icon">
-                            <i class="fas fa-briefcase"></i>
-                        </div>
-                        <div class="experience-details">
-                            <h4>Jr. Design Architect</h4>
-                            <p class="company">SHAPE Architecture & Research - UAE</p>
-                            <p class="duration">May 2024 - Aug 2024</p>
-                        </div>
-                    </div>
-                    
-                    <div class="experience-card">
-                        <div class="experience-icon">
-                            <i class="fas fa-drafting-compass"></i>
-                        </div>
-                        <div class="experience-details">
-                            <h4>Set Designer - On Contract</h4>
-                            <p class="company">DNEG, Mumbai - India</p>
-                            <p class="duration">Jan 2024 - May 2024</p>
-                        </div>
-                    </div>
-                    
-                    <div class="experience-card">
-                        <div class="experience-icon">
-                            <i class="fas fa-building"></i>
-                        </div>
-                        <div class="experience-details">
-                            <h4>Architect</h4>
-                            <p class="company">Morphogenesis, Delhi - India</p>
-                            <p class="duration">2022 - 2024</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Accreditations -->
-            <div class="accreditations-content">
-                <h3 class="experience-subtitle">Accreditations</h3>
-                <div class="accreditations-grid">
-                    <div class="accreditation-card">
-                        <div class="accreditation-icon">
-                            <i class="fas fa-certificate"></i>
-                        </div>
-                        <div class="accreditation-details">
-                            <h4>Licensed Architect - India</h4>
-                            <p class="organization">NCARB (National Council of Architectural Registration Board Certification)</p>
-                        </div>
-                    </div>
-                    
-                    <div class="accreditation-card">
-                        <div class="accreditation-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <div class="accreditation-details">
-                            <h4>Principles & Application of Building Science</h4>
-                            <p class="organization">NPTEL (National Program of Technology Enhanced Learning - IIT Roorkee)</p>
-                        </div>
-                    </div>
-
-                    <div class="accreditation-card">
-                        <div class="accreditation-icon">
-                            <i class="fas fa-file-alt"></i>
-                        </div>
-                        <div class="accreditation-details">
-                            <h4>Published Paper: <a>Building Analysis Tool (B.A.T.)</a></h4>
-                            <p class="organization">ANNSIM Conference, Society of Modelling and Simulation (SCS) - 2025</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Projects/Repositories Section -->
-    <section id="repositories" class="repositories">
-        <div class="section-container">
-            <div class="section-header">
-                <h2 class="section-title">Featured Projects</h2>
-                <p class="section-subtitle">Explore my pinned repositories and key contributions</p>
-            </div>
-            
-            <div class="repositories-grid" id="repositories-grid">
-                <!-- Repositories will be loaded here -->
-            </div>
-
-            <div class="loading" id="loading">
-                <div class="spinner"></div>
-                <p>Loading repositories...</p>
-            </div>
-
-            <div class="error-message" id="error-message" style="display: none;">
-                <i class="fas fa-exclamation-triangle"></i>
-                <p>Unable to load repositories. Please check your internet connection.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="section-container">
-            <h2 class="section-title">Contact Me</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Have Any Project?</h3>
-                    <p>I'm always interested in new opportunities and exciting projects. Let's discuss how we can work together!</p>
-                    
-                    <div class="contact-methods">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>Email</h4>
-                                <p>sahil.yousaf@students.iaac.net</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>Phone</h4>
-                                <p>+34 603 789 204</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>Location</h4>
-                                <p>Barcelona,Spain</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <button class="chat-button">
-                        <i class="fas fa-comments"></i>
-                        Let's Chat
-                    </button>
-                </div>
-                
-                <div class="contact-form">
-                    <form id="contact-form">
-                        <div class="form-group">
-                            <input type="text" name="from_name" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" name="from_email" placeholder="Your Email" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="subject" placeholder="Subject" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">
-                            <i class="fas fa-paper-plane"></i>
-                            Send Message
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <p>Created by sahilyousafp | © 2025 All Rights Reserved</p>
-        </div>
-    </footer>
-
-    <!-- Repository Modal -->
-    <div class="modal" id="repository-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="modal-title"></h3>
-                <button class="close-btn" id="close-modal">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="repository-links">
-                    <a id="repo-link" href="#" target="_blank" class="btn btn-primary">
-                        <i class="fab fa-github"></i> View Repository
-                    </a>
-                    <a id="demo-link" href="#" target="_blank" class="btn btn-secondary" style="display: none;">
-                        <i class="fas fa-external-link-alt"></i> Live Demo
-                    </a>
-                </div>
-                <div class="readme-content">
-                    <h4><i class="fas fa-file-alt"></i> README.md</h4>
-                    <div id="readme-display" class="readme-display">
-                        <div class="readme-loading">
-                            <div class="spinner"></div>
-                            <p>Loading README...</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <!-- ══ 03 · SKILLS ════════════════════════════ -->
+  <section id="skills" class="section">
+    <div class="s-head" data-reveal>
+      <p class="s-label">03 — Skills</p>
+      <h2 class="s-title">Tools &amp; Technologies</h2>
+      <p class="s-sub">Bridging computational research with architectural practice</p>
     </div>
 
-    <script src="script.js"></script>
+    <div class="skills-grid" data-reveal data-delay="1">
+      <div class="skill-cat">
+        <p class="skill-cat-num">Category 01</p>
+        <h3 class="skill-cat-title">Computational<br>Design</h3>
+        <ul class="skill-list">
+          <li><i class="fas fa-cube"></i> Rhino 3D</li>
+          <li><i class="fas fa-project-diagram"></i> Grasshopper</li>
+          <li><i class="fas fa-drafting-compass"></i> Revit / BIM</li>
+          <li><i class="fas fa-vector-square"></i> AutoCAD</li>
+          <li><i class="fas fa-object-group"></i> SketchUp</li>
+          <li><i class="fas fa-bezier-curve"></i> Blender / 3ds Max</li>
+        </ul>
+      </div>
+      <div class="skill-cat">
+        <p class="skill-cat-num">Category 02</p>
+        <h3 class="skill-cat-title">Programming<br>&amp; AI</h3>
+        <ul class="skill-list">
+          <li><i class="fab fa-python"></i> Python</li>
+          <li><i class="fab fa-js-square"></i> JavaScript</li>
+          <li><i class="fab fa-html5"></i> HTML / CSS</li>
+          <li><i class="fab fa-node-js"></i> Node.js</li>
+          <li><i class="fas fa-brain"></i> Machine Learning</li>
+          <li><i class="fas fa-robot"></i> AI Research</li>
+        </ul>
+      </div>
+      <div class="skill-cat">
+        <p class="skill-cat-num">Category 03</p>
+        <h3 class="skill-cat-title">Design<br>&amp; Media</h3>
+        <ul class="skill-list">
+          <li><i class="fab fa-adobe"></i> Adobe Photoshop</li>
+          <li><i class="fas fa-pen-nib"></i> Adobe Illustrator</li>
+          <li><i class="fas fa-file-alt"></i> InDesign</li>
+          <li><i class="fas fa-film"></i> After Effects</li>
+          <li><i class="fas fa-layer-group"></i> Adobe Suite</li>
+          <li><i class="fas fa-lightbulb"></i> Concept Design</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="hr"></div>
+
+  <!-- ══ 04 · EXPERIENCE ════════════════════════ -->
+  <div class="section-wrap alt">
+    <section id="experience" class="section">
+      <div class="s-head" data-reveal>
+        <p class="s-label">04 — Experience</p>
+        <h2 class="s-title">Practice &amp; Credentials</h2>
+      </div>
+
+      <div class="exp-grid">
+        <!-- Professional -->
+        <div data-reveal>
+          <span class="exp-col-label">Professional Experience</span>
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-date">May–Aug<br>2024</div>
+              <div class="tl-dot"></div>
+              <div class="tl-body">
+                <div class="tl-role">Jr. Design Architect</div>
+                <div class="tl-co">SHAPE Architecture &amp; Research — UAE</div>
+                <div class="tl-desc">Parametric design development for high-profile architectural projects in the UAE region.</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">Jan–May<br>2024</div>
+              <div class="tl-dot"></div>
+              <div class="tl-body">
+                <div class="tl-role">Set Designer (Contract)</div>
+                <div class="tl-co">DNEG — Mumbai, India</div>
+                <div class="tl-desc">Spatial visualisation and set design for world-class VFX productions at a leading post-production studio.</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">2022–<br>2024</div>
+              <div class="tl-dot"></div>
+              <div class="tl-body">
+                <div class="tl-role">Architect</div>
+                <div class="tl-co">Morphogenesis — Delhi, India</div>
+                <div class="tl-desc">Sustainable, award-winning architecture at one of India's most recognised practices, known for parametric and bioclimatic design.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Credentials -->
+        <div data-reveal data-delay="2">
+          <span class="exp-col-label">Credentials &amp; Research</span>
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-date">2025</div>
+              <div class="tl-dot"></div>
+              <div class="tl-body">
+                <div class="tl-role">Published Research Paper</div>
+                <div class="tl-co">ANNSIM Conference — Society of Modelling &amp; Simulation (SCS)</div>
+                <div class="tl-desc">Building Analysis Tool (B.A.T.) — computational framework for architectural performance simulation.</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">2024–25</div>
+              <div class="tl-dot"></div>
+              <div class="tl-body">
+                <div class="tl-role">Master in City &amp; Technology</div>
+                <div class="tl-co">IAAC — Institute for Advanced Architecture of Catalonia, Barcelona</div>
+                <div class="tl-desc">AI-driven urban analysis and computational design research at the world's leading advanced architecture institute.</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">Active</div>
+              <div class="tl-dot"></div>
+              <div class="tl-body">
+                <div class="tl-role">Licensed Architect — India</div>
+                <div class="tl-co">NCARB Certification</div>
+                <div class="tl-desc">National Council of Architectural Registration Board.</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">Cert.</div>
+              <div class="tl-dot"></div>
+              <div class="tl-body">
+                <div class="tl-role">Principles of Building Science</div>
+                <div class="tl-co">NPTEL — IIT Roorkee</div>
+                <div class="tl-desc">Principles &amp; Application of Building Science, National Programme on Technology Enhanced Learning.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="hr"></div>
+
+  <!-- ══ 05 · PROJECTS ══════════════════════════ -->
+  <section id="repositories" class="section">
+    <div class="s-head" data-reveal>
+      <p class="s-label">05 — Projects</p>
+      <h2 class="s-title">Featured Work</h2>
+      <p class="s-sub">Selected repositories and research contributions from GitHub</p>
+    </div>
+    <div class="projects-grid" id="projects-grid">
+      <div class="projects-loading">
+        <div class="spinner"></div>
+        <p>Loading projects…</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="hr"></div>
+
+  <!-- ══ 06 · CONTACT ═══════════════════════════ -->
+  <div class="section-wrap alt">
+    <section id="contact" class="section">
+      <div class="s-head" data-reveal>
+        <p class="s-label">06 — Contact</p>
+        <h2 class="s-title">Let's build something<br><em>extraordinary</em></h2>
+      </div>
+
+      <div class="contact-grid">
+        <div data-reveal>
+          <p class="contact-lead">
+            Open to architectural roles, research collaborations, and computational design projects worldwide.
+          </p>
+          <div class="c-methods">
+            <div class="c-method">
+              <div class="c-icon"><i class="fas fa-envelope"></i></div>
+              <div>
+                <div class="c-lbl">Email</div>
+                <div class="c-val">sahil.yousaf@students.iaac.net</div>
+              </div>
+            </div>
+            <div class="c-method">
+              <div class="c-icon"><i class="fas fa-phone"></i></div>
+              <div>
+                <div class="c-lbl">Phone</div>
+                <div class="c-val">+34 603 789 204</div>
+              </div>
+            </div>
+            <div class="c-method">
+              <div class="c-icon"><i class="fas fa-map-marker-alt"></i></div>
+              <div>
+                <div class="c-lbl">Location</div>
+                <div class="c-val">Barcelona, Spain · Open to Relocation</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div data-reveal data-delay="2">
+          <form class="contact-form" id="contact-form" novalidate>
+            <div class="form-row">
+              <div class="f-field">
+                <input type="text" name="from_name" placeholder="Name" required>
+              </div>
+              <div class="f-field">
+                <input type="email" name="from_email" placeholder="Email" required>
+              </div>
+            </div>
+            <div class="f-field">
+              <input type="text" name="subject" placeholder="Subject" required>
+            </div>
+            <div class="f-field">
+              <textarea name="message" placeholder="Message" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn" id="submit-btn">
+              <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-copy">© 2025 Sahil Yousaf · All rights reserved</p>
+      <div class="footer-links">
+        <a href="https://github.com/sahilyousafp" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/sahil-yousaf-882a0b132/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://blog.iaac.net/user/sahilyousafp/" target="_blank" rel="noopener">IAAC Blog</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── Modal ── -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h3 class="modal-head-title" id="modalTitle">Project</h3>
+        <button class="modal-close-btn" id="modalClose">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-actions">
+          <a id="modalRepoLink" href="#" target="_blank" rel="noopener"
+             class="btn btn-fill" style="font-size:0.7rem; padding:0.65rem 1.2rem;">
+            <i class="fab fa-github"></i> Repository
+          </a>
+          <a id="modalDemoLink" href="#" target="_blank" rel="noopener"
+             class="btn btn-outline" style="font-size:0.7rem; padding:0.65rem 1.2rem; display:none;">
+            <i class="fas fa-external-link-alt"></i> Live Demo
+          </a>
+        </div>
+        <div class="modal-readme" id="modalReadme">
+          <div class="spinner" style="margin:2rem auto;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>

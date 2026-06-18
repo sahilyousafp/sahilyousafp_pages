@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LLM Urban ABM — Sahil Yousaf</title>
+  <link rel="icon" type="image/png" href="References/For website.PNG">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <nav class="nav scrolled" id="mainNav">
+    <div class="nav-brand">Sahil <em>Yousaf</em></div>
+    <ul class="nav-links">
+      <li><a href="index.html#home">Home</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#repositories" class="active">Projects</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-social">
+      <a href="https://github.com/sahilyousafp/LLM-based-UrbanABM" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+    </div>
+  </nav>
+
+  <div style="padding-top:64px;">
+    <div class="back-bar" data-reveal>
+      <a href="index.html#repositories" class="back-link"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+    </div>
+
+    <div class="proj-hero">
+      <div class="proj-hero-meta" data-reveal>
+        <span class="proj-hero-index">02 — Urban Simulation</span>
+        <span class="proj-tag accent">500 AI Agents</span>
+        <span class="proj-tag">IAAC · 2024–25</span>
+        <span class="proj-tag">Barcelona · Eixample</span>
+      </div>
+      <h1 class="proj-hero-title" data-reveal data-delay="1">
+        LLM-Based<br><em>Urban ABM</em>
+      </h1>
+      <p class="proj-hero-desc" data-reveal data-delay="2">
+        500 autonomous agents navigate Barcelona's Eixample district, each powered by a large language model 
+        with persistent memory and dynamic needs. Every movement decision is reasoned in natural language 
+        against the agent's archetype, emotional state, and perceived urban environment.
+      </p>
+      <div class="proj-hero-actions" data-reveal data-delay="3">
+        <a class="btn btn-fill" href="https://github.com/sahilyousafp/LLM-based-UrbanABM" target="_blank" rel="noopener">
+          <i class="fab fa-github"></i> GitHub Repository
+        </a>
+      </div>
+    </div>
+
+    <!-- Cover — use ABM output image -->
+    <div style="max-width:var(--max-w);margin:0 auto;padding:0 3rem;" data-reveal>
+      <div class="proj-cover">
+        <img src="https://raw.githubusercontent.com/sahilyousafp/ABM_Geospatial-AI/main/Output/Both_All%20archetype%20spot%20plot.png" alt="Agent trajectory heatmap over Barcelona" onerror="this.parentElement.style.background='var(--ink)'">
+        <span class="proj-cover-label">Agent trajectory heatmap — Barcelona Eixample</span>
+      </div>
+    </div>
+
+    <div class="hr" style="margin-top:0;"></div>
+
+    <div class="proj-layout">
+      <aside class="proj-sidebar">
+        <div class="proj-sidebar-section">
+          <span class="proj-sidebar-label">Scale</span>
+          <div class="proj-sidebar-stat">
+            <div class="proj-sidebar-stat-n">500</div>
+            <div class="proj-sidebar-stat-l">Autonomous LLM Agents</div>
+          </div>
+        </div>
+        <div class="proj-sidebar-section">
+          <span class="proj-sidebar-label">Backend</span>
+          <ul class="proj-sidebar-list">
+            <li>Python + FastAPI</li>
+            <li>Mesa ABM Framework</li>
+            <li>DuckDB + Spatial</li>
+            <li>Overture Maps / OSM</li>
+            <li>Ollama / OpenAI</li>
+          </ul>
+        </div>
+        <div class="proj-sidebar-section">
+          <span class="proj-sidebar-label">Frontend</span>
+          <ul class="proj-sidebar-list">
+            <li>Leaflet.js</li>
+            <li>Interactive Map UI</li>
+            <li>Agent Inspector</li>
+            <li>Real-time Step Control</li>
+          </ul>
+        </div>
+        <div class="proj-sidebar-section">
+          <span class="proj-sidebar-label">Benchmarks</span>
+          <ul class="proj-sidebar-list">
+            <li>DuckDB vs PostgreSQL</li>
+            <li>Ollama vs GPT-4o</li>
+            <li>Overture vs OSM</li>
+            <li>VLM Perception</li>
+            <li>Humanistic Scoring</li>
+          </ul>
+        </div>
+      </aside>
+
+      <main class="proj-main">
+        <div class="proj-section" data-reveal>
+          <p class="proj-section-label">Overview</p>
+          <h2 class="proj-section-title">A city that thinks</h2>
+          <div class="proj-body">
+            <p>Traditional agent-based models use fixed rule tables for movement. This project replaces those rules with a live LLM: each step, the agent reads its own memory, perceives its surroundings, and <strong>reasons in natural language</strong> about where to go next.</p>
+            <p>Built on the Eixample district of Barcelona — one of the world's most regular urban grids — the simulation uses real street network data from Overture Maps and OpenStreetMap, with full spatial querying via DuckDB.</p>
+            <p>Each agent has a persistent <strong>KV Memory</strong> (structured current state) and <strong>Stream Memory</strong> (append-only event log), making every trajectory a readable story of urban behaviour.</p>
+          </div>
+        </div>
+
+        <div class="proj-section" data-reveal>
+          <p class="proj-section-label">Architecture</p>
+          <h2 class="proj-section-title">System design</h2>
+          <div class="arch-box">
+            <pre>  Frontend  (Leaflet.js)
+  ├── Interactive map: agents, buildings, walk network, amenities
+  └── Click any agent → inspect archetype, needs, memory log
+           │ HTTP / REST
+           ▼
+  API Server  (FastAPI)
+  ├── POST /api/step   →  runs all 500 agents concurrently
+  ├── GET  /api/agent/{id}/memory
+  ├── GET  /api/agent/{id}/stream
+  └── GET  /api/llm/stats
+           │
+  ┌────────┴──────────┐
+  Mesa ABM            LLM Client
+  CityModel           AsyncOpenAI-compatible
+  500 × CityAgent     Ollama / OpenAI / vLLM
+           │
+  Per-Agent BlockDispatcher
+  ├── NeedsBlock    → hunger / energy / social decay
+  ├── CognitionBlock → mood / curiosity / fatigue (LLM ×10)
+  └── MobilityBlock  → LLM picks next street edge
+           │
+  DuckDB + Spatial
+  └── buildings, walk_edges, amenities, walk_nodes</pre>
+          </div>
+        </div>
+
+        <div class="proj-section" data-reveal>
+          <p class="proj-section-label">Agent Archetypes</p>
+          <h2 class="proj-section-title">Four urban personas</h2>
+          <div class="proj-body">
+            <p>Each agent is assigned an archetype that shapes its LLM prompt, driving realistic and <strong>demographically varied</strong> movement patterns across the city grid.</p>
+          </div>
+          <table class="bench-table">
+            <thead><tr><th>Archetype</th><th>Preferred Destinations</th><th>Movement Style</th></tr></thead>
+            <tbody>
+              <tr><td>Resident</td><td>Supermarket, pharmacy, park</td><td>Familiar routes, need-driven</td></tr>
+              <tr><td>Commuter</td><td>Transport stops, cafés</td><td>Direct, efficient, time-sensitive</td></tr>
+              <tr><td>Tourist</td><td>Attractions, restaurants, new streets</td><td>Exploratory, curiosity-driven</td></tr>
+              <tr><td>Student</td><td>Cafés, library, park, social spaces</td><td>Budget-conscious, social, energetic</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="proj-section" data-reveal>
+          <p class="proj-section-label">Output Data</p>
+          <h2 class="proj-section-title">Spatial visualisations</h2>
+          <div class="img-grid-2">
+            <div class="img-cell tall">
+              <img src="https://raw.githubusercontent.com/sahilyousafp/ABM_Geospatial-AI/main/Output/Amenities_All%20archetype%20spot%20plot.png" alt="Amenity visits by archetype" loading="lazy" onerror="this.parentElement.style.display='none'">
+              <span class="img-label">Amenity visits by archetype</span>
+            </div>
+            <div class="img-cell tall">
+              <img src="https://raw.githubusercontent.com/sahilyousafp/ABM_Geospatial-AI/main/Output/Heatmap/initial%20heatmap.png" alt="Initial agent density heatmap" loading="lazy" onerror="this.parentElement.style.display='none'">
+              <span class="img-label">Initial agent density heatmap</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="proj-section" data-reveal>
+          <p class="proj-section-label">Benchmarks</p>
+          <h2 class="proj-section-title">5-notebook evaluation suite</h2>
+          <table class="bench-table">
+            <thead><tr><th>#</th><th>Compares</th><th>Key Question</th></tr></thead>
+            <tbody>
+              <tr><td>01</td><td>DuckDB vs SQLite vs PostgreSQL</td><td>Fastest spatial query for 500 agents?</td></tr>
+              <tr><td>02</td><td>Ollama vs vLLM vs GPT-4o-mini</td><td>Best latency / accuracy trade-off?</td></tr>
+              <tr><td>03</td><td>Overture Maps vs OpenStreetMap</td><td>Better POI coverage and network completeness?</td></tr>
+              <tr><td>04</td><td>PerceptionLM vs LLaVA vs GPT-4o-V</td><td>Best street environment understanding?</td></tr>
+              <tr><td>05</td><td>LLM-driven vs rule-based agents</td><td>Humanistic scoring across 5 dimensions</td></tr>
+            </tbody>
+          </table>
+          <div class="proj-body" style="margin-top:1rem;">
+            <p><strong>Humanistic scoring dimensions:</strong> Diversity of routes · Archetype consistency · Amenity plausibility · Spatial realism · Decision coherence.</p>
+          </div>
+        </div>
+
+        <div class="proj-section" data-reveal>
+          <p class="proj-section-label">Stack</p>
+          <h2 class="proj-section-title">Technology</h2>
+          <div class="tech-grid">
+            <div class="tech-item"><i class="fab fa-python"></i><span class="tech-name">Python</span><span class="tech-role">Core</span></div>
+            <div class="tech-item"><i class="fas fa-server"></i><span class="tech-name">FastAPI</span><span class="tech-role">REST API</span></div>
+            <div class="tech-item"><i class="fas fa-database"></i><span class="tech-name">DuckDB</span><span class="tech-role">Spatial DB</span></div>
+            <div class="tech-item"><i class="fas fa-map"></i><span class="tech-name">Leaflet.js</span><span class="tech-role">Map UI</span></div>
+            <div class="tech-item"><i class="fas fa-brain"></i><span class="tech-name">Mesa ABM</span><span class="tech-role">Simulation</span></div>
+            <div class="tech-item"><i class="fas fa-robot"></i><span class="tech-name">Ollama / OpenAI</span><span class="tech-role">LLM provider</span></div>
+            <div class="tech-item"><i class="fas fa-globe"></i><span class="tech-name">Overture Maps</span><span class="tech-role">Geodata</span></div>
+            <div class="tech-item"><i class="fas fa-code-branch"></i><span class="tech-name">asyncio</span><span class="tech-role">Concurrency</span></div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-copy">© 2025 Sahil Yousaf · LLM Urban ABM</p>
+      <div class="footer-links">
+        <a href="index.html">Portfolio</a>
+        <a href="https://github.com/sahilyousafp/LLM-based-UrbanABM" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

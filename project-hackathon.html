@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZONO_NAUTS — AEC Hackathon BIG · Sahil Yousaf</title>
+  <link rel="icon" type="image/png" href="References/For website.PNG">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <nav class="nav scrolled" id="mainNav">
+    <div class="nav-brand">Sahil <em>Yousaf</em></div>
+    <ul class="nav-links">
+      <li><a href="index.html#home">Home</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#repositories" class="active">Projects</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-social">
+      <a href="https://github.com/sahilyousafp/AEC_HACKATHON_BIG" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+    </div>
+  </nav>
+
+  <div style="padding-top:64px;">
+    <div class="back-bar" data-reveal>
+      <a href="index.html#repositories" class="back-link"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+    </div>
+
+    <div class="proj-hero">
+      <div class="proj-hero-meta" data-reveal>
+        <span class="proj-hero-index">05 — Hackathon Project</span>
+        <span class="proj-tag accent">AEC TECH 2025</span>
+        <span class="proj-tag">BIG Office · Barcelona</span>
+        <span class="proj-tag">GNN + Voxels</span>
+      </div>
+      <h1 class="proj-hero-title" data-reveal data-delay="1">
+        ZONO_NAUTS<br><em>Urban Growth GNN</em>
+      </h1>
+      <p class="proj-hero-desc" data-reveal data-delay="2">
+        Built in 48 hours at the AEC TECH Hackathon 2025 at BIG's Barcelona office. 
+        The ZONO_NAUTS team turned complex urban data into gamified, interpretable models — 
+        using graph neural networks to predict city growth patterns and Minecraft-style 
+        voxelisation to make the predictions tangible to non-experts.
+      </p>
+      <div class="proj-hero-actions" data-reveal data-delay="3">
+        <a class="btn btn-fill" href="https://github.com/sahilyousafp/AEC_HACKATHON_BIG" target="_blank" rel="noopener">
+          <i class="fab fa-github"></i> GitHub Repository
+        </a>
+        <a class="btn btn-outline" href="https://docs.google.com/presentation/d/1TVzfKjb-gqISSw54PyOh2nNhkcX3KrRm1F0NSyFUOvg/edit?usp=sharing" target="_blank" rel="noopener">
+          <i class="fas fa-presentation"></i> Presentation
+        </a>
+      </div>
+    </div>
+
+    <div style="max-width:var(--max-w);margin:0 auto;padding:0 3rem;" data-reveal>
+      <div class="proj-cover">
+        <img src="https://raw.githubusercontent.com/sahilyousafp/AEC_HACKATHON_BIG/main/assets/GNN_on_city.png" alt="GNN applied to city block data" onerror="this.parentElement.style.background='var(--paper-alt)'">
+        <span class="proj-cover-label">Graph Neural Network — Barcelona city block analysis</span>
+      </div>
+    </div>
+
+    <div class="hr" style="margin-top:0;"></div>
+
+    <div class="proj-layout">
+      <aside class="proj-sidebar">
+        <div class="proj-sidebar-section">
+          <span class="proj-sidebar-label">Event</span>
+          <div class="proj-sidebar-stat">
+            <div class="proj-sidebar-stat-n">48h</div>
+            <div class="proj-sidebar-stat-l">AEC TECH Hackathon 2025</div>
+          </div>
+        </div>
+        <div class="proj-sidebar-section">
+          <span class="proj-sidebar-label">Location</span>
+          <ul class="proj-sidebar-list">
+            <li>BIG Office, Barcelona</li>
+            <li>Bjarke Ingels Group</li>
+          </ul>
+        </div>
+        <div class="proj-sidebar-section">
+          <span class="proj-sidebar-label">Technology</span>
+          <ul class="proj-sidebar-list">
+            <li>Python + OSMnx</li>
+            <li>Graph Neural Networks</li>
+            <li>Voxelisation (.schematic)</li>
+            <li>NetworkX</li>
+            <li>Jupyter Notebooks</li>
+          </ul>
+        </div>
+        <div class="proj-sidebar-section">
+          <span class="proj-sidebar-label">Data Sources</span>
+          <ul class="proj-sidebar-list">
+            <li>OpenStreetMap</li>
+            <li>Building footprints</li>
+            <li>Land use polygons</li>
+            <li>Points of interest</li>
+          </ul>
+        </div>
+      </aside>
+
+      <main class="proj-main">
+        <div class="proj-section" data-reveal>
+          <p class="proj-section-label">Overview</p>
+          <h2 class="proj-section-title">Urban development meets simulation, meets play</h2>
+          <div class="proj-body">
+            <p>City growth models are notoriously opaque — driven by equations planners and citizens can't interpret. The ZONO_NAUTS challenge was: <strong>how do you make urban prediction legible?</strong></p>
+            <p>The answer was two-fold. First, a <strong>Graph Neural Network</strong> trained on Barcelona's urban grid to predict zoning transitions, land use dominance, and new development zones — patterns invisible to traditional analysis.</p>
+            <p>Second, a <strong>Minecraft-style voxelisation</strong> pipeline that converts the city grid into a spatial format anyone can explore. Urban development becomes a world you can walk through, not a chart you can't read.</p>
+            <p>The project opens real questions: how do planners, developers, and citizens participate in shaping the cities the model predicts?</p>
+          </div>
+        </div>
+
+        <div class="proj-section" data-reveal>
+          <p class="proj-section-label">Workflow</p>
+          <h2 class="proj-section-title">Modular pipeline</h2>
+          <div class="pipeline">
+            <div class="pipeline-step">
+              <div class="pipeline-step-num">01</div>
+              <div class="pipeline-step-title">OSMnx Extraction</div>
+              <div class="pipeline-step-desc">Building footprints, land use polygons, and POIs extracted from OpenStreetMap for any target city.</div>
+            </div>
+            <div class="pipeline-step">
+              <div class="pipeline-step-num">02</div>
+              <div class="pipeline-step-title">Grid-to-Graph</div>
+              <div class="pipeline-step-desc">A 250×250m urban grid is generated then converted to a graph format for GNN training, preserving spatial relationships.</div>
+            </div>
+            <div class="pipeline-step">
+              <div class="pipeline-step-num">03</div>
+              <div class="pipeline-step-title">GNN Training</div>
+              <div class="pipeline-step-desc">Graph Neural Network predicts zoning transitions and land use dominance across urban nodes.</div>
+            </div>
+            <div class="pipeline-step">
+              <div class="pipeline-step-num">04</div>
+              <div class="pipeline-step-title">Voxelisation</div>
+              <div class="pipeline-step-desc">3D city blocks converted to .schematic format — making urban predictions interactive and spatially immersive.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="proj-section" data-reveal>
+          <p class="proj-section-label">Visuals</p>
+          <h2 class="proj-section-title">Hackathon outputs</h2>
+          <div class="img-grid-2">
+            <div class="img-cell tall">
+              <img src="https://raw.githubusercontent.com/sahilyousafp/AEC_HACKATHON_BIG/main/assets/ZONO_NAUTS-AEC%20hackathon%20(1).png" alt="ZONO_NAUTS concept board 1" loading="lazy" onerror="this.parentElement.style.display='none'">
+              <span class="img-label">Concept board — urban growth model</span>
+            </div>
+            <div class="img-cell tall">
+              <img src="https://raw.githubusercontent.com/sahilyousafp/AEC_HACKATHON_BIG/main/assets/ZONO_NAUTS-AEC%20hackathon.png" alt="ZONO_NAUTS poster" loading="lazy" onerror="this.parentElement.style.display='none'">
+              <span class="img-label">Hackathon presentation poster</span>
+            </div>
+          </div>
+          <div class="img-grid-2">
+            <div class="img-cell">
+              <img src="https://raw.githubusercontent.com/sahilyousafp/AEC_HACKATHON_BIG/main/assets/Barcelona.png" alt="Barcelona GNN training result" loading="lazy" onerror="this.parentElement.style.display='none'">
+              <span class="img-label">GNN training result — Barcelona</span>
+            </div>
+            <div class="img-cell">
+              <img src="https://raw.githubusercontent.com/sahilyousafp/AEC_HACKATHON_BIG/main/assets/ZONO_NAUTS-AEC%20hackathon%20(2).png" alt="Voxelisation concept" loading="lazy" onerror="this.parentElement.style.display='none'">
+              <span class="img-label">Voxelisation — city as playable space</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="proj-section" data-reveal>
+          <p class="proj-section-label">Team</p>
+          <h2 class="proj-section-title">ZONO_NAUTS</h2>
+          <div class="team-grid">
+            <div class="team-card-proj highlight">
+              <div class="team-name">Sahil Yousaf</div>
+              <div class="team-role-tag">Architect</div>
+              <div class="team-desc">GNN pipeline and spatial data integration.</div>
+            </div>
+            <div class="team-card-proj">
+              <div class="team-name">Nihal Mannath</div>
+              <div class="team-role-tag">Architect</div>
+              <div class="team-desc">Urban data extraction and graph construction.</div>
+            </div>
+            <div class="team-card-proj">
+              <div class="team-name">Mısra Serenay Özgök</div>
+              <div class="team-role-tag">Architect / Artist</div>
+              <div class="team-desc">Visual communication and concept design.</div>
+            </div>
+            <div class="team-card-proj">
+              <div class="team-name">Samarth Pachchigar</div>
+              <div class="team-role-tag">Urban Planner</div>
+              <div class="team-desc">Land use analysis and planning context.</div>
+            </div>
+            <div class="team-card-proj">
+              <div class="team-name">Fady Nasr</div>
+              <div class="team-role-tag">Structural Engineer</div>
+              <div class="team-desc">Structural data layer integration.</div>
+            </div>
+            <div class="team-card-proj">
+              <div class="team-name">Kerollus Makkar</div>
+              <div class="team-role-tag">Structural Engineer</div>
+              <div class="team-desc">3D voxelisation and geometry pipeline.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="proj-section" data-reveal>
+          <p class="proj-section-label">Stack</p>
+          <h2 class="proj-section-title">Technology</h2>
+          <div class="tech-grid">
+            <div class="tech-item"><i class="fab fa-python"></i><span class="tech-name">Python</span><span class="tech-role">Core</span></div>
+            <div class="tech-item"><i class="fas fa-globe"></i><span class="tech-name">OSMnx</span><span class="tech-role">City data</span></div>
+            <div class="tech-item"><i class="fas fa-brain"></i><span class="tech-name">GNN</span><span class="tech-role">Prediction</span></div>
+            <div class="tech-item"><i class="fas fa-project-diagram"></i><span class="tech-name">NetworkX</span><span class="tech-role">Graph structure</span></div>
+            <div class="tech-item"><i class="fas fa-cube"></i><span class="tech-name">Voxeliser</span><span class="tech-role">.schematic output</span></div>
+            <div class="tech-item"><i class="fas fa-book-open"></i><span class="tech-name">Jupyter</span><span class="tech-role">Analysis notebooks</span></div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-copy">© 2025 ZONO_NAUTS · AEC TECH Hackathon 2025</p>
+      <div class="footer-links">
+        <a href="index.html">Portfolio</a>
+        <a href="https://github.com/sahilyousafp/AEC_HACKATHON_BIG" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
