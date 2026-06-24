@@ -3,477 +3,1208 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sahil Yousaf — Architect &amp; AI Researcher</title>
-  <meta name="description" content="Architect and AI Researcher specialising in computational design and parametric architecture. IAAC Barcelona. Open to architectural and research opportunities.">
-  <meta property="og:title" content="Sahil Yousaf — Architect &amp; AI Researcher">
+  <title>Sahil Yousaf — Architect & AI Researcher</title>
+  <meta name="description" content="Architect and AI Researcher specialising in computational design, parametric architecture and AI research. IAAC Barcelona.">
+  <meta property="og:title" content="Sahil Yousaf — Architect & AI Researcher">
   <meta property="og:description" content="Computational design, parametric architecture, AI research. Based in Barcelona.">
   <link rel="icon" type="image/png" href="References/For website.PNG">
-  <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{
+      background:var(--bg);
+      color:var(--fg);
+      font-family:var(--fontB);
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
+    }
+    ::selection{background:var(--accent);color:var(--bg);}
+    a{color:inherit;text-decoration:none;}
+    img{max-width:100%;display:block;}
+
+    :root{
+      --bg:#0A0A0D;
+      --bg2:#121218;
+      --card:#15151C;
+      --fg:#F2F2EF;
+      --muted:#7E7E8A;
+      --accent:#FF6A1A;
+      --accent2:#5B8CFF;
+      --line:rgba(255,255,255,0.10);
+      --radius:3px;
+      --fontD:'Space Grotesk',sans-serif;
+      --fontB:'Archivo',sans-serif;
+      --fontM:'JetBrains Mono',monospace;
+    }
+
+    [data-mode="arch"]{
+      --bg:#F2ECE1;
+      --bg2:#E9E1D2;
+      --card:#F7F2E9;
+      --fg:#1C1814;
+      --muted:#86796A;
+      --accent:#B85C38;
+      --accent2:#5E6B4F;
+      --line:rgba(28,20,15,0.14);
+      --radius:18px;
+      --fontD:'Newsreader',serif;
+    }
+
+    #app{transition:background-color .7s cubic-bezier(.4,0,.2,1), color .7s cubic-bezier(.4,0,.2,1);}
+
+    [data-cursor]{cursor:none;}
+    @media (pointer:coarse){
+      [data-cursoronly]{display:none !important;}
+      [data-cursor]{cursor:auto;}
+    }
+
+    @keyframes sy-marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    @keyframes sy-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(24px);}
+      to{opacity:1;transform:none;}
+    }
+
+    /* Custom cursor */
+    .cursor-ring{
+      position:fixed;top:0;left:0;width:34px;height:34px;
+      border:1px solid var(--accent);border-radius:50%;
+      pointer-events:none;z-index:9999;
+      transform:translate(-100px,-100px) translate(-50%,-50%);
+      transition:width .25s,height .25s,background-color .25s,opacity .25s;
+      mix-blend-mode:difference;
+    }
+    .cursor-dot{
+      position:fixed;top:0;left:0;width:5px;height:5px;
+      background:var(--accent);border-radius:50%;
+      pointer-events:none;z-index:10000;
+      transform:translate(-100px,-100px) translate(-50%,-50%);
+    }
+
+    /* Navigation */
+    .nav{
+      position:fixed;top:0;left:0;right:0;z-index:900;
+      display:flex;align-items:center;justify-content:space-between;
+      gap:24px;padding:18px clamp(20px,5vw,72px);
+      background:color-mix(in srgb, var(--bg) 72%, transparent);
+      backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--line);
+      transition:background-color .7s,border-color .7s;
+    }
+    .nav-brand{
+      display:flex;align-items:center;gap:12px;
+    }
+    .nav-brand .sy-badge{
+      display:inline-flex;align-items:center;justify-content:center;
+      width:34px;height:34px;border:1px solid var(--accent);
+      border-radius:var(--radius);font-family:var(--fontM);
+      font-size:13px;font-weight:500;color:var(--accent);
+    }
+    .nav-brand span:last-child{
+      font-family:var(--fontD);font-weight:500;font-size:15px;
+      letter-spacing:.01em;color:var(--fg);transition:color .7s;
+    }
+    .nav-links{
+      display:none;gap:30px;align-items:center;
+    }
+    @media (min-width:880px){.nav-links{display:flex;}}
+    .nav-links a{
+      position:relative;text-decoration:none;color:var(--muted);
+      font-size:13px;font-family:var(--fontM);transition:color .3s;
+    }
+    .nav-links a::after{
+      content:'';position:absolute;left:0;bottom:-3px;height:1px;width:100%;
+      background:var(--accent);transform:scaleX(0);transform-origin:left;
+      transition:transform .4s cubic-bezier(.4,0,.2,1);
+    }
+    .nav-links a:hover{color:var(--fg);}
+    .nav-links a:hover::after{transform:scaleX(1);}
+    .mode-toggle{
+      display:flex;align-items:center;gap:0;padding:4px;
+      border:1px solid var(--line);border-radius:999px;
+      background:var(--bg2);cursor:pointer;font-family:var(--fontM);
+      transition:background-color .7s,border-color .7s;
+    }
+    .mode-toggle span{
+      padding:7px 14px;border-radius:999px;font-size:11px;
+      letter-spacing:.04em;color:var(--muted);transition:all .4s;
+      white-space:nowrap;
+    }
+    .mode-toggle span.active{
+      background:var(--accent);color:var(--bg);
+    }
+
+    /* Hero */
+    .hero{
+      position:relative;min-height:100vh;
+      display:flex;flex-direction:column;justify-content:flex-end;
+      padding:120px clamp(20px,5vw,72px) clamp(40px,6vh,80px);
+      overflow:hidden;
+    }
+    .hero-canvas{
+      position:absolute;inset:0;width:100%;height:100%;z-index:0;
+    }
+    .hero-num{
+      position:absolute;top:14%;right:clamp(20px,5vw,72px);z-index:0;
+      font-family:var(--fontM);font-size:clamp(120px,22vw,360px);
+      font-weight:400;color:var(--line);line-height:.8;
+      pointer-events:none;user-select:none;
+    }
+    .hero-inner{position:relative;z-index:2;width:100%;max-width:1400px;margin:0 auto;}
+    .hero-eyebrow{
+      display:flex;align-items:center;gap:14px;
+      margin-bottom:clamp(16px,3vh,30px);
+    }
+    .hero-eyebrow .accent-line{width:34px;height:1px;background:var(--accent);}
+    .hero-eyebrow span{
+      font-family:var(--fontM);font-size:13px;letter-spacing:.14em;
+      color:var(--accent);text-transform:uppercase;
+    }
+    .hero-name{
+      font-family:var(--fontD);font-weight:600;line-height:.86;
+      letter-spacing:-0.02em;font-size:clamp(52px,14vw,230px);margin:0;
+      color:var(--fg);transition:color .7s;
+    }
+    .hero-name em{font-style:italic;color:var(--accent);font-weight:500;}
+    .hero-bottom{
+      display:flex;flex-wrap:wrap;align-items:flex-end;
+      justify-content:space-between;gap:32px;
+      margin-top:clamp(24px,4vh,48px);
+    }
+    .hero-desc{max-width:540px;}
+    .hero-desc p{
+      font-size:clamp(16px,2vw,21px);line-height:1.5;color:var(--fg);
+      transition:color .7s;
+    }
+    [data-mode="arch"] .hero-desc p{font-family:var(--fontD);}
+    .hero-loc{
+      display:flex;align-items:center;gap:10px;margin-top:22px;
+      font-family:var(--fontM);font-size:12px;color:var(--muted);
+      letter-spacing:.05em;
+    }
+    .hero-loc::before{
+      content:'';width:7px;height:7px;border-radius:50%;background:var(--accent);
+    }
+    .hero-btns{display:flex;flex-wrap:wrap;gap:12px;}
+    .hero-btns a{
+      display:inline-flex;align-items:center;gap:8px;padding:14px 24px;
+      text-decoration:none;border-radius:var(--radius);
+      font-family:var(--fontM);font-size:13px;font-weight:500;
+      letter-spacing:.03em;transition:transform .2s,opacity .2s;
+    }
+    .hero-btns a:hover{transform:translateY(-2px);}
+    .btn-primary{background:var(--accent);color:var(--bg);}
+    .btn-secondary{
+      background:transparent;color:var(--fg);border:1px solid var(--line);
+      transition:color .7s,border-color .7s,transform .2s;
+    }
+    .scroll-hint{
+      position:absolute;bottom:20px;left:50%;transform:translateX(-50%);
+      font-family:var(--fontM);font-size:11px;letter-spacing:.2em;
+      color:var(--muted);animation:sy-bob 2.4s ease-in-out infinite;z-index:2;
+    }
+
+    /* Marquee */
+    .marquee{
+      overflow:hidden;background:var(--accent);padding:14px 0;
+      white-space:nowrap;border-top:1px solid var(--bg);border-bottom:1px solid var(--bg);
+    }
+    .marquee-inner{
+      display:inline-block;animation:sy-marq 28s linear infinite;
+      font-family:var(--fontD);font-weight:700;
+      font-size:clamp(20px,3vw,34px);color:var(--bg);
+      letter-spacing:-0.01em;text-transform:uppercase;
+    }
+    [data-mode="arch"] .marquee-inner{font-style:italic;font-weight:500;letter-spacing:0;}
+
+    /* Section utilities */
+    .section{
+      padding:clamp(80px,12vh,160px) clamp(20px,5vw,72px);
+      max-width:1400px;margin:0 auto;width:100%;
+    }
+    .section-head{
+      display:flex;align-items:center;gap:14px;
+      margin-bottom:clamp(36px,6vh,72px);
+    }
+    .section-head .num{
+      font-family:var(--fontM);font-size:13px;color:var(--accent);
+    }
+    .section-head .line{width:34px;height:1px;background:var(--line);transition:background-color .7s;}
+    .section-head .label{
+      font-family:var(--fontM);font-size:13px;letter-spacing:.14em;
+      color:var(--muted);text-transform:uppercase;
+    }
+    .section-title{
+      font-family:var(--fontD);font-weight:500;
+      font-size:clamp(30px,5vw,68px);line-height:1;
+      letter-spacing:-0.02em;color:var(--fg);transition:color .7s;
+    }
+    .section-title em{font-style:italic;color:var(--accent);}
+
+    /* Explore / Knowledge Graph */
+    .explore{
+      position:relative;background:var(--bg);border-top:1px solid var(--line);
+      overflow:hidden;transition:background-color .7s,border-color .7s;
+    }
+    .explore-header{padding:clamp(56px,8vh,100px) clamp(20px,5vw,72px) 0;max-width:1400px;margin:0 auto;}
+    .explore-title{
+      font-family:var(--fontD);font-weight:600;
+      font-size:clamp(30px,5vw,64px);line-height:1;
+      letter-spacing:-0.02em;max-width:18ch;
+      color:var(--fg);transition:color .7s;
+    }
+    .explore-title em{font-style:italic;color:var(--accent);}
+    .graph-wrap{
+      position:relative;width:100%;height:min(74vh,720px);margin-top:6px;
+    }
+    .graph-canvas{
+      position:absolute;inset:0;width:100%;height:100%;
+      cursor:grab;touch-action:none;z-index:1;
+    }
+    .graph-canvas:active{cursor:grabbing;}
+    .graph-info{
+      position:absolute;left:clamp(20px,5vw,72px);bottom:clamp(24px,5vh,52px);
+      max-width:min(440px,82vw);padding:20px 22px;
+      background:color-mix(in srgb, var(--bg2) 80%, transparent);
+      backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+      border:1px solid var(--line);border-radius:var(--radius);
+      pointer-events:none;z-index:2;
+      transition:background-color .7s,border-color .7s;
+    }
+    .graph-hint{
+      position:absolute;top:18px;right:clamp(20px,5vw,72px);
+      font-family:var(--fontM);font-size:11px;letter-spacing:.16em;
+      color:var(--muted);pointer-events:none;z-index:2;
+    }
+
+    /* About */
+    .about-grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:clamp(32px,5vw,80px);align-items:start;
+    }
+    .about-grid p{
+      font-size:16px;line-height:1.65;
+      color:var(--muted);transition:color .7s;
+    }
+    .about-grid p strong{font-weight:600;color:var(--fg);transition:color .7s;}
+    .about-links{display:flex;flex-wrap:wrap;gap:18px;margin-top:6px;}
+    .about-links a{
+      color:var(--fg);font-family:var(--fontM);font-size:13px;
+      position:relative;transition:color .7s;
+    }
+    .about-links a::after{
+      content:'';position:absolute;left:0;bottom:-3px;height:1px;width:100%;
+      background:var(--accent);transform:scaleX(0);transform-origin:left;
+      transition:transform .4s cubic-bezier(.4,0,.2,1);
+    }
+    .about-links a:hover::after{transform:scaleX(1);}
+    .stats-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+      background:var(--line);border:1px solid var(--line);
+      border-radius:var(--radius);overflow:hidden;margin-top:clamp(48px,7vh,96px);
+      transition:background-color .7s,border-color .7s;
+    }
+    .stat-cell{
+      background:var(--bg);padding:clamp(24px,3vw,40px);
+      transition:background-color .7s;
+    }
+    .stat-cell .num{
+      font-family:var(--fontD);font-weight:700;
+      font-size:clamp(36px,5vw,68px);line-height:1;color:var(--accent);
+    }
+    .stat-cell .lbl{
+      font-family:var(--fontM);font-size:12px;color:var(--muted);
+      margin-top:10px;letter-spacing:.04em;
+    }
+
+    /* Work */
+    .work-head{
+      display:flex;flex-wrap:wrap;align-items:flex-end;
+      justify-content:space-between;gap:24px;
+      margin-bottom:clamp(36px,6vh,64px);
+    }
+    .work-head p{max-width:320px;font-size:14px;line-height:1.6;color:var(--muted);}
+    .projects-grid{
+      display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));
+      gap:clamp(16px,2vw,28px);
+    }
+    .proj-card{
+      text-decoration:none;color:var(--fg);display:flex;flex-direction:column;gap:16px;
+      transition:color .7s;
+    }
+    .proj-img{
+      position:relative;aspect-ratio:4/3;border-radius:var(--radius);
+      overflow:hidden;border:1px solid var(--line);background:var(--card);
+      transition:border-color .7s,background-color .7s;
+    }
+    .proj-img img{
+      width:100%;height:100%;object-fit:cover;
+      transition:transform .6s cubic-bezier(.2,.7,.2,1);
+    }
+    .proj-card:hover .proj-img img{transform:scale(1.04);}
+    .proj-placeholder{
+      width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+      font-family:var(--fontM);font-size:12px;color:var(--muted);text-align:center;padding:1rem;
+    }
+    .proj-meta{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+    }
+    .proj-title{font-family:var(--fontD);font-weight:600;font-size:18px;color:var(--fg);transition:color .7s;}
+    .proj-tags{
+      font-family:var(--fontM);font-size:11px;color:var(--muted);
+      margin-top:6px;letter-spacing:.03em;
+    }
+    .proj-arrow{
+      font-family:var(--fontM);color:var(--accent);
+      transition:transform .4s;
+    }
+    .proj-card:hover .proj-arrow{transform:translate(4px,-4px);}
+
+    /* Research */
+    .research{background:var(--bg2);padding:clamp(80px,12vh,160px) clamp(20px,5vw,72px);transition:background-color .7s;}
+    .research-inner{max-width:1400px;margin:0 auto;}
+    .feed-list{border-top:1px solid var(--line);transition:border-color .7s;}
+    .feed-item{
+      display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;
+      padding:22px 0;border-bottom:1px solid var(--line);
+      text-decoration:none;color:var(--fg);transition:border-color .7s,color .7s;
+    }
+    .feed-item:hover{padding-left:14px;}
+    .feed-title{
+      font-family:var(--fontD);font-weight:600;
+      font-size:clamp(17px,2vw,24px);line-height:1.15;
+    }
+    .feed-cat{
+      font-family:var(--fontM);font-size:11px;color:var(--muted);margin-top:8px;
+    }
+    .feed-right{display:flex;align-items:center;gap:18px;white-space:nowrap;}
+    .feed-date{font-family:var(--fontM);font-size:12px;color:var(--muted);}
+    .feed-arrow{font-family:var(--fontM);color:var(--accent);}
+
+    /* Skills */
+    .skills-grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;
+      background:var(--line);border:1px solid var(--line);
+      border-radius:var(--radius);overflow:hidden;
+      transition:background-color .7s,border-color .7s;
+    }
+    .skill-cell{
+      background:var(--bg);padding:clamp(28px,3vw,44px);
+      transition:background-color .7s;
+    }
+    .skill-cat{
+      font-family:var(--fontM);font-size:11px;color:var(--accent);
+      letter-spacing:.1em;margin-bottom:18px;
+    }
+    .skill-title{
+      font-family:var(--fontD);font-weight:600;font-size:22px;
+      margin-bottom:22px;color:var(--fg);transition:color .7s;
+    }
+    .skill-items{display:flex;flex-direction:column;gap:12px;}
+    .skill-items span{font-size:14px;color:var(--muted);}
+
+    /* Experience */
+    .experience-list{border-top:1px solid var(--line);transition:border-color .7s;}
+    .exp-item{
+      display:grid;grid-template-columns:120px 1fr auto;gap:clamp(16px,3vw,48px);
+      padding:clamp(22px,3vh,34px) 0;border-bottom:1px solid var(--line);
+      align-items:baseline;transition:border-color .7s;
+    }
+    .exp-date{font-family:var(--fontM);font-size:12px;color:var(--accent);}
+    .exp-role{font-family:var(--fontD);font-weight:600;font-size:clamp(18px,2.4vw,26px);color:var(--fg);transition:color .7s;}
+    .exp-desc{font-size:14px;color:var(--muted);margin-top:6px;}
+    .exp-type{font-family:var(--fontM);font-size:11px;color:var(--muted);text-align:right;}
+
+    /* Contact */
+    .contact{
+      background:var(--bg2);padding:clamp(80px,14vh,180px) clamp(20px,5vw,72px);
+      position:relative;overflow:hidden;transition:background-color .7s;
+    }
+    .contact-inner{max-width:1400px;margin:0 auto;position:relative;z-index:1;}
+    .contact-title{
+      font-family:var(--fontD);font-weight:500;
+      font-size:clamp(40px,8vw,120px);line-height:.94;
+      letter-spacing:-0.03em;max-width:14ch;color:var(--fg);transition:color .7s;
+    }
+    .contact-title em{font-style:italic;color:var(--accent);}
+    .contact-desc{
+      font-size:clamp(15px,1.8vw,19px);line-height:1.6;
+      color:var(--muted);max-width:560px;margin-top:28px;
+    }
+    .contact-grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px;
+      margin-top:clamp(40px,6vh,72px);border-top:1px solid var(--line);
+      padding-top:clamp(32px,5vh,56px);transition:border-color .7s;
+    }
+    .contact-cell .lbl{
+      font-family:var(--fontM);font-size:11px;color:var(--muted);
+      letter-spacing:.1em;margin-bottom:12px;
+    }
+    .contact-cell a, .contact-cell .val{
+      color:var(--fg);font-size:clamp(15px,1.6vw,18px);
+      font-family:var(--fontD);word-break:break-all;transition:color .7s;
+    }
+    .contact-cell .val span{font-size:13px;color:var(--muted);font-family:var(--fontB);}
+    .contact-num{
+      position:absolute;bottom:-8%;right:clamp(20px,5vw,72px);
+      font-family:var(--fontM);font-size:clamp(100px,18vw,300px);
+      color:var(--line);line-height:.8;pointer-events:none;user-select:none;z-index:0;
+    }
+
+    /* Footer */
+    footer{
+      padding:clamp(28px,4vh,44px) clamp(20px,5vw,72px);
+      border-top:1px solid var(--line);display:flex;flex-wrap:wrap;
+      align-items:center;justify-content:space-between;gap:18px;
+      transition:border-color .7s;
+    }
+    footer .copy{
+      font-family:var(--fontM);font-size:12px;color:var(--muted);
+    }
+    footer .links{display:flex;gap:24px;}
+    footer .links a{
+      color:var(--muted);text-decoration:none;font-family:var(--fontM);
+      font-size:12px;position:relative;
+    }
+    footer .links a::after{
+      content:'';position:absolute;left:0;bottom:-3px;height:1px;width:100%;
+      background:var(--accent);transform:scaleX(0);transform-origin:left;
+      transition:transform .4s cubic-bezier(.4,0,.2,1);
+    }
+    footer .links a:hover::after{transform:scaleX(1);}
+
+    /* Scroll reveal */
+    [data-reveal]{
+      opacity:0;transform:translateY(24px);
+      transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);
+    }
+    [data-reveal].visible{opacity:1;transform:none;}
+
+    /* Responsive */
+    @media (max-width:768px){
+      .hero-bottom{flex-direction:column;align-items:flex-start;}
+      .about-grid{grid-template-columns:1fr;}
+      .stats-grid{grid-template-columns:1fr;}
+      .exp-item{grid-template-columns:1fr;gap:8px;}
+      .exp-type{text-align:left;}
+      .feed-item{grid-template-columns:1fr;gap:8px;}
+      .feed-right{justify-content:flex-start;}
+      .contact-title{font-size:clamp(36px,12vw,72px);}
+      footer{flex-direction:column;text-align:center;}
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Custom cursor -->
-  <div class="cursor-dot" id="cursorDot"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
+<div id="app" data-mode="code">
 
-  <!-- ── Navigation ── -->
-  <nav class="nav" id="mainNav">
-    <div class="nav-brand">Sahil <em>Yousaf</em></div>
-    <ul class="nav-links">
-      <li><a href="#home" class="active">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#repositories">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <div class="nav-social">
-      <a href="https://github.com/sahilyousafp" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github"></i></a>
-      <a href="https://www.linkedin.com/in/sahil-yousaf-882a0b132/" target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-      <a href="https://blog.iaac.net/user/sahilyousafp/" target="_blank" rel="noopener" title="IAAC Blog"><i class="fas fa-blog"></i></a>
+  <!-- Custom cursor -->
+  <div class="cursor-ring" data-cursoronly id="cursorRing"></div>
+  <div class="cursor-dot" data-cursoronly id="cursorDot"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="#home" class="nav-brand" data-cursor>
+      <span class="sy-badge">SY</span>
+      <span>Sahil Yousaf</span>
+    </a>
+    <div class="nav-links">
+      <a href="#about" data-cursor>About</a>
+      <a href="#work" data-cursor>Work</a>
+      <a href="#research" data-cursor>Research</a>
+      <a href="#experience" data-cursor>Experience</a>
+      <a href="#contact" data-cursor>Contact</a>
     </div>
+    <button class="mode-toggle" id="modeToggle" data-cursor aria-label="Toggle Architecture / Code mode">
+      <span data-seg="arch">ARCH</span>
+      <span data-seg="code" class="active">CODE</span>
+    </button>
   </nav>
 
-  <!-- ══ 01 · HERO ══════════════════════════════ -->
-  <section id="home">
-    <div class="hero-bg"></div>
+  <!-- Hero -->
+  <header class="hero" id="home">
+    <canvas class="hero-canvas" id="heroCanvas"></canvas>
+    <div class="hero-num" aria-hidden="true">01</div>
     <div class="hero-inner">
-
-      <div class="hero-left">
-        <p class="hero-eyebrow" data-reveal>01 — Architect &amp; AI Researcher</p>
-        <h1 class="hero-name" data-reveal data-delay="1">
-          Sahil<br><em>Yousaf</em>
-        </h1>
-        <p class="hero-role" data-reveal data-delay="2">
-          Computational Design <span class="sep">·</span>
-          Parametric Architecture <span class="sep">·</span>
-          AI Research
-        </p>
-        <p class="hero-location" data-reveal data-delay="3">
-          41.3851° N, 2.1734° E &nbsp;—&nbsp; Barcelona, Spain
-        </p>
-        <div class="hero-ctas" data-reveal data-delay="4">
-          <a class="btn btn-fill"
-             href="https://drive.google.com/uc?export=download&amp;id=1RI6g6-drvGhHcv2iZP_Sa41B8bmQbSzM"
-             download>
-            <i class="fas fa-download"></i> Portfolio
-          </a>
-          <a class="btn btn-outline"
-             href="https://drive.google.com/file/d/1kKcI2pK1Mxii8Ap2YcYa0GOM_AJOVbJ3/view?usp=sharing">
-            <i class="fas fa-file-alt"></i> CV
-          </a>
-          <a class="btn btn-outline" href="#repositories">
-            View Work ↓
-          </a>
+      <div class="hero-eyebrow">
+        <span class="accent-line"></span>
+        <span data-show="code">AI Researcher · Computational Designer</span>
+        <span data-show="arch">Architect · Parametric Designer</span>
+      </div>
+      <h1 class="hero-name">Sahil<br><em>Yousaf</em></h1>
+      <div class="hero-bottom">
+        <div class="hero-desc">
+          <p data-show="code">Building AI tools that augment how we design cities and buildings — from finite-element analysis to 500-agent urban simulations reasoning in natural language.</p>
+          <p data-show="arch">Designing at the intersection of space and computation — parametric, sustainable architecture shaped across India, the UAE, and Barcelona.</p>
+          <div class="hero-loc">41.3851° N, 2.1734° E — Barcelona, Spain</div>
+        </div>
+        <div class="hero-btns">
+          <a class="btn-primary" href="https://drive.google.com/uc?export=download&id=1RI6g6-drvGhHcv2iZP_Sa41B8bmQbSzM" target="_blank" rel="noopener" data-cursor>Portfolio ↗</a>
+          <a class="btn-secondary" href="https://drive.google.com/file/d/1kKcI2pK1Mxii8Ap2YcYa0GOM_AJOVbJ3/view?usp=sharing" target="_blank" rel="noopener" data-cursor>CV ↗</a>
+          <a class="btn-secondary" href="#work" data-cursor>View Work ↓</a>
         </div>
       </div>
+    </div>
+    <div class="scroll-hint">SCROLL</div>
+  </header>
 
-      <div class="hero-right" data-reveal data-delay="2">
-        <div class="portrait-wrap">
-          <div class="portrait-frame">
-            <div class="cm tl"></div>
-            <div class="cm tr"></div>
-            <div class="cm bl"></div>
-            <div class="cm br"></div>
-            <div class="portrait-border"></div>
-            <img src="References/For website.PNG" alt="Sahil Yousaf — Architect &amp; AI Researcher">
-          </div>
-          <p class="portrait-caption">IAAC · Barcelona · 2024–25</p>
-        </div>
+  <!-- Marquee -->
+  <div class="marquee">
+    <div class="marquee-inner" data-show="code">
+      <span>Computational Design&nbsp;&nbsp;✦&nbsp;&nbsp;AI Research&nbsp;&nbsp;✦&nbsp;&nbsp;Neural Networks&nbsp;&nbsp;✦&nbsp;&nbsp;Urban Simulation&nbsp;&nbsp;✦&nbsp;&nbsp;Generative Systems&nbsp;&nbsp;✦&nbsp;&nbsp;</span>
+      <span>Computational Design&nbsp;&nbsp;✦&nbsp;&nbsp;AI Research&nbsp;&nbsp;✦&nbsp;&nbsp;Neural Networks&nbsp;&nbsp;✦&nbsp;&nbsp;Urban Simulation&nbsp;&nbsp;✦&nbsp;&nbsp;Generative Systems&nbsp;&nbsp;✦&nbsp;&nbsp;</span>
+    </div>
+    <div class="marquee-inner" data-show="arch">
+      <span>Parametric Architecture&nbsp;&nbsp;·&nbsp;&nbsp;Sustainable Design&nbsp;&nbsp;·&nbsp;&nbsp;Spatial Visualisation&nbsp;&nbsp;·&nbsp;&nbsp;Bioclimatic Systems&nbsp;&nbsp;·&nbsp;&nbsp;</span>
+      <span>Parametric Architecture&nbsp;&nbsp;·&nbsp;&nbsp;Sustainable Design&nbsp;&nbsp;·&nbsp;&nbsp;Spatial Visualisation&nbsp;&nbsp;·&nbsp;&nbsp;Bioclimatic Systems&nbsp;&nbsp;·&nbsp;&nbsp;</span>
+    </div>
+  </div>
+
+  <!-- Explore / Knowledge Graph -->
+  <section class="explore" id="explore" data-show="code">
+    <div class="explore-header">
+      <div class="section-head" style="margin-bottom:20px;">
+        <span class="num">◇</span>
+        <span class="line"></span>
+        <span class="label">Interactive · Knowledge Graph</span>
       </div>
-
+      <h2 class="explore-title" data-reveal>Navigate the graph to go <em>deeper</em></h2>
+    </div>
+    <div class="graph-wrap">
+      <canvas class="graph-canvas" id="graphCanvas"></canvas>
+      <div class="graph-info" id="graphInfo"></div>
+      <div class="graph-hint">DRAG TO ROTATE ⟲</div>
     </div>
   </section>
 
-  <div class="hr"></div>
-
-  <!-- ══ 02 · ABOUT ═════════════════════════════ -->
-  <div class="section-wrap alt">
-    <section id="about" class="section">
-      <div class="s-head" data-reveal>
-        <p class="s-label">02 — About</p>
-        <h2 class="s-title">Designing at the intersection<br>of space &amp; <em>computation</em></h2>
+  <!-- About -->
+  <section class="section" id="about">
+    <div class="section-head" data-reveal>
+      <span class="num">02</span>
+      <span class="line"></span>
+      <span class="label">About</span>
+    </div>
+    <div class="about-grid">
+      <div data-reveal>
+        <h2 class="section-title">Designing at the intersection of <em>space</em> &amp; <em>computation</em></h2>
       </div>
+      <div data-reveal>
+        <p>I'm an architect with 3+ years of practice across India and the UAE, trained at <strong>Morphogenesis</strong> (Delhi), <strong>SHAPE Architecture &amp; Research</strong> (UAE), and <strong>DNEG</strong> (Mumbai) — spanning sustainable architecture, parametric design, and spatial visualisation for world-class VFX productions.</p>
+        <p style="margin-top:20px;color:var(--muted);">Currently pursuing a Master in AI for Architecture &amp; the Built Environment at <strong>IAAC, Barcelona</strong>, where my work sits at the intersection of artificial intelligence and the built environment. My research was <strong>published at ANNSIM 2025</strong> through the Building Analysis Tool — an AI-driven accessibility analyser for healthcare architecture.</p>
+        <div class="about-links">
+          <a href="https://github.com/sahilyousafp" target="_blank" rel="noopener" data-cursor>GitHub ↗</a>
+          <a href="https://www.linkedin.com/in/sahil-yousaf-882a0b132/" target="_blank" rel="noopener" data-cursor>LinkedIn ↗</a>
+          <a href="https://blog.iaac.net/user/sahilyousafp/" target="_blank" rel="noopener" data-cursor>IAAC Blog ↗</a>
+        </div>
+      </div>
+    </div>
+    <div class="stats-grid" data-reveal>
+      <div class="stat-cell" data-show="code">
+        <div class="num">09</div>
+        <div class="lbl">Research Publications</div>
+      </div>
+      <div class="stat-cell" data-show="code">
+        <div class="num">06</div>
+        <div class="lbl">AI Tools Built</div>
+      </div>
+      <div class="stat-cell" data-show="code">
+        <div class="num">500</div>
+        <div class="lbl">Agent Urban Simulation</div>
+      </div>
+      <div class="stat-cell" data-show="arch">
+        <div class="num">3+</div>
+        <div class="lbl">Years of Practice</div>
+      </div>
+      <div class="stat-cell" data-show="arch">
+        <div class="num">03</div>
+        <div class="lbl">Architecture Firms</div>
+      </div>
+      <div class="stat-cell" data-show="arch">
+        <div class="num">01</div>
+        <div class="lbl">Published Paper</div>
+      </div>
+    </div>
+  </section>
 
-      <div class="about-grid">
+  <!-- Work -->
+  <section class="section" id="work">
+    <div class="work-head" data-reveal>
+      <div>
+        <div class="section-head" style="margin-bottom:20px;">
+          <span class="num">03</span>
+          <span class="line"></span>
+          <span class="label">Selected Work</span>
+        </div>
+        <h2 class="section-title">Featured Projects</h2>
+      </div>
+      <p data-show="code">Computational tools &amp; AI research — selected repositories and research contributions.</p>
+      <p data-show="arch">Architectural practice &amp; spatial work — selected projects and visualisation.</p>
+    </div>
+    <div class="projects-grid" id="projectsGrid"></div>
+  </section>
+
+  <!-- Research Feed -->
+  <section class="research" id="research" data-show="code">
+    <div class="research-inner">
+      <div class="work-head" data-reveal>
         <div>
-
-          <!-- ── Bio blocks ── -->
-          <div class="bio-blocks">
-
-            <div class="bio-block" data-reveal>
-              <span class="bio-block-label">Background</span>
-              <p class="bio-block-text">
-                I'm an architect with 3+ years of practice across India and the UAE, trained at
-                <strong>Morphogenesis</strong> (Delhi), <strong>SHAPE Architecture &amp; Research</strong> (UAE),
-                and <strong>DNEG</strong> (Mumbai) — spanning sustainable architecture, parametric design, and
-                spatial visualisation for world-class VFX productions.
-              </p>
-            </div>
-
-            <div class="bio-block" data-reveal data-delay="1">
-              <span class="bio-block-label">Research</span>
-              <p class="bio-block-text">
-                Currently pursuing a Master in City &amp; Technology at
-                <strong>IAAC, Barcelona</strong>, where my work sits at the intersection of
-                artificial intelligence and built environment. My research has been
-                <strong>published at ANNSIM 2025</strong> (Society of Modelling &amp; Simulation International)
-                through the <a href="project-bat.html" class="bio-proj-link">Building Analysis Tool</a> —
-                an AI-driven accessibility analyser for healthcare architecture.
-              </p>
-            </div>
-
-            <div class="bio-block" data-reveal data-delay="2">
-              <span class="bio-block-label">Projects</span>
-              <p class="bio-block-text">
-                My studio work explores how AI can augment architectural decision-making at every scale —
-                from individual buildings to entire cities. Recent projects include a
-                <a href="project-structural.html" class="bio-proj-link">structural analysis tool</a> that
-                runs finite element analysis on any 3D model at concept stage; a
-                <a href="project-llm-urbanism.html" class="bio-proj-link">500-agent urban simulation</a>
-                where each agent reasons in natural language powered by an LLM; and a
-                <a href="project-pardaz.html" class="bio-proj-link">pedestrian simulation platform</a>
-                for validating exhibition layouts before construction.
-              </p>
-            </div>
-
-            <div class="bio-block" data-reveal data-delay="3">
-              <span class="bio-block-label">Other Work</span>
-              <p class="bio-block-text">
-                At the <strong>AEC TECH Hackathon 2025</strong> at BIG's Barcelona office, our team
-                <a href="project-hackathon.html" class="bio-proj-link">ZONO_NAUTS</a> used graph neural
-                networks to predict urban growth patterns and voxelised the results into an explorable
-                Minecraft-style city model. A separate civic platform,
-                <a href="project-ai4all.html" class="bio-proj-link">AI4ALL Decision</a>, makes 23 years
-                of global satellite land-cover data legible to non-experts through an interactive split-screen map.
-              </p>
-            </div>
-
+          <div class="section-head" style="margin-bottom:20px;">
+            <span class="num">04</span>
+            <span class="line"></span>
+            <span class="label">Research Feed · IAAC Blog</span>
           </div>
-          <!-- ── Focus areas row ── -->
-          <div class="bio-focus" data-reveal data-delay="4">
-            <a href="project-bat.html" class="focus-chip">
-              <i class="fas fa-hospital"></i>
-              <span>Accessibility<br>Analysis</span>
-            </a>
-            <a href="project-llm-urbanism.html" class="focus-chip">
-              <i class="fas fa-city"></i>
-              <span>Urban<br>Simulation</span>
-            </a>
-            <a href="project-structural.html" class="focus-chip">
-              <i class="fas fa-drafting-compass"></i>
-              <span>Structural<br>AI</span>
-            </a>
-            <a href="project-pardaz.html" class="focus-chip">
-              <i class="fas fa-walking"></i>
-              <span>Pedestrian<br>Flow</span>
-            </a>
-            <a href="project-hackathon.html" class="focus-chip">
-              <i class="fas fa-brain"></i>
-              <span>Urban<br>GNN</span>
-            </a>
-            <a href="project-ai4all.html" class="focus-chip">
-              <i class="fas fa-satellite"></i>
-              <span>Land Cover<br>Visualisation</span>
-            </a>
-          </div>
-
-          <div class="about-actions" data-reveal data-delay="4">
-            <a class="btn btn-fill"
-               href="https://drive.google.com/file/d/1kKcI2pK1Mxii8Ap2YcYa0GOM_AJOVbJ3/view?usp=sharing">
-              <i class="fas fa-download"></i> Download CV
-            </a>
-            <a class="btn btn-outline" href="#contact">Get in Touch</a>
-          </div>
+          <h2 class="section-title">Writing &amp; Publications</h2>
         </div>
-
-        <aside class="about-aside">
-          <div class="stats">
-            <div class="stat-card" data-reveal>
-              <span class="stat-n">3+</span>
-              <span class="stat-l">Years of Practice</span>
-            </div>
-            <div class="stat-card" data-reveal data-delay="1">
-              <span class="stat-n">03</span>
-              <span class="stat-l">Architecture Firms</span>
-            </div>
-            <div class="stat-card" data-reveal data-delay="2">
-              <span class="stat-n">01</span>
-              <span class="stat-l">Published Paper</span>
-            </div>
-          </div>
-        </aside>
+        <a href="https://blog.iaac.net/user/sahilyousafp/" target="_blank" rel="noopener" data-cursor style="color:var(--fg);font-family:var(--fontM);font-size:13px;position:relative;">All 9 posts ↗</a>
       </div>
-    </section>
-  </div>
-
-  <div class="hr"></div>
-
-  <!-- ══ 03 · SKILLS ════════════════════════════ -->
-  <section id="skills" class="section">
-    <div class="s-head" data-reveal>
-      <p class="s-label">03 — Skills</p>
-      <h2 class="s-title">Tools &amp; Technologies</h2>
-      <p class="s-sub">Bridging computational research with architectural practice</p>
+      <div class="feed-list" id="feedList"></div>
     </div>
+  </section>
 
-    <div class="skills-grid" data-reveal data-delay="1">
-      <div class="skill-cat">
-        <p class="skill-cat-num">Category 01</p>
-        <h3 class="skill-cat-title">Computational<br>Design</h3>
-        <ul class="skill-list">
-          <li><i class="fas fa-cube"></i> Rhino 3D</li>
-          <li><i class="fas fa-project-diagram"></i> Grasshopper</li>
-          <li><i class="fas fa-drafting-compass"></i> Revit / BIM</li>
-          <li><i class="fas fa-vector-square"></i> AutoCAD</li>
-          <li><i class="fas fa-object-group"></i> SketchUp</li>
-          <li><i class="fas fa-bezier-curve"></i> Blender / 3ds Max</li>
-        </ul>
+  <!-- Skills -->
+  <section class="section" id="skills">
+    <div class="section-head" data-reveal>
+      <span class="num" data-show="code">05</span>
+      <span class="num" data-show="arch">04</span>
+      <span class="line"></span>
+      <span class="label">Tools &amp; Technologies</span>
+    </div>
+    <div class="skills-grid" data-reveal>
+      <div class="skill-cell">
+        <div class="skill-cat">CAT.01</div>
+        <h3 class="skill-title">Computational Design</h3>
+        <div class="skill-items">
+          <span>Rhino 3D</span><span>Grasshopper</span><span>Revit / BIM</span><span>AutoCAD</span><span>Blender / 3ds Max</span>
+        </div>
       </div>
-      <div class="skill-cat">
-        <p class="skill-cat-num">Category 02</p>
-        <h3 class="skill-cat-title">Programming<br>&amp; AI</h3>
-        <ul class="skill-list">
-          <li><i class="fab fa-python"></i> Python</li>
-          <li><i class="fab fa-js-square"></i> JavaScript</li>
-          <li><i class="fab fa-html5"></i> HTML / CSS</li>
-          <li><i class="fab fa-node-js"></i> Node.js</li>
-          <li><i class="fas fa-brain"></i> Machine Learning</li>
-          <li><i class="fas fa-robot"></i> AI Research</li>
-        </ul>
+      <div class="skill-cell">
+        <div class="skill-cat">CAT.02</div>
+        <h3 class="skill-title">Programming &amp; AI</h3>
+        <div class="skill-items">
+          <span>Python</span><span>JavaScript</span><span>Machine Learning</span><span>Neural Networks</span><span>LLM Agents</span>
+        </div>
       </div>
-      <div class="skill-cat">
-        <p class="skill-cat-num">Category 03</p>
-        <h3 class="skill-cat-title">Design<br>&amp; Media</h3>
-        <ul class="skill-list">
-          <li><i class="fab fa-adobe"></i> Adobe Photoshop</li>
-          <li><i class="fas fa-pen-nib"></i> Adobe Illustrator</li>
-          <li><i class="fas fa-file-alt"></i> InDesign</li>
-          <li><i class="fas fa-film"></i> After Effects</li>
-          <li><i class="fas fa-layer-group"></i> Adobe Suite</li>
-          <li><i class="fas fa-lightbulb"></i> Concept Design</li>
-        </ul>
+      <div class="skill-cell">
+        <div class="skill-cat">CAT.03</div>
+        <h3 class="skill-title">Design &amp; Media</h3>
+        <div class="skill-items">
+          <span>Photoshop</span><span>Illustrator</span><span>InDesign</span><span>After Effects</span><span>Concept Design</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <div class="hr"></div>
-
-  <!-- ══ 04 · EXPERIENCE ════════════════════════ -->
-  <div class="section-wrap alt">
-    <section id="experience" class="section">
-      <div class="s-head" data-reveal>
-        <p class="s-label">04 — Experience</p>
-        <h2 class="s-title">Practice &amp; Credentials</h2>
-      </div>
-
-      <div class="exp-grid">
-        <!-- Professional -->
-        <div data-reveal>
-          <span class="exp-col-label">Professional Experience</span>
-          <div class="timeline">
-            <div class="tl-item">
-              <div class="tl-date">May–Aug<br>2024</div>
-              <div class="tl-dot"></div>
-              <div class="tl-body">
-                <div class="tl-role">Jr. Design Architect</div>
-                <div class="tl-co">SHAPE Architecture &amp; Research — UAE</div>
-                <div class="tl-desc">Parametric design development for high-profile architectural projects in the UAE region.</div>
-              </div>
-            </div>
-            <div class="tl-item">
-              <div class="tl-date">Jan–May<br>2024</div>
-              <div class="tl-dot"></div>
-              <div class="tl-body">
-                <div class="tl-role">Set Designer (Contract)</div>
-                <div class="tl-co">DNEG — Mumbai, India</div>
-                <div class="tl-desc">Spatial visualisation and set design for world-class VFX productions at a leading post-production studio.</div>
-              </div>
-            </div>
-            <div class="tl-item">
-              <div class="tl-date">2022–<br>2024</div>
-              <div class="tl-dot"></div>
-              <div class="tl-body">
-                <div class="tl-role">Architect</div>
-                <div class="tl-co">Morphogenesis — Delhi, India</div>
-                <div class="tl-desc">Sustainable, award-winning architecture at one of India's most recognised practices, known for parametric and bioclimatic design.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Credentials -->
-        <div data-reveal data-delay="2">
-          <span class="exp-col-label">Credentials &amp; Research</span>
-          <div class="timeline">
-            <div class="tl-item">
-              <div class="tl-date">2025</div>
-              <div class="tl-dot"></div>
-              <div class="tl-body">
-                <div class="tl-role">Published Research Paper</div>
-                <div class="tl-co">ANNSIM Conference — Society of Modelling &amp; Simulation (SCS)</div>
-                <div class="tl-desc">Building Analysis Tool (B.A.T.) — computational framework for architectural performance simulation.</div>
-              </div>
-            </div>
-            <div class="tl-item">
-              <div class="tl-date">2024–25</div>
-              <div class="tl-dot"></div>
-              <div class="tl-body">
-                <div class="tl-role">Master in City &amp; Technology</div>
-                <div class="tl-co">IAAC — Institute for Advanced Architecture of Catalonia, Barcelona</div>
-                <div class="tl-desc">AI-driven urban analysis and computational design research at the world's leading advanced architecture institute.</div>
-              </div>
-            </div>
-            <div class="tl-item">
-              <div class="tl-date">Active</div>
-              <div class="tl-dot"></div>
-              <div class="tl-body">
-                <div class="tl-role">Licensed Architect — India</div>
-                <div class="tl-co">NCARB Certification</div>
-                <div class="tl-desc">National Council of Architectural Registration Board.</div>
-              </div>
-            </div>
-            <div class="tl-item">
-              <div class="tl-date">Cert.</div>
-              <div class="tl-dot"></div>
-              <div class="tl-body">
-                <div class="tl-role">Principles of Building Science</div>
-                <div class="tl-co">NPTEL — IIT Roorkee</div>
-                <div class="tl-desc">Principles &amp; Application of Building Science, National Programme on Technology Enhanced Learning.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <div class="hr"></div>
-
-  <!-- ══ 05 · PROJECTS ══════════════════════════ -->
-  <section id="repositories" class="section">
-    <div class="s-head" data-reveal>
-      <p class="s-label">05 — Projects</p>
-      <h2 class="s-title">Featured Work</h2>
-      <p class="s-sub">Selected repositories and research contributions from GitHub</p>
+  <!-- Experience -->
+  <section class="section" id="experience">
+    <div class="section-head" data-reveal>
+      <span class="num" data-show="code">06</span>
+      <span class="num" data-show="arch">05</span>
+      <span class="line"></span>
+      <span class="label">Practice &amp; Credentials</span>
     </div>
-    <div class="projects-grid" id="projects-grid">
-      <div class="projects-loading">
-        <div class="spinner"></div>
-        <p>Loading projects…</p>
+    <div class="experience-list">
+      <div class="exp-item" data-reveal>
+        <div class="exp-date">2024–25</div>
+        <div>
+          <div class="exp-role">Master in AI for Architecture &amp; the Built Environment</div>
+          <div class="exp-desc">IAAC — Institute for Advanced Architecture of Catalonia, Barcelona</div>
+        </div>
+        <div class="exp-type">EDUCATION</div>
+      </div>
+      <div class="exp-item" data-reveal>
+        <div class="exp-date">2024</div>
+        <div>
+          <div class="exp-role">Jr. Design Architect</div>
+          <div class="exp-desc">SHAPE Architecture &amp; Research — UAE · Parametric design for high-profile projects</div>
+        </div>
+        <div class="exp-type">PRACTICE</div>
+      </div>
+      <div class="exp-item" data-reveal>
+        <div class="exp-date">2024</div>
+        <div>
+          <div class="exp-role">Set Designer · Contract</div>
+          <div class="exp-desc">DNEG — Mumbai · Spatial visualisation for world-class VFX productions</div>
+        </div>
+        <div class="exp-type">PRACTICE</div>
+      </div>
+      <div class="exp-item" data-reveal>
+        <div class="exp-date">2022–24</div>
+        <div>
+          <div class="exp-role">Architect</div>
+          <div class="exp-desc">Morphogenesis — Delhi · Sustainable, award-winning parametric &amp; bioclimatic architecture</div>
+        </div>
+        <div class="exp-type">PRACTICE</div>
+      </div>
+      <div class="exp-item" data-reveal>
+        <div class="exp-date">2025</div>
+        <div>
+          <div class="exp-role">Published Research — ANNSIM Conference</div>
+          <div class="exp-desc">Society of Modelling &amp; Simulation (SCS) · Building Analysis Tool (B.A.T.)</div>
+        </div>
+        <div class="exp-type">RESEARCH</div>
       </div>
     </div>
   </section>
 
-  <div class="hr"></div>
-
-  <!-- ══ 06 · CONTACT ═══════════════════════════ -->
-  <div class="section-wrap alt">
-    <section id="contact" class="section">
-      <div class="s-head" data-reveal>
-        <p class="s-label">06 — Contact</p>
-        <h2 class="s-title">Let's build something<br><em>extraordinary</em></h2>
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <div class="contact-num" aria-hidden="true" data-show="code">07</div>
+    <div class="contact-num" aria-hidden="true" data-show="arch">06</div>
+    <div class="contact-inner">
+      <div class="section-head" data-reveal>
+        <span class="num" data-show="code">07</span>
+        <span class="num" data-show="arch">06</span>
+        <span class="line"></span>
+        <span class="label">Contact</span>
       </div>
-
-      <div class="contact-grid">
-        <div data-reveal>
-          <p class="contact-lead">
-            Open to architectural roles, research collaborations, and computational design projects worldwide.
-          </p>
-          <div class="c-methods">
-            <div class="c-method">
-              <div class="c-icon"><i class="fas fa-envelope"></i></div>
-              <div>
-                <div class="c-lbl">Email</div>
-                <div class="c-val">sahil.yousaf@students.iaac.net</div>
-              </div>
-            </div>
-            <div class="c-method">
-              <div class="c-icon"><i class="fas fa-phone"></i></div>
-              <div>
-                <div class="c-lbl">Phone</div>
-                <div class="c-val">+34 603 789 204</div>
-              </div>
-            </div>
-            <div class="c-method">
-              <div class="c-icon"><i class="fas fa-map-marker-alt"></i></div>
-              <div>
-                <div class="c-lbl">Location</div>
-                <div class="c-val">Barcelona, Spain · Open to Relocation</div>
-              </div>
-            </div>
-          </div>
+      <h2 class="contact-title" data-reveal>Let's build something <em>extraordinary</em></h2>
+      <p class="contact-desc" data-reveal>Open to architectural roles, research collaborations, and computational design projects worldwide.</p>
+      <div class="contact-grid" data-reveal>
+        <div class="contact-cell">
+          <div class="lbl">EMAIL</div>
+          <a href="mailto:sahil.yousaf@students.iaac.net" data-cursor>sahil.yousaf@students.iaac.net</a>
         </div>
-
-        <div data-reveal data-delay="2">
-          <form class="contact-form" id="contact-form" novalidate>
-            <div class="form-row">
-              <div class="f-field">
-                <input type="text" name="from_name" placeholder="Name" required>
-              </div>
-              <div class="f-field">
-                <input type="email" name="from_email" placeholder="Email" required>
-              </div>
-            </div>
-            <div class="f-field">
-              <input type="text" name="subject" placeholder="Subject" required>
-            </div>
-            <div class="f-field">
-              <textarea name="message" placeholder="Message" required></textarea>
-            </div>
-            <button type="submit" class="submit-btn" id="submit-btn">
-              <i class="fas fa-paper-plane"></i> Send Message
-            </button>
-          </form>
+        <div class="contact-cell">
+          <div class="lbl">PHONE</div>
+          <a href="tel:+34603789204" data-cursor>+34 603 789 204</a>
+        </div>
+        <div class="contact-cell">
+          <div class="lbl">LOCATION</div>
+          <div class="val">Barcelona, Spain<br><span>Open to relocation</span></div>
         </div>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 
-  <!-- ── Footer ── -->
-  <footer class="footer">
-    <div class="footer-inner">
-      <p class="footer-copy">© 2025 Sahil Yousaf · All rights reserved</p>
-      <div class="footer-links">
-        <a href="https://github.com/sahilyousafp" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://www.linkedin.com/in/sahil-yousaf-882a0b132/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://blog.iaac.net/user/sahilyousafp/" target="_blank" rel="noopener">IAAC Blog</a>
-      </div>
+  <!-- Footer -->
+  <footer>
+    <span class="copy">© 2026 Sahil Yousaf · Architect &amp; AI Researcher</span>
+    <div class="links">
+      <a href="https://github.com/sahilyousafp" target="_blank" rel="noopener" data-cursor>GitHub</a>
+      <a href="https://www.linkedin.com/in/sahil-yousaf-882a0b132/" target="_blank" rel="noopener" data-cursor>LinkedIn</a>
+      <a href="https://blog.iaac.net/user/sahilyousafp/" target="_blank" rel="noopener" data-cursor>IAAC Blog</a>
     </div>
   </footer>
 
-  <!-- ── Modal ── -->
-  <div class="modal-overlay" id="modalOverlay">
-    <div class="modal-box">
-      <div class="modal-head">
-        <h3 class="modal-head-title" id="modalTitle">Project</h3>
-        <button class="modal-close-btn" id="modalClose">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="modal-actions">
-          <a id="modalRepoLink" href="#" target="_blank" rel="noopener"
-             class="btn btn-fill" style="font-size:0.7rem; padding:0.65rem 1.2rem;">
-            <i class="fab fa-github"></i> Repository
-          </a>
-          <a id="modalDemoLink" href="#" target="_blank" rel="noopener"
-             class="btn btn-outline" style="font-size:0.7rem; padding:0.65rem 1.2rem; display:none;">
-            <i class="fas fa-external-link-alt"></i> Live Demo
-          </a>
-        </div>
-        <div class="modal-readme" id="modalReadme">
-          <div class="spinner" style="margin:2rem auto;"></div>
-        </div>
-      </div>
-    </div>
-  </div>
+</div>
 
-  <script src="script.js"></script>
+<script>
+(function(){
+  const app = document.getElementById('app');
+  const modeToggle = document.getElementById('modeToggle');
+  let mode = 'code';
+
+  // Project data
+  const projects = {
+    code: [
+      {title:'Building Analysis Tool', tags:'HEALTHCARE ACCESSIBILITY · NLP · PUBLISHED ANNSIM 2025', link:'project-bat.html', img:'References/For website.PNG', placeholder:'B.A.T. interface'},
+      {title:'Grounded · Structural AI', tags:'FINITE-ELEMENT ANALYSIS ON ANY 3D MODEL', link:'project-structural.html', img:'References/For website.PNG', placeholder:'Grounded — FEA viewer'},
+      {title:'LLM Urbanism', tags:'500 AGENTS REASONING IN NATURAL LANGUAGE', link:'project-llm-urbanism.html', img:'References/For website.PNG', placeholder:'500-agent simulation'},
+      {title:'Pardaz', tags:'PEDESTRIAN SIMULATION FOR EXHIBITION LAYOUTS', link:'project-pardaz.html', img:'References/For website.PNG', placeholder:'Pardaz pedestrian flow'},
+      {title:'ZONO_NAUTS', tags:'GNN URBAN GROWTH · AEC TECH HACKATHON @ BIG', link:'project-hackathon.html', img:'References/For website.PNG', placeholder:'ZONO_NAUTS voxel city'},
+      {title:'AI4ALL Decision', tags:'23 YRS SATELLITE LAND-COVER · CIVIC PLATFORM', link:'project-ai4all.html', img:'References/For website.PNG', placeholder:'AI4ALL land-cover map'}
+    ],
+    arch: [
+      {title:'Building Analysis Tool', tags:'HEALTHCARE ACCESSIBILITY · NLP · PUBLISHED ANNSIM 2025', link:'project-bat.html', img:'References/For website.PNG', placeholder:'B.A.T. interface'},
+      {title:'Large-Scale Bio-Material Printing', tags:'ROBOTIC FABRICATION · MATERIAL RESEARCH', link:'https://blog.iaac.net/large-scale-3d-printing-with-bio-material/', external:true, img:'References/For website.PNG', placeholder:'Bio-material 3D print'},
+      {title:'Parametric Practice', tags:'MORPHOGENESIS · SUSTAINABLE & BIOCLIMATIC', link:'#', img:'References/For website.PNG', placeholder:'Parametric practice render'},
+      {title:'Spatial Visualisation', tags:'DNEG · VFX SET DESIGN, MUMBAI', link:'#', img:'References/For website.PNG', placeholder:'DNEG set visualisation'}
+    ]
+  };
+
+  // Research feed
+  const posts = [
+    {t:'Large-Scale 3D Printing with Bio-Material', c:'Robotic Fabrication', d:'Feb 2026', u:'https://blog.iaac.net/large-scale-3d-printing-with-bio-material/'},
+    {t:'Interactive Block-Based Structural Generation & Analysis Tool', c:'Design Communication & Interfaces', d:'Jul 2025', u:'https://blog.iaac.net/interactive-block-based-structural-generation-and-analysis-tool/'},
+    {t:'Grounded — Structural Generation Tool for Architects', c:'Research Studio', d:'Jun 2025', u:'https://blog.iaac.net/grounded-structural-generation-tool-for-architects/'},
+    {t:'Agrowealth: Does Agriculture Correlate to Economy?', c:'AI Programming for Design', d:'Apr 2025', u:'https://blog.iaac.net/agrowealth-does-agriculture-correlate-to-economy/'},
+    {t:'Reinforcement Learning for Intelligent Grid-Based Carving', c:'AI for Robotic Fabrication', d:'Apr 2025', u:'https://blog.iaac.net/ai-for-robotic-fabrication-workshop-reinforcement-learning-for-intelligent-grid-based-carving/'},
+    {t:'B.A.T. Interface — Designing for the Visually Impaired', c:'Design Communication & Interfaces', d:'Dec 2024', u:'https://blog.iaac.net/design-communication-interfaces-_-bat-building-analysis-tool-interface-designing-for-the-visually-impaired-enhancing-accessibility-in-healthcare-architecture/'},
+    {t:'Building Analysis Tool — Accessibility in Healthcare Architecture', c:'Research Studio', d:'Dec 2024', u:'https://blog.iaac.net/building-analisis-tool-designing-for-the-visually-impaired-enhancing-accessibility-in-healthcare-architecture/'},
+    {t:'AI-Driven Inclusive Design: Topology Graph Analysis & NLP', c:'AI Theory for Design', d:'Dec 2024', u:'https://blog.iaac.net/ai-driven-inclusive-design-topology-graph-analysis-and-nlp-for-accessibility-solutions-in-architecture/'},
+    {t:'Intelligent Prototyping: Microcontrollers & Robotic Fabrication', c:'Intelligent Prototyping', d:'Dec 2024', u:'https://blog.iaac.net/intelligent-prototyping-combining-microcontrollers-robotic-fabrication-obstacle-detection-notification-system-clay-pots/'}
+  ];
+
+  // Graph data
+  const graphData = {
+    cats:[
+      {id:'research', label:'AI RESEARCH', link:'#research', desc:'Published at ANNSIM 2025, plus nine writings on the IAAC blog.', leaves:[
+        {label:'B.A.T.', desc:'AI accessibility analyser for healthcare architecture.', link:'project-bat.html'},
+        {label:'ANNSIM 2025', desc:'Peer-reviewed publication · Society for Modelling & Simulation.', link:'https://blog.iaac.net/user/sahilyousafp/'},
+        {label:'IAAC Blog', desc:'Nine published research posts.', link:'https://blog.iaac.net/user/sahilyousafp/'}
+      ]},
+      {id:'projects', label:'PROJECTS', link:'#work', desc:'Computational tools across structure, simulation and urbanism.', leaves:[
+        {label:'Grounded', desc:'Finite-element analysis on any 3D model at concept stage.', link:'project-structural.html'},
+        {label:'LLM Urbanism', desc:'500 agents reasoning in natural language.', link:'project-llm-urbanism.html'},
+        {label:'Pardaz', desc:'Pedestrian simulation for exhibition layouts.', link:'project-pardaz.html'},
+        {label:'ZONO_NAUTS', desc:'GNN urban growth → voxel city · AEC Tech @ BIG.', link:'project-hackathon.html'},
+        {label:'AI4ALL', desc:'23 years of satellite land-cover · civic platform.', link:'project-ai4all.html'}
+      ]},
+      {id:'skills', label:'TOOLS', link:'#skills', desc:'From Grasshopper and Rhino to Python, ML and LLM agents.', leaves:[
+        {label:'Python', desc:'Primary language for AI and tooling.'},
+        {label:'Grasshopper', desc:'Parametric modelling in Rhino 3D.'},
+        {label:'ML / NN', desc:'Graph neural nets, reinforcement learning, NLP.'}
+      ]},
+      {id:'experience', label:'PATH', link:'#experience', desc:'Morphogenesis, SHAPE, DNEG and IAAC Barcelona.', leaves:[
+        {label:'IAAC', desc:'Master in AI for Architecture, Barcelona.'},
+        {label:'Morphogenesis', desc:'Sustainable parametric architecture, Delhi.'},
+        {label:'DNEG', desc:'VFX spatial visualisation, Mumbai.'},
+        {label:'SHAPE', desc:'Parametric design development, UAE.'}
+      ]},
+      {id:'contact', label:'CONTACT', link:'#contact', desc:'Open to roles, research and collaboration worldwide.', leaves:[
+        {label:'Email', desc:'sahil.yousaf@students.iaac.net', link:'mailto:sahil.yousaf@students.iaac.net'},
+        {label:'LinkedIn', desc:'Connect and view recommendations.', link:'https://www.linkedin.com/in/sahil-yousaf-882a0b132/'},
+        {label:'GitHub', desc:'Code and repositories.', link:'https://github.com/sahilyousafp'}
+      ]}
+    ]
+  };
+
+  function applyTheme(newMode){
+    mode = newMode;
+    app.setAttribute('data-mode', mode);
+    document.querySelectorAll('[data-seg]').forEach(s=>{
+      const on = s.getAttribute('data-seg') === mode;
+      s.classList.toggle('active', on);
+    });
+    renderProjects();
+  }
+
+  modeToggle.addEventListener('click', ()=>applyTheme(mode==='code'?'arch':'code'));
+
+  // Render projects
+  function renderProjects(){
+    const grid = document.getElementById('projectsGrid');
+    grid.innerHTML = projects[mode].map((p,i)=>{
+      const target = p.external ? 'target="_blank" rel="noopener"' : '';
+      return `<a class="proj-card" href="${p.link}" ${target} data-cursor data-reveal style="transition-delay:${i*0.05}s">
+        <div class="proj-img">
+          ${p.img ? `<img src="${p.img}" alt="${p.title}" loading="lazy">` : `<div class="proj-placeholder">${p.placeholder}</div>`}
+        </div>
+        <div class="proj-meta">
+          <div>
+            <div class="proj-title">${p.title}</div>
+            <div class="proj-tags">${p.tags}</div>
+          </div>
+          <span class="proj-arrow">↗</span>
+        </div>
+      </a>`;
+    }).join('');
+    observeReveal();
+  }
+
+  // Render feed
+  function renderFeed(){
+    const list = document.getElementById('feedList');
+    list.innerHTML = posts.map(p=>`
+      <a class="feed-item" href="${p.u}" target="_blank" rel="noopener" data-cursor>
+        <div>
+          <div class="feed-title">${p.t}</div>
+          <div class="feed-cat">${p.c}</div>
+        </div>
+        <div class="feed-right">
+          <span class="feed-date">${p.d}</span>
+          <span class="feed-arrow">↗</span>
+        </div>
+      </a>
+    `).join('');
+  }
+
+  // Custom cursor
+  function initCursor(){
+    if(window.matchMedia && window.matchMedia('(pointer:coarse)').matches) return;
+    const dot = document.getElementById('cursorDot');
+    const ring = document.getElementById('cursorRing');
+    let mx=window.innerWidth/2, my=window.innerHeight/2, rx=mx, ry=my;
+    window.addEventListener('mousemove', e=>{
+      mx=e.clientX; my=e.clientY;
+      dot.style.transform = 'translate('+mx+'px,'+my+'px) translate(-50%,-50%)';
+    });
+    function loop(){
+      rx += (mx-rx)*0.16; ry += (my-ry)*0.16;
+      ring.style.transform = 'translate('+rx+'px,'+ry+'px) translate(-50%,-50%)';
+      requestAnimationFrame(loop);
+    }
+    loop();
+    document.addEventListener('mouseover', e=>{
+      if(e.target.closest && e.target.closest('[data-cursor]')){
+        ring.style.width='56px'; ring.style.height='56px';
+        ring.style.backgroundColor='var(--accent)'; ring.style.opacity='0.18';
+      }
+    });
+    document.addEventListener('mouseout', e=>{
+      if(e.target.closest && e.target.closest('[data-cursor]')){
+        ring.style.width='34px'; ring.style.height='34px';
+        ring.style.backgroundColor='transparent'; ring.style.opacity='1';
+      }
+    });
+  }
+
+  // Hero canvas
+  function initHeroCanvas(){
+    const c = document.getElementById('heroCanvas');
+    if(!c) return;
+    const ctx = c.getContext('2d');
+    let w=0,h=0,dpr=1,mouse={x:0.5,y:0.5};
+    function resize(){
+      dpr = Math.min(window.devicePixelRatio||1,2);
+      w = c.clientWidth; h = c.clientHeight;
+      c.width = w*dpr; c.height = h*dpr;
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+    window.addEventListener('mousemove', e=>{
+      mouse.x = e.clientX/window.innerWidth;
+      mouse.y = e.clientY/window.innerHeight;
+    });
+
+    let t=0;
+    function drawContours(){
+      const lines = 16;
+      ctx.lineWidth = 1.1;
+      ctx.strokeStyle = getComputedStyle(app).getPropertyValue('--accent').trim();
+      for(let i=0;i<lines;i++){
+        const baseY = h*(i/(lines-1))*0.92 + h*0.04;
+        ctx.globalAlpha = 0.10 + 0.16*Math.abs(Math.sin(i*0.5 + t*0.4));
+        ctx.beginPath();
+        for(let x=-20;x<=w+20;x+=10){
+          const y = baseY
+            + Math.sin(x*0.0052 + t*1.0 + i*0.55) * 26 * (0.5+0.5*Math.sin(t*0.3+i))
+            + Math.sin(x*0.012 - t*0.7) * 9
+            + (mouse.x-0.5) * 26 * Math.sin(i*0.4)
+            + (mouse.y-0.5) * 14;
+          if(x<=-20) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+        }
+        ctx.stroke();
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    const particles = [];
+    for(let i=0;i<45;i++){
+      particles.push({
+        x:Math.random(), y:Math.random(), z:Math.random(),
+        vx:(Math.random()-0.5)*0.0003, vy:(Math.random()-0.5)*0.0003
+      });
+    }
+    function drawNetwork(){
+      const accent = getComputedStyle(app).getPropertyValue('--accent').trim();
+      const pts = particles.map(p=>{
+        p.x += p.vx; p.y += p.vy;
+        if(p.x<0||p.x>1) p.vx *= -1;
+        if(p.y<0||p.y>1) p.vy *= -1;
+        return {x:p.x*w, y:p.y*h, z:p.z};
+      });
+      ctx.strokeStyle = accent;
+      ctx.lineWidth = 1;
+      for(let i=0;i<pts.length;i++){
+        for(let j=i+1;j<pts.length;j++){
+          const dx = pts[i].x-pts[j].x, dy = pts[i].y-pts[j].y;
+          const d = Math.hypot(dx,dy);
+          if(d<160){
+            ctx.globalAlpha = 0.06*(1-d/160);
+            ctx.beginPath(); ctx.moveTo(pts[i].x,pts[i].y); ctx.lineTo(pts[j].x,pts[j].y); ctx.stroke();
+          }
+        }
+      }
+      ctx.fillStyle = accent;
+      pts.forEach(p=>{
+        ctx.globalAlpha = 0.25 + p.z*0.5;
+        ctx.beginPath(); ctx.arc(p.x,p.y,1.5+p.z*2,0,Math.PI*2); ctx.fill();
+      });
+      ctx.globalAlpha = 1;
+    }
+
+    function loop(){
+      ctx.clearRect(0,0,w,h);
+      t += 0.004;
+      if(mode==='arch') drawContours(); else drawNetwork();
+      requestAnimationFrame(loop);
+    }
+    loop();
+  }
+
+  // Knowledge graph
+  function initGraph(){
+    const c = document.getElementById('graphCanvas');
+    if(!c) return;
+    const ctx = c.getContext('2d');
+    const info = document.getElementById('graphInfo');
+    let w=0,h=0,dpr=1;
+    function fit(){
+      dpr=Math.min(window.devicePixelRatio||1,2);
+      w=c.clientWidth; h=c.clientHeight;
+      c.width=w*dpr; c.height=h*dpr;
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    fit();
+
+    const nodes=[], edges=[];
+    nodes.push({label:'SAHIL YOUSAF', type:'center', pos:[0,0,0], desc:'Architect & AI Researcher, based in Barcelona. Pick a thread to explore.'});
+    const cats = graphData.cats, nc=cats.length;
+    cats.forEach((cat,i)=>{
+      const y = 1 - (i/(nc-1))*2, rad = Math.sqrt(Math.max(0,1-y*y)), th = i*2.39996;
+      const cp = [Math.cos(th)*rad*1.25, y*1.0, Math.sin(th)*rad*1.25];
+      nodes.push({label:cat.label, type:'cat', pos:cp, desc:cat.desc, link:cat.link});
+      const ci = nodes.length-1;
+      edges.push([0, ci]);
+      const m = cat.leaves.length;
+      cat.leaves.forEach((lf,j)=>{
+        const a = (j/m)*Math.PI*2;
+        const lp = [ cp[0]*1.6 + Math.cos(a)*0.4, cp[1]*1.6 + Math.sin(a)*0.4, cp[2]*1.6 + Math.sin(a*1.7)*0.32 ];
+        nodes.push({label:lf.label, type:'leaf', pos:lp, desc:lf.desc, link:lf.link});
+        edges.push([ci, nodes.length-1]);
+      });
+    });
+
+    let rotY=0.6, rotX=-0.18, dragging=false, lastX=0, lastY=0, moved=0;
+    let mxp=-1, myp=-1, hoverIdx=null;
+
+    function setInfo(node){
+      if(!info) return;
+      if(!node){
+        info.innerHTML = '<div style="font-family:var(--fontM);font-size:11px;color:var(--accent);letter-spacing:.14em">THE GRAPH</div><div style="font-size:14px;color:var(--muted);margin-top:8px;line-height:1.55">Drag to rotate · hover any node to preview · click to dive deeper.</div>';
+        return;
+      }
+      const cta = node.link ? '<div style="font-family:var(--fontM);font-size:11px;color:var(--accent);margin-top:13px;letter-spacing:.06em">'+(node.link[0]==='#'?'CLICK TO JUMP →':'CLICK TO OPEN ↗')+'</div>' : '';
+      info.innerHTML = '<div style="font-family:var(--fontD);font-weight:700;font-size:clamp(18px,2.4vw,26px);line-height:1.05;color:var(--fg)">'+node.label+'</div><div style="font-size:14px;color:var(--muted);margin-top:9px;line-height:1.55;max-width:42ch">'+(node.desc||'')+'</div>'+cta;
+    }
+    setInfo(null);
+
+    function rect(){ return c.getBoundingClientRect(); }
+    c.addEventListener('pointerdown', e=>{ dragging=true; lastX=e.clientX; lastY=e.clientY; moved=0; c.style.cursor='grabbing'; try{c.setPointerCapture(e.pointerId);}catch(_){} });
+    c.addEventListener('pointermove', e=>{
+      const r=rect(); mxp=e.clientX-r.left; myp=e.clientY-r.top;
+      if(dragging){ const dx=e.clientX-lastX, dy=e.clientY-lastY; rotY+=dx*0.006; rotX=Math.max(-1.2,Math.min(1.2,rotX+dy*0.006)); moved+=Math.abs(dx)+Math.abs(dy); lastX=e.clientX; lastY=e.clientY; }
+    });
+    function endDrag(){ dragging=false; c.style.cursor = hoverIdx!=null?'pointer':'grab'; }
+    c.addEventListener('pointerup', e=>{
+      const wasDrag = moved>6; endDrag();
+      if(!wasDrag && hoverIdx!=null){
+        const n = nodes[hoverIdx];
+        if(n.link){ if(n.link[0]==='#') document.querySelector(n.link)?.scrollIntoView({behavior:'smooth'}); else window.open(n.link,'_blank','noopener'); }
+      }
+    });
+    c.addEventListener('pointerleave', ()=>{ dragging=false; mxp=-1; myp=-1; });
+
+    const screen = new Array(nodes.length);
+    function draw(){
+      if(c.clientWidth!==w || c.clientHeight!==h) fit();
+      if(w<2 || h<2){ requestAnimationFrame(draw); return; }
+      ctx.clearRect(0,0,w,h);
+      if(!dragging) rotY += 0.0015;
+      const accent = getComputedStyle(app).getPropertyValue('--accent').trim();
+      const cx=w/2, cyc=h*0.48, scale=Math.min(w,h)*0.245;
+      const cyR=Math.cos(rotX), syR=Math.sin(rotX), czR=Math.cos(rotY), szR=Math.sin(rotY);
+      for(let i=0;i<nodes.length;i++){
+        const p=nodes[i].pos; const x=p[0],y=p[1],z=p[2];
+        const x1=x*czR - z*szR, z1=x*szR + z*czR;
+        const y2=y*cyR - z1*syR, z2=y*syR + z1*cyR;
+        const pe=2.7/(2.7+z2);
+        screen[i]={ x:cx+x1*scale*pe, y:cyc+y2*scale*pe, z:z2, p:pe };
+      }
+      let nh=null, best=1e9;
+      if(mxp>=0){
+        for(let i=0;i<nodes.length;i++){
+          const s=screen[i]; const rr=(nodes[i].type==='center'?9:nodes[i].type==='cat'?6.5:4.2)*s.p+10;
+          const d=Math.hypot(s.x-mxp, s.y-myp);
+          if(d<rr && d<best){ best=d; nh=i; }
+        }
+      }
+      if(nh!==hoverIdx){ hoverIdx=nh; setInfo(nh!=null?nodes[nh]:null); if(!dragging) c.style.cursor = nh!=null?'pointer':'grab'; }
+
+      const hot = new Set();
+      if(nh!=null){ hot.add(nh); edges.forEach(([a,b])=>{ if(a===nh)hot.add(b); if(b===nh)hot.add(a); }); }
+
+      ctx.strokeStyle=accent;
+      edges.forEach(([a,b])=>{
+        const sa=screen[a], sb=screen[b];
+        const on = (hot.has(a)&&hot.has(b));
+        ctx.globalAlpha = nh==null ? (0.09+0.10*((sa.p+sb.p)/2)) : (on?0.6:0.045);
+        ctx.lineWidth = (nh!=null&&on)?1.5:1;
+        ctx.beginPath(); ctx.moveTo(sa.x,sa.y); ctx.lineTo(sb.x,sb.y); ctx.stroke();
+      });
+      ctx.globalAlpha=1;
+
+      const order = Array.from(screen.keys()).sort((a,b)=>screen[b].z-screen[a].z);
+      order.forEach(i=>{
+        const s=screen[i], n=nodes[i];
+        const dim = nh!=null && !hot.has(i);
+        const baseR = n.type==='center'?6.8 : n.type==='cat'?4.8 : 3.0;
+        const r = baseR*s.p;
+        ctx.globalAlpha = dim?0.22:1;
+        ctx.fillStyle=accent;
+        ctx.beginPath(); ctx.arc(s.x,s.y,r,0,Math.PI*2); ctx.fill();
+        if(n.type!=='leaf'){
+          ctx.strokeStyle=accent; ctx.lineWidth=1.4;
+          ctx.globalAlpha = dim?0.18:0.5;
+          ctx.beginPath(); ctx.arc(s.x,s.y,r+6*s.p,0,Math.PI*2); ctx.stroke();
+          ctx.globalAlpha = dim?0.22:1;
+        }
+        const showLabel = n.type!=='leaf' || hot.has(i) || nh===i;
+        if(showLabel){
+          const big = n.type==='center';
+          ctx.font = (big?'700 ':(n.type==='cat'?'500 ':'400 ')) + (big?14:n.type==='cat'?12:11) + "px " + (big?'Space Grotesk, sans-serif':'JetBrains Mono, monospace');
+          ctx.textBaseline='middle';
+          ctx.globalAlpha = dim?0.3:1;
+          ctx.fillStyle = big ? '#FFFFFF' : (n.type==='cat' ? accent : '#C9C9CF');
+          const tx = s.x + r + 8;
+          ctx.shadowColor='rgba(0,0,0,0.85)'; ctx.shadowBlur=6;
+          ctx.fillText(n.label, tx, s.y);
+          ctx.shadowBlur=0;
+        }
+        ctx.globalAlpha=1;
+      });
+      requestAnimationFrame(draw);
+    }
+    draw();
+    window.addEventListener('resize', fit);
+  }
+
+  // Scroll reveal
+  function observeReveal(){
+    const els = document.querySelectorAll('[data-reveal]');
+    const io = new IntersectionObserver((ents)=>{
+      ents.forEach(en=>{
+        if(en.isIntersecting){ en.target.classList.add('visible'); io.unobserve(en.target); }
+      });
+    }, {threshold:0.1, rootMargin:'0px 0px -8% 0px'});
+    els.forEach(el=>io.observe(el));
+  }
+
+  // Parallax
+  function initParallax(){
+    const els = [...document.querySelectorAll('[data-parallax]')];
+    function update(){
+      const vh = window.innerHeight;
+      els.forEach(el=>{
+        const sp = parseFloat(el.getAttribute('data-parallax')) || 0;
+        const ref = el.parentElement || el;
+        const rect = ref.getBoundingClientRect();
+        const fromCenter = (rect.top + rect.height/2) - vh/2;
+        el.style.transform = 'translateY(' + (-fromCenter * sp) + 'px)';
+      });
+    }
+    window.addEventListener('scroll', update, {passive:true});
+    window.addEventListener('resize', update);
+    update();
+  }
+
+  // Initialize
+  renderProjects();
+  renderFeed();
+  initCursor();
+  initHeroCanvas();
+  initGraph();
+  observeReveal();
+  initParallax();
+  applyTheme('code');
+})();
+</script>
+
 </body>
 </html>
