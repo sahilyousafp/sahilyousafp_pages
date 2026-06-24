@@ -4,262 +4,260 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sahil Yousaf — Architect & AI Researcher</title>
-  <meta name="description" content="Architect and AI Researcher specialising in computational design, parametric architecture and AI research. IAAC Barcelona.">
-  <meta property="og:title" content="Sahil Yousaf — Architect & AI Researcher">
-  <meta property="og:description" content="Computational design, parametric architecture, AI research. Based in Barcelona.">
+  <meta name="description" content="Portfolio of Sahil Yousaf — architect, computational designer and AI researcher. Explore code-driven tools and built-environment projects.">
   <link rel="icon" type="image/png" href="References/For website.PNG">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
+    :root{
+      --c-black:#070707;
+      --c-void:#0B0B0E;
+      --c-panel:#111116;
+      --c-white:#F4F4F0;
+      --c-stone:#E6E1D6;
+      --c-parchment:#F2EDE4;
+      --c-clay:#C75B3A;
+      --c-ember:#FF3300;
+      --c-cyan:#00F0FF;
+      --c-umber:#3D2B1F;
+      --c-taupe:#8B7E6A;
+      --c-muted:#6B6B75;
+      --c-line:rgba(255,255,255,0.10);
+      --c-line-dark:rgba(28,20,15,0.12);
+      --radius:2px;
+      --font-display:'Anton',Impact,sans-serif;
+      --font-ui:'Space Grotesk',sans-serif;
+      --font-body:'Archivo',sans-serif;
+      --font-mono:'JetBrains Mono',monospace;
+      --font-serif:'Newsreader',Georgia,serif;
+    }
+
     *{margin:0;padding:0;box-sizing:border-box;}
     html{scroll-behavior:smooth;}
     body{
-      background:var(--bg);
-      color:var(--fg);
-      font-family:var(--fontB);
+      background:var(--c-black);color:var(--c-white);
+      font-family:var(--font-body);overflow-x:hidden;
       -webkit-font-smoothing:antialiased;
-      overflow-x:hidden;
     }
-    ::selection{background:var(--accent);color:var(--bg);}
+    ::selection{background:var(--c-ember);color:var(--c-black);}
     a{color:inherit;text-decoration:none;}
     img{max-width:100%;display:block;}
 
-    :root{
-      --bg:#0A0A0D;
-      --bg2:#121218;
-      --card:#15151C;
-      --fg:#F2F2EF;
-      --muted:#7E7E8A;
-      --accent:#FF6A1A;
-      --accent2:#5B8CFF;
-      --line:rgba(255,255,255,0.10);
-      --radius:3px;
-      --fontD:'Space Grotesk',sans-serif;
-      --fontB:'Archivo',sans-serif;
-      --fontM:'JetBrains Mono',monospace;
+    /* Loader */
+    .loader{
+      position:fixed;inset:0;z-index:10000;
+      background:var(--c-black);display:flex;
+      align-items:center;justify-content:center;
+      transition:opacity .6s ease,visibility .6s;
     }
-
-    [data-mode="arch"]{
-      --bg:#F2ECE1;
-      --bg2:#E9E1D2;
-      --card:#F7F2E9;
-      --fg:#1C1814;
-      --muted:#86796A;
-      --accent:#B85C38;
-      --accent2:#5E6B4F;
-      --line:rgba(28,20,15,0.14);
-      --radius:18px;
-      --fontD:'Newsreader',serif;
+    .loader.done{opacity:0;visibility:hidden;}
+    .loader-text{
+      font-family:var(--font-mono);font-size:11px;letter-spacing:.3em;
+      color:var(--c-ember);animation:pulse 1.2s infinite;
     }
-
-    #app{transition:background-color .7s cubic-bezier(.4,0,.2,1), color .7s cubic-bezier(.4,0,.2,1);}
-
-    [data-cursor]{cursor:none;}
-    @media (pointer:coarse){
-      [data-cursoronly]{display:none !important;}
-      [data-cursor]{cursor:auto;}
-    }
-
-    @keyframes sy-marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-    @keyframes sy-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
-    @keyframes fadeUp{
-      from{opacity:0;transform:translateY(24px);}
-      to{opacity:1;transform:none;}
-    }
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 
     /* Custom cursor */
+    .cursor-dot,.cursor-ring{
+      position:fixed;pointer-events:none;z-index:9999;
+      border-radius:50%;transform:translate(-50%,-50%);
+    }
+    .cursor-dot{width:6px;height:6px;background:var(--c-ember);}
     .cursor-ring{
-      position:fixed;top:0;left:0;width:34px;height:34px;
-      border:1px solid var(--accent);border-radius:50%;
-      pointer-events:none;z-index:9999;
-      transform:translate(-100px,-100px) translate(-50%,-50%);
-      transition:width .25s,height .25s,background-color .25s,opacity .25s;
+      width:42px;height:42px;border:1px solid var(--c-ember);
+      transition:width .25s,height .25s,background-color .25s,opacity .25s,border-color .25s;
       mix-blend-mode:difference;
     }
-    .cursor-dot{
-      position:fixed;top:0;left:0;width:5px;height:5px;
-      background:var(--accent);border-radius:50%;
-      pointer-events:none;z-index:10000;
-      transform:translate(-100px,-100px) translate(-50%,-50%);
-    }
+    @media (pointer:coarse){.cursor-dot,.cursor-ring{display:none;}}
 
-    /* Navigation */
-    .nav{
-      position:fixed;top:0;left:0;right:0;z-index:900;
-      display:flex;align-items:center;justify-content:space-between;
-      gap:24px;padding:18px clamp(20px,5vw,72px);
-      background:color-mix(in srgb, var(--bg) 72%, transparent);
-      backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-      border-bottom:1px solid var(--line);
-      transition:background-color .7s,border-color .7s;
+    /* Mode selector landing */
+    .mode-landing{
+      position:fixed;inset:0;z-index:9000;
+      background:var(--c-black);
+      display:flex;flex-direction:column;
+      transition:transform .9s cubic-bezier(.7,0,.3,1),opacity .8s;
     }
-    .nav-brand{
-      display:flex;align-items:center;gap:12px;
+    .mode-landing.hidden{transform:translateY(-100%);opacity:0;pointer-events:none;}
+    .mode-landing .landing-top{
+      padding:24px clamp(20px,5vw,60px);
+      display:flex;justify-content:space-between;align-items:center;
     }
-    .nav-brand .sy-badge{
-      display:inline-flex;align-items:center;justify-content:center;
-      width:34px;height:34px;border:1px solid var(--accent);
-      border-radius:var(--radius);font-family:var(--fontM);
-      font-size:13px;font-weight:500;color:var(--accent);
-    }
-    .nav-brand span:last-child{
-      font-family:var(--fontD);font-weight:500;font-size:15px;
-      letter-spacing:.01em;color:var(--fg);transition:color .7s;
-    }
-    .nav-links{
-      display:none;gap:30px;align-items:center;
-    }
-    @media (min-width:880px){.nav-links{display:flex;}}
-    .nav-links a{
-      position:relative;text-decoration:none;color:var(--muted);
-      font-size:13px;font-family:var(--fontM);transition:color .3s;
-    }
-    .nav-links a::after{
-      content:'';position:absolute;left:0;bottom:-3px;height:1px;width:100%;
-      background:var(--accent);transform:scaleX(0);transform-origin:left;
-      transition:transform .4s cubic-bezier(.4,0,.2,1);
-    }
-    .nav-links a:hover{color:var(--fg);}
-    .nav-links a:hover::after{transform:scaleX(1);}
-    .mode-toggle{
-      display:flex;align-items:center;gap:0;padding:4px;
-      border:1px solid var(--line);border-radius:999px;
-      background:var(--bg2);cursor:pointer;font-family:var(--fontM);
-      transition:background-color .7s,border-color .7s;
-    }
-    .mode-toggle span{
-      padding:7px 14px;border-radius:999px;font-size:11px;
-      letter-spacing:.04em;color:var(--muted);transition:all .4s;
-      white-space:nowrap;
-    }
-    .mode-toggle span.active{
-      background:var(--accent);color:var(--bg);
-    }
-
-    /* Hero */
-    .hero{
-      position:relative;min-height:100vh;
-      display:flex;flex-direction:column;justify-content:flex-end;
-      padding:120px clamp(20px,5vw,72px) clamp(40px,6vh,80px);
-      overflow:hidden;
-    }
-    .hero-canvas{
-      position:absolute;inset:0;width:100%;height:100%;z-index:0;
-    }
-    .hero-num{
-      position:absolute;top:14%;right:clamp(20px,5vw,72px);z-index:0;
-      font-family:var(--fontM);font-size:clamp(120px,22vw,360px);
-      font-weight:400;color:var(--line);line-height:.8;
-      pointer-events:none;user-select:none;
-    }
-    .hero-inner{position:relative;z-index:2;width:100%;max-width:1400px;margin:0 auto;}
-    .hero-eyebrow{
-      display:flex;align-items:center;gap:14px;
-      margin-bottom:clamp(16px,3vh,30px);
-    }
-    .hero-eyebrow .accent-line{width:34px;height:1px;background:var(--accent);}
-    .hero-eyebrow span{
-      font-family:var(--fontM);font-size:13px;letter-spacing:.14em;
-      color:var(--accent);text-transform:uppercase;
-    }
-    .hero-name{
-      font-family:var(--fontD);font-weight:600;line-height:.86;
-      letter-spacing:-0.02em;font-size:clamp(52px,14vw,230px);margin:0;
-      color:var(--fg);transition:color .7s;
-    }
-    .hero-name em{font-style:italic;color:var(--accent);font-weight:500;}
-    .hero-bottom{
-      display:flex;flex-wrap:wrap;align-items:flex-end;
-      justify-content:space-between;gap:32px;
-      margin-top:clamp(24px,4vh,48px);
-    }
-    .hero-desc{max-width:540px;}
-    .hero-desc p{
-      font-size:clamp(16px,2vw,21px);line-height:1.5;color:var(--fg);
-      transition:color .7s;
-    }
-    [data-mode="arch"] .hero-desc p{font-family:var(--fontD);}
-    .hero-loc{
-      display:flex;align-items:center;gap:10px;margin-top:22px;
-      font-family:var(--fontM);font-size:12px;color:var(--muted);
+    .mode-landing .sy-mark{
+      font-family:var(--font-ui);font-size:14px;font-weight:700;
       letter-spacing:.05em;
     }
-    .hero-loc::before{
-      content:'';width:7px;height:7px;border-radius:50%;background:var(--accent);
+    .mode-landing .sy-mark em{font-style:normal;color:var(--c-ember);}
+    .mode-landing .landing-hint{
+      font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;
+      color:var(--c-muted);text-transform:uppercase;
     }
-    .hero-btns{display:flex;flex-wrap:wrap;gap:12px;}
-    .hero-btns a{
-      display:inline-flex;align-items:center;gap:8px;padding:14px 24px;
-      text-decoration:none;border-radius:var(--radius);
-      font-family:var(--fontM);font-size:13px;font-weight:500;
-      letter-spacing:.03em;transition:transform .2s,opacity .2s;
+    .mode-cards{
+      flex:1;display:grid;grid-template-columns:1fr 1fr;min-height:0;
     }
-    .hero-btns a:hover{transform:translateY(-2px);}
-    .btn-primary{background:var(--accent);color:var(--bg);}
-    .btn-secondary{
-      background:transparent;color:var(--fg);border:1px solid var(--line);
-      transition:color .7s,border-color .7s,transform .2s;
+    .mode-card{
+      position:relative;overflow:hidden;cursor:pointer;
+      display:flex;flex-direction:column;justify-content:flex-end;
+      padding:clamp(30px,5vw,70px);
+      transition:flex .6s cubic-bezier(.2,.7,.2,1);
     }
-    .scroll-hint{
-      position:absolute;bottom:20px;left:50%;transform:translateX(-50%);
-      font-family:var(--fontM);font-size:11px;letter-spacing:.2em;
-      color:var(--muted);animation:sy-bob 2.4s ease-in-out infinite;z-index:2;
+    .mode-card:hover{flex:1.08;}
+    .mode-card.arch{background:var(--c-parchment);color:var(--c-umber);}
+    .mode-card.code{background:var(--c-void);color:var(--c-white);}
+    .mode-card .bg-label{
+      position:absolute;top:50%;left:50%;
+      transform:translate(-50%,-50%);
+      font-family:var(--font-display);font-size:clamp(80px,14vw,260px);
+      line-height:.85;letter-spacing:-.02em;opacity:.06;
+      white-space:nowrap;pointer-events:none;
+    }
+    .mode-card .card-icon{
+      width:64px;height:64px;border:1px solid currentColor;
+      border-radius:50%;display:flex;align-items:center;justify-content:center;
+      margin-bottom:30px;font-size:20px;
+    }
+    .mode-card.arch .card-icon{border-color:var(--c-clay);color:var(--c-clay);}
+    .mode-card.code .card-icon{border-color:var(--c-ember);color:var(--c-ember);}
+    .mode-card h2{
+      font-family:var(--font-display);font-size:clamp(48px,8vw,120px);
+      line-height:.9;letter-spacing:-.01em;text-transform:uppercase;
+    }
+    .mode-card p{
+      max-width:360px;margin-top:18px;font-size:15px;line-height:1.55;
+      opacity:.75;
+    }
+    .mode-card .enter-btn{
+      display:inline-flex;align-items:center;gap:10px;margin-top:34px;
+      font-family:var(--font-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+    }
+    .mode-card .enter-btn::after{
+      content:'→';font-size:16px;transition:transform .3s;
+    }
+    .mode-card:hover .enter-btn::after{transform:translateX(6px);}
+    .mode-divider{
+      position:absolute;left:50%;top:10%;bottom:10%;width:1px;
+      background:var(--c-line);z-index:2;pointer-events:none;
+    }
+    .mode-divider::after{
+      content:'OR';position:absolute;top:50%;left:50%;
+      transform:translate(-50%,-50%);
+      font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;
+      color:var(--c-muted);background:var(--c-black);
+      padding:8px 0;
+    }
+    @media (max-width:768px){
+      .mode-cards{grid-template-columns:1fr;}
+      .mode-divider{display:none;}
     }
 
-    /* Marquee */
-    .marquee{
-      overflow:hidden;background:var(--accent);padding:14px 0;
-      white-space:nowrap;border-top:1px solid var(--bg);border-bottom:1px solid var(--bg);
+    /* App containers */
+    #app-code, #app-arch{
+      position:relative;display:none;
     }
-    .marquee-inner{
-      display:inline-block;animation:sy-marq 28s linear infinite;
-      font-family:var(--fontD);font-weight:700;
-      font-size:clamp(20px,3vw,34px);color:var(--bg);
-      letter-spacing:-0.01em;text-transform:uppercase;
-    }
-    [data-mode="arch"] .marquee-inner{font-style:italic;font-weight:500;letter-spacing:0;}
+    #app-code.active, #app-arch.active{display:block;}
 
-    /* Section utilities */
-    .section{
-      padding:clamp(80px,12vh,160px) clamp(20px,5vw,72px);
-      max-width:1400px;margin:0 auto;width:100%;
+    /* Shared nav */
+    .top-nav{
+      position:fixed;top:0;left:0;right:0;z-index:800;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:20px clamp(20px,5vw,60px);
+      backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+      border-bottom:1px solid transparent;
+      transition:background-color .5s,border-color .5s;
     }
-    .section-head{
-      display:flex;align-items:center;gap:14px;
-      margin-bottom:clamp(36px,6vh,72px);
+    .top-nav.scrolled{
+      background:color-mix(in srgb, var(--nav-bg) 75%, transparent);
+      border-color:var(--nav-line);
     }
-    .section-head .num{
-      font-family:var(--fontM);font-size:13px;color:var(--accent);
+    .nav-brand{font-family:var(--font-ui);font-size:15px;font-weight:700;letter-spacing:.02em;}
+    .nav-brand em{font-style:normal;color:var(--accent);}
+    .nav-links{display:none;gap:32px;align-items:center;}
+    @media (min-width:900px){.nav-links{display:flex;}}
+    .nav-links a{
+      font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;
+      text-transform:uppercase;color:var(--nav-muted);position:relative;
+      transition:color .3s;
     }
-    .section-head .line{width:34px;height:1px;background:var(--line);transition:background-color .7s;}
-    .section-head .label{
-      font-family:var(--fontM);font-size:13px;letter-spacing:.14em;
-      color:var(--muted);text-transform:uppercase;
+    .nav-links a:hover{color:var(--nav-fg);}
+    .nav-links a::after{
+      content:'';position:absolute;left:0;bottom:-4px;height:1px;width:100%;
+      background:var(--accent);transform:scaleX(0);transform-origin:left;
+      transition:transform .4s cubic-bezier(.2,.7,.2,1);
     }
-    .section-title{
-      font-family:var(--fontD);font-weight:500;
-      font-size:clamp(30px,5vw,68px);line-height:1;
-      letter-spacing:-0.02em;color:var(--fg);transition:color .7s;
+    .nav-links a:hover::after{transform:scaleX(1);}
+    .nav-switch{
+      display:flex;align-items:center;gap:8px;
+      font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;
+      text-transform:uppercase;color:var(--nav-muted);cursor:pointer;
     }
-    .section-title em{font-style:italic;color:var(--accent);}
+    .nav-switch .pill{
+      display:flex;gap:2px;padding:3px;border:1px solid var(--nav-line);
+      border-radius:999px;background:var(--nav-bg2);
+    }
+    .nav-switch .pill span{padding:6px 12px;border-radius:999px;transition:all .3s;}
+    .nav-switch .pill span.active{background:var(--accent);color:var(--nav-bg);}
 
-    /* Explore / Knowledge Graph */
-    .explore{
+    /* CODE THEME */
+    #app-code{
+      --bg:var(--c-black);--bg2:var(--c-void);--panel:var(--c-panel);
+      --fg:var(--c-white);--muted:var(--c-muted);--accent:var(--c-ember);
+      --accent2:var(--c-cyan);--line:var(--c-line);
+      --fontD:var(--font-display);--fontB:var(--font-body);--fontM:var(--font-mono);
+      --nav-bg:var(--c-black);--nav-bg2:var(--c-panel);--nav-fg:var(--c-white);
+      --nav-muted:var(--c-muted);--nav-line:var(--c-line);
+      background:var(--bg);color:var(--fg);
+    }
+
+    /* Code hero */
+    .code-hero{
+      position:relative;min-height:100vh;display:flex;flex-direction:column;
+      justify-content:flex-end;padding:140px clamp(20px,5vw,72px) 60px;
+      overflow:hidden;
+    }
+    .code-hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;}
+    .code-hero-content{position:relative;z-index:2;max-width:1500px;margin:0 auto;width:100%;}
+    .code-hero-tag{
+      display:flex;align-items:center;gap:14px;margin-bottom:28px;
+      font-family:var(--fontM);font-size:12px;letter-spacing:.16em;
+      text-transform:uppercase;color:var(--accent);
+    }
+    .code-hero-tag .line{width:40px;height:1px;background:var(--accent);}
+    .code-hero h1{
+      font-family:var(--fontD);font-size:clamp(72px,18vw,280px);
+      line-height:.82;letter-spacing:-.02em;text-transform:uppercase;
+      color:var(--fg);
+    }
+    .code-hero h1 em{font-style:normal;color:var(--accent);}
+    .code-hero-bottom{
+      display:flex;flex-wrap:wrap;align-items:flex-end;
+      justify-content:space-between;gap:40px;margin-top:40px;
+    }
+    .code-hero-desc{max-width:520px;font-size:clamp(16px,2vw,21px);line-height:1.55;color:var(--fg);}
+    .code-hero-meta{font-family:var(--fontM);font-size:11px;letter-spacing:.1em;color:var(--muted);margin-top:20px;}
+    .code-hero-btns{display:flex;flex-wrap:wrap;gap:14px;}
+    .cbtn{
+      display:inline-flex;align-items:center;gap:10px;padding:16px 28px;
+      font-family:var(--fontM);font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+      border-radius:var(--radius);transition:transform .25s,box-shadow .25s;
+    }
+    .cbtn:hover{transform:translateY(-3px);}
+    .cbtn-primary{background:var(--accent);color:var(--bg);}
+    .cbtn-secondary{border:1px solid var(--line);color:var(--fg);background:transparent;}
+
+    /* Code explore graph */
+    .code-explore{
       position:relative;background:var(--bg);border-top:1px solid var(--line);
-      overflow:hidden;transition:background-color .7s,border-color .7s;
+      padding-bottom:0;
     }
-    .explore-header{padding:clamp(56px,8vh,100px) clamp(20px,5vw,72px) 0;max-width:1400px;margin:0 auto;}
-    .explore-title{
-      font-family:var(--fontD);font-weight:600;
-      font-size:clamp(30px,5vw,64px);line-height:1;
-      letter-spacing:-0.02em;max-width:18ch;
-      color:var(--fg);transition:color .7s;
+    .graph-header{padding:clamp(60px,10vh,120px) clamp(20px,5vw,72px) 0;max-width:1500px;margin:0 auto;}
+    .graph-title{
+      font-family:var(--fontD);font-size:clamp(40px,7vw,100px);
+      line-height:.9;text-transform:uppercase;color:var(--fg);
     }
-    .explore-title em{font-style:italic;color:var(--accent);}
+    .graph-title em{font-style:normal;color:var(--accent);}
     .graph-wrap{
-      position:relative;width:100%;height:min(74vh,720px);margin-top:6px;
+      position:relative;width:100%;height:min(80vh,800px);margin-top:40px;
     }
     .graph-canvas{
       position:absolute;inset:0;width:100%;height:100%;
@@ -268,555 +266,554 @@
     .graph-canvas:active{cursor:grabbing;}
     .graph-info{
       position:absolute;left:clamp(20px,5vw,72px);bottom:clamp(24px,5vh,52px);
-      max-width:min(440px,82vw);padding:20px 22px;
-      background:color-mix(in srgb, var(--bg2) 80%, transparent);
+      max-width:min(420px,80vw);padding:22px 24px;
+      background:color-mix(in srgb, var(--panel) 85%, transparent);
       backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
       border:1px solid var(--line);border-radius:var(--radius);
       pointer-events:none;z-index:2;
-      transition:background-color .7s,border-color .7s;
     }
     .graph-hint{
-      position:absolute;top:18px;right:clamp(20px,5vw,72px);
-      font-family:var(--fontM);font-size:11px;letter-spacing:.16em;
-      color:var(--muted);pointer-events:none;z-index:2;
+      position:absolute;top:24px;right:clamp(20px,5vw,72px);
+      font-family:var(--fontM);font-size:11px;letter-spacing:.16em;color:var(--muted);
+      pointer-events:none;z-index:2;
     }
 
-    /* About */
-    .about-grid{
-      display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-      gap:clamp(32px,5vw,80px);align-items:start;
+    /* Code sections */
+    .c-section{padding:clamp(90px,14vh,180px) clamp(20px,5vw,72px);max-width:1500px;margin:0 auto;}
+    .c-section-head{
+      display:flex;align-items:center;gap:16px;margin-bottom:clamp(36px,6vh,64px);
     }
-    .about-grid p{
-      font-size:16px;line-height:1.65;
-      color:var(--muted);transition:color .7s;
-    }
-    .about-grid p strong{font-weight:600;color:var(--fg);transition:color .7s;}
-    .about-links{display:flex;flex-wrap:wrap;gap:18px;margin-top:6px;}
-    .about-links a{
-      color:var(--fg);font-family:var(--fontM);font-size:13px;
-      position:relative;transition:color .7s;
-    }
-    .about-links a::after{
-      content:'';position:absolute;left:0;bottom:-3px;height:1px;width:100%;
-      background:var(--accent);transform:scaleX(0);transform-origin:left;
-      transition:transform .4s cubic-bezier(.4,0,.2,1);
-    }
-    .about-links a:hover::after{transform:scaleX(1);}
-    .stats-grid{
-      display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
-      background:var(--line);border:1px solid var(--line);
-      border-radius:var(--radius);overflow:hidden;margin-top:clamp(48px,7vh,96px);
-      transition:background-color .7s,border-color .7s;
-    }
-    .stat-cell{
-      background:var(--bg);padding:clamp(24px,3vw,40px);
-      transition:background-color .7s;
-    }
-    .stat-cell .num{
-      font-family:var(--fontD);font-weight:700;
-      font-size:clamp(36px,5vw,68px);line-height:1;color:var(--accent);
-    }
-    .stat-cell .lbl{
-      font-family:var(--fontM);font-size:12px;color:var(--muted);
-      margin-top:10px;letter-spacing:.04em;
-    }
+    .c-section-head .num{font-family:var(--fontM);font-size:13px;color:var(--accent);}
+    .c-section-head .line{width:40px;height:1px;background:var(--line);}
+    .c-section-head .label{font-family:var(--fontM);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+    .c-section-title{font-family:var(--fontD);font-size:clamp(36px,6vw,80px);line-height:.92;text-transform:uppercase;color:var(--fg);}
+    .c-section-title em{font-style:normal;color:var(--accent);}
 
-    /* Work */
-    .work-head{
-      display:flex;flex-wrap:wrap;align-items:flex-end;
-      justify-content:space-between;gap:24px;
-      margin-bottom:clamp(36px,6vh,64px);
+    /* Project grid */
+    .code-projects-grid{
+      display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr));gap:28px;
     }
-    .work-head p{max-width:320px;font-size:14px;line-height:1.6;color:var(--muted);}
-    .projects-grid{
-      display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));
-      gap:clamp(16px,2vw,28px);
+    .code-project{
+      position:relative;display:block;overflow:hidden;border-radius:var(--radius);
+      border:1px solid var(--line);background:var(--panel);aspect-ratio:4/3;
     }
-    .proj-card{
-      text-decoration:none;color:var(--fg);display:flex;flex-direction:column;gap:16px;
-      transition:color .7s;
-    }
-    .proj-img{
-      position:relative;aspect-ratio:4/3;border-radius:var(--radius);
-      overflow:hidden;border:1px solid var(--line);background:var(--card);
-      transition:border-color .7s,background-color .7s;
-    }
-    .proj-img img{
+    .code-project img{
       width:100%;height:100%;object-fit:cover;
-      transition:transform .6s cubic-bezier(.2,.7,.2,1);
+      transition:transform .7s cubic-bezier(.2,.7,.2,1),filter .5s;
+      filter:grayscale(20%);
     }
-    .proj-card:hover .proj-img img{transform:scale(1.04);}
-    .proj-placeholder{
-      width:100%;height:100%;display:flex;align-items:center;justify-content:center;
-      font-family:var(--fontM);font-size:12px;color:var(--muted);text-align:center;padding:1rem;
+    .code-project:hover img{transform:scale(1.08);filter:grayscale(0%);}
+    .code-project .overlay{
+      position:absolute;inset:0;display:flex;flex-direction:column;
+      justify-content:flex-end;padding:26px;
+      background:linear-gradient(to top,rgba(0,0,0,.85),transparent 70%);
     }
-    .proj-meta{
-      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+    .code-project .p-title{font-family:var(--font-ui);font-size:22px;font-weight:700;color:var(--fg);}
+    .code-project .p-tags{
+      font-family:var(--fontM);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+      color:var(--accent);margin-top:8px;
     }
-    .proj-title{font-family:var(--fontD);font-weight:600;font-size:18px;color:var(--fg);transition:color .7s;}
-    .proj-tags{
-      font-family:var(--fontM);font-size:11px;color:var(--muted);
-      margin-top:6px;letter-spacing:.03em;
+    .code-project .p-arrow{
+      position:absolute;top:20px;right:20px;width:40px;height:40px;
+      border:1px solid var(--line);border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      color:var(--fg);font-family:var(--fontM);font-size:14px;
+      transform:translate(60px,-60px);opacity:0;transition:all .4s cubic-bezier(.2,.7,.2,1);
     }
-    .proj-arrow{
-      font-family:var(--fontM);color:var(--accent);
-      transition:transform .4s;
-    }
-    .proj-card:hover .proj-arrow{transform:translate(4px,-4px);}
+    .code-project:hover .p-arrow{transform:translate(0,0);opacity:1;}
 
-    /* Research */
-    .research{background:var(--bg2);padding:clamp(80px,12vh,160px) clamp(20px,5vw,72px);transition:background-color .7s;}
-    .research-inner{max-width:1400px;margin:0 auto;}
-    .feed-list{border-top:1px solid var(--line);transition:border-color .7s;}
+    /* Research feed */
+    .feed-list{border-top:1px solid var(--line);}
     .feed-item{
       display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;
-      padding:22px 0;border-bottom:1px solid var(--line);
-      text-decoration:none;color:var(--fg);transition:border-color .7s,color .7s;
+      padding:26px 0;border-bottom:1px solid var(--line);
+      transition:padding-left .35s,color .35s;
     }
-    .feed-item:hover{padding-left:14px;}
-    .feed-title{
-      font-family:var(--fontD);font-weight:600;
-      font-size:clamp(17px,2vw,24px);line-height:1.15;
-    }
-    .feed-cat{
-      font-family:var(--fontM);font-size:11px;color:var(--muted);margin-top:8px;
-    }
-    .feed-right{display:flex;align-items:center;gap:18px;white-space:nowrap;}
+    .feed-item:hover{padding-left:16px;}
+    .feed-title{font-family:var(--font-ui);font-size:clamp(18px,2.2vw,28px);font-weight:600;color:var(--fg);}
+    .feed-cat{font-family:var(--fontM);font-size:11px;color:var(--muted);margin-top:8px;}
+    .feed-right{display:flex;align-items:center;gap:20px;white-space:nowrap;}
     .feed-date{font-family:var(--fontM);font-size:12px;color:var(--muted);}
-    .feed-arrow{font-family:var(--fontM);color:var(--accent);}
+    .feed-arrow{color:var(--accent);font-family:var(--fontM);}
 
-    /* Skills */
+    /* Skills grid */
     .skills-grid{
       display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;
-      background:var(--line);border:1px solid var(--line);
-      border-radius:var(--radius);overflow:hidden;
-      transition:background-color .7s,border-color .7s;
+      background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
     }
-    .skill-cell{
-      background:var(--bg);padding:clamp(28px,3vw,44px);
-      transition:background-color .7s;
-    }
-    .skill-cat{
-      font-family:var(--fontM);font-size:11px;color:var(--accent);
-      letter-spacing:.1em;margin-bottom:18px;
-    }
-    .skill-title{
-      font-family:var(--fontD);font-weight:600;font-size:22px;
-      margin-bottom:22px;color:var(--fg);transition:color .7s;
-    }
+    .skill-cell{background:var(--bg);padding:clamp(32px,4vw,48px);}
+    .skill-cat{font-family:var(--fontM);font-size:11px;color:var(--accent);letter-spacing:.12em;margin-bottom:18px;}
+    .skill-title{font-family:var(--font-ui);font-size:24px;font-weight:700;margin-bottom:24px;color:var(--fg);}
     .skill-items{display:flex;flex-direction:column;gap:12px;}
-    .skill-items span{font-size:14px;color:var(--muted);}
+    .skill-items span{font-size:15px;color:var(--muted);}
 
     /* Experience */
-    .experience-list{border-top:1px solid var(--line);transition:border-color .7s;}
-    .exp-item{
-      display:grid;grid-template-columns:120px 1fr auto;gap:clamp(16px,3vw,48px);
-      padding:clamp(22px,3vh,34px) 0;border-bottom:1px solid var(--line);
-      align-items:baseline;transition:border-color .7s;
+    .exp-list{border-top:1px solid var(--line);}
+    .exp-row{
+      display:grid;grid-template-columns:110px 1fr auto;gap:clamp(16px,3vw,40px);
+      padding:clamp(24px,3vh,36px) 0;border-bottom:1px solid var(--line);align-items:baseline;
     }
     .exp-date{font-family:var(--fontM);font-size:12px;color:var(--accent);}
-    .exp-role{font-family:var(--fontD);font-weight:600;font-size:clamp(18px,2.4vw,26px);color:var(--fg);transition:color .7s;}
-    .exp-desc{font-size:14px;color:var(--muted);margin-top:6px;}
-    .exp-type{font-family:var(--fontM);font-size:11px;color:var(--muted);text-align:right;}
+    .exp-role{font-family:var(--font-ui);font-size:clamp(20px,2.6vw,30px);font-weight:700;color:var(--fg);}
+    .exp-desc{font-size:14px;color:var(--muted);margin-top:8px;line-height:1.5;}
+    .exp-type{font-family:var(--fontM);font-size:10px;color:var(--muted);text-align:right;letter-spacing:.1em;}
+
+    /* ARCH THEME */
+    #app-arch{
+      --bg:var(--c-parchment);--bg2:#E9E3D6;--panel:#F7F2E9;
+      --fg:var(--c-umber);--muted:var(--c-taupe);--accent:var(--c-clay);
+      --accent2:#5E6B4F;--line:var(--c-line-dark);
+      --fontD:var(--font-serif);--fontB:var(--font-body);--fontM:var(--font-mono);
+      --nav-bg:var(--c-parchment);--nav-bg2:var(--c-stone);--nav-fg:var(--c-umber);
+      --nav-muted:var(--c-taupe);--nav-line:var(--c-line-dark);
+      background:var(--bg);color:var(--fg);
+    }
+    #app-arch ::selection{background:var(--c-clay);color:var(--c-parchment);}
+
+    /* Arch hero / floor plan intro */
+    .arch-hero{
+      position:relative;min-height:100vh;display:flex;align-items:center;
+      padding:140px clamp(20px,5vw,72px) 80px;overflow:hidden;
+    }
+    .arch-hero-content{position:relative;z-index:2;max-width:700px;}
+    .arch-hero-tag{
+      font-family:var(--fontM);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:24px;
+    }
+    .arch-hero h1{
+      font-family:var(--fontD);font-size:clamp(48px,8vw,110px);
+      line-height:.95;letter-spacing:-.02em;font-weight:500;color:var(--fg);
+    }
+    .arch-hero h1 em{font-style:italic;color:var(--accent);}
+    .arch-hero-desc{font-size:18px;line-height:1.6;color:var(--muted);margin-top:28px;max-width:480px;}
+
+    /* Floor plan minimap */
+    .floor-plan{
+      position:absolute;right:clamp(20px,5vw,80px);top:50%;transform:translateY(-50%);
+      width:min(420px,40vw);aspect-ratio:1;z-index:1;opacity:.9;
+    }
+    .floor-plan svg{width:100%;height:100%;}
+    .floor-plan .room{
+      fill:transparent;stroke:var(--line);stroke-width:1.5;
+      transition:fill .4s,stroke .4s;cursor:pointer;
+    }
+    .floor-plan .room:hover,.floor-plan .room.active{fill:color-mix(in srgb,var(--accent) 12%,transparent);stroke:var(--accent);}
+    .floor-plan .room-label{
+      font-family:var(--fontM);font-size:8px;letter-spacing:.1em;
+      fill:var(--muted);text-transform:uppercase;pointer-events:none;
+    }
+    .floor-plan .you{
+      fill:var(--accent);transition:transform .5s cubic-bezier(.2,.7,.2,1);
+    }
+    @media (max-width:1024px){.floor-plan{display:none;}}
+
+    /* 3D corridor */
+    .arch-corridor{
+      position:relative;perspective:1200px;
+      padding:0 clamp(20px,5vw,72px) 120px;
+    }
+    .corridor-track{
+      position:relative;transform-style:preserve-3d;
+      max-width:1100px;margin:0 auto;
+    }
+    .arch-room{
+      position:relative;margin-bottom:120px;padding:60px;
+      background:var(--panel);border:1px solid var(--line);border-radius:24px;
+      transform-style:preserve-3d;
+      transition:transform .1s linear,opacity .3s;
+    }
+    .arch-room::before{
+      content:'';position:absolute;inset:20px;z-index:-1;
+      border:1px solid var(--line);border-radius:18px;pointer-events:none;
+    }
+    .arch-room-header{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:34px;
+    }
+    .arch-room-num{
+      font-family:var(--fontM);font-size:12px;color:var(--accent);letter-spacing:.1em;
+    }
+    .arch-room h3{
+      font-family:var(--fontD);font-size:clamp(32px,5vw,58px);line-height:1;font-weight:500;color:var(--fg);margin-top:10px;
+    }
+    .arch-room h3 em{font-style:italic;color:var(--accent);}
+    .arch-room-meta{font-family:var(--fontM);font-size:11px;color:var(--muted);letter-spacing:.08em;text-align:right;}
+    .arch-room-img{
+      width:100%;aspect-ratio:16/10;border-radius:16px;overflow:hidden;border:1px solid var(--line);margin-bottom:34px;
+    }
+    .arch-room-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s;}
+    .arch-room:hover .arch-room-img img{transform:scale(1.03);}
+    .arch-room-desc{font-size:16px;line-height:1.7;color:var(--muted);max-width:760px;}
+
+    /* Arch about */
+    .arch-about{
+      padding:clamp(90px,14vh,180px) clamp(20px,5vw,72px);max-width:1200px;margin:0 auto;
+    }
+    .arch-about-grid{
+      display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,100px);align-items:center;
+    }
+    .arch-about h2{
+      font-family:var(--fontD);font-size:clamp(36px,5vw,64px);line-height:1.05;font-weight:500;color:var(--fg);
+    }
+    .arch-about h2 em{font-style:italic;color:var(--accent);}
+    .arch-about p{font-size:17px;line-height:1.7;color:var(--muted);margin-top:22px;}
+    .arch-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:50px;}
+    .arch-stat .n{font-family:var(--fontD);font-size:clamp(40px,5vw,68px);line-height:1;color:var(--accent);}
+    .arch-stat .l{font-family:var(--fontM);font-size:11px;color:var(--muted);letter-spacing:.08em;margin-top:8px;}
 
     /* Contact */
-    .contact{
-      background:var(--bg2);padding:clamp(80px,14vh,180px) clamp(20px,5vw,72px);
-      position:relative;overflow:hidden;transition:background-color .7s;
+    .contact-section{
+      padding:clamp(90px,14vh,180px) clamp(20px,5vw,72px);background:var(--bg2);
     }
-    .contact-inner{max-width:1400px;margin:0 auto;position:relative;z-index:1;}
+    .contact-inner{max-width:1200px;margin:0 auto;}
     .contact-title{
-      font-family:var(--fontD);font-weight:500;
-      font-size:clamp(40px,8vw,120px);line-height:.94;
-      letter-spacing:-0.03em;max-width:14ch;color:var(--fg);transition:color .7s;
+      font-family:var(--fontD);font-size:clamp(48px,9vw,120px);line-height:.9;
+      text-transform:uppercase;color:var(--fg);
     }
     .contact-title em{font-style:italic;color:var(--accent);}
-    .contact-desc{
-      font-size:clamp(15px,1.8vw,19px);line-height:1.6;
-      color:var(--muted);max-width:560px;margin-top:28px;
-    }
     .contact-grid{
-      display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px;
-      margin-top:clamp(40px,6vh,72px);border-top:1px solid var(--line);
-      padding-top:clamp(32px,5vh,56px);transition:border-color .7s;
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:40px;
+      margin-top:clamp(50px,8vh,90px);padding-top:50px;border-top:1px solid var(--line);
     }
-    .contact-cell .lbl{
-      font-family:var(--fontM);font-size:11px;color:var(--muted);
-      letter-spacing:.1em;margin-bottom:12px;
-    }
-    .contact-cell a, .contact-cell .val{
-      color:var(--fg);font-size:clamp(15px,1.6vw,18px);
-      font-family:var(--fontD);word-break:break-all;transition:color .7s;
-    }
-    .contact-cell .val span{font-size:13px;color:var(--muted);font-family:var(--fontB);}
-    .contact-num{
-      position:absolute;bottom:-8%;right:clamp(20px,5vw,72px);
-      font-family:var(--fontM);font-size:clamp(100px,18vw,300px);
-      color:var(--line);line-height:.8;pointer-events:none;user-select:none;z-index:0;
-    }
+    .contact-cell .lbl{font-family:var(--fontM);font-size:11px;color:var(--muted);letter-spacing:.1em;margin-bottom:14px;}
+    .contact-cell a,.contact-cell .val{font-size:clamp(18px,2vw,26px);font-family:var(--font-ui);font-weight:600;color:var(--fg);word-break:break-all;}
+    .contact-cell .val span{font-size:14px;color:var(--muted);font-weight:400;}
 
     /* Footer */
     footer{
-      padding:clamp(28px,4vh,44px) clamp(20px,5vw,72px);
+      padding:clamp(30px,4vh,50px) clamp(20px,5vw,72px);
       border-top:1px solid var(--line);display:flex;flex-wrap:wrap;
-      align-items:center;justify-content:space-between;gap:18px;
-      transition:border-color .7s;
+      justify-content:space-between;gap:20px;align-items:center;
     }
-    footer .copy{
-      font-family:var(--fontM);font-size:12px;color:var(--muted);
-    }
+    footer .copy{font-family:var(--fontM);font-size:11px;color:var(--muted);letter-spacing:.06em;}
     footer .links{display:flex;gap:24px;}
-    footer .links a{
-      color:var(--muted);text-decoration:none;font-family:var(--fontM);
-      font-size:12px;position:relative;
-    }
-    footer .links a::after{
-      content:'';position:absolute;left:0;bottom:-3px;height:1px;width:100%;
-      background:var(--accent);transform:scaleX(0);transform-origin:left;
-      transition:transform .4s cubic-bezier(.4,0,.2,1);
-    }
+    footer .links a{font-family:var(--fontM);font-size:11px;color:var(--muted);letter-spacing:.06em;position:relative;}
+    footer .links a::after{content:'';position:absolute;left:0;bottom:-3px;width:100%;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .4s;}
     footer .links a:hover::after{transform:scaleX(1);}
 
-    /* Scroll reveal */
-    [data-reveal]{
-      opacity:0;transform:translateY(24px);
-      transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);
-    }
+    /* Reveal animations */
+    [data-reveal]{opacity:0;transform:translateY(30px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1);}
     [data-reveal].visible{opacity:1;transform:none;}
+    [data-reveal-delay="1"]{transition-delay:.08s;}
+    [data-reveal-delay="2"]{transition-delay:.16s;}
+    [data-reveal-delay="3"]{transition-delay:.24s;}
 
-    /* Responsive */
+    /* Marquee */
+    .marquee{
+      overflow:hidden;background:var(--accent);padding:16px 0;white-space:nowrap;
+      border-top:1px solid var(--bg);border-bottom:1px solid var(--bg);
+    }
+    .marquee-inner{
+      display:inline-block;animation:sy-marq 25s linear infinite;
+      font-family:var(--fontD);font-weight:700;font-size:clamp(24px,3.5vw,42px);
+      color:var(--bg);letter-spacing:-.01em;text-transform:uppercase;
+    }
+    #app-arch .marquee-inner{font-style:italic;font-weight:500;letter-spacing:0;}
+
+    /* Utility */
+    .hidden{display:none !important;}
+
     @media (max-width:768px){
-      .hero-bottom{flex-direction:column;align-items:flex-start;}
-      .about-grid{grid-template-columns:1fr;}
-      .stats-grid{grid-template-columns:1fr;}
-      .exp-item{grid-template-columns:1fr;gap:8px;}
+      .code-hero-bottom{flex-direction:column;align-items:flex-start;}
+      .code-projects-grid{grid-template-columns:1fr;}
+      .exp-row{grid-template-columns:1fr;gap:8px;}
       .exp-type{text-align:left;}
       .feed-item{grid-template-columns:1fr;gap:8px;}
       .feed-right{justify-content:flex-start;}
-      .contact-title{font-size:clamp(36px,12vw,72px);}
+      .arch-about-grid{grid-template-columns:1fr;}
+      .arch-room{padding:30px;}
+      .arch-stats{grid-template-columns:1fr;}
       footer{flex-direction:column;text-align:center;}
     }
   </style>
 </head>
 <body>
 
-<div id="app" data-mode="code">
+  <!-- Loader -->
+  <div class="loader" id="loader"><div class="loader-text">INITIALIZING PORTFOLIO</div></div>
 
-  <!-- Custom cursor -->
-  <div class="cursor-ring" data-cursoronly id="cursorRing"></div>
-  <div class="cursor-dot" data-cursoronly id="cursorDot"></div>
+  <!-- Cursor -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
 
-  <!-- Navigation -->
-  <nav class="nav">
-    <a href="#home" class="nav-brand" data-cursor>
-      <span class="sy-badge">SY</span>
-      <span>Sahil Yousaf</span>
-    </a>
-    <div class="nav-links">
-      <a href="#about" data-cursor>About</a>
-      <a href="#work" data-cursor>Work</a>
-      <a href="#research" data-cursor>Research</a>
-      <a href="#experience" data-cursor>Experience</a>
-      <a href="#contact" data-cursor>Contact</a>
+  <!-- Mode landing -->
+  <div class="mode-landing" id="modeLanding">
+    <div class="landing-top">
+      <div class="sy-mark">SAHIL <em>YOUSAF</em></div>
+      <div class="landing-hint">Choose your path</div>
     </div>
-    <button class="mode-toggle" id="modeToggle" data-cursor aria-label="Toggle Architecture / Code mode">
-      <span data-seg="arch">ARCH</span>
-      <span data-seg="code" class="active">CODE</span>
-    </button>
-  </nav>
-
-  <!-- Hero -->
-  <header class="hero" id="home">
-    <canvas class="hero-canvas" id="heroCanvas"></canvas>
-    <div class="hero-num" aria-hidden="true">01</div>
-    <div class="hero-inner">
-      <div class="hero-eyebrow">
-        <span class="accent-line"></span>
-        <span data-show="code">AI Researcher · Computational Designer</span>
-        <span data-show="arch">Architect · Parametric Designer</span>
+    <div class="mode-cards">
+      <div class="mode-card arch" data-mode="arch">
+        <div class="bg-label">ARCH</div>
+        <div class="card-icon"><i class="fas fa-drafting-compass"></i></div>
+        <h2>Architecture</h2>
+        <p>Walk through built-environment work — spatial design, parametric practice, and visualisation.</p>
+        <div class="enter-btn">Enter Space</div>
       </div>
-      <h1 class="hero-name">Sahil<br><em>Yousaf</em></h1>
-      <div class="hero-bottom">
-        <div class="hero-desc">
-          <p data-show="code">Building AI tools that augment how we design cities and buildings — from finite-element analysis to 500-agent urban simulations reasoning in natural language.</p>
-          <p data-show="arch">Designing at the intersection of space and computation — parametric, sustainable architecture shaped across India, the UAE, and Barcelona.</p>
-          <div class="hero-loc">41.3851° N, 2.1734° E — Barcelona, Spain</div>
-        </div>
-        <div class="hero-btns">
-          <a class="btn-primary" href="https://drive.google.com/uc?export=download&id=1RI6g6-drvGhHcv2iZP_Sa41B8bmQbSzM" target="_blank" rel="noopener" data-cursor>Portfolio ↗</a>
-          <a class="btn-secondary" href="https://drive.google.com/file/d/1kKcI2pK1Mxii8Ap2YcYa0GOM_AJOVbJ3/view?usp=sharing" target="_blank" rel="noopener" data-cursor>CV ↗</a>
-          <a class="btn-secondary" href="#work" data-cursor>View Work ↓</a>
-        </div>
+      <div class="mode-card code" data-mode="code">
+        <div class="bg-label">CODE</div>
+        <div class="card-icon"><i class="fas fa-code"></i></div>
+        <h2>Code</h2>
+        <p>Explore AI research, computational tools, and interactive systems through a navigable graph.</p>
+        <div class="enter-btn">Enter System</div>
       </div>
-    </div>
-    <div class="scroll-hint">SCROLL</div>
-  </header>
-
-  <!-- Marquee -->
-  <div class="marquee">
-    <div class="marquee-inner" data-show="code">
-      <span>Computational Design&nbsp;&nbsp;✦&nbsp;&nbsp;AI Research&nbsp;&nbsp;✦&nbsp;&nbsp;Neural Networks&nbsp;&nbsp;✦&nbsp;&nbsp;Urban Simulation&nbsp;&nbsp;✦&nbsp;&nbsp;Generative Systems&nbsp;&nbsp;✦&nbsp;&nbsp;</span>
-      <span>Computational Design&nbsp;&nbsp;✦&nbsp;&nbsp;AI Research&nbsp;&nbsp;✦&nbsp;&nbsp;Neural Networks&nbsp;&nbsp;✦&nbsp;&nbsp;Urban Simulation&nbsp;&nbsp;✦&nbsp;&nbsp;Generative Systems&nbsp;&nbsp;✦&nbsp;&nbsp;</span>
-    </div>
-    <div class="marquee-inner" data-show="arch">
-      <span>Parametric Architecture&nbsp;&nbsp;·&nbsp;&nbsp;Sustainable Design&nbsp;&nbsp;·&nbsp;&nbsp;Spatial Visualisation&nbsp;&nbsp;·&nbsp;&nbsp;Bioclimatic Systems&nbsp;&nbsp;·&nbsp;&nbsp;</span>
-      <span>Parametric Architecture&nbsp;&nbsp;·&nbsp;&nbsp;Sustainable Design&nbsp;&nbsp;·&nbsp;&nbsp;Spatial Visualisation&nbsp;&nbsp;·&nbsp;&nbsp;Bioclimatic Systems&nbsp;&nbsp;·&nbsp;&nbsp;</span>
+      <div class="mode-divider"></div>
     </div>
   </div>
 
-  <!-- Explore / Knowledge Graph -->
-  <section class="explore" id="explore" data-show="code">
-    <div class="explore-header">
-      <div class="section-head" style="margin-bottom:20px;">
-        <span class="num">◇</span>
-        <span class="line"></span>
-        <span class="label">Interactive · Knowledge Graph</span>
-      </div>
-      <h2 class="explore-title" data-reveal>Navigate the graph to go <em>deeper</em></h2>
-    </div>
-    <div class="graph-wrap">
-      <canvas class="graph-canvas" id="graphCanvas"></canvas>
-      <div class="graph-info" id="graphInfo"></div>
-      <div class="graph-hint">DRAG TO ROTATE ⟲</div>
-    </div>
-  </section>
+  <!-- ==================== CODE MODE ==================== -->
+  <div id="app-code">
 
-  <!-- About -->
-  <section class="section" id="about">
-    <div class="section-head" data-reveal>
-      <span class="num">02</span>
-      <span class="line"></span>
-      <span class="label">About</span>
-    </div>
-    <div class="about-grid">
-      <div data-reveal>
-        <h2 class="section-title">Designing at the intersection of <em>space</em> &amp; <em>computation</em></h2>
+    <nav class="top-nav" id="navCode">
+      <a href="#" class="nav-brand" onclick="showLanding();return false;">SAHIL <em>YOUSAF</em></a>
+      <div class="nav-links">
+        <a href="#code-work">Work</a>
+        <a href="#code-research">Research</a>
+        <a href="#code-skills">Skills</a>
+        <a href="#code-exp">Experience</a>
+        <a href="#code-contact">Contact</a>
       </div>
-      <div data-reveal>
-        <p>I'm an architect with 3+ years of practice across India and the UAE, trained at <strong>Morphogenesis</strong> (Delhi), <strong>SHAPE Architecture &amp; Research</strong> (UAE), and <strong>DNEG</strong> (Mumbai) — spanning sustainable architecture, parametric design, and spatial visualisation for world-class VFX productions.</p>
-        <p style="margin-top:20px;color:var(--muted);">Currently pursuing a Master in AI for Architecture &amp; the Built Environment at <strong>IAAC, Barcelona</strong>, where my work sits at the intersection of artificial intelligence and the built environment. My research was <strong>published at ANNSIM 2025</strong> through the Building Analysis Tool — an AI-driven accessibility analyser for healthcare architecture.</p>
-        <div class="about-links">
-          <a href="https://github.com/sahilyousafp" target="_blank" rel="noopener" data-cursor>GitHub ↗</a>
-          <a href="https://www.linkedin.com/in/sahil-yousaf-882a0b132/" target="_blank" rel="noopener" data-cursor>LinkedIn ↗</a>
-          <a href="https://blog.iaac.net/user/sahilyousafp/" target="_blank" rel="noopener" data-cursor>IAAC Blog ↗</a>
-        </div>
+      <div class="nav-switch" onclick="showLanding()">
+        <span>ARCH</span>
+        <div class="pill"><span>ARCH</span><span class="active">CODE</span></div>
+        <span>CODE</span>
       </div>
-    </div>
-    <div class="stats-grid" data-reveal>
-      <div class="stat-cell" data-show="code">
-        <div class="num">09</div>
-        <div class="lbl">Research Publications</div>
-      </div>
-      <div class="stat-cell" data-show="code">
-        <div class="num">06</div>
-        <div class="lbl">AI Tools Built</div>
-      </div>
-      <div class="stat-cell" data-show="code">
-        <div class="num">500</div>
-        <div class="lbl">Agent Urban Simulation</div>
-      </div>
-      <div class="stat-cell" data-show="arch">
-        <div class="num">3+</div>
-        <div class="lbl">Years of Practice</div>
-      </div>
-      <div class="stat-cell" data-show="arch">
-        <div class="num">03</div>
-        <div class="lbl">Architecture Firms</div>
-      </div>
-      <div class="stat-cell" data-show="arch">
-        <div class="num">01</div>
-        <div class="lbl">Published Paper</div>
-      </div>
-    </div>
-  </section>
+    </nav>
 
-  <!-- Work -->
-  <section class="section" id="work">
-    <div class="work-head" data-reveal>
-      <div>
-        <div class="section-head" style="margin-bottom:20px;">
-          <span class="num">03</span>
-          <span class="line"></span>
-          <span class="label">Selected Work</span>
-        </div>
-        <h2 class="section-title">Featured Projects</h2>
-      </div>
-      <p data-show="code">Computational tools &amp; AI research — selected repositories and research contributions.</p>
-      <p data-show="arch">Architectural practice &amp; spatial work — selected projects and visualisation.</p>
-    </div>
-    <div class="projects-grid" id="projectsGrid"></div>
-  </section>
-
-  <!-- Research Feed -->
-  <section class="research" id="research" data-show="code">
-    <div class="research-inner">
-      <div class="work-head" data-reveal>
-        <div>
-          <div class="section-head" style="margin-bottom:20px;">
-            <span class="num">04</span>
-            <span class="line"></span>
-            <span class="label">Research Feed · IAAC Blog</span>
+    <header class="code-hero" id="code-home">
+      <canvas class="code-hero-canvas" id="codeHeroCanvas"></canvas>
+      <div class="code-hero-content">
+        <div class="code-hero-tag"><span class="line"></span><span>AI Researcher · Computational Designer</span></div>
+        <h1 data-reveal>Sahil<br><em>Yousaf</em></h1>
+        <div class="code-hero-bottom">
+          <div class="code-hero-desc" data-reveal data-reveal-delay="1">
+            Building AI tools that augment how we design cities and buildings — from finite-element analysis to 500-agent urban simulations reasoning in natural language.
+            <div class="code-hero-meta">41.3851° N, 2.1734° E — BARCELONA, SPAIN</div>
           </div>
-          <h2 class="section-title">Writing &amp; Publications</h2>
+          <div class="code-hero-btns" data-reveal data-reveal-delay="2">
+            <a class="cbtn cbtn-primary" href="https://drive.google.com/uc?export=download&id=1RI6g6-drvGhHcv2iZP_Sa41B8bmQbSzM" target="_blank" rel="noopener">Portfolio ↗</a>
+            <a class="cbtn cbtn-secondary" href="https://drive.google.com/file/d/1kKcI2pK1Mxii8Ap2YcYa0GOM_AJOVbJ3/view?usp=sharing" target="_blank" rel="noopener">CV ↗</a>
+            <a class="cbtn cbtn-secondary" href="#code-work">View Work ↓</a>
+          </div>
         </div>
-        <a href="https://blog.iaac.net/user/sahilyousafp/" target="_blank" rel="noopener" data-cursor style="color:var(--fg);font-family:var(--fontM);font-size:13px;position:relative;">All 9 posts ↗</a>
       </div>
-      <div class="feed-list" id="feedList"></div>
-    </div>
-  </section>
+    </header>
 
-  <!-- Skills -->
-  <section class="section" id="skills">
-    <div class="section-head" data-reveal>
-      <span class="num" data-show="code">05</span>
-      <span class="num" data-show="arch">04</span>
-      <span class="line"></span>
-      <span class="label">Tools &amp; Technologies</span>
-    </div>
-    <div class="skills-grid" data-reveal>
-      <div class="skill-cell">
-        <div class="skill-cat">CAT.01</div>
-        <h3 class="skill-title">Computational Design</h3>
-        <div class="skill-items">
-          <span>Rhino 3D</span><span>Grasshopper</span><span>Revit / BIM</span><span>AutoCAD</span><span>Blender / 3ds Max</span>
-        </div>
-      </div>
-      <div class="skill-cell">
-        <div class="skill-cat">CAT.02</div>
-        <h3 class="skill-title">Programming &amp; AI</h3>
-        <div class="skill-items">
-          <span>Python</span><span>JavaScript</span><span>Machine Learning</span><span>Neural Networks</span><span>LLM Agents</span>
-        </div>
-      </div>
-      <div class="skill-cell">
-        <div class="skill-cat">CAT.03</div>
-        <h3 class="skill-title">Design &amp; Media</h3>
-        <div class="skill-items">
-          <span>Photoshop</span><span>Illustrator</span><span>InDesign</span><span>After Effects</span><span>Concept Design</span>
-        </div>
+    <div class="marquee">
+      <div class="marquee-inner">
+        <span>Computational Design · AI Research · Neural Networks · Urban Simulation · Generative Systems · </span>
+        <span>Computational Design · AI Research · Neural Networks · Urban Simulation · Generative Systems · </span>
       </div>
     </div>
-  </section>
 
-  <!-- Experience -->
-  <section class="section" id="experience">
-    <div class="section-head" data-reveal>
-      <span class="num" data-show="code">06</span>
-      <span class="num" data-show="arch">05</span>
-      <span class="line"></span>
-      <span class="label">Practice &amp; Credentials</span>
-    </div>
-    <div class="experience-list">
-      <div class="exp-item" data-reveal>
-        <div class="exp-date">2024–25</div>
-        <div>
-          <div class="exp-role">Master in AI for Architecture &amp; the Built Environment</div>
-          <div class="exp-desc">IAAC — Institute for Advanced Architecture of Catalonia, Barcelona</div>
+    <section class="code-explore" id="code-explore">
+      <div class="graph-header">
+        <div class="c-section-head" style="margin-bottom:20px;">
+          <span class="num">◈</span>
+          <span class="line"></span>
+          <span class="label">Interactive Knowledge Graph</span>
         </div>
-        <div class="exp-type">EDUCATION</div>
+        <h2 class="graph-title" data-reveal>Navigate the<br><em>system</em></h2>
       </div>
-      <div class="exp-item" data-reveal>
-        <div class="exp-date">2024</div>
-        <div>
-          <div class="exp-role">Jr. Design Architect</div>
-          <div class="exp-desc">SHAPE Architecture &amp; Research — UAE · Parametric design for high-profile projects</div>
-        </div>
-        <div class="exp-type">PRACTICE</div>
+      <div class="graph-wrap">
+        <canvas class="graph-canvas" id="codeGraphCanvas"></canvas>
+        <div class="graph-info" id="codeGraphInfo"></div>
+        <div class="graph-hint">DRAG TO ROTATE · CLICK NODES</div>
       </div>
-      <div class="exp-item" data-reveal>
-        <div class="exp-date">2024</div>
-        <div>
-          <div class="exp-role">Set Designer · Contract</div>
-          <div class="exp-desc">DNEG — Mumbai · Spatial visualisation for world-class VFX productions</div>
-        </div>
-        <div class="exp-type">PRACTICE</div>
-      </div>
-      <div class="exp-item" data-reveal>
-        <div class="exp-date">2022–24</div>
-        <div>
-          <div class="exp-role">Architect</div>
-          <div class="exp-desc">Morphogenesis — Delhi · Sustainable, award-winning parametric &amp; bioclimatic architecture</div>
-        </div>
-        <div class="exp-type">PRACTICE</div>
-      </div>
-      <div class="exp-item" data-reveal>
-        <div class="exp-date">2025</div>
-        <div>
-          <div class="exp-role">Published Research — ANNSIM Conference</div>
-          <div class="exp-desc">Society of Modelling &amp; Simulation (SCS) · Building Analysis Tool (B.A.T.)</div>
-        </div>
-        <div class="exp-type">RESEARCH</div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Contact -->
-  <section class="contact" id="contact">
-    <div class="contact-num" aria-hidden="true" data-show="code">07</div>
-    <div class="contact-num" aria-hidden="true" data-show="arch">06</div>
-    <div class="contact-inner">
-      <div class="section-head" data-reveal>
-        <span class="num" data-show="code">07</span>
-        <span class="num" data-show="arch">06</span>
+    <section class="c-section" id="code-work">
+      <div class="c-section-head" data-reveal>
+        <span class="num">01</span>
         <span class="line"></span>
-        <span class="label">Contact</span>
+        <span class="label">Selected Work</span>
       </div>
-      <h2 class="contact-title" data-reveal>Let's build something <em>extraordinary</em></h2>
-      <p class="contact-desc" data-reveal>Open to architectural roles, research collaborations, and computational design projects worldwide.</p>
-      <div class="contact-grid" data-reveal>
-        <div class="contact-cell">
-          <div class="lbl">EMAIL</div>
-          <a href="mailto:sahil.yousaf@students.iaac.net" data-cursor>sahil.yousaf@students.iaac.net</a>
+      <h2 class="c-section-title" data-reveal data-reveal-delay="1">Featured<br><em>Projects</em></h2>
+      <div class="code-projects-grid" id="codeProjects" style="margin-top:64px;"></div>
+    </section>
+
+    <section class="c-section" id="code-research">
+      <div class="c-section-head" data-reveal>
+        <span class="num">02</span>
+        <span class="line"></span>
+        <span class="label">Research Feed · IAAC Blog</span>
+      </div>
+      <h2 class="c-section-title" data-reveal data-reveal-delay="1">Writing &amp;<br><em>Publications</em></h2>
+      <div class="feed-list" id="codeFeed" style="margin-top:64px;"></div>
+    </section>
+
+    <section class="c-section" id="code-skills">
+      <div class="c-section-head" data-reveal>
+        <span class="num">03</span>
+        <span class="line"></span>
+        <span class="label">Tools &amp; Technologies</span>
+      </div>
+      <h2 class="c-section-title" data-reveal data-reveal-delay="1">Technical<br><em>Capabilities</em></h2>
+      <div class="skills-grid" style="margin-top:64px;" data-reveal data-reveal-delay="2">
+        <div class="skill-cell">
+          <div class="skill-cat">CAT.01</div>
+          <div class="skill-title">Computational Design</div>
+          <div class="skill-items"><span>Rhino 3D</span><span>Grasshopper</span><span>Revit / BIM</span><span>AutoCAD</span><span>Blender / 3ds Max</span></div>
         </div>
-        <div class="contact-cell">
-          <div class="lbl">PHONE</div>
-          <a href="tel:+34603789204" data-cursor>+34 603 789 204</a>
+        <div class="skill-cell">
+          <div class="skill-cat">CAT.02</div>
+          <div class="skill-title">Programming &amp; AI</div>
+          <div class="skill-items"><span>Python</span><span>JavaScript</span><span>Machine Learning</span><span>Neural Networks</span><span>LLM Agents</span></div>
         </div>
-        <div class="contact-cell">
-          <div class="lbl">LOCATION</div>
-          <div class="val">Barcelona, Spain<br><span>Open to relocation</span></div>
+        <div class="skill-cell">
+          <div class="skill-cat">CAT.03</div>
+          <div class="skill-title">Design &amp; Media</div>
+          <div class="skill-items"><span>Photoshop</span><span>Illustrator</span><span>InDesign</span><span>After Effects</span><span>Concept Design</span></div>
         </div>
+      </div>
+    </section>
+
+    <section class="c-section" id="code-exp">
+      <div class="c-section-head" data-reveal>
+        <span class="num">04</span>
+        <span class="line"></span>
+        <span class="label">Practice &amp; Credentials</span>
+      </div>
+      <h2 class="c-section-title" data-reveal data-reveal-delay="1">Path &amp;<br><em>Experience</em></h2>
+      <div class="exp-list" style="margin-top:64px;" id="codeExp"></div>
+    </section>
+
+    <section class="contact-section" id="code-contact">
+      <div class="contact-inner">
+        <div class="c-section-head" data-reveal>
+          <span class="num">05</span>
+          <span class="line"></span>
+          <span class="label">Contact</span>
+        </div>
+        <h2 class="contact-title" data-reveal data-reveal-delay="1">Let's build<br><em>together</em></h2>
+        <div class="contact-grid" data-reveal data-reveal-delay="2">
+          <div class="contact-cell"><div class="lbl">EMAIL</div><a href="mailto:sahil.yousaf@students.iaac.net">sahil.yousaf@students.iaac.net</a></div>
+          <div class="contact-cell"><div class="lbl">PHONE</div><a href="tel:+34603789204">+34 603 789 204</a></div>
+          <div class="contact-cell"><div class="lbl">LOCATION</div><div class="val">Barcelona, Spain<br><span>Open to relocation</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="copy">© 2026 SAHIL YOUSAF · ARCHITECT &amp; AI RESEARCHER</div>
+      <div class="links">
+        <a href="https://github.com/sahilyousafp" target="_blank" rel="noopener">GITHUB</a>
+        <a href="https://www.linkedin.com/in/sahil-yousaf-882a0b132/" target="_blank" rel="noopener">LINKEDIN</a>
+        <a href="https://blog.iaac.net/user/sahilyousafp/" target="_blank" rel="noopener">IAAC BLOG</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ==================== ARCH MODE ==================== -->
+  <div id="app-arch">
+
+    <nav class="top-nav" id="navArch">
+      <a href="#" class="nav-brand" onclick="showLanding();return false;">SAHIL <em>YOUSAF</em></a>
+      <div class="nav-links">
+        <a href="#arch-about">About</a>
+        <a href="#arch-work">Work</a>
+        <a href="#arch-contact">Contact</a>
+      </div>
+      <div class="nav-switch" onclick="showLanding()">
+        <span>ARCH</span>
+        <div class="pill"><span class="active">ARCH</span><span>CODE</span></div>
+        <span>CODE</span>
+      </div>
+    </nav>
+
+    <header class="arch-hero" id="arch-home">
+      <div class="floor-plan" id="floorPlan">
+        <svg viewBox="0 0 400 400">
+          <g class="room" data-target="arch-about"><rect x="20" y="20" width="170" height="170" rx="12"/></g>
+          <g class="room" data-target="arch-work"><rect x="210" y="20" width="170" height="170" rx="12"/></g>
+          <g class="room" data-target="arch-room-1"><rect x="20" y="210" width="170" height="170" rx="12"/></g>
+          <g class="room" data-target="arch-room-2"><rect x="210" y="210" width="170" height="170" rx="12"/></g>
+          <text class="room-label" x="105" y="110" text-anchor="middle">About</text>
+          <text class="room-label" x="295" y="110" text-anchor="middle">Work</text>
+          <text class="room-label" x="105" y="300" text-anchor="middle">Project 1</text>
+          <text class="room-label" x="295" y="300" text-anchor="middle">Project 2</text>
+          <circle class="you" cx="200" cy="200" r="6"/>
+        </svg>
+      </div>
+      <div class="arch-hero-content">
+        <div class="arch-hero-tag" data-reveal>Architect · Parametric Designer</div>
+        <h1 data-reveal data-reveal-delay="1">Designing at the intersection of <em>space</em> &amp; <em>form</em></h1>
+        <p class="arch-hero-desc" data-reveal data-reveal-delay="2">Scroll to move through the plan — from diagram to spatial experience. Built-environment work across India, UAE and Barcelona.</p>
+      </div>
+    </header>
+
+    <div class="marquee">
+      <div class="marquee-inner">
+        <span>Parametric Architecture · Sustainable Design · Spatial Visualisation · Bioclimatic Systems · </span>
+        <span>Parametric Architecture · Sustainable Design · Spatial Visualisation · Bioclimatic Systems · </span>
       </div>
     </div>
-  </section>
 
-  <!-- Footer -->
-  <footer>
-    <span class="copy">© 2026 Sahil Yousaf · Architect &amp; AI Researcher</span>
-    <div class="links">
-      <a href="https://github.com/sahilyousafp" target="_blank" rel="noopener" data-cursor>GitHub</a>
-      <a href="https://www.linkedin.com/in/sahil-yousaf-882a0b132/" target="_blank" rel="noopener" data-cursor>LinkedIn</a>
-      <a href="https://blog.iaac.net/user/sahilyousafp/" target="_blank" rel="noopener" data-cursor>IAAC Blog</a>
-    </div>
-  </footer>
+    <section class="arch-about" id="arch-about">
+      <div class="arch-about-grid">
+        <div data-reveal>
+          <h2>Practice shaped by <em>material</em>, <em>climate</em> &amp; <em>computation</em></h2>
+        </div>
+        <div data-reveal data-reveal-delay="1">
+          <p>Trained at <strong>Morphogenesis</strong> (Delhi), <strong>SHAPE Architecture &amp; Research</strong> (UAE) and <strong>DNEG</strong> (Mumbai), my architectural work spans sustainable high-performance buildings, parametric façade systems and spatial visualisation for world-class productions.</p>
+          <p>Currently pursuing a Master in AI for Architecture &amp; the Built Environment at <strong>IAAC, Barcelona</strong>.</p>
+          <div class="arch-stats">
+            <div class="arch-stat"><div class="n">3+</div><div class="l">Years Practice</div></div>
+            <div class="arch-stat"><div class="n">03</div><div class="l">Firms</div></div>
+            <div class="arch-stat"><div class="n">01</div><div class="l">Published Paper</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-</div>
+    <section class="arch-corridor" id="arch-work">
+      <div class="corridor-track" id="archCorridor">
+        <!-- Rooms injected by JS -->
+      </div>
+    </section>
+
+    <section class="contact-section" id="arch-contact">
+      <div class="contact-inner">
+        <div class="c-section-head" data-reveal>
+          <span class="num">◇</span>
+          <span class="line"></span>
+          <span class="label">Contact</span>
+        </div>
+        <h2 class="contact-title" data-reveal data-reveal-delay="1">Let's design<br><em>together</em></h2>
+        <div class="contact-grid" data-reveal data-reveal-delay="2">
+          <div class="contact-cell"><div class="lbl">EMAIL</div><a href="mailto:sahil.yousaf@students.iaac.net">sahil.yousaf@students.iaac.net</a></div>
+          <div class="contact-cell"><div class="lbl">PHONE</div><a href="tel:+34603789204">+34 603 789 204</a></div>
+          <div class="contact-cell"><div class="lbl">LOCATION</div><div class="val">Barcelona, Spain<br><span>Open to relocation</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="copy">© 2026 SAHIL YOUSAF · ARCHITECT &amp; AI RESEARCHER</div>
+      <div class="links">
+        <a href="https://github.com/sahilyousafp" target="_blank" rel="noopener">GITHUB</a>
+        <a href="https://www.linkedin.com/in/sahil-yousaf-882a0b132/" target="_blank" rel="noopener">LINKEDIN</a>
+        <a href="https://blog.iaac.net/user/sahilyousafp/" target="_blank" rel="noopener">IAAC BLOG</a>
+      </div>
+    </footer>
+  </div>
 
 <script>
 (function(){
-  const app = document.getElementById('app');
-  const modeToggle = document.getElementById('modeToggle');
-  let mode = 'code';
+  const loader = document.getElementById('loader');
+  const landing = document.getElementById('modeLanding');
+  const appCode = document.getElementById('app-code');
+  const appArch = document.getElementById('app-arch');
+  let currentMode = null;
 
-  // Project data
-  const projects = {
-    code: [
-      {title:'Building Analysis Tool', tags:'HEALTHCARE ACCESSIBILITY · NLP · PUBLISHED ANNSIM 2025', link:'project-bat.html', img:'References/For website.PNG', placeholder:'B.A.T. interface'},
-      {title:'Grounded · Structural AI', tags:'FINITE-ELEMENT ANALYSIS ON ANY 3D MODEL', link:'project-structural.html', img:'References/For website.PNG', placeholder:'Grounded — FEA viewer'},
-      {title:'LLM Urbanism', tags:'500 AGENTS REASONING IN NATURAL LANGUAGE', link:'project-llm-urbanism.html', img:'References/For website.PNG', placeholder:'500-agent simulation'},
-      {title:'Pardaz', tags:'PEDESTRIAN SIMULATION FOR EXHIBITION LAYOUTS', link:'project-pardaz.html', img:'References/For website.PNG', placeholder:'Pardaz pedestrian flow'},
-      {title:'ZONO_NAUTS', tags:'GNN URBAN GROWTH · AEC TECH HACKATHON @ BIG', link:'project-hackathon.html', img:'References/For website.PNG', placeholder:'ZONO_NAUTS voxel city'},
-      {title:'AI4ALL Decision', tags:'23 YRS SATELLITE LAND-COVER · CIVIC PLATFORM', link:'project-ai4all.html', img:'References/For website.PNG', placeholder:'AI4ALL land-cover map'}
-    ],
-    arch: [
-      {title:'Building Analysis Tool', tags:'HEALTHCARE ACCESSIBILITY · NLP · PUBLISHED ANNSIM 2025', link:'project-bat.html', img:'References/For website.PNG', placeholder:'B.A.T. interface'},
-      {title:'Large-Scale Bio-Material Printing', tags:'ROBOTIC FABRICATION · MATERIAL RESEARCH', link:'https://blog.iaac.net/large-scale-3d-printing-with-bio-material/', external:true, img:'References/For website.PNG', placeholder:'Bio-material 3D print'},
-      {title:'Parametric Practice', tags:'MORPHOGENESIS · SUSTAINABLE & BIOCLIMATIC', link:'#', img:'References/For website.PNG', placeholder:'Parametric practice render'},
-      {title:'Spatial Visualisation', tags:'DNEG · VFX SET DESIGN, MUMBAI', link:'#', img:'References/For website.PNG', placeholder:'DNEG set visualisation'}
-    ]
-  };
+  // Data
+  const codeProjects = [
+    {title:'Building Analysis Tool', tags:'Healthcare Accessibility · NLP · ANNSIM 2025', link:'project-bat.html', img:'References/For website.PNG'},
+    {title:'Grounded · Structural AI', tags:'Finite-Element Analysis on any 3D model', link:'project-structural.html', img:'References/For website.PNG'},
+    {title:'LLM Urbanism', tags:'500 agents reasoning in natural language', link:'project-llm-urbanism.html', img:'References/For website.PNG'},
+    {title:'Pardaz', tags:'Pedestrian simulation for exhibition layouts', link:'project-pardaz.html', img:'References/For website.PNG'},
+    {title:'ZONO_NAUTS', tags:'GNN urban growth · AEC Tech Hackathon @ BIG', link:'project-hackathon.html', img:'References/For website.PNG'},
+    {title:'AI4ALL Decision', tags:'23 yrs satellite land-cover · civic platform', link:'project-ai4all.html', img:'References/For website.PNG'}
+  ];
 
-  // Research feed
   const posts = [
     {t:'Large-Scale 3D Printing with Bio-Material', c:'Robotic Fabrication', d:'Feb 2026', u:'https://blog.iaac.net/large-scale-3d-printing-with-bio-material/'},
     {t:'Interactive Block-Based Structural Generation & Analysis Tool', c:'Design Communication & Interfaces', d:'Jul 2025', u:'https://blog.iaac.net/interactive-block-based-structural-generation-and-analysis-tool/'},
@@ -825,37 +822,44 @@
     {t:'Reinforcement Learning for Intelligent Grid-Based Carving', c:'AI for Robotic Fabrication', d:'Apr 2025', u:'https://blog.iaac.net/ai-for-robotic-fabrication-workshop-reinforcement-learning-for-intelligent-grid-based-carving/'},
     {t:'B.A.T. Interface — Designing for the Visually Impaired', c:'Design Communication & Interfaces', d:'Dec 2024', u:'https://blog.iaac.net/design-communication-interfaces-_-bat-building-analysis-tool-interface-designing-for-the-visually-impaired-enhancing-accessibility-in-healthcare-architecture/'},
     {t:'Building Analysis Tool — Accessibility in Healthcare Architecture', c:'Research Studio', d:'Dec 2024', u:'https://blog.iaac.net/building-analisis-tool-designing-for-the-visually-impaired-enhancing-accessibility-in-healthcare-architecture/'},
-    {t:'AI-Driven Inclusive Design: Topology Graph Analysis & NLP', c:'AI Theory for Design', d:'Dec 2024', u:'https://blog.iaac.net/ai-driven-inclusive-design-topology-graph-analysis-and-nlp-for-accessibility-solutions-in-architecture/'},
-    {t:'Intelligent Prototyping: Microcontrollers & Robotic Fabrication', c:'Intelligent Prototyping', d:'Dec 2024', u:'https://blog.iaac.net/intelligent-prototyping-combining-microcontrollers-robotic-fabrication-obstacle-detection-notification-system-clay-pots/'}
+    {t:'Intelligent Prototyping: Microcontrollers & Robotic Fabrication', c:'Intelligent Prototyping', d:'Dec 2024', u:'https://blog.iaac.net/intelligent-prototyping-combining-microcontrollers-robotic-fabrication-obstacle-detection-notification-system-clay-pots/'},
+    {t:'AI-Driven Inclusive Design: Topology Graph Analysis & NLP', c:'AI Theory for Design', d:'Dec 2024', u:'https://blog.iaac.net/ai-driven-inclusive-design-topology-graph-analysis-and-nlp-for-accessibility-solutions-in-architecture/'}
   ];
 
-  // Graph data
+  const codeExp = [
+    {date:'2024–25', role:'Master in AI for Architecture & the Built Environment', desc:'IAAC — Institute for Advanced Architecture of Catalonia, Barcelona', type:'EDUCATION'},
+    {date:'2024', role:'Jr. Design Architect', desc:'SHAPE Architecture & Research — UAE · Parametric design for high-profile projects', type:'PRACTICE'},
+    {date:'2024', role:'Set Designer · Contract', desc:'DNEG — Mumbai · Spatial visualisation for world-class VFX productions', type:'PRACTICE'},
+    {date:'2022–24', role:'Architect', desc:'Morphogenesis — Delhi · Sustainable, award-winning parametric & bioclimatic architecture', type:'PRACTICE'},
+    {date:'2025', role:'Published Research — ANNSIM Conference', desc:'Society of Modelling & Simulation (SCS) · Building Analysis Tool (B.A.T.)', type:'RESEARCH'}
+  ];
+
   const graphData = {
     cats:[
-      {id:'research', label:'AI RESEARCH', link:'#research', desc:'Published at ANNSIM 2025, plus nine writings on the IAAC blog.', leaves:[
+      {id:'research', label:'AI RESEARCH', link:'#code-research', desc:'Published at ANNSIM 2025, plus nine writings on the IAAC blog.', leaves:[
         {label:'B.A.T.', desc:'AI accessibility analyser for healthcare architecture.', link:'project-bat.html'},
-        {label:'ANNSIM 2025', desc:'Peer-reviewed publication · Society for Modelling & Simulation.', link:'https://blog.iaac.net/user/sahilyousafp/'},
+        {label:'ANNSIM 2025', desc:'Peer-reviewed publication.', link:'https://blog.iaac.net/user/sahilyousafp/'},
         {label:'IAAC Blog', desc:'Nine published research posts.', link:'https://blog.iaac.net/user/sahilyousafp/'}
       ]},
-      {id:'projects', label:'PROJECTS', link:'#work', desc:'Computational tools across structure, simulation and urbanism.', leaves:[
-        {label:'Grounded', desc:'Finite-element analysis on any 3D model at concept stage.', link:'project-structural.html'},
+      {id:'projects', label:'PROJECTS', link:'#code-work', desc:'Computational tools across structure, simulation and urbanism.', leaves:[
+        {label:'Grounded', desc:'Finite-element analysis on any 3D model.', link:'project-structural.html'},
         {label:'LLM Urbanism', desc:'500 agents reasoning in natural language.', link:'project-llm-urbanism.html'},
         {label:'Pardaz', desc:'Pedestrian simulation for exhibition layouts.', link:'project-pardaz.html'},
-        {label:'ZONO_NAUTS', desc:'GNN urban growth → voxel city · AEC Tech @ BIG.', link:'project-hackathon.html'},
-        {label:'AI4ALL', desc:'23 years of satellite land-cover · civic platform.', link:'project-ai4all.html'}
+        {label:'ZONO_NAUTS', desc:'GNN urban growth → voxel city.', link:'project-hackathon.html'},
+        {label:'AI4ALL', desc:'23 years of satellite land-cover.', link:'project-ai4all.html'}
       ]},
-      {id:'skills', label:'TOOLS', link:'#skills', desc:'From Grasshopper and Rhino to Python, ML and LLM agents.', leaves:[
+      {id:'skills', label:'TOOLS', link:'#code-skills', desc:'From Grasshopper and Rhino to Python, ML and LLM agents.', leaves:[
         {label:'Python', desc:'Primary language for AI and tooling.'},
         {label:'Grasshopper', desc:'Parametric modelling in Rhino 3D.'},
         {label:'ML / NN', desc:'Graph neural nets, reinforcement learning, NLP.'}
       ]},
-      {id:'experience', label:'PATH', link:'#experience', desc:'Morphogenesis, SHAPE, DNEG and IAAC Barcelona.', leaves:[
+      {id:'experience', label:'PATH', link:'#code-exp', desc:'Morphogenesis, SHAPE, DNEG and IAAC Barcelona.', leaves:[
         {label:'IAAC', desc:'Master in AI for Architecture, Barcelona.'},
         {label:'Morphogenesis', desc:'Sustainable parametric architecture, Delhi.'},
         {label:'DNEG', desc:'VFX spatial visualisation, Mumbai.'},
         {label:'SHAPE', desc:'Parametric design development, UAE.'}
       ]},
-      {id:'contact', label:'CONTACT', link:'#contact', desc:'Open to roles, research and collaboration worldwide.', leaves:[
+      {id:'contact', label:'CONTACT', link:'#code-contact', desc:'Open to roles, research and collaboration worldwide.', leaves:[
         {label:'Email', desc:'sahil.yousaf@students.iaac.net', link:'mailto:sahil.yousaf@students.iaac.net'},
         {label:'LinkedIn', desc:'Connect and view recommendations.', link:'https://www.linkedin.com/in/sahil-yousaf-882a0b132/'},
         {label:'GitHub', desc:'Code and repositories.', link:'https://github.com/sahilyousafp'}
@@ -863,55 +867,43 @@
     ]
   };
 
-  function applyTheme(newMode){
-    mode = newMode;
-    app.setAttribute('data-mode', mode);
-    document.querySelectorAll('[data-seg]').forEach(s=>{
-      const on = s.getAttribute('data-seg') === mode;
-      s.classList.toggle('active', on);
-    });
-    renderProjects();
+  const archRooms = [
+    {num:'P.01', title:'Commercial Atrium <em>Chennai</em>', meta:'OFFICE · INTERIOR ATRIUM', img:'uploads/arch-projects/page17_img2.jpeg', desc:'A multi-storey atrium design with intermediate greenscapes, natural light wells and warm material palettes for a commercial office development in Chennai.'},
+    {num:'P.02', title:'Parametric <em>Tower</em>', meta:'CONCEPT · FORM STUDY', img:'uploads/arch-projects/page1_img1.jpeg', desc:'Fluid high-rise form exploration driven by parametric surface logic — investigating structure, envelope and skyline presence.'},
+    {num:'P.03', title:'Residential <em>High-Rise</em>', meta:'HOUSING · HYDERABAD', img:'uploads/arch-projects/page28_img5.png', desc:'Premium residential tower study exploring staggered massing, self-shading fins and amenity integration.'},
+    {num:'P.04', title:'Floating <em>Community</em>', meta:'SUSTAINABLE · CONCEPT', img:'uploads/arch-projects/page27_img2.png', desc:'Self-sufficient floating settlement with modular hexagonal platforms, climate-regulated greenhouses and biomimetic mooring systems.'}
+  ];
+
+  // Mode switching
+  window.showLanding = function(){
+    currentMode = null;
+    landing.classList.remove('hidden');
+    appCode.classList.remove('active');
+    appArch.classList.remove('active');
+    document.body.style.overflow = '';
+  };
+
+  function enterMode(mode){
+    currentMode = mode;
+    landing.classList.add('hidden');
+    if(mode==='code'){ appCode.classList.add('active'); appArch.classList.remove('active'); }
+    else { appArch.classList.add('active'); appCode.classList.remove('active'); }
+    document.body.style.overflow = '';
+    setTimeout(()=>{
+      observeReveal();
+      if(mode==='code') initCodeGraph();
+      else initArchScroll();
+    }, 600);
   }
 
-  modeToggle.addEventListener('click', ()=>applyTheme(mode==='code'?'arch':'code'));
+  document.querySelectorAll('.mode-card').forEach(card=>{
+    card.addEventListener('click', ()=>enterMode(card.dataset.mode));
+  });
 
-  // Render projects
-  function renderProjects(){
-    const grid = document.getElementById('projectsGrid');
-    grid.innerHTML = projects[mode].map((p,i)=>{
-      const target = p.external ? 'target="_blank" rel="noopener"' : '';
-      return `<a class="proj-card" href="${p.link}" ${target} data-cursor data-reveal style="transition-delay:${i*0.05}s">
-        <div class="proj-img">
-          ${p.img ? `<img src="${p.img}" alt="${p.title}" loading="lazy">` : `<div class="proj-placeholder">${p.placeholder}</div>`}
-        </div>
-        <div class="proj-meta">
-          <div>
-            <div class="proj-title">${p.title}</div>
-            <div class="proj-tags">${p.tags}</div>
-          </div>
-          <span class="proj-arrow">↗</span>
-        </div>
-      </a>`;
-    }).join('');
-    observeReveal();
-  }
-
-  // Render feed
-  function renderFeed(){
-    const list = document.getElementById('feedList');
-    list.innerHTML = posts.map(p=>`
-      <a class="feed-item" href="${p.u}" target="_blank" rel="noopener" data-cursor>
-        <div>
-          <div class="feed-title">${p.t}</div>
-          <div class="feed-cat">${p.c}</div>
-        </div>
-        <div class="feed-right">
-          <span class="feed-date">${p.d}</span>
-          <span class="feed-arrow">↗</span>
-        </div>
-      </a>
-    `).join('');
-  }
+  // Loader
+  window.addEventListener('load', ()=>{
+    setTimeout(()=>loader.classList.add('done'), 600);
+  });
 
   // Custom cursor
   function initCursor(){
@@ -923,286 +915,232 @@
       mx=e.clientX; my=e.clientY;
       dot.style.transform = 'translate('+mx+'px,'+my+'px) translate(-50%,-50%)';
     });
-    function loop(){
-      rx += (mx-rx)*0.16; ry += (my-ry)*0.16;
-      ring.style.transform = 'translate('+rx+'px,'+ry+'px) translate(-50%,-50%)';
-      requestAnimationFrame(loop);
-    }
+    function loop(){ rx+=(mx-rx)*0.15; ry+=(my-ry)*0.15; ring.style.transform='translate('+rx+'px,'+ry+'px) translate(-50%,-50%)'; requestAnimationFrame(loop); }
     loop();
     document.addEventListener('mouseover', e=>{
-      if(e.target.closest && e.target.closest('[data-cursor]')){
-        ring.style.width='56px'; ring.style.height='56px';
-        ring.style.backgroundColor='var(--accent)'; ring.style.opacity='0.18';
-      }
+      const t = e.target.closest('[data-mode]') || e.target.closest('a') || e.target.closest('button') || e.target.closest('.room');
+      if(t){ ring.style.width='64px'; ring.style.height='64px'; ring.style.backgroundColor='var(--c-ember)'; ring.style.opacity='0.15'; }
     });
     document.addEventListener('mouseout', e=>{
-      if(e.target.closest && e.target.closest('[data-cursor]')){
-        ring.style.width='34px'; ring.style.height='34px';
-        ring.style.backgroundColor='transparent'; ring.style.opacity='1';
-      }
+      const t = e.target.closest('[data-mode]') || e.target.closest('a') || e.target.closest('button') || e.target.closest('.room');
+      if(t){ ring.style.width='42px'; ring.style.height='42px'; ring.style.backgroundColor='transparent'; ring.style.opacity='1'; }
     });
   }
 
-  // Hero canvas
-  function initHeroCanvas(){
-    const c = document.getElementById('heroCanvas');
+  // Render code content
+  function renderCode(){
+    document.getElementById('codeProjects').innerHTML = codeProjects.map((p,i)=>`
+      <a class="code-project" href="${p.link}" data-reveal style="transition-delay:${i*0.06}s">
+        <img src="${p.img}" alt="${p.title}" loading="lazy">
+        <div class="overlay">
+          <div class="p-title">${p.title}</div>
+          <div class="p-tags">${p.tags}</div>
+        </div>
+        <div class="p-arrow">↗</div>
+      </a>
+    `).join('');
+
+    document.getElementById('codeFeed').innerHTML = posts.map((p,i)=>`
+      <a class="feed-item" href="${p.u}" target="_blank" rel="noopener" data-reveal style="transition-delay:${i*0.04}s">
+        <div>
+          <div class="feed-title">${p.t}</div>
+          <div class="feed-cat">${p.c}</div>
+        </div>
+        <div class="feed-right"><span class="feed-date">${p.d}</span><span class="feed-arrow">↗</span></div>
+      </a>
+    `).join('');
+
+    document.getElementById('codeExp').innerHTML = codeExp.map((e,i)=>`
+      <div class="exp-row" data-reveal style="transition-delay:${i*0.05}s">
+        <div class="exp-date">${e.date}</div>
+        <div>
+          <div class="exp-role">${e.role}</div>
+          <div class="exp-desc">${e.desc}</div>
+        </div>
+        <div class="exp-type">${e.type}</div>
+      </div>
+    `).join('');
+  }
+
+  // Code hero canvas
+  function initCodeHero(){
+    const c = document.getElementById('codeHeroCanvas');
     if(!c) return;
     const ctx = c.getContext('2d');
-    let w=0,h=0,dpr=1,mouse={x:0.5,y:0.5};
-    function resize(){
-      dpr = Math.min(window.devicePixelRatio||1,2);
-      w = c.clientWidth; h = c.clientHeight;
-      c.width = w*dpr; c.height = h*dpr;
-      ctx.setTransform(dpr,0,0,dpr,0,0);
-    }
-    resize();
-    window.addEventListener('resize', resize);
-    window.addEventListener('mousemove', e=>{
-      mouse.x = e.clientX/window.innerWidth;
-      mouse.y = e.clientY/window.innerHeight;
-    });
-
+    let w=0,h=0,dpr=1;
+    function resize(){ dpr=Math.min(window.devicePixelRatio||1,2); w=c.clientWidth; h=c.clientHeight; c.width=w*dpr; c.height=h*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); }
+    resize(); window.addEventListener('resize', resize);
+    const pts=[]; for(let i=0;i<55;i++) pts.push({x:Math.random(),y:Math.random(),z:Math.random(),vx:(Math.random()-0.5)*0.0004,vy:(Math.random()-0.5)*0.0004});
     let t=0;
-    function drawContours(){
-      const lines = 16;
-      ctx.lineWidth = 1.1;
-      ctx.strokeStyle = getComputedStyle(app).getPropertyValue('--accent').trim();
-      for(let i=0;i<lines;i++){
-        const baseY = h*(i/(lines-1))*0.92 + h*0.04;
-        ctx.globalAlpha = 0.10 + 0.16*Math.abs(Math.sin(i*0.5 + t*0.4));
-        ctx.beginPath();
-        for(let x=-20;x<=w+20;x+=10){
-          const y = baseY
-            + Math.sin(x*0.0052 + t*1.0 + i*0.55) * 26 * (0.5+0.5*Math.sin(t*0.3+i))
-            + Math.sin(x*0.012 - t*0.7) * 9
-            + (mouse.x-0.5) * 26 * Math.sin(i*0.4)
-            + (mouse.y-0.5) * 14;
-          if(x<=-20) ctx.moveTo(x,y); else ctx.lineTo(x,y);
-        }
-        ctx.stroke();
-      }
-      ctx.globalAlpha = 1;
-    }
-
-    const particles = [];
-    for(let i=0;i<45;i++){
-      particles.push({
-        x:Math.random(), y:Math.random(), z:Math.random(),
-        vx:(Math.random()-0.5)*0.0003, vy:(Math.random()-0.5)*0.0003
-      });
-    }
-    function drawNetwork(){
-      const accent = getComputedStyle(app).getPropertyValue('--accent').trim();
-      const pts = particles.map(p=>{
-        p.x += p.vx; p.y += p.vy;
-        if(p.x<0||p.x>1) p.vx *= -1;
-        if(p.y<0||p.y>1) p.vy *= -1;
-        return {x:p.x*w, y:p.y*h, z:p.z};
-      });
-      ctx.strokeStyle = accent;
-      ctx.lineWidth = 1;
-      for(let i=0;i<pts.length;i++){
-        for(let j=i+1;j<pts.length;j++){
-          const dx = pts[i].x-pts[j].x, dy = pts[i].y-pts[j].y;
-          const d = Math.hypot(dx,dy);
-          if(d<160){
-            ctx.globalAlpha = 0.06*(1-d/160);
-            ctx.beginPath(); ctx.moveTo(pts[i].x,pts[i].y); ctx.lineTo(pts[j].x,pts[j].y); ctx.stroke();
-          }
-        }
-      }
-      ctx.fillStyle = accent;
-      pts.forEach(p=>{
-        ctx.globalAlpha = 0.25 + p.z*0.5;
-        ctx.beginPath(); ctx.arc(p.x,p.y,1.5+p.z*2,0,Math.PI*2); ctx.fill();
-      });
-      ctx.globalAlpha = 1;
-    }
-
     function loop(){
       ctx.clearRect(0,0,w,h);
-      t += 0.004;
-      if(mode==='arch') drawContours(); else drawNetwork();
+      t+=0.003;
+      ctx.strokeStyle='#FF3300'; ctx.fillStyle='#FF3300';
+      const rendered = pts.map(p=>{
+        p.x+=p.vx; p.y+=p.vy; if(p.x<0||p.x>1)p.vx*=-1; if(p.y<0||p.y>1)p.vy*=-1;
+        return {x:p.x*w, y:p.y*h, z:p.z};
+      });
+      for(let i=0;i<rendered.length;i++){
+        for(let j=i+1;j<rendered.length;j++){
+          const d=Math.hypot(rendered[i].x-rendered[j].x,rendered[i].y-rendered[j].y);
+          if(d<180){ ctx.globalAlpha=0.05*(1-d/180); ctx.beginPath(); ctx.moveTo(rendered[i].x,rendered[i].y); ctx.lineTo(rendered[j].x,rendered[j].y); ctx.stroke(); }
+        }
+      }
+      rendered.forEach(p=>{ ctx.globalAlpha=0.2+p.z*0.5; ctx.beginPath(); ctx.arc(p.x,p.y,1.2+p.z*2,0,Math.PI*2); ctx.fill(); });
+      ctx.globalAlpha=1;
       requestAnimationFrame(loop);
     }
     loop();
   }
 
-  // Knowledge graph
-  function initGraph(){
-    const c = document.getElementById('graphCanvas');
-    if(!c) return;
-    const ctx = c.getContext('2d');
-    const info = document.getElementById('graphInfo');
+  // Code graph
+  let codeGraphInited = false;
+  function initCodeGraph(){
+    if(codeGraphInited) return; codeGraphInited=true;
+    const c = document.getElementById('codeGraphCanvas'); if(!c) return;
+    const ctx = c.getContext('2d'); const info = document.getElementById('codeGraphInfo');
     let w=0,h=0,dpr=1;
-    function fit(){
-      dpr=Math.min(window.devicePixelRatio||1,2);
-      w=c.clientWidth; h=c.clientHeight;
-      c.width=w*dpr; c.height=h*dpr;
-      ctx.setTransform(dpr,0,0,dpr,0,0);
-    }
+    function fit(){ dpr=Math.min(window.devicePixelRatio||1,2); w=c.clientWidth; h=c.clientHeight; c.width=w*dpr; c.height=h*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); }
     fit();
-
     const nodes=[], edges=[];
-    nodes.push({label:'SAHIL YOUSAF', type:'center', pos:[0,0,0], desc:'Architect & AI Researcher, based in Barcelona. Pick a thread to explore.'});
-    const cats = graphData.cats, nc=cats.length;
-    cats.forEach((cat,i)=>{
-      const y = 1 - (i/(nc-1))*2, rad = Math.sqrt(Math.max(0,1-y*y)), th = i*2.39996;
-      const cp = [Math.cos(th)*rad*1.25, y*1.0, Math.sin(th)*rad*1.25];
+    nodes.push({label:'SAHIL YOUSAF', type:'center', pos:[0,0,0], desc:'Architect & AI Researcher, based in Barcelona.'});
+    graphData.cats.forEach((cat,i)=>{
+      const y = 1-(i/(graphData.cats.length-1))*2, rad=Math.sqrt(Math.max(0,1-y*y)), th=i*2.39996;
+      const cp=[Math.cos(th)*rad*1.25, y*1.0, Math.sin(th)*rad*1.25];
       nodes.push({label:cat.label, type:'cat', pos:cp, desc:cat.desc, link:cat.link});
-      const ci = nodes.length-1;
-      edges.push([0, ci]);
-      const m = cat.leaves.length;
+      const ci=nodes.length-1; edges.push([0,ci]);
       cat.leaves.forEach((lf,j)=>{
-        const a = (j/m)*Math.PI*2;
-        const lp = [ cp[0]*1.6 + Math.cos(a)*0.4, cp[1]*1.6 + Math.sin(a)*0.4, cp[2]*1.6 + Math.sin(a*1.7)*0.32 ];
+        const a=(j/cat.leaves.length)*Math.PI*2;
+        const lp=[cp[0]*1.6+Math.cos(a)*0.4, cp[1]*1.6+Math.sin(a)*0.4, cp[2]*1.6+Math.sin(a*1.7)*0.32];
         nodes.push({label:lf.label, type:'leaf', pos:lp, desc:lf.desc, link:lf.link});
-        edges.push([ci, nodes.length-1]);
+        edges.push([ci,nodes.length-1]);
       });
     });
-
-    let rotY=0.6, rotX=-0.18, dragging=false, lastX=0, lastY=0, moved=0;
-    let mxp=-1, myp=-1, hoverIdx=null;
-
+    let rotY=0.6, rotX=-0.18, dragging=false, lastX=0, lastY=0, moved=0, mxp=-1, myp=-1, hoverIdx=null;
     function setInfo(node){
       if(!info) return;
-      if(!node){
-        info.innerHTML = '<div style="font-family:var(--fontM);font-size:11px;color:var(--accent);letter-spacing:.14em">THE GRAPH</div><div style="font-size:14px;color:var(--muted);margin-top:8px;line-height:1.55">Drag to rotate · hover any node to preview · click to dive deeper.</div>';
-        return;
-      }
-      const cta = node.link ? '<div style="font-family:var(--fontM);font-size:11px;color:var(--accent);margin-top:13px;letter-spacing:.06em">'+(node.link[0]==='#'?'CLICK TO JUMP →':'CLICK TO OPEN ↗')+'</div>' : '';
-      info.innerHTML = '<div style="font-family:var(--fontD);font-weight:700;font-size:clamp(18px,2.4vw,26px);line-height:1.05;color:var(--fg)">'+node.label+'</div><div style="font-size:14px;color:var(--muted);margin-top:9px;line-height:1.55;max-width:42ch">'+(node.desc||'')+'</div>'+cta;
+      if(!node){ info.innerHTML='<div style="font-family:var(--fontM);font-size:11px;color:var(--c-ember);letter-spacing:.14em">THE GRAPH</div><div style="font-size:14px;color:var(--c-muted);margin-top:8px;line-height:1.55">Drag to rotate · hover any node to preview · click to dive deeper.</div>'; return; }
+      const cta = node.link ? '<div style="font-family:var(--fontM);font-size:11px;color:var(--c-ember);margin-top:13px;letter-spacing:.06em">'+(node.link[0]==='#'?'CLICK TO JUMP →':'CLICK TO OPEN ↗')+'</div>' : '';
+      info.innerHTML='<div style="font-family:var(--font-ui);font-weight:700;font-size:clamp(18px,2.4vw,26px);line-height:1.05;color:var(--c-white)">'+node.label+'</div><div style="font-size:14px;color:var(--c-muted);margin-top:9px;line-height:1.55;max-width:42ch">'+(node.desc||'')+'</div>'+cta;
     }
     setInfo(null);
-
-    function rect(){ return c.getBoundingClientRect(); }
     c.addEventListener('pointerdown', e=>{ dragging=true; lastX=e.clientX; lastY=e.clientY; moved=0; c.style.cursor='grabbing'; try{c.setPointerCapture(e.pointerId);}catch(_){} });
-    c.addEventListener('pointermove', e=>{
-      const r=rect(); mxp=e.clientX-r.left; myp=e.clientY-r.top;
-      if(dragging){ const dx=e.clientX-lastX, dy=e.clientY-lastY; rotY+=dx*0.006; rotX=Math.max(-1.2,Math.min(1.2,rotX+dy*0.006)); moved+=Math.abs(dx)+Math.abs(dy); lastX=e.clientX; lastY=e.clientY; }
-    });
-    function endDrag(){ dragging=false; c.style.cursor = hoverIdx!=null?'pointer':'grab'; }
-    c.addEventListener('pointerup', e=>{
-      const wasDrag = moved>6; endDrag();
-      if(!wasDrag && hoverIdx!=null){
-        const n = nodes[hoverIdx];
-        if(n.link){ if(n.link[0]==='#') document.querySelector(n.link)?.scrollIntoView({behavior:'smooth'}); else window.open(n.link,'_blank','noopener'); }
-      }
-    });
+    c.addEventListener('pointermove', e=>{ const r=c.getBoundingClientRect(); mxp=e.clientX-r.left; myp=e.clientY-r.top; if(dragging){ const dx=e.clientX-lastX, dy=e.clientY-lastY; rotY+=dx*0.006; rotX=Math.max(-1.2,Math.min(1.2,rotX+dy*0.006)); moved+=Math.abs(dx)+Math.abs(dy); lastX=e.clientX; lastY=e.clientY; } });
+    function endDrag(){ dragging=false; c.style.cursor=hoverIdx!=null?'pointer':'grab'; }
+    c.addEventListener('pointerup', e=>{ const wasDrag=moved>6; endDrag(); if(!wasDrag && hoverIdx!=null){ const n=nodes[hoverIdx]; if(n.link){ if(n.link[0]==='#') document.querySelector(n.link)?.scrollIntoView({behavior:'smooth'}); else window.open(n.link,'_blank','noopener'); } } });
     c.addEventListener('pointerleave', ()=>{ dragging=false; mxp=-1; myp=-1; });
-
-    const screen = new Array(nodes.length);
+    const screen=new Array(nodes.length);
     function draw(){
       if(c.clientWidth!==w || c.clientHeight!==h) fit();
-      if(w<2 || h<2){ requestAnimationFrame(draw); return; }
-      ctx.clearRect(0,0,w,h);
-      if(!dragging) rotY += 0.0015;
-      const accent = getComputedStyle(app).getPropertyValue('--accent').trim();
+      if(w<2||h<2){ requestAnimationFrame(draw); return; }
+      ctx.clearRect(0,0,w,h); if(!dragging) rotY+=0.0015;
       const cx=w/2, cyc=h*0.48, scale=Math.min(w,h)*0.245;
       const cyR=Math.cos(rotX), syR=Math.sin(rotX), czR=Math.cos(rotY), szR=Math.sin(rotY);
       for(let i=0;i<nodes.length;i++){
-        const p=nodes[i].pos; const x=p[0],y=p[1],z=p[2];
+        const p=nodes[i].pos, x=p[0],y=p[1],z=p[2];
         const x1=x*czR - z*szR, z1=x*szR + z*czR;
         const y2=y*cyR - z1*syR, z2=y*syR + z1*cyR;
         const pe=2.7/(2.7+z2);
-        screen[i]={ x:cx+x1*scale*pe, y:cyc+y2*scale*pe, z:z2, p:pe };
+        screen[i]={x:cx+x1*scale*pe, y:cyc+y2*scale*pe, z:z2, p:pe};
       }
-      let nh=null, best=1e9;
-      if(mxp>=0){
-        for(let i=0;i<nodes.length;i++){
-          const s=screen[i]; const rr=(nodes[i].type==='center'?9:nodes[i].type==='cat'?6.5:4.2)*s.p+10;
-          const d=Math.hypot(s.x-mxp, s.y-myp);
-          if(d<rr && d<best){ best=d; nh=i; }
-        }
-      }
-      if(nh!==hoverIdx){ hoverIdx=nh; setInfo(nh!=null?nodes[nh]:null); if(!dragging) c.style.cursor = nh!=null?'pointer':'grab'; }
-
-      const hot = new Set();
-      if(nh!=null){ hot.add(nh); edges.forEach(([a,b])=>{ if(a===nh)hot.add(b); if(b===nh)hot.add(a); }); }
-
-      ctx.strokeStyle=accent;
-      edges.forEach(([a,b])=>{
-        const sa=screen[a], sb=screen[b];
-        const on = (hot.has(a)&&hot.has(b));
-        ctx.globalAlpha = nh==null ? (0.09+0.10*((sa.p+sb.p)/2)) : (on?0.6:0.045);
-        ctx.lineWidth = (nh!=null&&on)?1.5:1;
-        ctx.beginPath(); ctx.moveTo(sa.x,sa.y); ctx.lineTo(sb.x,sb.y); ctx.stroke();
-      });
+      let nh=null, best=1e9; if(mxp>=0){ for(let i=0;i<nodes.length;i++){ const s=screen[i]; const rr=(nodes[i].type==='center'?9:nodes[i].type==='cat'?6.5:4.2)*s.p+10; const d=Math.hypot(s.x-mxp,s.y-myp); if(d<rr && d<best){ best=d; nh=i; } } }
+      if(nh!==hoverIdx){ hoverIdx=nh; setInfo(nh!=null?nodes[nh]:null); if(!dragging) c.style.cursor=nh!=null?'pointer':'grab'; }
+      const hot=new Set(); if(nh!=null){ hot.add(nh); edges.forEach(([a,b])=>{ if(a===nh)hot.add(b); if(b===nh)hot.add(a); }); }
+      ctx.strokeStyle='#FF3300';
+      edges.forEach(([a,b])=>{ const sa=screen[a], sb=screen[b]; const on=hot.has(a)&&hot.has(b); ctx.globalAlpha=nh==null?(0.09+0.10*((sa.p+sb.p)/2)):(on?0.6:0.045); ctx.lineWidth=(nh!=null&&on)?1.5:1; ctx.beginPath(); ctx.moveTo(sa.x,sa.y); ctx.lineTo(sb.x,sb.y); ctx.stroke(); });
       ctx.globalAlpha=1;
-
-      const order = Array.from(screen.keys()).sort((a,b)=>screen[b].z-screen[a].z);
+      const order=Array.from(screen.keys()).sort((a,b)=>screen[b].z-screen[a].z);
       order.forEach(i=>{
-        const s=screen[i], n=nodes[i];
-        const dim = nh!=null && !hot.has(i);
-        const baseR = n.type==='center'?6.8 : n.type==='cat'?4.8 : 3.0;
-        const r = baseR*s.p;
-        ctx.globalAlpha = dim?0.22:1;
-        ctx.fillStyle=accent;
-        ctx.beginPath(); ctx.arc(s.x,s.y,r,0,Math.PI*2); ctx.fill();
-        if(n.type!=='leaf'){
-          ctx.strokeStyle=accent; ctx.lineWidth=1.4;
-          ctx.globalAlpha = dim?0.18:0.5;
-          ctx.beginPath(); ctx.arc(s.x,s.y,r+6*s.p,0,Math.PI*2); ctx.stroke();
-          ctx.globalAlpha = dim?0.22:1;
-        }
-        const showLabel = n.type!=='leaf' || hot.has(i) || nh===i;
-        if(showLabel){
-          const big = n.type==='center';
-          ctx.font = (big?'700 ':(n.type==='cat'?'500 ':'400 ')) + (big?14:n.type==='cat'?12:11) + "px " + (big?'Space Grotesk, sans-serif':'JetBrains Mono, monospace');
-          ctx.textBaseline='middle';
-          ctx.globalAlpha = dim?0.3:1;
-          ctx.fillStyle = big ? '#FFFFFF' : (n.type==='cat' ? accent : '#C9C9CF');
-          const tx = s.x + r + 8;
-          ctx.shadowColor='rgba(0,0,0,0.85)'; ctx.shadowBlur=6;
-          ctx.fillText(n.label, tx, s.y);
-          ctx.shadowBlur=0;
-        }
+        const s=screen[i], n=nodes[i]; const dim=nh!=null && !hot.has(i);
+        const baseR=n.type==='center'?6.8:(n.type==='cat'?4.8:3.0); const r=baseR*s.p;
+        ctx.globalAlpha=dim?0.22:1; ctx.fillStyle='#FF3300'; ctx.beginPath(); ctx.arc(s.x,s.y,r,0,Math.PI*2); ctx.fill();
+        if(n.type!=='leaf'){ ctx.strokeStyle='#FF3300'; ctx.lineWidth=1.4; ctx.globalAlpha=dim?0.18:0.5; ctx.beginPath(); ctx.arc(s.x,s.y,r+6*s.p,0,Math.PI*2); ctx.stroke(); ctx.globalAlpha=dim?0.22:1; }
+        const showLabel=n.type!=='leaf' || hot.has(i) || nh===i;
+        if(showLabel){ const big=n.type==='center'; ctx.font=(big?'700 ':(n.type==='cat'?'500 ':'400 '))+(big?14:(n.type==='cat'?12:11))+'px '+(big?'Space Grotesk, sans-serif':'JetBrains Mono, monospace'); ctx.textBaseline='middle'; ctx.globalAlpha=dim?0.3:1; ctx.fillStyle=big?'#FFFFFF':(n.type==='cat'?'#FF3300':'#C9C9CF'); const tx=s.x+r+8; ctx.shadowColor='rgba(0,0,0,0.85)'; ctx.shadowBlur=6; ctx.fillText(n.label,tx,s.y); ctx.shadowBlur=0; }
         ctx.globalAlpha=1;
       });
       requestAnimationFrame(draw);
     }
-    draw();
-    window.addEventListener('resize', fit);
+    draw(); window.addEventListener('resize', fit);
   }
 
-  // Scroll reveal
-  function observeReveal(){
-    const els = document.querySelectorAll('[data-reveal]');
-    const io = new IntersectionObserver((ents)=>{
-      ents.forEach(en=>{
-        if(en.isIntersecting){ en.target.classList.add('visible'); io.unobserve(en.target); }
-      });
-    }, {threshold:0.1, rootMargin:'0px 0px -8% 0px'});
-    els.forEach(el=>io.observe(el));
+  // Render arch rooms
+  function renderArch(){
+    const corridor = document.getElementById('archCorridor');
+    corridor.innerHTML = archRooms.map((r,i)=>`
+      <article class="arch-room" id="arch-room-${i+1}" data-reveal style="transition-delay:${i*0.06}s">
+        <div class="arch-room-header">
+          <div>
+            <div class="arch-room-num">${r.num}</div>
+            <h3>${r.title}</h3>
+          </div>
+          <div class="arch-room-meta">${r.meta}</div>
+        </div>
+        <div class="arch-room-img"><img src="${r.img}" alt="${r.title.replace(/<[^>]+>/g,'')}" loading="lazy"></div>
+        <p class="arch-room-desc">${r.desc}</p>
+      </article>
+    `).join('');
   }
 
-  // Parallax
-  function initParallax(){
-    const els = [...document.querySelectorAll('[data-parallax]')];
+  // Arch scroll 3D effect
+  let archScrollInited=false;
+  function initArchScroll(){
+    if(archScrollInited) return; archScrollInited=true;
+    const rooms = document.querySelectorAll('.arch-room');
+    const you = document.querySelector('.floor-plan .you');
+    const planRooms = document.querySelectorAll('.floor-plan .room');
     function update(){
       const vh = window.innerHeight;
-      els.forEach(el=>{
-        const sp = parseFloat(el.getAttribute('data-parallax')) || 0;
-        const ref = el.parentElement || el;
-        const rect = ref.getBoundingClientRect();
-        const fromCenter = (rect.top + rect.height/2) - vh/2;
-        el.style.transform = 'translateY(' + (-fromCenter * sp) + 'px)';
+      rooms.forEach((room,idx)=>{
+        const rect = room.getBoundingClientRect();
+        const center = rect.top + rect.height/2;
+        const dist = (center - vh/2) / vh;
+        const scale = 1 - Math.abs(dist)*0.12;
+        const opacity = 1 - Math.abs(dist)*0.35;
+        room.style.transform = 'perspective(1200px) translateZ('+(-dist*120)+'px) scale('+Math.max(0.85,scale)+')';
+        room.style.opacity = Math.max(0.4, opacity);
+        if(Math.abs(dist)<0.4 && you){
+          const targets = [['105','105'],['295','105'],['105','300'],['295','300']];
+          you.setAttribute('cx', targets[idx][0]); you.setAttribute('cy', targets[idx][1]);
+          planRooms.forEach((pr,i)=>pr.classList.toggle('active', i===idx));
+        }
       });
     }
     window.addEventListener('scroll', update, {passive:true});
-    window.addEventListener('resize', update);
     update();
+    planRooms.forEach((pr,i)=>{
+      pr.addEventListener('click', ()=>{
+        const target = document.getElementById('arch-room-'+(i+1));
+        if(target) target.scrollIntoView({behavior:'smooth', block:'center'});
+      });
+    });
   }
 
-  // Initialize
-  renderProjects();
-  renderFeed();
+  // Nav scroll state
+  function initNav(){
+    window.addEventListener('scroll', ()=>{
+      const y = window.scrollY;
+      document.getElementById('navCode')?.classList.toggle('scrolled', y>60);
+      document.getElementById('navArch')?.classList.toggle('scrolled', y>60);
+    });
+  }
+
+  // Reveal observer
+  function observeReveal(){
+    const els = document.querySelectorAll('[data-reveal]');
+    const io = new IntersectionObserver((ents)=>{
+      ents.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('visible'); io.unobserve(en.target); } });
+    }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+    els.forEach(el=>io.observe(el));
+  }
+
+  // Init
+  renderCode();
+  renderArch();
   initCursor();
-  initHeroCanvas();
-  initGraph();
+  initCodeHero();
+  initNav();
   observeReveal();
-  initParallax();
-  applyTheme('code');
 })();
 </script>
 

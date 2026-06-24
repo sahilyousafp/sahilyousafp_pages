@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="image-slot.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#0A0A0D;-webkit-font-smoothing:antialiased;}
+[data-theme-root] ::selection{background:var(--accent);color:var(--bg);}
+[data-theme-root], [data-theme-root] *{transition:background-color .7s cubic-bezier(.4,0,.2,1), color .7s cubic-bezier(.4,0,.2,1), border-color .7s cubic-bezier(.4,0,.2,1), fill .7s, box-shadow .7s;}
+[data-mode="code"] [data-when="arch"]{display:none !important;}
+[data-mode="arch"] [data-when="code"]{display:none !important;}
+[data-mode="code"] [data-seg="code"], [data-mode="arch"] [data-seg="arch"]{background:var(--accent);color:var(--bg);}
+[data-cursor]:hover{cursor:none;}
+@media (pointer:coarse){[data-cursoronly]{display:none !important;}}
+@keyframes sy-marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes sy-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+.sy-link{position:relative;}
+.sy-link::after{content:"";position:absolute;left:0;bottom:-3px;height:1px;width:100%;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.4,0,.2,1);}
+.sy-link:hover::after{transform:scaleX(1);}
+.sy-proj:hover .sy-projimg{transform:scale(1.04);}
+.sy-proj:hover .sy-arrow{transform:translate(4px,-4px);}
+</style>
+</helmet>
+<div ref="{{ rootRef }}" data-theme-root data-mode="code" style="--bg:#0A0A0D;--bg2:#121218;--card:#15151C;--fg:#F2F2EF;--muted:#7E7E8A;--accent:#FF6A1A;--accent2:#5B8CFF;--line:rgba(255,255,255,0.10);--radius:3px;--fontD:'Space Grotesk',sans-serif;--fontB:'Archivo',sans-serif;--fontM:'JetBrains Mono',monospace;background-color:var(--bg);color:var(--fg);font-family:var(--fontB);min-height:100vh;position:relative;">
+
+  <!-- CUSTOM CURSOR -->
+  <div ref="{{ ringRef }}" data-cursoronly style="position:fixed;top:0;left:0;width:34px;height:34px;border:1px solid var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-100px,-100px) translate(-50%,-50%);transition:width .25s,height .25s,background-color .25s;mix-blend-mode:difference;"></div>
+  <div ref="{{ dotRef }}" data-cursoronly style="position:fixed;top:0;left:0;width:5px;height:5px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:10000;transform:translate(-100px,-100px) translate(-50%,-50%);"></div>
+
+  <!-- NAV -->
+  <nav style="position:fixed;top:0;left:0;right:0;z-index:900;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px clamp(20px,5vw,72px);background:color-mix(in srgb, var(--bg) 72%, transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);">
+    <a href="#home" data-cursor style="display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--fg);">
+      <span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid var(--accent);border-radius:var(--radius);font-family:var(--fontM);font-size:13px;font-weight:500;color:var(--accent);">SY</span>
+      <span style="font-family:var(--fontD);font-weight:500;font-size:15px;letter-spacing:.01em;">Sahil Yousaf</span>
+    </a>
+    <div style="display:none;gap:30px;align-items:center;" class="sy-navlinks">
+      <a class="sy-link" href="#about" data-cursor style="text-decoration:none;color:var(--muted);font-size:13px;font-family:var(--fontM);">About</a>
+      <a class="sy-link" href="#work" data-cursor style="text-decoration:none;color:var(--muted);font-size:13px;font-family:var(--fontM);">Work</a>
+      <a class="sy-link" href="#research" data-cursor data-when="code" style="text-decoration:none;color:var(--muted);font-size:13px;font-family:var(--fontM);">Research</a>
+      <a class="sy-link" href="#experience" data-cursor style="text-decoration:none;color:var(--muted);font-size:13px;font-family:var(--fontM);">Experience</a>
+      <a class="sy-link" href="#contact" data-cursor style="text-decoration:none;color:var(--muted);font-size:13px;font-family:var(--fontM);">Contact</a>
+    </div>
+    <button onClick="{{ toggle }}" data-cursor aria-label="Toggle Architecture / Code mode" style="display:flex;align-items:center;gap:0;padding:4px;border:1px solid var(--line);border-radius:999px;background:var(--bg2);cursor:pointer;font-family:var(--fontM);">
+      <span data-seg="arch" style="padding:7px 14px;border-radius:999px;font-size:11px;letter-spacing:.04em;color:var(--muted);transition:all .4s;white-space:nowrap;">ARCH</span>
+      <span data-seg="code" style="padding:7px 14px;border-radius:999px;font-size:11px;letter-spacing:.04em;color:var(--muted);transition:all .4s;white-space:nowrap;">CODE</span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <header id="home" style="position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:120px clamp(20px,5vw,72px) clamp(40px,6vh,80px);overflow:hidden;">
+    <canvas ref="{{ canvasRef }}" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;"></canvas>
+    <div data-parallax="0.18" style="position:absolute;top:14%;right:clamp(20px,5vw,72px);z-index:0;font-family:var(--fontM);font-size:clamp(120px,22vw,360px);font-weight:400;color:var(--line);line-height:.8;pointer-events:none;user-select:none;">01</div>
+
+    <div style="position:relative;z-index:2;width:100%;max-width:1400px;margin:0 auto;">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:clamp(16px,3vh,30px);">
+        <span style="width:34px;height:1px;background:var(--accent);"></span>
+        <span data-when="code" style="font-family:var(--fontM);font-size:13px;letter-spacing:.14em;color:var(--accent);text-transform:uppercase;">AI Researcher · Computational Designer</span>
+        <span data-when="arch" style="font-family:var(--fontM);font-size:13px;letter-spacing:.14em;color:var(--accent);text-transform:uppercase;">Architect · Parametric Designer</span>
+      </div>
+
+      <h1 style="font-family:var(--fontD);font-weight:600;line-height:.86;letter-spacing:-0.02em;font-size:clamp(52px,14vw,230px);margin:0;">Sahil<br><span style="font-style:italic;color:var(--accent);font-weight:500;">Yousaf</span></h1>
+
+      <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:32px;margin-top:clamp(24px,4vh,48px);">
+        <div style="max-width:540px;">
+          <p data-when="code" style="font-size:clamp(16px,2vw,21px);line-height:1.5;color:var(--fg);">Building AI tools that augment how we design cities and buildings — from finite-element analysis to 500-agent urban simulations reasoning in natural language.</p>
+          <p data-when="arch" style="font-size:clamp(16px,2vw,21px);line-height:1.5;color:var(--fg);font-family:var(--fontD);">Designing at the intersection of space and computation — parametric, sustainable architecture shaped across India, the UAE, and Barcelona.</p>
+          <div style="display:flex;align-items:center;gap:10px;margin-top:22px;font-family:var(--fontM);font-size:12px;color:var(--muted);letter-spacing:.05em;">
+            <span style="width:7px;height:7px;border-radius:50%;background:var(--accent);"></span>
+            41.3851° N, 2.1734° E — Barcelona, Spain
+          </div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;">
+          <a href="https://drive.google.com/uc?export=download&id=1RI6g6-drvGhHcv2iZP_Sa41B8bmQbSzM" target="_blank" rel="noopener" data-cursor style="display:inline-flex;align-items:center;gap:8px;padding:14px 24px;background:var(--accent);color:var(--bg);text-decoration:none;border-radius:var(--radius);font-family:var(--fontM);font-size:13px;font-weight:500;letter-spacing:.03em;">Portfolio ↗</a>
+          <a href="https://drive.google.com/file/d/1kKcI2pK1Mxii8Ap2YcYa0GOM_AJOVbJ3/view?usp=sharing" target="_blank" rel="noopener" data-cursor style="display:inline-flex;align-items:center;gap:8px;padding:14px 24px;background:transparent;color:var(--fg);text-decoration:none;border:1px solid var(--line);border-radius:var(--radius);font-family:var(--fontM);font-size:13px;font-weight:500;letter-spacing:.03em;">CV ↗</a>
+          <a href="#work" data-cursor style="display:inline-flex;align-items:center;gap:8px;padding:14px 24px;background:transparent;color:var(--fg);text-decoration:none;border:1px solid var(--line);border-radius:var(--radius);font-family:var(--fontM);font-size:13px;font-weight:500;letter-spacing:.03em;">View Work ↓</a>
+        </div>
+      </div>
+    </div>
+    <div style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);font-family:var(--fontM);font-size:11px;letter-spacing:.2em;color:var(--muted);animation:sy-bob 2.4s ease-in-out infinite;z-index:2;">SCROLL</div>
+  </header>
+
+  <!-- MARQUEE -->
+  <div style="overflow:hidden;background:var(--accent);padding:14px 0;white-space:nowrap;border-top:1px solid var(--bg);border-bottom:1px solid var(--bg);">
+    <div data-when="code" style="display:inline-block;animation:sy-marq 28s linear infinite;font-family:var(--fontD);font-weight:700;font-size:clamp(20px,3vw,34px);color:var(--bg);letter-spacing:-0.01em;text-transform:uppercase;">
+      <span>Computational Design&nbsp;&nbsp;✦&nbsp;&nbsp;AI Research&nbsp;&nbsp;✦&nbsp;&nbsp;Neural Networks&nbsp;&nbsp;✦&nbsp;&nbsp;Urban Simulation&nbsp;&nbsp;✦&nbsp;&nbsp;Generative Systems&nbsp;&nbsp;✦&nbsp;&nbsp;</span><span>Computational Design&nbsp;&nbsp;✦&nbsp;&nbsp;AI Research&nbsp;&nbsp;✦&nbsp;&nbsp;Neural Networks&nbsp;&nbsp;✦&nbsp;&nbsp;Urban Simulation&nbsp;&nbsp;✦&nbsp;&nbsp;Generative Systems&nbsp;&nbsp;✦&nbsp;&nbsp;</span>
+    </div>
+    <div data-when="arch" style="display:inline-block;animation:sy-marq 28s linear infinite;font-family:var(--fontD);font-style:italic;font-weight:500;font-size:clamp(22px,3.2vw,38px);color:var(--bg);letter-spacing:0;">
+      <span>Parametric Architecture&nbsp;&nbsp;·&nbsp;&nbsp;Sustainable Design&nbsp;&nbsp;·&nbsp;&nbsp;Spatial Visualisation&nbsp;&nbsp;·&nbsp;&nbsp;Bioclimatic Systems&nbsp;&nbsp;·&nbsp;&nbsp;</span><span>Parametric Architecture&nbsp;&nbsp;·&nbsp;&nbsp;Sustainable Design&nbsp;&nbsp;·&nbsp;&nbsp;Spatial Visualisation&nbsp;&nbsp;·&nbsp;&nbsp;Bioclimatic Systems&nbsp;&nbsp;·&nbsp;&nbsp;</span>
+    </div>
+  </div>
+
+  <!-- EXPLORE (code only) — interactive knowledge graph -->
+  <section id="explore" data-when="code" style="position:relative;background:var(--bg);border-top:1px solid var(--line);overflow:hidden;">
+    <div style="max-width:1400px;margin:0 auto;padding:clamp(56px,8vh,100px) clamp(20px,5vw,72px) 0;width:100%;">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;" data-reveal>
+        <span style="font-family:var(--fontM);font-size:13px;color:var(--accent);">◇</span>
+        <span style="width:34px;height:1px;background:var(--line);"></span>
+        <span style="font-family:var(--fontM);font-size:13px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;">Interactive · Knowledge Graph</span>
+      </div>
+      <h2 data-reveal style="opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);font-family:var(--fontD);font-weight:600;font-size:clamp(30px,5vw,64px);line-height:1;letter-spacing:-0.02em;max-width:18ch;">Navigate the graph to go <span style="font-style:italic;color:var(--accent);">deeper</span></h2>
+    </div>
+    <div style="position:relative;width:100%;height:min(74vh,720px);margin-top:6px;">
+      <canvas ref="{{ graphRef }}" style="position:absolute;inset:0;width:100%;height:100%;cursor:grab;touch-action:none;z-index:1;"></canvas>
+      <div ref="{{ graphInfoRef }}" style="position:absolute;left:clamp(20px,5vw,72px);bottom:clamp(24px,5vh,52px);max-width:min(440px,82vw);padding:20px 22px;background:color-mix(in srgb, var(--bg2) 80%, transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:var(--radius);pointer-events:none;z-index:2;"></div>
+      <div style="position:absolute;top:18px;right:clamp(20px,5vw,72px);font-family:var(--fontM);font-size:11px;letter-spacing:.16em;color:var(--muted);pointer-events:none;z-index:2;">DRAG TO ROTATE ⟲</div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" style="padding:clamp(80px,12vh,160px) clamp(20px,5vw,72px);max-width:1400px;margin:0 auto;width:100%;">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:clamp(36px,6vh,72px);" data-reveal>
+      <span style="font-family:var(--fontM);font-size:13px;color:var(--accent);">02</span>
+      <span style="width:34px;height:1px;background:var(--line);"></span>
+      <span style="font-family:var(--fontM);font-size:13px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;">About</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(32px,5vw,80px);align-items:start;">
+      <div data-reveal style="opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);">
+        <h2 style="font-family:var(--fontD);font-weight:500;font-size:clamp(30px,4.5vw,60px);line-height:1.02;letter-spacing:-0.02em;">Designing at the intersection of <span style="font-style:italic;color:var(--accent);">space</span> &amp; <span style="font-style:italic;color:var(--accent);">computation</span></h2>
+      </div>
+      <div data-reveal style="opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1) .1s,transform .8s cubic-bezier(.2,.7,.2,1) .1s;display:flex;flex-direction:column;gap:26px;">
+        <p style="font-size:16px;line-height:1.65;color:var(--fg);">I'm an architect with 3+ years of practice across India and the UAE, trained at <strong style="font-weight:600;">Morphogenesis</strong> (Delhi), <strong style="font-weight:600;">SHAPE Architecture &amp; Research</strong> (UAE), and <strong style="font-weight:600;">DNEG</strong> (Mumbai) — spanning sustainable architecture, parametric design, and spatial visualisation for world-class VFX productions.</p>
+        <p style="font-size:16px;line-height:1.65;color:var(--muted);">Currently pursuing a Master in AI for Architecture &amp; the Built Environment at <strong style="font-weight:600;color:var(--fg);">IAAC, Barcelona</strong>, where my work sits at the intersection of artificial intelligence and the built environment. My research was <strong style="font-weight:600;color:var(--fg);">published at ANNSIM 2025</strong> through the Building Analysis Tool — an AI-driven accessibility analyser for healthcare architecture.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:18px;margin-top:6px;">
+          <a class="sy-link" href="https://github.com/sahilyousafp" target="_blank" rel="noopener" data-cursor style="color:var(--fg);text-decoration:none;font-family:var(--fontM);font-size:13px;">GitHub ↗</a>
+          <a class="sy-link" href="https://www.linkedin.com/in/sahil-yousaf-882a0b132/" target="_blank" rel="noopener" data-cursor style="color:var(--fg);text-decoration:none;font-family:var(--fontM);font-size:13px;">LinkedIn ↗</a>
+          <a class="sy-link" href="https://blog.iaac.net/user/sahilyousafp/" target="_blank" rel="noopener" data-cursor style="color:var(--fg);text-decoration:none;font-family:var(--fontM);font-size:13px;">IAAC Blog ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);margin-top:clamp(48px,7vh,96px);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;" data-reveal>
+      <!-- code stats -->
+      <div data-when="code" style="background:var(--bg);padding:clamp(24px,3vw,40px);"><div style="font-family:var(--fontD);font-weight:700;font-size:clamp(36px,5vw,68px);line-height:1;color:var(--accent);">09</div><div style="font-family:var(--fontM);font-size:12px;color:var(--muted);margin-top:10px;letter-spacing:.04em;">Research Publications</div></div>
+      <div data-when="code" style="background:var(--bg);padding:clamp(24px,3vw,40px);"><div style="font-family:var(--fontD);font-weight:700;font-size:clamp(36px,5vw,68px);line-height:1;color:var(--accent);">06</div><div style="font-family:var(--fontM);font-size:12px;color:var(--muted);margin-top:10px;letter-spacing:.04em;">AI Tools Built</div></div>
+      <div data-when="code" style="background:var(--bg);padding:clamp(24px,3vw,40px);"><div style="font-family:var(--fontD);font-weight:700;font-size:clamp(36px,5vw,68px);line-height:1;color:var(--accent);">500</div><div style="font-family:var(--fontM);font-size:12px;color:var(--muted);margin-top:10px;letter-spacing:.04em;">Agent Urban Simulation</div></div>
+      <!-- arch stats -->
+      <div data-when="arch" style="background:var(--bg);padding:clamp(24px,3vw,40px);"><div style="font-family:var(--fontD);font-weight:500;font-size:clamp(36px,5vw,68px);line-height:1;color:var(--accent);">3+</div><div style="font-family:var(--fontM);font-size:12px;color:var(--muted);margin-top:10px;letter-spacing:.04em;">Years of Practice</div></div>
+      <div data-when="arch" style="background:var(--bg);padding:clamp(24px,3vw,40px);"><div style="font-family:var(--fontD);font-weight:500;font-size:clamp(36px,5vw,68px);line-height:1;color:var(--accent);">03</div><div style="font-family:var(--fontM);font-size:12px;color:var(--muted);margin-top:10px;letter-spacing:.04em;">Architecture Firms</div></div>
+      <div data-when="arch" style="background:var(--bg);padding:clamp(24px,3vw,40px);"><div style="font-family:var(--fontD);font-weight:500;font-size:clamp(36px,5vw,68px);line-height:1;color:var(--accent);">01</div><div style="font-family:var(--fontM);font-size:12px;color:var(--muted);margin-top:10px;letter-spacing:.04em;">Published Paper</div></div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work" style="padding:clamp(80px,12vh,160px) clamp(20px,5vw,72px);max-width:1400px;margin:0 auto;width:100%;">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:clamp(36px,6vh,64px);" data-reveal>
+      <div>
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
+          <span style="font-family:var(--fontM);font-size:13px;color:var(--accent);">03</span>
+          <span style="width:34px;height:1px;background:var(--line);"></span>
+          <span style="font-family:var(--fontM);font-size:13px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;">Selected Work</span>
+        </div>
+        <h2 style="font-family:var(--fontD);font-weight:500;font-size:clamp(32px,5vw,68px);line-height:1;letter-spacing:-0.02em;">Featured Projects</h2>
+      </div>
+      <p data-when="code" style="max-width:320px;font-size:14px;line-height:1.6;color:var(--muted);">Computational tools &amp; AI research — drag your own renders or screenshots onto any tile.</p>
+      <p data-when="arch" style="max-width:320px;font-size:14px;line-height:1.6;color:var(--muted);">Architectural practice &amp; spatial work — drag your own renders onto any tile to fill it.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:clamp(16px,2vw,28px);">
+
+      <!-- BAT (both) -->
+      <a class="sy-proj" href="https://sahilyousafp.github.io/sahilyousafp_pages/project-bat.html" target="_blank" rel="noopener" data-cursor data-when="both" data-reveal style="opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1);text-decoration:none;color:var(--fg);display:flex;flex-direction:column;gap:16px;">
+        <div style="position:relative;aspect-ratio:4/3;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:var(--card);"><image-slot id="sy-proj-bat" class="sy-projimg" style="width:100%;height:100%;display:block;transition:transform .6s cubic-bezier(.2,.7,.2,1);" shape="rect" placeholder="B.A.T. interface"></image-slot></div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
+          <div><div style="font-family:var(--fontD);font-weight:600;font-size:18px;">Building Analysis Tool</div><div style="font-family:var(--fontM);font-size:11px;color:var(--muted);margin-top:6px;letter-spacing:.03em;">HEALTHCARE ACCESSIBILITY · NLP · PUBLISHED ANNSIM 2025</div></div>
+          <span class="sy-arrow" style="font-family:var(--fontM);color:var(--accent);transition:transform .4s;">↗</span>
+        </div>
+      </a>
+
+      <!-- Grounded / Structural (code) -->
+      <a class="sy-proj" href="https://sahilyousafp.github.io/sahilyousafp_pages/project-structural.html" target="_blank" rel="noopener" data-cursor data-when="code" data-reveal style="opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.7,.2,1) .05s,transform .7s cubic-bezier(.2,.7,.2,1) .05s;text-decoration:none;color:var(--fg);display:flex;flex-direction:column;gap:16px;">
+        <div style="position:relative;aspect-ratio:4/3;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:var(--card);"><image-slot id="sy-proj-grounded" class="sy-projimg" style="width:100%;height:100%;display:block;transition:transform .6s cubic-bezier(.2,.7,.2,1);" shape="rect" placeholder="Grounded — FEA viewer"></image-slot></div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
+          <div><div style="font-family:var(--fontD);font-weight:600;font-size:18px;">Grounded · Structural AI</div><div style="font-family:var(--fontM);font-size:11px;color:var(--muted);margin-top:6px;letter-spacing:.03em;">FINITE-ELEMENT ANALYSIS ON ANY 3D MODEL</div></div>
+          <span class="sy-arrow" style="font-family:var(--fontM);color:var(--accent);transition:transform .4s;">↗</span>
+        </div>
+      </a>
+
+      <!-- LLM Urbanism (code) -->
+      <a class="sy-proj" href="https://sahilyousafp.github.io/sahilyousafp_pages/project-llm-urbanism.html" target="_blank" rel="noopener" data-cursor data-when="code" data-reveal style="opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.7,.2,1) .1s,transform .7s cubic-bezier(.2,.7,.2,1) .1s;text-decoration:none;color:var(--fg);display:flex;flex-direction:column;gap:16px;">
+        <div style="position:relative;aspect-ratio:4/3;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:var(--card);"><image-slot id="sy-proj-llm" class="sy-projimg" style="width:100%;height:100%;display:block;transition:transform .6s cubic-bezier(.2,.7,.2,1);" shape="rect" placeholder="500-agent simulation"></image-slot></div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
+          <div><div style="font-family:var(--fontD);font-weight:600;font-size:18px;">LLM Urbanism</div><div style="font-family:var(--fontM);font-size:11px;color:var(--muted);margin-top:6px;letter-spacing:.03em;">500 AGENTS REASONING IN NATURAL LANGUAGE</div></div>
+          <span class="sy-arrow" style="font-family:var(--fontM);color:var(--accent);transition:transform .4s;">↗</span>
+        </div>
+      </a>
+
+      <!-- Pardaz (code) -->
+      <a class="sy-proj" href="https://sahilyousafp.github.io/sahilyousafp_pages/project-pardaz.html" target="_blank" rel="noopener" data-cursor data-when="code" data-reveal style="opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.7,.2,1) .15s,transform .7s cubic-bezier(.2,.7,.2,1) .15s;text-decoration:none;color:var(--fg);display:flex;flex-direction:column;gap:16px;">
+        <div style="position:relative;aspect-ratio:4/3;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:var(--card);"><image-slot id="sy-proj-pardaz" class="sy-projimg" style="width:100%;height:100%;display:block;transition:transform .6s cubic-bezier(.2,.7,.2,1);" shape="rect" placeholder="Pardaz pedestrian flow"></image-slot></div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
+          <div><div style="font-family:var(--fontD);font-weight:600;font-size:18px;">Pardaz</div><div style="font-family:var(--fontM);font-size:11px;color:var(--muted);margin-top:6px;letter-spacing:.03em;">PEDESTRIAN SIMULATION FOR EXHIBITION LAYOUTS</div></div>
+          <span class="sy-arrow" style="font-family:var(--fontM);color:var(--accent);transition:transform .4s;">↗</span>
+        </div>
+      </a>
+
+      <!-- ZONO (code) -->
+      <a class="sy-proj" href="https://sahilyousafp.github.io/sahilyousafp_pages/project-hackathon.html" target="_blank" rel="noopener" data-cursor data-when="code" data-reveal style="opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.7,.2,1) .2s,transform .7s cubic-bezier(.2,.7,.2,1) .2s;text-decoration:none;color:var(--fg);display:flex;flex-direction:column;gap:16px;">
+        <div style="position:relative;aspect-ratio:4/3;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:var(--card);"><image-slot id="sy-proj-zono" class="sy-projimg" style="width:100%;height:100%;display:block;transition:transform .6s cubic-bezier(.2,.7,.2,1);" shape="rect" placeholder="ZONO_NAUTS voxel city"></image-slot></div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
+          <div><div style="font-family:var(--fontD);font-weight:600;font-size:18px;">ZONO_NAUTS</div><div style="font-family:var(--fontM);font-size:11px;color:var(--muted);margin-top:6px;letter-spacing:.03em;">GNN URBAN GROWTH · AEC TECH HACKATHON @ BIG</div></div>
+          <span class="sy-arrow" style="font-family:var(--fontM);color:var(--accent);transition:transform .4s;">↗</span>
+        </div>
+      </a>
+
+      <!-- AI4ALL (code) -->
+      <a class="sy-proj" href="https://sahilyousafp.github.io/sahilyousafp_pages/project-ai4all.html" target="_blank" rel="noopener" data-cursor data-when="code" data-reveal style="opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.7,.2,1) .25s,transform .7s cubic-bezier(.2,.7,.2,1) .25s;text-decoration:none;color:var(--fg);display:flex;flex-direction:column;gap:16px;">
+        <div style="position:relative;aspect-ratio:4/3;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:var(--card);"><image-slot id="sy-proj-ai4all" class="sy-projimg" style="width:100%;height:100%;display:block;transition:transform .6s cubic-bezier(.2,.7,.2,1);" shape="rect" placeholder="AI4ALL land-cover map"></image-slot></div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
+          <div><div style="font-family:var(--fontD);font-weight:600;font-size:18px;">AI4ALL Decision</div><div style="font-family:var(--fontM);font-size:11px;color:var(--muted);margin-top:6px;letter-spacing:.03em;">23 YRS SATELLITE LAND-COVER · CIVIC PLATFORM</div></div>
+          <span class="sy-arrow" style="font-family:var(--fontM);color:var(--accent);transition:transform .4s;">↗</span>
+        </div>
+      </a>
+
+      <!-- 3D printing bio-material (arch) -->
+      <a class="sy-proj" href="https://blog.iaac.net/large-scale-3d-printing-with-bio-material/" target="_blank" rel="noopener" data-cursor data-when="arch" data-reveal style="opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.7,.2,1) .05s,transform .7s cubic-bezier(.2,.7,.2,1) .05s;text-decoration:none;color:var(--fg);display:flex;flex-direction:column;gap:16px;">
+        <div style="position:relative;aspect-ratio:4/3;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:var(--card);"><image-slot id="sy-proj-3dprint" class="sy-projimg" style="width:100%;height:100%;display:block;transition:transform .6s cubic-bezier(.2,.7,.2,1);" shape="rect" placeholder="Bio-material 3D print"></image-slot></div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
+          <div><div style="font-family:var(--fontD);font-weight:500;font-size:18px;">Large-Scale Bio-Material Printing</div><div style="font-family:var(--fontM);font-size:11px;color:var(--muted);margin-top:6px;letter-spacing:.03em;">ROBOTIC FABRICATION · MATERIAL RESEARCH</div></div>
+          <span class="sy-arrow" style="font-family:var(--fontM);color:var(--accent);transition:transform .4s;">↗</span>
+        </div>
+      </a>
+
+      <!-- Morphogenesis (arch) -->
+      <div class="sy-proj" data-cursor data-when="arch" data-reveal style="opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.7,.2,1) .1s,transform .7s cubic-bezier(.2,.7,.2,1) .1s;color:var(--fg);display:flex;flex-direction:column;gap:16px;">
+        <div style="position:relative;aspect-ratio:4/3;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:var(--card);"><image-slot id="sy-proj-morpho" class="sy-projimg" style="width:100%;height:100%;display:block;transition:transform .6s cubic-bezier(.2,.7,.2,1);" shape="rect" placeholder="Parametric practice render"></image-slot></div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
+          <div><div style="font-family:var(--fontD);font-weight:500;font-size:18px;">Parametric Practice</div><div style="font-family:var(--fontM);font-size:11px;color:var(--muted);margin-top:6px;letter-spacing:.03em;">MORPHOGENESIS · SUSTAINABLE & BIOCLIMATIC</div></div>
+        </div>
+      </div>
+
+      <!-- DNEG (arch) -->
+      <div class="sy-proj" data-cursor data-when="arch" data-reveal style="opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.7,.2,1) .15s,transform .7s cubic-bezier(.2,.7,.2,1) .15s;color:var(--fg);display:flex;flex-direction:column;gap:16px;">
+        <div style="position:relative;aspect-ratio:4/3;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:var(--card);"><image-slot id="sy-proj-dneg" class="sy-projimg" style="width:100%;height:100%;display:block;transition:transform .6s cubic-bezier(.2,.7,.2,1);" shape="rect" placeholder="DNEG set visualisation"></image-slot></div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
+          <div><div style="font-family:var(--fontD);font-weight:500;font-size:18px;">Spatial Visualisation</div><div style="font-family:var(--fontM);font-size:11px;color:var(--muted);margin-top:6px;letter-spacing:.03em;">DNEG · VFX SET DESIGN, MUMBAI</div></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- RESEARCH FEED (code only) -->
+  <section id="research" data-when="code" style="background:var(--bg2);padding:clamp(80px,12vh,160px) clamp(20px,5vw,72px);">
+    <div style="max-width:1400px;margin:0 auto;">
+      <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:clamp(36px,6vh,56px);" data-reveal>
+        <div>
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
+            <span style="font-family:var(--fontM);font-size:13px;color:var(--accent);">04</span>
+            <span style="width:34px;height:1px;background:var(--line);"></span>
+            <span style="font-family:var(--fontM);font-size:13px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;">Research Feed · IAAC Blog</span>
+          </div>
+          <h2 style="font-family:var(--fontD);font-weight:500;font-size:clamp(32px,5vw,68px);line-height:1;letter-spacing:-0.02em;">Writing &amp; Publications</h2>
+        </div>
+        <a class="sy-link" href="https://blog.iaac.net/user/sahilyousafp/" target="_blank" rel="noopener" data-cursor style="color:var(--fg);text-decoration:none;font-family:var(--fontM);font-size:13px;">All 9 posts ↗</a>
+      </div>
+      <div style="display:flex;flex-direction:column;border-top:1px solid var(--line);" ref="{{ feedRef }}"></div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" style="padding:clamp(80px,12vh,160px) clamp(20px,5vw,72px);max-width:1400px;margin:0 auto;width:100%;">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:clamp(36px,6vh,56px);" data-reveal>
+      <span style="font-family:var(--fontM);font-size:13px;color:var(--accent);">05</span>
+      <span style="width:34px;height:1px;background:var(--line);"></span>
+      <span style="font-family:var(--fontM);font-size:13px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;">Tools &amp; Technologies</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;" data-reveal>
+      <div style="background:var(--bg);padding:clamp(28px,3vw,44px);">
+        <div style="font-family:var(--fontM);font-size:11px;color:var(--accent);letter-spacing:.1em;margin-bottom:18px;">CAT.01</div>
+        <h3 style="font-family:var(--fontD);font-weight:600;font-size:22px;margin-bottom:22px;">Computational Design</h3>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <span style="font-size:14px;color:var(--muted);">Rhino 3D</span><span style="font-size:14px;color:var(--muted);">Grasshopper</span><span style="font-size:14px;color:var(--muted);">Revit / BIM</span><span style="font-size:14px;color:var(--muted);">AutoCAD</span><span style="font-size:14px;color:var(--muted);">Blender / 3ds Max</span>
+        </div>
+      </div>
+      <div style="background:var(--bg);padding:clamp(28px,3vw,44px);">
+        <div style="font-family:var(--fontM);font-size:11px;color:var(--accent);letter-spacing:.1em;margin-bottom:18px;">CAT.02</div>
+        <h3 style="font-family:var(--fontD);font-weight:600;font-size:22px;margin-bottom:22px;">Programming &amp; AI</h3>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <span style="font-size:14px;color:var(--muted);">Python</span><span style="font-size:14px;color:var(--muted);">JavaScript</span><span style="font-size:14px;color:var(--muted);">Machine Learning</span><span style="font-size:14px;color:var(--muted);">Neural Networks</span><span style="font-size:14px;color:var(--muted);">LLM Agents</span>
+        </div>
+      </div>
+      <div style="background:var(--bg);padding:clamp(28px,3vw,44px);">
+        <div style="font-family:var(--fontM);font-size:11px;color:var(--accent);letter-spacing:.1em;margin-bottom:18px;">CAT.03</div>
+        <h3 style="font-family:var(--fontD);font-weight:600;font-size:22px;margin-bottom:22px;">Design &amp; Media</h3>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <span style="font-size:14px;color:var(--muted);">Photoshop</span><span style="font-size:14px;color:var(--muted);">Illustrator</span><span style="font-size:14px;color:var(--muted);">InDesign</span><span style="font-size:14px;color:var(--muted);">After Effects</span><span style="font-size:14px;color:var(--muted);">Concept Design</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" style="padding:clamp(80px,12vh,160px) clamp(20px,5vw,72px);max-width:1400px;margin:0 auto;width:100%;">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:clamp(36px,6vh,64px);" data-reveal>
+      <span style="font-family:var(--fontM);font-size:13px;color:var(--accent);">06</span>
+      <span style="width:34px;height:1px;background:var(--line);"></span>
+      <span style="font-family:var(--fontM);font-size:13px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;">Practice &amp; Credentials</span>
+    </div>
+    <div style="border-top:1px solid var(--line);">
+      <div data-reveal style="opacity:0;transform:translateY(20px);transition:opacity .7s,transform .7s;display:grid;grid-template-columns:120px 1fr auto;gap:clamp(16px,3vw,48px);padding:clamp(22px,3vh,34px) 0;border-bottom:1px solid var(--line);align-items:baseline;">
+        <span style="font-family:var(--fontM);font-size:12px;color:var(--accent);">2024–25</span>
+        <div><div style="font-family:var(--fontD);font-weight:600;font-size:clamp(18px,2.4vw,26px);">Master in AI for Architecture &amp; the Built Environment</div><div style="font-size:14px;color:var(--muted);margin-top:6px;">IAAC — Institute for Advanced Architecture of Catalonia, Barcelona</div></div>
+        <span style="font-family:var(--fontM);font-size:11px;color:var(--muted);text-align:right;">EDUCATION</span>
+      </div>
+      <div data-reveal style="opacity:0;transform:translateY(20px);transition:opacity .7s .05s,transform .7s .05s;display:grid;grid-template-columns:120px 1fr auto;gap:clamp(16px,3vw,48px);padding:clamp(22px,3vh,34px) 0;border-bottom:1px solid var(--line);align-items:baseline;">
+        <span style="font-family:var(--fontM);font-size:12px;color:var(--accent);">2024</span>
+        <div><div style="font-family:var(--fontD);font-weight:600;font-size:clamp(18px,2.4vw,26px);">Jr. Design Architect</div><div style="font-size:14px;color:var(--muted);margin-top:6px;">SHAPE Architecture &amp; Research — UAE · Parametric design for high-profile projects</div></div>
+        <span style="font-family:var(--fontM);font-size:11px;color:var(--muted);text-align:right;">PRACTICE</span>
+      </div>
+      <div data-reveal style="opacity:0;transform:translateY(20px);transition:opacity .7s .1s,transform .7s .1s;display:grid;grid-template-columns:120px 1fr auto;gap:clamp(16px,3vw,48px);padding:clamp(22px,3vh,34px) 0;border-bottom:1px solid var(--line);align-items:baseline;">
+        <span style="font-family:var(--fontM);font-size:12px;color:var(--accent);">2024</span>
+        <div><div style="font-family:var(--fontD);font-weight:600;font-size:clamp(18px,2.4vw,26px);">Set Designer · Contract</div><div style="font-size:14px;color:var(--muted);margin-top:6px;">DNEG — Mumbai · Spatial visualisation for world-class VFX productions</div></div>
+        <span style="font-family:var(--fontM);font-size:11px;color:var(--muted);text-align:right;">PRACTICE</span>
+      </div>
+      <div data-reveal style="opacity:0;transform:translateY(20px);transition:opacity .7s .15s,transform .7s .15s;display:grid;grid-template-columns:120px 1fr auto;gap:clamp(16px,3vw,48px);padding:clamp(22px,3vh,34px) 0;border-bottom:1px solid var(--line);align-items:baseline;">
+        <span style="font-family:var(--fontM);font-size:12px;color:var(--accent);">2022–24</span>
+        <div><div style="font-family:var(--fontD);font-weight:600;font-size:clamp(18px,2.4vw,26px);">Architect</div><div style="font-size:14px;color:var(--muted);margin-top:6px;">Morphogenesis — Delhi · Sustainable, award-winning parametric &amp; bioclimatic architecture</div></div>
+        <span style="font-family:var(--fontM);font-size:11px;color:var(--muted);text-align:right;">PRACTICE</span>
+      </div>
+      <div data-reveal style="opacity:0;transform:translateY(20px);transition:opacity .7s .2s,transform .7s .2s;display:grid;grid-template-columns:120px 1fr auto;gap:clamp(16px,3vw,48px);padding:clamp(22px,3vh,34px) 0;border-bottom:1px solid var(--line);align-items:baseline;">
+        <span style="font-family:var(--fontM);font-size:12px;color:var(--accent);">2025</span>
+        <div><div style="font-family:var(--fontD);font-weight:600;font-size:clamp(18px,2.4vw,26px);">Published Research — ANNSIM Conference</div><div style="font-size:14px;color:var(--muted);margin-top:6px;">Society of Modelling &amp; Simulation (SCS) · Building Analysis Tool (B.A.T.)</div></div>
+        <span style="font-family:var(--fontM);font-size:11px;color:var(--muted);text-align:right;">RESEARCH</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" style="background:var(--bg2);padding:clamp(80px,14vh,180px) clamp(20px,5vw,72px);position:relative;overflow:hidden;">
+    <div data-parallax="-0.06" style="position:absolute;bottom:-8%;right:clamp(20px,5vw,72px);font-family:var(--fontM);font-size:clamp(100px,18vw,300px);color:var(--line);line-height:.8;pointer-events:none;user-select:none;z-index:0;">07</div>
+    <div style="max-width:1400px;margin:0 auto;position:relative;z-index:1;">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:clamp(28px,5vh,48px);" data-reveal>
+        <span style="font-family:var(--fontM);font-size:13px;color:var(--accent);">07</span>
+        <span style="width:34px;height:1px;background:var(--line);"></span>
+        <span style="font-family:var(--fontM);font-size:13px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;">Contact</span>
+      </div>
+      <h2 data-reveal style="opacity:0;transform:translateY(28px);transition:opacity .8s,transform .8s;font-family:var(--fontD);font-weight:500;font-size:clamp(40px,8vw,120px);line-height:.94;letter-spacing:-0.03em;max-width:14ch;">Let's build something <span style="font-style:italic;color:var(--accent);">extraordinary</span></h2>
+      <p style="font-size:clamp(15px,1.8vw,19px);line-height:1.6;color:var(--muted);max-width:560px;margin-top:28px;" data-reveal>Open to architectural roles, research collaborations, and computational design projects worldwide.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px;margin-top:clamp(40px,6vh,72px);border-top:1px solid var(--line);padding-top:clamp(32px,5vh,56px);" data-reveal>
+        <div>
+          <div style="font-family:var(--fontM);font-size:11px;color:var(--muted);letter-spacing:.1em;margin-bottom:12px;">EMAIL</div>
+          <a class="sy-link" href="mailto:sahil.yousaf@students.iaac.net" data-cursor style="color:var(--fg);text-decoration:none;font-size:clamp(15px,1.6vw,18px);font-family:var(--fontD);word-break:break-all;">sahil.yousaf@students.iaac.net</a>
+        </div>
+        <div>
+          <div style="font-family:var(--fontM);font-size:11px;color:var(--muted);letter-spacing:.1em;margin-bottom:12px;">PHONE</div>
+          <a class="sy-link" href="tel:+34603789204" data-cursor style="color:var(--fg);text-decoration:none;font-size:clamp(15px,1.6vw,18px);font-family:var(--fontD);">+34 603 789 204</a>
+        </div>
+        <div>
+          <div style="font-family:var(--fontM);font-size:11px;color:var(--muted);letter-spacing:.1em;margin-bottom:12px;">LOCATION</div>
+          <div style="color:var(--fg);font-size:clamp(15px,1.6vw,18px);font-family:var(--fontD);">Barcelona, Spain<br><span style="font-size:13px;color:var(--muted);font-family:var(--fontB);">Open to relocation</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="padding:clamp(28px,4vh,44px) clamp(20px,5vw,72px);border-top:1px solid var(--line);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;">
+    <span style="font-family:var(--fontM);font-size:12px;color:var(--muted);">© 2026 Sahil Yousaf · Architect &amp; AI Researcher</span>
+    <div style="display:flex;gap:24px;">
+      <a class="sy-link" href="https://github.com/sahilyousafp" target="_blank" rel="noopener" data-cursor style="color:var(--muted);text-decoration:none;font-family:var(--fontM);font-size:12px;">GitHub</a>
+      <a class="sy-link" href="https://www.linkedin.com/in/sahil-yousaf-882a0b132/" target="_blank" rel="noopener" data-cursor style="color:var(--muted);text-decoration:none;font-family:var(--fontM);font-size:12px;">LinkedIn</a>
+      <a class="sy-link" href="https://blog.iaac.net/user/sahilyousafp/" target="_blank" rel="noopener" data-cursor style="color:var(--muted);text-decoration:none;font-family:var(--fontM);font-size:12px;">IAAC Blog</a>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  rootRef = React.createRef();
+  canvasRef = React.createRef();
+  dotRef = React.createRef();
+  ringRef = React.createRef();
+  feedRef = React.createRef();
+  graphRef = React.createRef();
+  graphInfoRef = React.createRef();
+  planRef = React.createRef();
+  planInfoRef = React.createRef();
+  _mode = 'code';
+  _planScale = 24;
+
+  graph = (() => {
+    const base = 'https://sahilyousafp.github.io/sahilyousafp_pages/';
+    return { cats: [
+      { id:'research', label:'AI RESEARCH', link:'#research', desc:'Published at ANNSIM 2025, plus nine writings on the IAAC blog.', leaves:[
+        { label:'B.A.T.', desc:'AI accessibility analyser for healthcare architecture.', link:base+'project-bat.html' },
+        { label:'ANNSIM 2025', desc:'Peer-reviewed publication · Society for Modelling & Simulation.', link:'https://blog.iaac.net/user/sahilyousafp/' },
+        { label:'IAAC Blog', desc:'Nine published research posts.', link:'https://blog.iaac.net/user/sahilyousafp/' }
+      ]},
+      { id:'projects', label:'PROJECTS', link:'#work', desc:'Computational tools across structure, simulation and urbanism.', leaves:[
+        { label:'Grounded', desc:'Finite-element analysis on any 3D model at concept stage.', link:base+'project-structural.html' },
+        { label:'LLM Urbanism', desc:'500 agents reasoning in natural language.', link:base+'project-llm-urbanism.html' },
+        { label:'Pardaz', desc:'Pedestrian simulation for exhibition layouts.', link:base+'project-pardaz.html' },
+        { label:'ZONO_NAUTS', desc:'GNN urban growth → voxel city · AEC Tech @ BIG.', link:base+'project-hackathon.html' },
+        { label:'AI4ALL', desc:'23 years of satellite land-cover · civic platform.', link:base+'project-ai4all.html' }
+      ]},
+      { id:'skills', label:'TOOLS', link:'#skills', desc:'From Grasshopper and Rhino to Python, ML and LLM agents.', leaves:[
+        { label:'Python', desc:'Primary language for AI and tooling.' },
+        { label:'Grasshopper', desc:'Parametric modelling in Rhino 3D.' },
+        { label:'ML / NN', desc:'Graph neural nets, reinforcement learning, NLP.' }
+      ]},
+      { id:'experience', label:'PATH', link:'#experience', desc:'Morphogenesis, SHAPE, DNEG and IAAC Barcelona.', leaves:[
+        { label:'IAAC', desc:'Master in AI for Architecture, Barcelona.' },
+        { label:'Morphogenesis', desc:'Sustainable parametric architecture, Delhi.' },
+        { label:'DNEG', desc:'VFX spatial visualisation, Mumbai.' },
+        { label:'SHAPE', desc:'Parametric design development, UAE.' }
+      ]},
+      { id:'contact', label:'CONTACT', link:'#contact', desc:'Open to roles, research and collaboration worldwide.', leaves:[
+        { label:'Email', desc:'sahil.yousaf@students.iaac.net', link:'mailto:sahil.yousaf@students.iaac.net' },
+        { label:'LinkedIn', desc:'Connect and view recommendations.', link:'https://www.linkedin.com/in/sahil-yousaf-882a0b132/' },
+        { label:'GitHub', desc:'Code and repositories.', link:'https://github.com/sahilyousafp' }
+      ]}
+    ]};
+  })();
+
+  themes = {
+    code: {
+      vars: { '--bg':'#0A0A0D','--bg2':'#121218','--card':'#15151C','--fg':'#F2F2EF','--muted':'#7E7E8A','--accent':'#FF6A1A','--accent2':'#5B8CFF','--line':'rgba(255,255,255,0.10)','--radius':'3px','--fontD':"'Space Grotesk',sans-serif",'--fontB':"'Archivo',sans-serif",'--fontM':"'JetBrains Mono',monospace" },
+      accent: '#FF6A1A'
+    },
+    arch: {
+      vars: { '--bg':'#F2ECE1','--bg2':'#E9E1D2','--card':'#F7F2E9','--fg':'#1C1814','--muted':'#86796A','--accent':'#B85C38','--accent2':'#5E6B4F','--line':'rgba(28,20,15,0.14)','--radius':'18px','--fontD':"'Newsreader',serif",'--fontB':"'Archivo',sans-serif",'--fontM':"'JetBrains Mono',monospace" },
+      accent: '#B85C38'
+    }
+  };
+
+  posts = [
+    { t:'Large-Scale 3D Printing with Bio-Material', c:'Robotic Fabrication', d:'Feb 2026', u:'https://blog.iaac.net/large-scale-3d-printing-with-bio-material/' },
+    { t:'Interactive Block-Based Structural Generation & Analysis Tool', c:'Design Communication & Interfaces', d:'Jul 2025', u:'https://blog.iaac.net/interactive-block-based-structural-generation-and-analysis-tool/' },
+    { t:'Grounded — Structural Generation Tool for Architects', c:'Research Studio', d:'Jun 2025', u:'https://blog.iaac.net/grounded-structural-generation-tool-for-architects/' },
+    { t:'Agrowealth: Does Agriculture Correlate to Economy?', c:'AI Programming for Design', d:'Apr 2025', u:'https://blog.iaac.net/agrowealth-does-agriculture-correlate-to-economy/' },
+    { t:'Reinforcement Learning for Intelligent Grid-Based Carving', c:'AI for Robotic Fabrication', d:'Apr 2025', u:'https://blog.iaac.net/ai-for-robotic-fabrication-workshop-reinforcement-learning-for-intelligent-grid-based-carving/' },
+    { t:'B.A.T. Interface — Designing for the Visually Impaired', c:'Design Communication & Interfaces', d:'Dec 2024', u:'https://blog.iaac.net/design-communication-interfaces-_-bat-building-analysis-tool-interface-designing-for-the-visually-impaired-enhancing-accessibility-in-healthcare-architecture/' },
+    { t:'Building Analysis Tool — Accessibility in Healthcare Architecture', c:'Research Studio', d:'Dec 2024', u:'https://blog.iaac.net/building-analisis-tool-designing-for-the-visually-impaired-enhancing-accessibility-in-healthcare-architecture/' },
+    { t:'AI-Driven Inclusive Design: Topology Graph Analysis & NLP', c:'AI Theory for Design', d:'Dec 2024', u:'https://blog.iaac.net/ai-driven-inclusive-design-topology-graph-analysis-and-nlp-for-accessibility-solutions-in-architecture/' },
+    { t:'Intelligent Prototyping: Microcontrollers & Robotic Fabrication', c:'Intelligent Prototyping', d:'Dec 2024', u:'https://blog.iaac.net/intelligent-prototyping-combining-microcontrollers-robotic-fabrication-obstacle-detection-notification-system-clay-pots/' }
+  ];
+
+  applyTheme(mode){
+    this._mode = mode;
+    const r = this.rootRef.current; if(!r) return;
+    const t = this.themes[mode];
+    Object.entries(t.vars).forEach(([k,v])=>r.style.setProperty(k,v));
+    r.setAttribute('data-mode', mode);
+    // imperative — React drops `background:var()` shorthands, so set color props directly
+    r.style.backgroundColor = t.vars['--bg'];
+    r.style.color = t.vars['--fg'];
+    this._accent = t.vars['--accent'];
+    this._fg = t.vars['--fg'];
+    // active segment highlight (CSS descendant rule unreliable here)
+    r.querySelectorAll('[data-seg]').forEach(s=>{
+      const on = s.getAttribute('data-seg') === mode;
+      s.style.backgroundColor = on ? t.vars['--accent'] : 'transparent';
+      s.style.color = on ? t.vars['--bg'] : t.vars['--muted'];
+    });
+  }
+
+  toggle(){ this.applyTheme(this._mode === 'code' ? 'arch' : 'code'); }
+
+  buildFeed(){
+    const host = this.feedRef.current; if(!host) return;
+    host.innerHTML = '';
+    this.posts.forEach((p, i) => {
+      const a = document.createElement('a');
+      a.href = p.u; a.target = '_blank'; a.rel = 'noopener';
+      a.setAttribute('data-cursor','');
+      a.style.cssText = 'display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:22px 0;border-bottom:1px solid var(--line);text-decoration:none;color:var(--fg);transition:padding-left .35s,color .35s;';
+      a.onmouseenter = () => { a.style.paddingLeft = '14px'; };
+      a.onmouseleave = () => { a.style.paddingLeft = '0'; };
+      a.innerHTML = '<div style="display:flex;flex-direction:column;gap:8px;min-width:0;">'
+        + '<span style="font-family:var(--fontD);font-weight:600;font-size:clamp(17px,2vw,24px);line-height:1.15;">' + p.t + '</span>'
+        + '<span style="font-family:var(--fontM);font-size:11px;color:var(--muted);letter-spacing:.03em;">' + p.c + '</span></div>'
+        + '<div style="display:flex;align-items:center;gap:18px;white-space:nowrap;"><span style="font-family:var(--fontM);font-size:12px;color:var(--muted);">' + p.d + '</span>'
+        + '<span style="font-family:var(--fontM);color:var(--accent);">↗</span></div>';
+      host.appendChild(a);
+    });
+  }
+
+  initCanvas(){
+    const c = this.canvasRef.current; if(!c) return;
+    const ctx = c.getContext('2d');
+    let w=0,h=0,dpr=1;
+    const resize = () => {
+      dpr = Math.min(window.devicePixelRatio||1, 2);
+      w = c.clientWidth; h = c.clientHeight;
+      c.width = w*dpr; c.height = h*dpr;
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+    };
+    resize();
+    window.addEventListener('resize', resize);
+    this.mouse = { x:0.5, y:0.5 };
+
+    const N = 4, pts = [], idx = (x,y,z)=>x*N*N+y*N+z, edges = [];
+    for(let x=0;x<N;x++) for(let y=0;y<N;y++) for(let z=0;z<N;z++) pts.push([x-(N-1)/2, y-(N-1)/2, z-(N-1)/2]);
+    for(let x=0;x<N;x++) for(let y=0;y<N;y++) for(let z=0;z<N;z++){
+      if(x<N-1) edges.push([idx(x,y,z), idx(x+1,y,z)]);
+      if(y<N-1) edges.push([idx(x,y,z), idx(x,y+1,z)]);
+      if(z<N-1) edges.push([idx(x,y,z), idx(x,y,z+1)]);
+    }
+
+    let t = 0;
+    const loop = () => {
+      ctx.clearRect(0,0,w,h);
+      t += 0.004;
+      if(this._mode === 'arch') this.drawContours(ctx,w,h,t);
+      else this.drawVoxels(ctx,w,h,t,pts,edges);
+      this._raf = requestAnimationFrame(loop);
+    };
+    loop();
+  }
+
+  buildGraphNodes(){
+    const nodes = [], edges = [];
+    nodes.push({ label:'SAHIL YOUSAF', type:'center', pos:[0,0,0], desc:'Architect & AI Researcher, based in Barcelona. Pick a thread to explore.' });
+    const cats = this.graph.cats, nc = cats.length;
+    cats.forEach((cat,i)=>{
+      const y = 1 - (i/(nc-1))*2, rad = Math.sqrt(Math.max(0,1-y*y)), th = i*2.39996;
+      const cp = [Math.cos(th)*rad*1.25, y*1.0, Math.sin(th)*rad*1.25];
+      nodes.push({ label:cat.label, type:'cat', pos:cp, desc:cat.desc, link:cat.link });
+      const ci = nodes.length-1;
+      edges.push([0, ci]);
+      const m = cat.leaves.length;
+      cat.leaves.forEach((lf,j)=>{
+        const a = (j/m)*Math.PI*2;
+        const lp = [ cp[0]*1.6 + Math.cos(a)*0.4, cp[1]*1.6 + Math.sin(a)*0.4, cp[2]*1.6 + Math.sin(a*1.7)*0.32 ];
+        nodes.push({ label:lf.label, type:'leaf', pos:lp, desc:lf.desc, link:lf.link });
+        edges.push([ci, nodes.length-1]);
+      });
+    });
+    return { nodes, edges };
+  }
+
+  drawGraphAmbient(ctx,w,h,t,g){
+    const cx=w*0.66, cy=h*0.46, scale=Math.min(w,h)*0.205;
+    const ay = 0.5 + (this.mouse.x-0.5)*1.15;
+    const ax = -0.16 + (this.mouse.y-0.5)*0.6;
+    const cyR=Math.cos(ax),syR=Math.sin(ax),czR=Math.cos(ay),szR=Math.sin(ay);
+    const nodes=g.nodes, edges=g.edges, scr=new Array(nodes.length);
+    for(let i=0;i<nodes.length;i++){
+      const p=nodes[i].pos, x=p[0],y=p[1],z=p[2];
+      const x1=x*czR - z*szR, z1=x*szR + z*czR;
+      const y2=y*cyR - z1*syR, z2=y*syR + z1*cyR;
+      const pe=2.7/(2.7+z2);
+      scr[i]={ x:cx+x1*scale*pe, y:cy+y2*scale*pe, z:z2, p:pe };
+    }
+    ctx.strokeStyle=this._accent; ctx.lineWidth=1;
+    edges.forEach(([a,b])=>{
+      const sa=scr[a], sb=scr[b];
+      ctx.globalAlpha = 0.06 + 0.10*((sa.p+sb.p)/2);
+      ctx.beginPath(); ctx.moveTo(sa.x,sa.y); ctx.lineTo(sb.x,sb.y); ctx.stroke();
+    });
+    ctx.globalAlpha=1;
+    const order = Array.from(scr.keys()).sort((a,b)=>scr[b].z-scr[a].z);
+    order.forEach(i=>{
+      const s=scr[i], n=nodes[i];
+      const r=(n.type==='center'?5.4:n.type==='cat'?3.9:2.5)*s.p;
+      const vis=Math.max(0.22, Math.min(1,(s.p-0.4)*1.7));
+      ctx.fillStyle=this._accent; ctx.globalAlpha=vis;
+      ctx.beginPath(); ctx.arc(s.x,s.y,r,0,6.3); ctx.fill();
+      if(n.type==='cat'){
+        ctx.globalAlpha=0.5*vis; ctx.font='400 10px JetBrains Mono, monospace'; ctx.textBaseline='middle';
+        ctx.fillText(n.label, s.x+r+5, s.y);
+      }
+    });
+    ctx.globalAlpha=1;
+  }
+
+  drawContours(ctx,w,h,t){
+    const lines = 16;
+    ctx.lineWidth = 1.1;
+    ctx.strokeStyle = this._accent;
+    for(let i=0;i<lines;i++){
+      const baseY = h*(i/(lines-1))*0.92 + h*0.04;
+      ctx.globalAlpha = 0.10 + 0.16*Math.abs(Math.sin(i*0.5 + t*0.4));
+      ctx.beginPath();
+      for(let x=-20;x<=w+20;x+=10){
+        const y = baseY
+          + Math.sin(x*0.0052 + t*1.0 + i*0.55) * 26 * (0.5+0.5*Math.sin(t*0.3+i))
+          + Math.sin(x*0.012 - t*0.7) * 9
+          + (this.mouse.x-0.5) * 26 * Math.sin(i*0.4)
+          + (this.mouse.y-0.5) * 14;
+        if(x<=-20) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+      }
+      ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  initCursor(){
+    if(window.matchMedia && window.matchMedia('(pointer:coarse)').matches) return;
+    const dot = this.dotRef.current, ring = this.ringRef.current;
+    let mx=window.innerWidth/2, my=window.innerHeight/2, rx=mx, ry=my;
+    const move = (e) => {
+      mx=e.clientX; my=e.clientY;
+      this.mouse = { x:e.clientX/window.innerWidth, y:e.clientY/window.innerHeight };
+      if(dot) dot.style.transform = 'translate('+mx+'px,'+my+'px) translate(-50%,-50%)';
+    };
+    window.addEventListener('mousemove', move);
+    const loop = () => {
+      rx += (mx-rx)*0.16; ry += (my-ry)*0.16;
+      if(ring) ring.style.transform = 'translate('+rx+'px,'+ry+'px) translate(-50%,-50%)';
+      requestAnimationFrame(loop);
+    };
+    loop();
+    document.addEventListener('mouseover', (e)=>{
+      if(e.target.closest && e.target.closest('[data-cursor]') && ring){ ring.style.width='56px'; ring.style.height='56px'; ring.style.backgroundColor='var(--accent)'; ring.style.opacity='0.18'; }
+    });
+    document.addEventListener('mouseout', (e)=>{
+      if(e.target.closest && e.target.closest('[data-cursor]') && ring){ ring.style.width='34px'; ring.style.height='34px'; ring.style.backgroundColor='transparent'; ring.style.opacity='1'; }
+    });
+  }
+
+  initReveal(){
+    const root = this.rootRef.current; if(!root) return;
+    const els = root.querySelectorAll('[data-reveal]');
+    const io = new IntersectionObserver((ents)=>{
+      ents.forEach(en=>{
+        if(en.isIntersecting){ en.target.style.opacity='1'; en.target.style.transform='none'; io.unobserve(en.target); }
+      });
+    }, { threshold:0.1, rootMargin:'0px 0px -8% 0px' });
+    els.forEach(el=>{
+      if(getComputedStyle(el).opacity === '0' || el.style.opacity === '0') io.observe(el);
+      else { el.style.opacity='0'; el.style.transform='translateY(24px)'; el.style.transition='opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)'; io.observe(el); }
+    });
+  }
+
+  scroller(){
+    let n = this.rootRef.current;
+    while(n && n !== document.body){
+      const s = getComputedStyle(n).overflowY;
+      if((s==='auto'||s==='scroll'||s==='overlay') && n.scrollHeight > n.clientHeight + 4) return n;
+      n = n.parentElement;
+    }
+    const se = document.scrollingElement || document.documentElement;
+    if(se && se.scrollHeight > se.clientHeight + 4) return window;
+    return window;
+  }
+
+  scrollToSel(sel){
+    const el = this.rootRef.current.querySelector(sel);
+    if(!el) return;
+    const sc = this.scroller();
+    if(sc === window){
+      const top = el.getBoundingClientRect().top + (window.scrollY || window.pageYOffset || 0) - 70;
+      window.scrollTo({ top, behavior:'smooth' });
+    } else {
+      const top = el.getBoundingClientRect().top - sc.getBoundingClientRect().top + sc.scrollTop - 70;
+      sc.scrollTo({ top, behavior:'smooth' });
+    }
+  }
+
+  initGraph(){
+    const c = this.graphRef.current; if(!c) return;
+    const ctx = c.getContext('2d');
+    const info = this.graphInfoRef.current;
+
+    const { nodes, edges } = this.buildGraphNodes();
+
+    let w=0,h=0,dpr=1;
+    const fit = ()=>{ dpr=Math.min(window.devicePixelRatio||1,2); w=c.clientWidth; h=c.clientHeight; c.width=w*dpr; c.height=h*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); };
+    fit();
+
+    let rotY=0.6, rotX=-0.18, dragging=false, lastX=0, lastY=0, downX=0, downY=0, moved=0, auto=0;
+    let mxp=-1, myp=-1, hoverIdx=null;
+
+    const setInfo = (node)=>{
+      if(!info) return;
+      if(!node){
+        info.innerHTML = "<div style=\"font-family:var(--fontM);font-size:11px;color:var(--accent);letter-spacing:.14em\">THE GRAPH</div><div style=\"font-size:14px;color:var(--muted);margin-top:8px;line-height:1.55\">Drag to rotate &middot; hover any node to preview &middot; click to dive deeper.</div>";
+        return;
+      }
+      const cta = node.link ? ("<div style=\"font-family:var(--fontM);font-size:11px;color:var(--accent);margin-top:13px;letter-spacing:.06em\">"+(node.link[0]==='#'?'CLICK TO JUMP \u2192':'CLICK TO OPEN \u2197')+"</div>") : "";
+      const fam = node.type==='leaf' ? 'var(--fontD)' : 'var(--fontD)';
+      info.innerHTML = "<div style=\"font-family:"+fam+";font-weight:700;font-size:clamp(18px,2.4vw,26px);line-height:1.05\">"+node.label+"</div><div style=\"font-size:14px;color:var(--muted);margin-top:9px;line-height:1.55;max-width:42ch\">"+(node.desc||'')+"</div>"+cta;
+    };
+    setInfo(null);
+
+    const rectOf = ()=>c.getBoundingClientRect();
+    c.addEventListener('pointerdown', e=>{ dragging=true; lastX=downX=e.clientX; lastY=downY=e.clientY; moved=0; c.style.cursor='grabbing'; try{c.setPointerCapture(e.pointerId);}catch(_){ } });
+    c.addEventListener('pointermove', e=>{
+      const r=rectOf(); mxp=e.clientX-r.left; myp=e.clientY-r.top;
+      if(dragging){ const dx=e.clientX-lastX, dy=e.clientY-lastY; rotY+=dx*0.006; rotX=Math.max(-1.2,Math.min(1.2,rotX+dy*0.006)); moved+=Math.abs(dx)+Math.abs(dy); lastX=e.clientX; lastY=e.clientY; }
+    });
+    const endDrag = ()=>{ dragging=false; c.style.cursor = hoverIdx!=null?'pointer':'grab'; };
+    c.addEventListener('pointerup', e=>{
+      const wasDrag = moved>6; endDrag();
+      if(!wasDrag && hoverIdx!=null){
+        const n = nodes[hoverIdx];
+        if(n.link){ if(n.link[0]==='#') this.scrollToSel(n.link); else window.open(n.link,'_blank','noopener'); }
+      }
+    });
+    c.addEventListener('pointerleave', ()=>{ dragging=false; mxp=-1; myp=-1; });
+
+    const screen = new Array(nodes.length);
+    const draw = ()=>{
+      if(c.clientWidth!==w || c.clientHeight!==h) fit();
+      if(w<2 || h<2){ this._graf=requestAnimationFrame(draw); return; }
+      ctx.clearRect(0,0,w,h);
+      if(!dragging) rotY += auto;
+      const cx=w/2, cyc=h*0.48, scale=Math.min(w,h)*0.245;
+      const cyR=Math.cos(rotX), syR=Math.sin(rotX), czR=Math.cos(rotY), szR=Math.sin(rotY);
+      for(let i=0;i<nodes.length;i++){
+        const p=nodes[i].pos; const x=p[0],y=p[1],z=p[2];
+        const x1=x*czR - z*szR, z1=x*szR + z*czR;
+        const y2=y*cyR - z1*syR, z2=y*syR + z1*cyR;
+        const pe=2.7/(2.7+z2);
+        screen[i]={ x:cx+x1*scale*pe, y:cyc+y2*scale*pe, z:z2, p:pe };
+      }
+      // hit-test nearest node under cursor
+      let nh=null, best=1e9;
+      if(mxp>=0){
+        for(let i=0;i<nodes.length;i++){
+          const s=screen[i]; const rr=(nodes[i].type==='center'?9:nodes[i].type==='cat'?6.5:4.2)*s.p+10;
+          const d=Math.hypot(s.x-mxp, s.y-myp);
+          if(d<rr && d<best){ best=d; nh=i; }
+        }
+      }
+      if(nh!==hoverIdx){ hoverIdx=nh; setInfo(nh!=null?nodes[nh]:null); if(!dragging) c.style.cursor = nh!=null?'pointer':'grab'; }
+
+      const hot = new Set();
+      if(nh!=null){ hot.add(nh); edges.forEach(([a,b])=>{ if(a===nh)hot.add(b); if(b===nh)hot.add(a); }); }
+
+      // edges
+      edges.forEach(([a,b])=>{
+        const sa=screen[a], sb=screen[b];
+        const on = (hot.has(a)&&hot.has(b));
+        ctx.strokeStyle=this._accent;
+        ctx.globalAlpha = nh==null ? (0.09+0.10*((sa.p+sb.p)/2)) : (on?0.6:0.045);
+        ctx.lineWidth = (nh!=null&&on)?1.5:1;
+        ctx.beginPath(); ctx.moveTo(sa.x,sa.y); ctx.lineTo(sb.x,sb.y); ctx.stroke();
+      });
+      ctx.globalAlpha=1;
+
+      // nodes back-to-front
+      const order = Array.from(screen.keys()).sort((a,b)=>screen[b].z-screen[a].z);
+      order.forEach(i=>{
+        const s=screen[i], n=nodes[i];
+        const dim = nh!=null && !hot.has(i);
+        const baseR = n.type==='center'?6.8 : n.type==='cat'?4.8 : 3.0;
+        const r = baseR*s.p;
+        ctx.globalAlpha = dim?0.22:1;
+        if(n.type==='leaf'){
+          ctx.fillStyle=this._accent;
+          ctx.beginPath(); ctx.arc(s.x,s.y,r,0,6.3); ctx.fill();
+        } else {
+          // filled core + ring
+          ctx.fillStyle=this._accent;
+          ctx.beginPath(); ctx.arc(s.x,s.y,r,0,6.3); ctx.fill();
+          ctx.strokeStyle=this._accent; ctx.lineWidth=1.4;
+          ctx.globalAlpha = dim?0.18:0.5;
+          ctx.beginPath(); ctx.arc(s.x,s.y,r+6*s.p,0,6.3); ctx.stroke();
+          ctx.globalAlpha = dim?0.22:1;
+        }
+        // labels
+        const showLabel = n.type!=='leaf' || hot.has(i) || nh===i;
+        if(showLabel){
+          const big = n.type==='center';
+          ctx.font = (big?'700 ':(n.type==='cat'?'500 ':'400 ')) + (big?14:n.type==='cat'?12:11) + "px " + (big?'Space Grotesk, sans-serif':'JetBrains Mono, monospace');
+          ctx.textBaseline='middle';
+          ctx.globalAlpha = dim?0.3:1;
+          ctx.fillStyle = big ? '#FFFFFF' : (n.type==='cat' ? this._accent : '#C9C9CF');
+          const tx = s.x + r + 8;
+          // subtle shadow for readability
+          ctx.shadowColor='rgba(0,0,0,0.85)'; ctx.shadowBlur=6;
+          ctx.fillText(n.label, tx, s.y);
+          ctx.shadowBlur=0;
+        }
+        ctx.globalAlpha=1;
+      });
+
+      this._graf=requestAnimationFrame(draw);
+    };
+    draw();
+    window.addEventListener('resize', fit);
+  }
+
+  initParallax(){
+    const root = this.rootRef.current; if(!root) return;
+    const els = [...root.querySelectorAll('[data-parallax]')];
+    const update = () => {
+      const vh = window.innerHeight;
+      els.forEach(el=>{
+        const sp = parseFloat(el.getAttribute('data-parallax')) || 0;
+        const ref = el.parentElement || el;
+        const rect = ref.getBoundingClientRect();
+        const fromCenter = (rect.top + rect.height/2) - vh/2;
+        el.style.transform = 'translateY(' + (-fromCenter * sp) + 'px)';
+      });
+    };
+    // capture phase catches scroll from window OR any sub-container (scroll doesn't bubble)
+    window.addEventListener('scroll', update, { passive:true, capture:true });
+    window.addEventListener('resize', update);
+    update();
+  }
+
+  componentDidMount(){
+    this.applyTheme('code');
+    this.buildFeed();
+    requestAnimationFrame(()=>{ this.initCanvas(); this.initGraph(); this.initCursor(); this.initReveal(); this.initParallax(); });
+    // reveal large-display nav links
+    const root = this.rootRef.current;
+    if(root){
+      const nl = root.querySelector('.sy-navlinks');
+      const apply = () => { if(nl) nl.style.display = window.innerWidth > 820 ? 'flex' : 'none'; };
+      apply(); window.addEventListener('resize', apply);
+    }
+  }
+
+  componentWillUnmount(){ if(this._raf) cancelAnimationFrame(this._raf); }
+
+  renderVals(){
+    return {
+      rootRef: this.rootRef,
+      canvasRef: this.canvasRef,
+      dotRef: this.dotRef,
+      ringRef: this.ringRef,
+      feedRef: this.feedRef,
+      graphRef: this.graphRef,
+      graphInfoRef: this.graphInfoRef,
+      toggle: () => this.toggle()
+    };
+  }
+}
+</script>
+</body>
+</html>
