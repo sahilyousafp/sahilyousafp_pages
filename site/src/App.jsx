@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import TargetCursor from './components/TargetCursor';
+import ArchCursor from './components/ArchCursor';
 import CodeMode from './components/CodeMode';
 import ArchMode from './components/ArchMode';
 import './App.css';
@@ -100,13 +101,22 @@ export default function App() {
       ) : (
         <ArchMode onBack={() => setMode(null)} />
       )}
-      <TargetCursor
-        targetSelector=".cursor-target"
-        cursorColor={cursorColor}
-        cursorColorOnTarget={cursorColorOnTarget}
-        spinDuration={3}
-        hideDefaultCursor={true}
-      />
+      {mode === 'arch' ? (
+        <ArchCursor
+          targetSelector=".cursor-target"
+          cursorColor="#3D2B1F"
+          cursorColorOnTarget="#C75B3A"
+          hideDefaultCursor={true}
+        />
+      ) : (
+        <TargetCursor
+          targetSelector=".cursor-target"
+          cursorColor="#ffffff"
+          cursorColorOnTarget="#FF3300"
+          spinDuration={3}
+          hideDefaultCursor={true}
+        />
+      )}
     </div>
   );
 }
