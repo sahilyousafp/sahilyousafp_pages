@@ -1,0 +1,62 @@
+{
+  "Building_Analysis_Tool": {
+    "description": "This repository contains experiments and python scripts used to develop the Building Analysis tool project. Kindly refer the Main repo for the final product",
+    "language": "Jupyter Notebook",
+    "stars": 1,
+    "forks": 4,
+    "updated": "2026-02-19T15:42:58Z",
+    "readme_preview": "# Building Analysis Tool (B.A.T.)\n\n![3](https://github.com/user-attachments/assets/31ea7642-e351-4705-bca2-d248adb6fbbd)\n\nA smart Building Analysis Tool (BAT) designed for architects to enhance the accessibility & navigation of healthcare spaces for visually-impaired users.\n\nFeatures: \n\n1.Graph-based spatial analysis: Spot potential navigation bottlenecks, identify wayfinding improvements.\n\n![Screenshot 2025-07-05 190127](https://github.com/user-attachments/assets/37cd15bd-9c54-421d-9836-d74158d969a7)\n\n2.Image segmentation of interiors: Highlight key elements (doors, ramps, tactile surfaces).'\n\n![Screenshot 2025-07-05 190004](https://github.com/user-attachments/assets/e99fa282-6b6c-4493-b935-05bbaae85f01)\n\n3.RAG: Recommend accessible design strategies tailored to visually-impaired users.\n\n![46](https://github.com/user-attachments/assets/0f118610-ac3f-4724-8b26-c1f6f4731bd4)\n\nImportance values excel: We included an Excel sheet that ranks different spaces within a healthcare facility based on their importance for visually impaired users. Each space was evaluated using a priority score from 1 to 10, where:\n\n10 = most critical for independent and safe navigation\n\n1 = least critical or non-essential for direct user access\n\nThis hierarchy was developed to guide our design and analysis tool in emphasizing high-priority zones like entrances, reception areas, restrooms, and examination rooms. Lower-priority zones (e.g., staff-only areas or storage) were treated with less accessibility",
+    "first_image": "https://github.com/user-attachments/assets/31ea7642-e351-4705-bca2-d248adb6fbbd",
+    "html_url": "https://github.com/sahilyousafp/Building_Analysis_Tool"
+  },
+  "LLM-based-UrbanABM": {
+    "description": null,
+    "language": "Jupyter Notebook",
+    "stars": 0,
+    "forks": 0,
+    "updated": "2026-03-16T20:44:44Z",
+    "readme_preview": "# LLM-Based Urban Agent-Based Model\n\n> **Branch:** `open-city-integration` \u2014 LLM-driven pedestrian simulation of Barcelona's Eixample district.\n\n500 autonomous agents navigate the Eixample street network. Each agent has **persistent memory**, **dynamic needs**, and makes **movement decisions via an LLM** that reasons about its archetype, current state, and the urban environment it perceives.\n\n---\n\n## How It Works\n\n### Architecture\n\n```\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502  Frontend \u2014 Leaflet.js (Frontend/index.html)            \u2502\n\u2502  Interactive map: agents, buildings, walk network,      \u2502\n\u2502  amenities. Click any agent to inspect its memory.      \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                         \u2502  HTTP / REST\n                         \u25bc\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502  API Server \u2014 FastAPI  (Backend/Agent/map_server.py)    \u2502\n\u2502  /api/step  \u2192  awaits CityModel.async_step()           \u2502\n\u2502  /api/agent/{id}/memory  /stream  /cognition           \u2502\n\u2502  /api/agent/{id}/summary  (LLM narrative)              \u2502\n\u2502  /api/llm/stats  /api/config/llm                       \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                         \u2502\n          \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n          \u25bc                                \u25bc\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510        \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502  Mesa ABM           \u2502        \u2502  LLM Client               \u2502\n\u2502  CityModel          \u2502        \u2502  Back",
+    "first_image": null,
+    "html_url": "https://github.com/sahilyousafp/LLM-based-UrbanABM"
+  },
+  "Grounded.-Structural-Solutions": {
+    "description": "Research studio/term_2",
+    "language": "Jupyter Notebook",
+    "stars": 1,
+    "forks": 0,
+    "updated": "2025-07-16T10:04:41Z",
+    "readme_preview": "# Grounded structural solutions\nA Structural Prediction Tool for Early-Stage Architectural Design\n\n![Screenshot 2025-07-06 125029](https://github.com/user-attachments/assets/47e4fe0a-593f-479a-8d31-cb669f6cbc92)\n\nOverview:\nGrounded Structural Solutions is a predictive design tool built to assist architects during the conceptual design phase. It offers early structural feedback by processing simplified 3D models and suggesting optimal structural strategies\u2014without compromising creativity.\n\nHow It Works:\nUsers upload a .glb or .obj file consisting of orthogonal volumes (e.g., boxes, extrusions, aligned forms). The tool processes this geometry through several automated stages:\n\nFeatures:\n1. Mesh segmentation with trimesh\n  Automatically detects and separates walls, floors, and roofs from the input mesh4. Structural grid formation with custom algorithm\n  Filters out non-load-bearing elements\n2. Structural Grid Formation\n   Generates a custom structural grid based on floorplate size and wall intersections\n   Adapts column placement rules to geometry constraints (e.g., perimeter-first logic)\n3. Structural Assessment with PyNite\n   Applies finite element analysis (FEA) to estimate displacement and stress\n   Outputs a report on load paths, floor stiffness, and structural weaknesses\n   \n![Screenshot 2025-07-06 124005](https://github.com/user-attachments/assets/30f0e2a6-820d-44de-858f-73b515cb5b02)\n\n![Screenshot 2025-07-06 124028](https://github.com/user-attachments/assets/b90521f5-b0f",
+    "first_image": "https://github.com/user-attachments/assets/47e4fe0a-593f-479a-8d31-cb669f6cbc92",
+    "html_url": "https://github.com/sahilyousafp/Grounded.-Structural-Solutions"
+  },
+  "Pardaz_Exhibition-Pedestrian-Simulation": {
+    "description": "A social simulation for exhibition design and validation.",
+    "language": "JavaScript",
+    "stars": 0,
+    "forks": 0,
+    "updated": "2026-05-17T19:50:20Z",
+    "readme_preview": "",
+    "first_image": null,
+    "html_url": "https://github.com/sahilyousafp/Pardaz_Exhibition-Pedestrian-Simulation"
+  },
+  "AEC_HACKATHON_BIG": {
+    "description": "This is a repository for the hackathon that was conducted during the AECTECH hackathon 2025 at barcelona",
+    "language": "Jupyter Notebook",
+    "stars": 1,
+    "forks": 0,
+    "updated": "2025-07-07T15:10:11Z",
+    "readme_preview": "### ZONO_NAUTS.\n![Minecraft Loading](assets/minecraft.gif)\n### About This Repository\nPresentation link\nhttps://docs.google.com/presentation/d/1TVzfKjb-gqISSw54PyOh2nNhkcX3KrRm1F0NSyFUOvg/edit?usp=sharing\n\nThis repository contains proof-of-concept code developed during the **AEC TECH Hackathon 2025** hosted at **BIG Office, Barcelona**. Built by the ZONO_NAUTS team, the project explores how we can visualize, simulate, and predict urban growth patterns using **graph neural networks (GNNs)** and **Minecraft-style voxel models**.\n\nWe turned complex urban data into gamified, interpretable prototypes \u2014 not just for fun, but to open up serious questions on how cities grow and how planners, developers, and citizens can play a role in shaping that.\n![Hackathon Poster 9](assets/GNN_on_city.png)\n\n![Hackathon Poster 1](assets/ZONO_NAUTS-AEC%20hackathon%20(1).png)\n![Hackathon Poster 3](assets/ZONO_NAUTS-AEC%20hackathon.png)\n\n![Hackathon Poster 2](assets/ZONO_NAUTS-AEC%20hackathon%20(2).png)\n![Training Result](assets/Barcelona.png)\n\n\n\n### About This Repository\n\nThis repository contains proof-of-concept code developed during the **AEC TECH Hackathon 2025** hosted at **BIG Office, Barcelona**. Built by the ZONO_NAUTS team, the project explores how we can visualize, simulate, and predict urban growth patterns using **graph neural networks (GNNs)** and **Minecraft-style voxel models**.\n\nWe turned complex urban data into gamified, interpretable prototypes \u2014 not just for fun, but to open up seri",
+    "first_image": "https://raw.githubusercontent.com/sahilyousafp/AEC_HACKATHON_BIG/main/assets/minecraft.gif",
+    "html_url": "https://github.com/sahilyousafp/AEC_HACKATHON_BIG"
+  },
+  "AI4ALL_Decision": {
+    "description": "This is a repository showcasing the citizen's knowledge and importance of involvement in participatory decsion making",
+    "language": "HTML",
+    "stars": 0,
+    "forks": 0,
+    "updated": "2026-06-05T15:25:02Z",
+    "readme_preview": "",
+    "first_image": null,
+    "html_url": "https://github.com/sahilyousafp/AI4ALL_Decision"
+  }
+}
