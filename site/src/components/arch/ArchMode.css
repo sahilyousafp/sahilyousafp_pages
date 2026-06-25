@@ -471,3 +471,32 @@
   .detail-gallery { width: 100%; }
   .detail-img { max-height: 400px; }
 }
+
+@media (max-width: 480px) {
+  .arch-header { padding: 14px 3vw; }
+  .arch-header .back-link {
+    font-size: 11px;
+    padding: 10px 0;
+    min-height: 44px;
+  }
+  .room-panel {
+    width: 280px;
+    right: 2vw;
+    padding: 14px;
+  }
+  .room-panel-title { font-size: 13px; }
+  .room-panel-desc { font-size: 10px; }
+  .room-meta-item span { font-size: 9px; }
+  .panel-cover { width: 260px; height: 170px; }
+  .panel-video-card { width: 260px; }
+  .panel-cover-title { font-size: 13px; }
+  .detail-card {
+    max-width: 100vw;
+    padding: 14px;
+    gap: 14px;
+    border-radius: 0;
+  }
+  .detail-title { font-size: 20px; }
+  .detail-desc { font-size: 12px; }
+  .detail-img { max-height: 280px; }
+}

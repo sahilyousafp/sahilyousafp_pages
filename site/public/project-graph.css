@@ -390,3 +390,50 @@ img{max-width:100%;display:block;}
   .pg-node-sub{display:none;}
   .pg-img-grid{grid-template-columns:1fr;}
 }
+
+@media(max-width:600px){
+  .pg-nav{padding:0 12px;height:44px;}
+  .pg-nav-logo{font-size:11px;}
+  .pg-nav-actions{gap:10px;}
+  .pg-connect-btn{display:none;}
+  .pg-graph{flex:0 0 35vh;}
+  .pg-node-icon{width:44px;height:44px;}
+  .pg-node-icon i{font-size:18px;}
+  .pg-node-center .pg-node-icon{width:56px;height:56px;}
+  .pg-node-center .pg-node-icon i{font-size:26px;}
+  .pg-node-branch .pg-node-icon{width:50px;height:50px;}
+  .pg-node-label{font-size:8px;}
+  .pg-node-center .pg-node-label{font-size:11px;}
+  .pg-node-center .pg-node-sublabel{font-size:8px;}
+  .pg-panel-header{padding:10px 14px;}
+  .pg-panel-path{font-size:9px;}
+  .pg-panel-body{padding:16px 14px;}
+  .pg-project-title{font-size:clamp(18px,6vw,28px);}
+  .pg-project-desc{font-size:12px;}
+  .pg-tags{gap:5px;}
+  .pg-tag{font-size:8px;padding:3px 7px;}
+  .pg-meta-section{padding:12px;}
+  .pg-meta-label{font-size:9px;}
+  .pg-meta-list li{font-size:11px;}
+  .pg-accordion-header{padding:16px 0;min-height:44px;}
+  .pg-accordion-title{font-size:11px;}
+  .pg-s-title{font-size:15px;}
+  .pg-s-body{font-size:12px;}
+  .pg-pipeline-num{font-size:18px;}
+  .pg-pipeline-info h4{font-size:10px;}
+  .pg-pipeline-info p{font-size:11px;}
+  .pg-table{font-size:11px;display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .pg-tech-grid{grid-template-columns:repeat(auto-fill,minmax(90px,1fr));}
+  .pg-tech-item{padding:8px 6px;}
+  .pg-tech-item i{font-size:12px;}
+  .pg-tech-item .name{font-size:11px;}
+  .pg-tech-item .role{font-size:8px;}
+  .pg-team-grid{grid-template-columns:1fr 1fr;}
+  .pg-team-card .name{font-size:11px;}
+  .pg-team-card .desc{font-size:10px;}
+  .pg-arch-box{padding:10px;}
+  .pg-arch-box pre{font-size:9px;line-height:1.5;}
+  .pg-panel-footer{padding:10px 14px;}
+  .pg-view-btn{font-size:10px;padding:10px;}
+  .pg-focus-btn{bottom:10px;left:10px;font-size:9px;padding:6px 10px;}
+}

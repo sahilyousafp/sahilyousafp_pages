@@ -273,3 +273,29 @@
   .code-nav{display:none;}
   .hero-meta,.graph-hint{display:none;}
 }
+
+@media (max-width:600px){
+  .code-header{padding:12px 4vw;}
+  .code-mode .back-link{font-size:10px;padding:10px 14px;min-height:44px;}
+  .code-section{padding:60px 5vw;}
+  .section-head{margin-bottom:32px;flex-wrap:wrap;gap:10px;}
+  .section-head h2{font-size:clamp(24px,7vw,48px);}
+  .section-num{font-size:11px;}
+  .code-projects{grid-template-columns:1fr;gap:16px;}
+  .cc-img{height:160px;}
+  .cc-body h3{font-size:20px;}
+  .cc-desc{font-size:13px;}
+  .code-marquee{padding:12px 0;}
+  .marquee-track span{font-size:clamp(20px,5vw,36px);}
+  .publication-card{padding:16px;}
+  .publication-card h3{font-size:clamp(16px,5vw,24px);}
+  .blog-card{width:240px;}
+  .blog-card-img{height:120px;}
+  .blog-card-title{font-size:15px;}
+  .contact-grid{grid-template-columns:1fr;}
+  .contact-big{padding:20px;font-size:13px;}
+  .skills-cloud{gap:8px;}
+  .skill-pill{padding:8px 14px;font-size:11px;}
+  .code-footer{flex-direction:column;gap:8px;align-items:center;text-align:center;padding:20px 4vw;}
+  .code-nav-github{width:44px;height:44px;font-size:18px;}
+}

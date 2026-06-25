@@ -239,5 +239,24 @@
   .stat-num{font-size:24px;}
 }
 
+@media (max-width:480px){
+  .mode-half{padding:16px 14px;}
+  .mode-header-left,.mode-header-right{padding-bottom:20px;}
+  .logo{font-size:clamp(22px,6vw,32px);}
+  .mode-eyebrow{font-size:9px;}
+  .mode-code .mode-main h1{font-size:clamp(28px,10vw,48px);}
+  .mode-arch .mode-main h1{font-size:clamp(28px,10vw,56px);}
+  .mode-subtitle{font-size:10px;margin-top:12px;}
+  .mode-code .mode-desc,.mode-arch .mode-desc{font-size:12px;margin-top:10px;}
+  .mode-stats{gap:16px;margin-top:24px;}
+  .stat-num{font-size:20px;}
+  .stat-label{font-size:8px;}
+  .mode-footer-left,.mode-footer-right{font-size:8px;}
+}
+
 /* Cursor visibility helpers */
 .cursor-target{cursor:none;}
+
+@media (pointer:coarse){
+  .app,.app *{cursor:auto !important;}
+}

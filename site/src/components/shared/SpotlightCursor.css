@@ -41,3 +41,7 @@
 .spotlight-cursor:has(~ button:hover) {
   mix-blend-mode: lighten;
 }
+
+@media (pointer: coarse) {
+  .spotlight-cursor { display: none; }
+}

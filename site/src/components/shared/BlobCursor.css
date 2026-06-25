@@ -38,3 +38,7 @@
 .blob-lead .inner-dot {
   transition: opacity 0.2s ease;
 }
+
+@media (pointer: coarse) {
+  .blob-container { display: none; }
+}

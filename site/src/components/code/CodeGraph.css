@@ -271,3 +271,43 @@
     font-size: 10px;
   }
 }
+
+@media (max-width: 600px) {
+  .kg-icon {
+    width: 44px;
+    height: 44px;
+  }
+  .kg-icon .material-symbols-outlined {
+    font-size: 22px;
+  }
+  .kg-icon-hex {
+    width: 50px;
+    height: 50px;
+  }
+  .kg-icon-center {
+    width: 56px;
+    height: 56px;
+  }
+  .kg-icon-center .material-symbols-outlined {
+    font-size: 28px;
+  }
+  .kg-node-sub .kg-icon {
+    width: 36px;
+    height: 36px;
+  }
+  .kg-node-sub .kg-icon .material-symbols-outlined {
+    font-size: 18px;
+  }
+  .kg-label-main {
+    font-size: 13px;
+  }
+  .kg-label-sub {
+    font-size: 10px;
+  }
+  .kg-label-branch {
+    font-size: 10px;
+  }
+  .kg-label-leaf {
+    font-size: 9px;
+  }
+}
