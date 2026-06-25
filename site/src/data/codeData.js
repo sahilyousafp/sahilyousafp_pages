@@ -78,11 +78,11 @@ export const posts = blogs;
 
 export const codeExp = [
   {date:'2025–', role:'AI Research Intern', desc:'City Layers — Vienna · TU Wien spin-off · Participatory spatial data platform · SQL→Neo4j migration, agentic LLM framework, FastAPI + TypeScript deployment, GCP infrastructure', type:'RESEARCH', link:'https://app.citylayers.eu/'},
-  {date:'2024–25', role:'Master in AI for Architecture & the Built Environment', desc:'IAAC — Institute for Advanced Architecture of Catalonia, Barcelona', type:'EDUCATION'},
-  {date:'2024', role:'Jr. Design Architect', desc:'SHAPE Architecture & Research — UAE · Parametric design for high-profile projects', type:'PRACTICE'},
-  {date:'2024', role:'Set Designer · Contract', desc:'DNEG — Mumbai · Spatial visualisation for world-class VFX productions', type:'PRACTICE'},
-  {date:'2022–24', role:'Architect', desc:'Morphogenesis — Delhi · Sustainable, award-winning parametric & bioclimatic architecture', type:'PRACTICE'},
-  {date:'2025', role:'Published Research — ANNSIM Conference', desc:'Society of Modelling & Simulation (SCS) · Building Analysis Tool (B.A.T.)', type:'RESEARCH'}
+  {date:'2024–25', role:'Master in AI for Architecture & the Built Environment', desc:'IAAC — Institute for Advanced Architecture of Catalonia, Barcelona', type:'EDUCATION', link:'https://iaac.net/'},
+  {date:'2024', role:'Jr. Design Architect', desc:'SHAPE Architecture & Research — UAE · Parametric design for high-profile projects', type:'PRACTICE', link:'https://shapearchitecture.com/'},
+  {date:'2024', role:'Set Designer · Contract', desc:'DNEG — Mumbai · Spatial visualisation for world-class VFX productions', type:'PRACTICE', link:'https://www.dneg.com/'},
+  {date:'2022–24', role:'Architect', desc:'Morphogenesis — Delhi · Sustainable, award-winning parametric & bioclimatic architecture', type:'PRACTICE', link:'https://www.morphogenesis.org/'},
+  {date:'2025', role:'Published Research — ANNSIM Conference', desc:'Society of Modelling & Simulation (SCS) · Building Analysis Tool (B.A.T.)', type:'RESEARCH', link:'https://www.scs.org/'}
 ];
 
 export const graphData = {
