@@ -9,8 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@react-three/drei": "9.117.3",
+    "@react-three/drei": "9.122.0",
     "@react-three/fiber": "8.17.14",
+    "@vercel/analytics": "2.0.1",
     "gsap": "^3.12.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
