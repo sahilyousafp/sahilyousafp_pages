@@ -69,43 +69,53 @@
     nodeEls[node.id] = el;
   });
 
-  graphEl.addEventListener('mousedown', function(e){
+  function getXY(e){
     var rect = graphEl.getBoundingClientRect();
-    var mx = e.clientX - rect.left;
-    var my = e.clientY - rect.top;
+    if(e.touches && e.touches.length){
+      return {x: e.touches[0].clientX - rect.left, y: e.touches[0].clientY - rect.top};
+    }
+    return {x: e.clientX - rect.left, y: e.clientY - rect.top};
+  }
+
+  function onPointerDown(e){
+    var pt = getXY(e);
     var hit = null;
     for(var i = sim.length - 1; i >= 0; i--){
-      var dx = sim[i].px - mx;
-      var dy = sim[i].py - my;
+      var dx = sim[i].px - pt.x;
+      var dy = sim[i].py - pt.y;
       if(Math.sqrt(dx*dx + dy*dy) < 40){ hit = sim[i]; break; }
     }
     if(hit){
-      drag = {active:true, nodeId:hit.id, isPan:false, startX:mx, startY:my, moved:false};
+      drag = {active:true, nodeId:hit.id, isPan:false, startX:pt.x, startY:pt.y, moved:false};
     } else {
-      drag = {active:true, nodeId:null, isPan:true, startX:mx, startY:my, moved:false};
+      drag = {active:true, nodeId:null, isPan:true, startX:pt.x, startY:pt.y, moved:false};
     }
-  });
+  }
 
-  window.addEventListener('mousemove', function(e){
+  function onPointerMove(e){
     if(!drag.active) return;
-    var rect = graphEl.getBoundingClientRect();
-    var mx = e.clientX - rect.left;
-    var my = e.clientY - rect.top;
-    var ddx = mx - drag.startX;
-    var ddy = my - drag.startY;
+    if(e.cancelable) e.preventDefault();
+    var pt = getXY(e);
+    var ddx = pt.x - drag.startX;
+    var ddy = pt.y - drag.startY;
     if(Math.abs(ddx) > 3 || Math.abs(ddy) > 3) drag.moved = true;
 
     if(drag.isPan){
       sim.forEach(function(n){ n.px += ddx; n.py += ddy; n.vx = 0; n.vy = 0; });
-      drag.startX = mx;
-      drag.startY = my;
+      drag.startX = pt.x;
+      drag.startY = pt.y;
     } else if(drag.nodeId){
       var node = sim.find(function(n){ return n.id === drag.nodeId; });
-      if(node){ node.px = mx; node.py = my; node.vx = 0; node.vy = 0; }
+      if(node){ node.px = pt.x; node.py = pt.y; node.vx = 0; node.vy = 0; }
     }
-  });
+  }
 
+  graphEl.addEventListener('mousedown', onPointerDown);
+  graphEl.addEventListener('touchstart', onPointerDown, {passive:true});
+  window.addEventListener('mousemove', onPointerMove);
+  window.addEventListener('touchmove', onPointerMove, {passive:false});
   window.addEventListener('mouseup', function(){ drag.active = false; });
+  window.addEventListener('touchend', function(){ drag.active = false; });
 
   function animate(){
     if(!sim.length){ requestAnimationFrame(animate); return; }

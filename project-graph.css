@@ -74,6 +74,7 @@ img{max-width:100%;display:block;}
   background:var(--pg-black);
   border-right:1px solid var(--pg-line);
   overflow:hidden;cursor:grab;
+  touch-action:none;
 }
 .pg-graph:active{cursor:grabbing;}
 .pg-graph-canvas{position:absolute;inset:0;z-index:1;pointer-events:none;}

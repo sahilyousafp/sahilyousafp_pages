@@ -128,10 +128,16 @@ export default function CodeGraph({ onNodeHover, onNodeClick }) {
     const container = containerRef.current;
     if (!container) return;
 
-    const onDown = (e) => {
+    const getXY = (e) => {
       const rect = container.getBoundingClientRect();
-      const mx = e.clientX - rect.left;
-      const my = e.clientY - rect.top;
+      if (e.touches && e.touches.length) {
+        return { x: e.touches[0].clientX - rect.left, y: e.touches[0].clientY - rect.top };
+      }
+      return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+    };
+
+    const onDown = (e) => {
+      const { x: mx, y: my } = getXY(e);
       const sim = simRef.current;
       if (!sim) return;
 
@@ -152,9 +158,8 @@ export default function CodeGraph({ onNodeHover, onNodeClick }) {
     const onMove = (e) => {
       const d = dragRef.current;
       if (!d.active) return;
-      const rect = container.getBoundingClientRect();
-      const mx = e.clientX - rect.left;
-      const my = e.clientY - rect.top;
+      if (e.cancelable) e.preventDefault();
+      const { x: mx, y: my } = getXY(e);
       const ddx = mx - d.startX;
       const ddy = my - d.startY;
       if (Math.abs(ddx) > 3 || Math.abs(ddy) > 3) d.moved = true;
@@ -177,8 +182,11 @@ export default function CodeGraph({ onNodeHover, onNodeClick }) {
     };
 
     container.addEventListener('mousedown', onDown);
+    container.addEventListener('touchstart', onDown, { passive: true });
     window.addEventListener('mousemove', onMove);
+    window.addEventListener('touchmove', onMove, { passive: false });
     window.addEventListener('mouseup', onUp);
+    window.addEventListener('touchend', onUp);
 
     const animate = () => {
       const sim = simRef.current;
@@ -256,11 +264,14 @@ export default function CodeGraph({ onNodeHover, onNodeClick }) {
 
     return () => {
       container.removeEventListener('mousedown', onDown);
+      container.removeEventListener('touchstart', onDown);
       window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('touchmove', onMove);
       window.removeEventListener('mouseup', onUp);
+      window.removeEventListener('touchend', onUp);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-  }, [drawLines]);
+  }, [drawLines, initSim]);
 
   const handleEnter = (id) => {
     hoveredRef.current = id;

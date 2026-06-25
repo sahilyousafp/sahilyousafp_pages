@@ -6,6 +6,7 @@
   background: var(--c-black, #0a0a0a);
   overflow: hidden;
   cursor: grab;
+  touch-action: none;
 }
 .kg-container:active {
   cursor: grabbing;
