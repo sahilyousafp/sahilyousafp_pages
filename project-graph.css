@@ -398,14 +398,17 @@ img{max-width:100%;display:block;}
   .pg-nav-actions{gap:10px;}
   .pg-connect-btn{display:none;}
   .pg-graph{flex:0 0 35vh;}
-  .pg-node-icon{width:44px;height:44px;}
-  .pg-node-icon i{font-size:18px;}
-  .pg-node-center .pg-node-icon{width:56px;height:56px;}
-  .pg-node-center .pg-node-icon i{font-size:26px;}
-  .pg-node-branch .pg-node-icon{width:50px;height:50px;}
-  .pg-node-label{font-size:8px;}
-  .pg-node-center .pg-node-label{font-size:11px;}
-  .pg-node-center .pg-node-sublabel{font-size:8px;}
+  .pg-node-icon{width:32px;height:32px;}
+  .pg-node-icon i{font-size:14px;}
+  .pg-node-center .pg-node-icon{width:42px;height:42px;}
+  .pg-node-center .pg-node-icon i{font-size:20px;}
+  .pg-node-branch .pg-node-icon{width:36px;height:36px;}
+  .pg-node-sub .pg-node-icon{width:24px;height:24px;}
+  .pg-node-sub .pg-node-icon i{font-size:11px;}
+  .pg-node-label{font-size:7px;}
+  .pg-node-center .pg-node-label{font-size:10px;}
+  .pg-node-center .pg-node-sublabel{font-size:7px;}
+  .pg-node-branch .pg-node-label{font-size:8px;}
   .pg-panel-header{padding:10px 14px;}
   .pg-panel-path{font-size:9px;}
   .pg-panel-body{padding:16px 14px;}
