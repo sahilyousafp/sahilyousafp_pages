@@ -209,14 +209,43 @@ export default function ArchMode({ onBack }) {
     setActive(prev => prev === id ? null : id);
   }, []);
 
+  const touchRef = useRef({ active: false, lastY: 0 });
+
   useEffect(() => {
     const onWheel = (e) => {
       if (active) return;
       e.preventDefault();
       scrollT.current = Math.max(0, Math.min(2, scrollT.current + e.deltaY * 0.0008));
     };
+
+    const onTouchStart = (e) => {
+      if (active) return;
+      touchRef.current = { active: true, lastY: e.touches[0].clientY };
+    };
+
+    const onTouchMove = (e) => {
+      if (!touchRef.current.active || active) return;
+      const y = e.touches[0].clientY;
+      const dy = touchRef.current.lastY - y;
+      touchRef.current.lastY = y;
+      scrollT.current = Math.max(0, Math.min(2, scrollT.current + dy * 0.003));
+      if (Math.abs(dy) > 2 && e.cancelable) e.preventDefault();
+    };
+
+    const onTouchEnd = () => {
+      touchRef.current.active = false;
+    };
+
     window.addEventListener('wheel', onWheel, { passive: false });
-    return () => window.removeEventListener('wheel', onWheel);
+    window.addEventListener('touchstart', onTouchStart, { passive: true });
+    window.addEventListener('touchmove', onTouchMove, { passive: false });
+    window.addEventListener('touchend', onTouchEnd);
+    return () => {
+      window.removeEventListener('wheel', onWheel);
+      window.removeEventListener('touchstart', onTouchStart);
+      window.removeEventListener('touchmove', onTouchMove);
+      window.removeEventListener('touchend', onTouchEnd);
+    };
   }, [active]);
 
   const hintText = scrollT.current <= 0.1
