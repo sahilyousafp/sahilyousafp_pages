@@ -13,13 +13,19 @@
   var sim = [];
   var drag = {active:false, nodeId:null, isPan:false, startX:0, startY:0, moved:false};
 
-  var REPULSION = 3500;
-  var SPRING_K = 0.008;
-  var REST_BRANCH = 140;
-  var REST_SUB = 100;
-  var MIN_DIST = 80;
   var DAMPING = 0.85;
-  var CENTER_G = 0.0003;
+  function getPhys(){
+    var w = graphEl.clientWidth, h = graphEl.clientHeight;
+    var s = Math.min(w, h) / 600;
+    return {
+      rep: 3500 * s * s,
+      sk: 0.008,
+      rb: Math.max(50, 140 * s),
+      rs: Math.max(35, 100 * s),
+      md: Math.max(35, 80 * s),
+      g: 0.0003 / Math.max(s, 0.3)
+    };
+  }
 
   function initSim(){
     var w = graphEl.clientWidth;
@@ -122,6 +128,7 @@
     var w = graphEl.clientWidth;
     var h = graphEl.clientHeight;
     var cx = w/2, cy = h/2;
+    var ph = getPhys();
     var lookup = {};
     sim.forEach(function(n){ lookup[n.id] = n; });
 
@@ -134,8 +141,8 @@
         var dx = a.px - b.px;
         var dy = a.py - b.py;
         var dist = Math.sqrt(dx*dx + dy*dy) || 1;
-        if(dist < MIN_DIST) dist = MIN_DIST;
-        var force = REPULSION / (dist * dist);
+        if(dist < ph.md) dist = ph.md;
+        var force = ph.rep / (dist * dist);
         var fx = (dx/dist) * force;
         var fy = (dy/dist) * force;
         a.vx += fx; a.vy += fy;
@@ -147,18 +154,18 @@
         var dx2 = a.px - p.px;
         var dy2 = a.py - p.py;
         var dist2 = Math.sqrt(dx2*dx2 + dy2*dy2) || 1;
-        var rest = a.type === 'sub' ? REST_SUB : REST_BRANCH;
+        var rest = a.type === 'sub' ? ph.rs : ph.rb;
         var disp = dist2 - rest;
-        var sfx = (dx2/dist2) * disp * SPRING_K;
-        var sfy = (dy2/dist2) * disp * SPRING_K;
+        var sfx = (dx2/dist2) * disp * ph.sk;
+        var sfy = (dy2/dist2) * disp * ph.sk;
         a.vx -= sfx; a.vy -= sfy;
         if(!(drag.active && drag.nodeId === p.id)){
           p.vx += sfx; p.vy += sfy;
         }
       }
 
-      a.vx += (cx - a.px) * CENTER_G;
-      a.vy += (cy - a.py) * CENTER_G;
+      a.vx += (cx - a.px) * ph.g;
+      a.vy += (cy - a.py) * ph.g;
     }
 
     sim.forEach(function(n){

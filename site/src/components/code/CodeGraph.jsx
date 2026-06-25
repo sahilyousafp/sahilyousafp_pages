@@ -56,13 +56,19 @@ const DEFAULT_CARD = {
   text: 'Architect and AI developer investigating the convergence of computational geometry, machine learning, and architectural structural analysis.',
 };
 
-const REPULSION = 4000;
-const SPRING_K = 0.008;
-const SPRING_REST_BRANCH = 160;
-const SPRING_REST_SUB = 110;
-const MIN_DIST = 90;
 const DAMPING = 0.85;
-const CENTER_GRAVITY = 0.0003;
+
+function getPhysics(w, h) {
+  const s = Math.min(w, h) / 700;
+  return {
+    repulsion: 4000 * s * s,
+    springK: 0.008,
+    restBranch: Math.max(60, 160 * s),
+    restSub: Math.max(40, 110 * s),
+    minDist: Math.max(40, 90 * s),
+    gravity: 0.0003 / Math.max(s, 0.3),
+  };
+}
 
 export default function CodeGraph({ onNodeHover, onNodeClick }) {
   const canvasRef = useRef(null);
@@ -198,6 +204,7 @@ export default function CodeGraph({ onNodeHover, onNodeClick }) {
       if (!sim[0] || isNaN(sim[0].px)) { initSim(); rafRef.current = requestAnimationFrame(animate); return; }
       const cx = w / 2;
       const cy = h / 2;
+      const ph = getPhysics(w, h);
       const lookup = {};
       sim.forEach(n => { lookup[n.id] = n; });
 
@@ -211,8 +218,8 @@ export default function CodeGraph({ onNodeHover, onNodeClick }) {
           let dx = a.px - b.px;
           let dy = a.py - b.py;
           let dist = Math.sqrt(dx * dx + dy * dy) || 1;
-          if (dist < MIN_DIST) dist = MIN_DIST;
-          const force = REPULSION / (dist * dist);
+          if (dist < ph.minDist) dist = ph.minDist;
+          const force = ph.repulsion / (dist * dist);
           const fx = (dx / dist) * force;
           const fy = (dy / dist) * force;
           a.vx += fx; a.vy += fy;
@@ -224,18 +231,18 @@ export default function CodeGraph({ onNodeHover, onNodeClick }) {
           const dx = a.px - p.px;
           const dy = a.py - p.py;
           const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-          const rest = a.type === 'sub' ? SPRING_REST_SUB : SPRING_REST_BRANCH;
+          const rest = a.type === 'sub' ? ph.restSub : ph.restBranch;
           const displacement = dist - rest;
-          const fx = (dx / dist) * displacement * SPRING_K;
-          const fy = (dy / dist) * displacement * SPRING_K;
+          const fx = (dx / dist) * displacement * ph.springK;
+          const fy = (dy / dist) * displacement * ph.springK;
           a.vx -= fx; a.vy -= fy;
           if (!(dragRef.current.active && dragRef.current.nodeId === p.id)) {
             p.vx += fx; p.vy += fy;
           }
         }
 
-        a.vx += (cx - a.px) * CENTER_GRAVITY;
-        a.vy += (cy - a.py) * CENTER_GRAVITY;
+        a.vx += (cx - a.px) * ph.gravity;
+        a.vy += (cy - a.py) * ph.gravity;
       }
 
       sim.forEach(n => {
