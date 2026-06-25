@@ -8,27 +8,36 @@ import './ArchMode.css';
 const base = import.meta.env.BASE_URL;
 const imgUrl = (path) => `${base}${path.replace(/^\//, '')}`;
 
-const PLAN_POS    = new THREE.Vector3(0, 3.5, 0.001);
-const ISO_POS     = new THREE.Vector3(1.5, 1.8, 1.5);
 const LOOK_TARGET = new THREE.Vector3(0, 0, 0);
+
+function getScale() {
+  const w = window.innerWidth;
+  if (w <= 480) return 1.8;
+  if (w <= 768) return 1.45;
+  if (w <= 1024) return 1.2;
+  return 1;
+}
 
 function CameraRig({ scrollT }) {
   const { camera } = useThree();
   const targetPos = useMemo(() => new THREE.Vector3(), []);
-  const orbitRadius = useMemo(() => Math.sqrt(ISO_POS.x ** 2 + ISO_POS.z ** 2), []);
-  const startAngle = useMemo(() => Math.atan2(ISO_POS.x, ISO_POS.z), []);
 
   useFrame(() => {
+    const s = getScale();
+    const planPos = new THREE.Vector3(0, 3.5 * s, 0.001);
+    const isoPos = new THREE.Vector3(1.5 * s, 1.8 * s, 1.5 * s);
+    const orbitRadius = Math.sqrt(isoPos.x ** 2 + isoPos.z ** 2);
+    const startAngle = Math.atan2(isoPos.x, isoPos.z);
     const t = scrollT.current;
 
     if (t <= 1) {
-      targetPos.lerpVectors(PLAN_POS, ISO_POS, t);
+      targetPos.lerpVectors(planPos, isoPos, t);
     } else {
       const rotT = Math.min(t - 1, 1);
       const angle = startAngle + rotT * Math.PI;
       targetPos.set(
         Math.sin(angle) * orbitRadius,
-        ISO_POS.y,
+        isoPos.y,
         Math.cos(angle) * orbitRadius
       );
     }
@@ -269,7 +278,7 @@ export default function ArchMode({ onBack }) {
 
       <Canvas
         className="colony-canvas"
-        camera={{ fov: 45, near: 0.01, far: 200, position: [0, 3.5, 0.001] }}
+        camera={{ fov: 45, near: 0.01, far: 200, position: [0, 3.5 * getScale(), 0.001] }}
         gl={{ antialias: true, alpha: true }}
         shadows
       >
