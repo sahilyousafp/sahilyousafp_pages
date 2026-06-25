@@ -77,6 +77,7 @@ export const blogs = [
 export const posts = blogs;
 
 export const codeExp = [
+  {date:'2025–', role:'AI Research Intern', desc:'City Layers — Vienna · TU Wien spin-off · Participatory spatial data platform · SQL→Neo4j migration, agentic LLM framework, FastAPI + TypeScript deployment, GCP infrastructure', type:'RESEARCH', link:'https://app.citylayers.eu/'},
   {date:'2024–25', role:'Master in AI for Architecture & the Built Environment', desc:'IAAC — Institute for Advanced Architecture of Catalonia, Barcelona', type:'EDUCATION'},
   {date:'2024', role:'Jr. Design Architect', desc:'SHAPE Architecture & Research — UAE · Parametric design for high-profile projects', type:'PRACTICE'},
   {date:'2024', role:'Set Designer · Contract', desc:'DNEG — Mumbai · Spatial visualisation for world-class VFX productions', type:'PRACTICE'},
@@ -106,7 +107,8 @@ export const graphData = {
       {label:'Grasshopper', desc:'Parametric modelling in Rhino 3D.'},
       {label:'ML / NN', desc:'Graph neural nets, reinforcement learning, NLP.'}
     ]},
-    {id:'experience', label:'PATH', link:'#code-exp', desc:'Morphogenesis, SHAPE, DNEG and IAAC Barcelona.', leaves:[
+    {id:'experience', label:'PATH', link:'#code-exp', desc:'City Layers, Morphogenesis, SHAPE, DNEG and IAAC Barcelona.', leaves:[
+      {label:'City Layers', desc:'AI Research Intern — participatory spatial data, Vienna.', link:'https://app.citylayers.eu/'},
       {label:'IAAC', desc:'Master in AI for Architecture, Barcelona.'},
       {label:'Morphogenesis', desc:'Sustainable parametric architecture, Delhi.'},
       {label:'DNEG', desc:'VFX spatial visualisation, Mumbai.'},

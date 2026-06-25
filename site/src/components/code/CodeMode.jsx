@@ -133,16 +133,19 @@ export default function CodeMode({ onBack }) {
           <h2>EXPERIENCE & PATH</h2>
         </div>
         <div className="exp-list">
-          {codeExp.map((e, i) => (
-            <div key={i} className="exp-row" data-reveal data-reveal-delay={(i % 2) + 1}>
-              <span className="exp-type">{e.type}</span>
-              <span className="exp-date">{e.date}</span>
-              <div className="exp-info">
-                <h4>{e.role}</h4>
-                <p>{e.desc}</p>
-              </div>
-            </div>
-          ))}
+          {codeExp.map((e, i) => {
+            const Row = e.link ? 'a' : 'div';
+            return (
+              <Row key={i} className="exp-row cursor-target" href={e.link || undefined} target={e.link ? '_blank' : undefined} rel={e.link ? 'noreferrer' : undefined} data-reveal data-reveal-delay={(i % 2) + 1}>
+                <span className="exp-type">{e.type}</span>
+                <span className="exp-date">{e.date}</span>
+                <div className="exp-info">
+                  <h4>{e.role}</h4>
+                  <p>{e.desc}</p>
+                </div>
+              </Row>
+            );
+          })}
         </div>
       </section>
 
