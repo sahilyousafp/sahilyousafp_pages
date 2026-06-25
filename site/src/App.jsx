@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import BlobCursor from './components/shared/BlobCursor';
 import CodeMode from './components/code/CodeMode';
 import ArchMode from './components/arch/ArchMode';
@@ -199,6 +200,7 @@ export default function App() {
         slowDuration={0.5}
         zIndex={9999}
       />
+      <Analytics />
     </div>
   );
 }
