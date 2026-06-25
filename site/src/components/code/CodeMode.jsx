@@ -39,6 +39,7 @@ export default function CodeMode({ onBack }) {
           <button onClick={() => scrollTo('code-blogs')}>BLOGS</button>
           <button onClick={() => scrollTo('code-exp')}>EXPERIENCE</button>
           <button onClick={() => scrollTo('code-contact')}>CONTACT</button>
+          <a href="https://github.com/sahilyousafp" target="_blank" rel="noreferrer" className="code-nav-github"><i className="fab fa-github"></i></a>
         </nav>
       </header>
 

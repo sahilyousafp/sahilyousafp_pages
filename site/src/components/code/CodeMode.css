@@ -33,6 +33,16 @@
 .code-nav button:active{
   background:var(--c-ember);border-color:var(--c-ember);
 }
+.code-nav-github{
+  display:flex;align-items:center;justify-content:center;
+  width:34px;height:34px;
+  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);
+  color:var(--c-white);font-size:16px;
+  transition:all .25s;
+}
+.code-nav-github:hover{
+  background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.3);
+}
 
 /* Hero */
 .code-hero{
