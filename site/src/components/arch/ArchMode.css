@@ -201,9 +201,11 @@
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
 }
-.panel-track::-webkit-scrollbar { height: 3px; }
-.panel-track::-webkit-scrollbar-track { background: transparent; }
-.panel-track::-webkit-scrollbar-thumb { background: rgba(199, 145, 120, 0.3); }
+.panel-track::-webkit-scrollbar { height: 6px; }
+.panel-track::-webkit-scrollbar-track { background: rgba(61, 43, 31, 0.08); border-radius: 3px; }
+.panel-track::-webkit-scrollbar-thumb { background: var(--c-clay, #C75B3A); border-radius: 3px; min-width: 60px; }
+.panel-track::-webkit-scrollbar-thumb:hover { background: #A84A2E; }
+.panel-track { scrollbar-width: auto; scrollbar-color: var(--c-clay, #C75B3A) rgba(61, 43, 31, 0.08); }
 
 .panel-cover {
   flex: 0 0 auto;

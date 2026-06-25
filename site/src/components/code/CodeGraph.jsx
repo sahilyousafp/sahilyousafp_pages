@@ -78,6 +78,7 @@ export default function CodeGraph({ onNodeHover, onNodeClick }) {
     if (!container) return;
     const w = container.clientWidth;
     const h = container.clientHeight;
+    if (w < 10 || h < 10) return;
     simRef.current = INIT_NODES.map(n => ({
       ...n,
       px: n.x / 100 * w,
@@ -87,9 +88,9 @@ export default function CodeGraph({ onNodeHover, onNodeClick }) {
   }, []);
 
   useEffect(() => {
-    initSim();
+    const timer = setTimeout(initSim, 50);
     window.addEventListener('resize', initSim);
-    return () => window.removeEventListener('resize', initSim);
+    return () => { clearTimeout(timer); window.removeEventListener('resize', initSim); };
   }, [initSim]);
 
   const drawLines = useCallback(() => {
@@ -183,6 +184,8 @@ export default function CodeGraph({ onNodeHover, onNodeClick }) {
       if (!sim || !cont) { rafRef.current = requestAnimationFrame(animate); return; }
       const w = cont.clientWidth;
       const h = cont.clientHeight;
+      if (w < 10 || h < 10) { rafRef.current = requestAnimationFrame(animate); return; }
+      if (!sim[0] || isNaN(sim[0].px)) { initSim(); rafRef.current = requestAnimationFrame(animate); return; }
       const cx = w / 2;
       const cy = h / 2;
       const lookup = {};
