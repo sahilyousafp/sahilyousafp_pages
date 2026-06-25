@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import { gsap } from 'gsap';
-import TargetCursor from './components/TargetCursor';
-import ArchCursor from './components/ArchCursor';
-import CodeMode from './components/CodeMode';
-import ArchMode from './components/ArchMode';
+import BlobCursor from './components/shared/BlobCursor';
+import CodeMode from './components/code/CodeMode';
+import ArchMode from './components/arch/ArchMode';
+import EdgeModeSwitch from './components/shared/EdgeModeSwitch';
 import './App.css';
 
-function ModeLanding({ onSelect }) {
+function ModeLanding({ onSelect, onHoverSide }) {
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -16,48 +15,91 @@ function ModeLanding({ onSelect }) {
     const onMove = (e) => {
       const rect = container.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width;
-      const tilt = (x - 0.5) * 8;
-      gsap.to(container, { '--tilt': `${tilt}deg`, duration: 0.5, ease: 'power2.out' });
+      onHoverSide(x < 0.5 ? 'code' : 'arch');
     };
 
+    const onLeave = () => onHoverSide(null);
+
     container.addEventListener('mousemove', onMove);
-    return () => container.removeEventListener('mousemove', onMove);
-  }, []);
+    container.addEventListener('mouseleave', onLeave);
+    return () => {
+      container.removeEventListener('mousemove', onMove);
+      container.removeEventListener('mouseleave', onLeave);
+    };
+  }, [onHoverSide]);
 
   return (
     <div ref={containerRef} className="mode-landing">
-      <div className="mode-bg-code"></div>
-      <div className="mode-bg-arch"></div>
+      {/* LEFT: CODE MODE */}
+      <div
+        className="mode-half mode-code cursor-target"
+        onClick={() => onSelect('code')}
+      >
+        <div className="mode-bg-code"></div>
+
+        <div className="mode-content">
+          <div className="mode-header-left">
+            <span className="logo">SY</span>
+            <span className="mode-eyebrow">CODER</span>
+          </div>
+
+          <div className="mode-main">
+            <h1>
+              <span>SPATIAL</span>
+              <span>ENGINEER</span>
+            </h1>
+            <p className="mode-subtitle">Computational intelligence for spatial systems</p>
+            <p className="mode-desc">
+              LLM agents · Graph neural networks · Structural analysis tools · Geospatial AI
+            </p>
+            <div className="mode-stats">
+              <div><span className="stat-num">6</span> <span className="stat-label">Projects</span></div>
+              <div><span className="stat-num">1</span> <span className="stat-label">Publication</span></div>
+              <div><span className="stat-num">8</span> <span className="stat-label">Blogs</span></div>
+            </div>
+          </div>
+
+          <div className="mode-footer-left">
+            <span>BARCELONA / DELHI</span>
+            <span>OPEN TO WORK</span>
+          </div>
+        </div>
+
+        <div className="mode-accent-line"></div>
+      </div>
+
+      {/* DIVIDER */}
       <div className="mode-divider"></div>
 
-      <div className="mode-top">
-        <span className="logo">SY</span>
-        <span className="mode-eyebrow">PORTFOLIO 2025</span>
-      </div>
+      {/* RIGHT: ARCHITECTURE MODE */}
+      <div
+        className="mode-half mode-arch cursor-target"
+        onClick={() => onSelect('arch')}
+      >
+        <div className="mode-bg-arch"></div>
 
-      <h1 className="mode-title">
-        <span className="mode-left">ARCHITECT</span>
-        <span className="mode-right">AI BUILDER</span>
-      </h1>
+        <div className="mode-content">
+          <div className="mode-header-right">
+            <span className="mode-eyebrow">ARCHITECT</span>
+          </div>
 
-      <div className="mode-cards">
-        <button className="mode-card cursor-target code" onClick={() => onSelect('code')}>
-          <span className="mc-label">MODE</span>
-          <span className="mc-name">CODE</span>
-          <span className="mc-desc">Interactive graph · GitHub projects · AI research</span>
-          <span className="mc-arrow"><i className="fas fa-arrow-right"></i></span>
-        </button>
-        <button className="mode-card cursor-target arch" onClick={() => onSelect('arch')}>
-          <span className="mc-label">MODE</span>
-          <span className="mc-name">ARCHITECTURE</span>
-          <span className="mc-desc">Floor plan · 3D scroll · Built work</span>
-          <span className="mc-arrow"><i className="fas fa-arrow-right"></i></span>
-        </button>
-      </div>
+          <div className="mode-main">
+            <h1>
+              <span>SAHIL</span>
+              <span>YOUSAF</span>
+            </h1>
+            <p className="mode-subtitle">Architect & AI Researcher</p>
+            <p className="mode-desc">
+              3 years across award-winning studios: Morphogenesis, DNEG, SHAPE. Masters at IAAC Barcelona.
+            </p>
+          </div>
 
-      <div className="mode-bottom">
-        <span>SAHIL YOUSAF</span>
-        <span>BARCELONA · DELHI</span>
+          <div className="mode-footer-right">
+            <span>IAAC Barcelona</span>
+          </div>
+        </div>
+
+        <div className="mode-accent-line"></div>
       </div>
     </div>
   );
@@ -74,6 +116,8 @@ function Loader({ done }) {
 export default function App() {
   const [mode, setMode] = useState(null);
   const [loaded, setLoaded] = useState(false);
+  const [hoverSide, setHoverSide] = useState(null);
+  const [edgeActive, setEdgeActive] = useState(false);
   const appRef = useRef(null);
 
   useEffect(() => {
@@ -82,41 +126,79 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    const hash = window.location.hash.replace('#', '');
+    if (hash === 'code' || hash === 'arch') setMode(hash);
+
+    const onHashChange = () => {
+      const h = window.location.hash.replace('#', '');
+      if (h === 'code' || h === 'arch') setMode(h);
+      else setMode(null);
+    };
+    window.addEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
+  }, []);
+
+  useEffect(() => {
     if (mode) {
+      window.location.hash = mode;
       window.scrollTo(0, 0);
       document.body.style.overflow = 'auto';
+    } else {
+      if (window.location.hash) history.replaceState(null, '', window.location.pathname);
+      document.body.style.overflow = '';
     }
   }, [mode]);
 
-  const cursorColor = mode === 'code' ? '#ffffff' : '#3D2B1F';
-  const cursorColorOnTarget = mode === 'code' ? '#FF3300' : '#C75B3A';
+  const blobColor = mode === 'arch'
+    ? '#C75B3A'
+    : mode === 'code'
+      ? '#00F0FF'
+      : hoverSide === 'code'
+        ? '#00F0FF'
+        : hoverSide === 'arch'
+          ? '#C75B3A'
+          : '#ffffff';
+
+  const blobInner = mode === 'arch'
+    ? 'rgba(255,235,220,0.8)'
+    : mode === 'code'
+      ? 'rgba(255,255,255,0.8)'
+      : hoverSide === 'code'
+        ? 'rgba(255,255,255,0.8)'
+        : hoverSide === 'arch'
+          ? 'rgba(255,235,220,0.8)'
+          : 'rgba(200,200,200,0.8)';
 
   return (
     <div ref={appRef} className={`app ${mode || 'landing'}`}>
       <Loader done={loaded} />
       {mode === null ? (
-        <ModeLanding onSelect={setMode} />
+        <ModeLanding onSelect={setMode} onHoverSide={setHoverSide} />
       ) : mode === 'code' ? (
         <CodeMode onBack={() => setMode(null)} />
       ) : (
         <ArchMode onBack={() => setMode(null)} />
       )}
-      {mode === 'arch' ? (
-        <ArchCursor
-          targetSelector=".cursor-target"
-          cursorColor="#3D2B1F"
-          cursorColorOnTarget="#C75B3A"
-          hideDefaultCursor={true}
-        />
-      ) : (
-        <TargetCursor
-          targetSelector=".cursor-target"
-          cursorColor="#ffffff"
-          cursorColorOnTarget="#FF3300"
-          spinDuration={3}
-          hideDefaultCursor={true}
-        />
-      )}
+      {mode && <EdgeModeSwitch mode={mode} onSwitch={() => setMode(mode === 'code' ? 'arch' : 'code')} onEdgeActive={setEdgeActive} />}
+      <BlobCursor
+        blobType="circle"
+        fillColor={blobColor}
+        hidden={edgeActive}
+        trailCount={3}
+        sizes={[40, 80, 55]}
+        innerSizes={[12, 22, 16]}
+        innerColor={blobInner}
+        opacities={[0.6, 0.5, 0.4]}
+        shadowColor="rgba(0,0,0,0.15)"
+        shadowBlur={2}
+        shadowOffsetX={0}
+        shadowOffsetY={0}
+        filterStdDeviation={12}
+        useFilter={true}
+        fastDuration={0.1}
+        slowDuration={0.5}
+        zIndex={9999}
+      />
     </div>
   );
 }

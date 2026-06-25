@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI4ALL Decision · Land Cover Visualisation · Sahil Yousaf</title>
+  <link rel="icon" type="image/png" href="/sahilyousafp_pages/References/For website.PNG">
+  <link rel="stylesheet" href="/sahilyousafp_pages/project-graph.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+<div class="pg-app">
+  <nav class="pg-nav">
+    <a href="/sahilyousafp_pages/#code" class="pg-nav-logo"><span>&lt;</span>DEV_MACHINE<span> /&gt;</span></a>
+    <div class="pg-nav-links">
+      <a href="/sahilyousafp_pages/#code">Projects</a>
+      <a class="active">Graph_System</a>
+      <a href="/sahilyousafp_pages/#code">Labs</a>
+    </div>
+    <div class="pg-nav-actions">
+      <a href="https://github.com/sahilyousafp/AI4ALL_Decision" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/sahil-yousaf-882a0b132/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+      <a href="mailto:sahil.yousaf@students.iaac.net" class="pg-connect-btn">Connect</a>
+    </div>
+  </nav>
+
+  <div class="pg-main">
+    <div class="pg-graph" id="pg-graph">
+      <canvas class="pg-graph-canvas" id="pg-canvas"></canvas>
+      <button class="pg-focus-btn"><i class="fas fa-compress-alt"></i> Focus_View</button>
+    </div>
+
+    <div class="pg-panel">
+      <div class="pg-panel-header">
+        <span class="pg-panel-path">Index // AI4ALL</span>
+        <button class="pg-panel-close">&times;</button>
+      </div>
+      <div class="pg-panel-body">
+        <h1 class="pg-project-title">AI4ALL <em>Decision Platform</em></h1>
+        <p class="pg-project-desc">A participatory land-cover change visualisation platform that makes decades of satellite data legible to non-experts. Citizens and urban planners compare historical land cover side-by-side on an interactive Leaflet map.</p>
+
+        <div class="pg-tags">
+          <span class="pg-tag accent">React + TypeScript</span>
+          <span class="pg-tag">Land Cover Analysis</span>
+          <span class="pg-tag">IAAC · 2024–25</span>
+        </div>
+
+        <div class="pg-meta-section">
+          <div class="pg-meta-label">Core_Technologies</div>
+          <ul class="pg-meta-list">
+            <li>React + TypeScript</li>
+            <li>Leaflet.js Side-by-Side</li>
+            <li>OpenLandMap Satellite Data</li>
+          </ul>
+        </div>
+
+        <div class="pg-accordion">
+          <div class="pg-accordion-item" data-section="overview">
+            <div class="pg-accordion-header"><span class="pg-accordion-title">Overview</span><span class="pg-accordion-toggle">+</span></div>
+            <div class="pg-accordion-content"><div class="pg-accordion-inner">
+              <h3 class="pg-s-title">Making land change visible to everyone</h3>
+              <div class="pg-s-body">
+                <p>The AI4ALL project asks a fundamental question: <strong>how do you include citizens in decisions about their environment</strong> when the data that drives those decisions is locked behind technical interfaces?</p>
+                <p>This platform turns OpenLandMap satellite data into an interactive split-screen comparison — anyone can drag a divider to reveal how land cover has changed between any two years from 2000 to 2023.</p>
+                <p>Two modes serve two audiences: <strong>Data mode</strong> for analysts (raw land-cover tiles, opacity controls, quantified legend) and <strong>Story mode</strong> for citizens (narrative overlays that contextualise what the map is showing).</p>
+              </div>
+            </div></div>
+          </div>
+
+          <div class="pg-accordion-item" data-section="interface">
+            <div class="pg-accordion-header"><span class="pg-accordion-title">Interface Modes</span><span class="pg-accordion-toggle">+</span></div>
+            <div class="pg-accordion-content"><div class="pg-accordion-inner">
+              <h3 class="pg-s-title">Data mode vs Story mode</h3>
+              <div class="pg-pipeline">
+                <div class="pg-pipeline-step"><div class="pg-pipeline-num">🛰</div><div class="pg-pipeline-info"><h4>Data Mode</h4><p>Raw land-cover tiles. Year comparison slider. Opacity control. Quantified legend with land class breakdown.</p></div></div>
+                <div class="pg-pipeline-step"><div class="pg-pipeline-num">🌱</div><div class="pg-pipeline-info"><h4>Story Mode</h4><p>Narrative overlays replace technical UI. Real IGN aerial imagery. LoupeLens magnification for community zoom-ins.</p></div></div>
+                <div class="pg-pipeline-step"><div class="pg-pipeline-num">↔</div><div class="pg-pipeline-info"><h4>Split Compare</h4><p>Leaflet Side-by-Side control: drag the vertical divider to compare any two years of land-cover data.</p></div></div>
+                <div class="pg-pipeline-step"><div class="pg-pipeline-num">◉</div><div class="pg-pipeline-info"><h4>Ideology Panel</h4><p>Contextual information explaining the participatory decision-making thesis underlying the visualisation.</p></div></div>
+              </div>
+            </div></div>
+          </div>
+
+          <div class="pg-accordion-item" data-section="landcover">
+            <div class="pg-accordion-header"><span class="pg-accordion-title">Land Cover Data</span><span class="pg-accordion-toggle">+</span></div>
+            <div class="pg-accordion-content"><div class="pg-accordion-inner">
+              <h3 class="pg-s-title">OpenLandMap classification</h3>
+              <table class="pg-table">
+                <thead><tr><th>Class</th><th>Coverage</th><th>Change Signal</th></tr></thead>
+                <tbody>
+                  <tr><td>Cropland</td><td>Agricultural zones</td><td>Expansion / abandonment visible 2000–2023</td></tr>
+                  <tr><td>Forest</td><td>Tree canopy &gt;30%</td><td>Deforestation and reforestation patterns</td></tr>
+                  <tr><td>Grassland</td><td>Open vegetation</td><td>Land conversion to agriculture or urban</td></tr>
+                  <tr><td>Urban / Built-up</td><td>Impervious surfaces</td><td>City expansion — most dramatic growth signal</td></tr>
+                  <tr><td>Water</td><td>Rivers, lakes, wetlands</td><td>Seasonal and long-term water change</td></tr>
+                  <tr><td>Bare / Sparse</td><td>Deserts, rock, ice</td><td>Desertification and climate indicators</td></tr>
+                </tbody>
+              </table>
+            </div></div>
+          </div>
+
+          <div class="pg-accordion-item" data-section="architecture">
+            <div class="pg-accordion-header"><span class="pg-accordion-title">Architecture</span><span class="pg-accordion-toggle">+</span></div>
+            <div class="pg-accordion-content"><div class="pg-accordion-inner">
+              <h3 class="pg-s-title">Component structure</h3>
+              <div class="pg-arch-box">
+                <pre>  App.tsx
+  ├── Leaflet Map  (#map div)
+  │   ├── CartoDB basemap
+  │   ├── leftLayer  (year A tile layer)
+  │   └── rightLayer (year B tile layer)
+  │
+  ├── IdeologyPanel   — participatory context
+  ├── LossLayer       — land loss highlighting
+  ├── MorphLayer      — story mode overlays
+  └── LoupeLens       — magnification lens</pre>
+              </div>
+            </div></div>
+          </div>
+
+          <div class="pg-accordion-item" data-section="stack">
+            <div class="pg-accordion-header"><span class="pg-accordion-title">Technology</span><span class="pg-accordion-toggle">+</span></div>
+            <div class="pg-accordion-content"><div class="pg-accordion-inner">
+              <div class="pg-tech-grid">
+                <div class="pg-tech-item"><i class="fab fa-react"></i><span class="name">React</span><span class="role">UI framework</span></div>
+                <div class="pg-tech-item"><i class="fas fa-code"></i><span class="name">TypeScript</span><span class="role">Type safety</span></div>
+                <div class="pg-tech-item"><i class="fas fa-map"></i><span class="name">Leaflet.js</span><span class="role">Interactive map</span></div>
+                <div class="pg-tech-item"><i class="fas fa-sliders-h"></i><span class="name">Side-by-Side</span><span class="role">Year compare</span></div>
+                <div class="pg-tech-item"><i class="fas fa-bolt"></i><span class="name">Vite</span><span class="role">Build tool</span></div>
+                <div class="pg-tech-item"><i class="fas fa-satellite"></i><span class="name">OpenLandMap</span><span class="role">Satellite data</span></div>
+              </div>
+            </div></div>
+          </div>
+        </div>
+      </div>
+      <div class="pg-panel-footer">
+        <a href="https://github.com/sahilyousafp/AI4ALL_Decision" target="_blank" rel="noopener noreferrer" class="pg-view-btn">View_Full_Project <i class="fas fa-external-link-alt"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+window.PROJECT_DATA = {
+  nodes: [
+    {id:'main', label:'Main Graph', icon:'fas fa-home', type:'branch', color:'#FF3300', x:48, y:10, parent:'center', link:'/sahilyousafp_pages/#code'},
+    {id:'center', label:'AI4ALL', sub:'DECISION PLATFORM', icon:'fas fa-globe-americas', type:'center', x:48, y:46, parent:null},
+    {id:'overview',  label:'Overview',   icon:'fas fa-file-alt', type:'branch', color:'#00F0FF', x:30, y:18, parent:'center', section:'overview'},
+    {id:'interface', label:'Interface',  icon:'fas fa-columns', type:'branch', color:'#FFB800', x:75, y:20, parent:'center', section:'interface'},
+    {id:'landcover', label:'Land Cover', icon:'fas fa-leaf', type:'branch', color:'#00FF88', x:80, y:58, parent:'center', section:'landcover'},
+    {id:'arch',      label:'Architecture',icon:'fas fa-sitemap', type:'branch', color:'#B388FF', x:60, y:82, parent:'center', section:'architecture'},
+    {id:'stack',     label:'Stack',      icon:'fas fa-layer-group', type:'branch', color:'#F4F4F0', x:20, y:60, parent:'center', section:'stack'},
+    {id:'data',    label:'Data Mode',  icon:'fas fa-database', type:'sub', color:'#FFB800', x:62, y:8, parent:'interface'},
+    {id:'story',   label:'Story Mode', icon:'fas fa-book-open', type:'sub', color:'#FFB800', x:90, y:10, parent:'interface'},
+    {id:'split',   label:'Split View', icon:'fas fa-sliders-h', type:'sub', color:'#FFB800', x:92, y:40, parent:'interface'},
+    {id:'leaflet', label:'Leaflet.js', icon:'fas fa-map', type:'sub', color:'#F4F4F0', x:10, y:38, parent:'stack'},
+  ]
+};
+</script>
+<script src="/sahilyousafp_pages/project-graph.js"></script>
+</body>
+</html>

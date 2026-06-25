@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grounded Structural Solutions · Sahil Yousaf</title>
+  <link rel="icon" type="image/png" href="/sahilyousafp_pages/References/For website.PNG">
+  <link rel="stylesheet" href="/sahilyousafp_pages/project-graph.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+<div class="pg-app">
+  <nav class="pg-nav">
+    <a href="/sahilyousafp_pages/#code" class="pg-nav-logo"><span>&lt;</span>DEV_MACHINE<span> /&gt;</span></a>
+    <div class="pg-nav-links">
+      <a href="/sahilyousafp_pages/#code">Projects</a>
+      <a class="active">Graph_System</a>
+      <a href="/sahilyousafp_pages/#code">Labs</a>
+    </div>
+    <div class="pg-nav-actions">
+      <a href="https://github.com/sahilyousafp/Grounded.-Structural-Solutions" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/sahil-yousaf-882a0b132/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+      <a href="mailto:sahil.yousaf@students.iaac.net" class="pg-connect-btn">Connect</a>
+    </div>
+  </nav>
+
+  <div class="pg-main">
+    <div class="pg-graph" id="pg-graph">
+      <canvas class="pg-graph-canvas" id="pg-canvas"></canvas>
+      <button class="pg-focus-btn"><i class="fas fa-compress-alt"></i> Focus_View</button>
+    </div>
+
+    <div class="pg-panel">
+      <div class="pg-panel-header">
+        <span class="pg-panel-path">Index // Grounded</span>
+        <button class="pg-panel-close">&times;</button>
+      </div>
+      <div class="pg-panel-body">
+        <h1 class="pg-project-title">Grounded <em>Structural Solutions</em></h1>
+        <p class="pg-project-desc">A structural prediction tool for early-stage architectural design. Upload any 3D building model — the tool segments walls, floors and roofs, generates a structural grid, and runs finite element analysis to deliver displacement and stress reports.</p>
+
+        <div class="pg-tags">
+          <span class="pg-tag accent">FEA + PyNite</span>
+          <span class="pg-tag">IAAC · Term 2 &amp; 3</span>
+          <span class="pg-tag">2024–25</span>
+        </div>
+
+        <div class="pg-meta-section">
+          <div class="pg-meta-label">Core_Technologies</div>
+          <ul class="pg-meta-list">
+            <li>Mesh Segmentation</li>
+            <li>Finite Element Analysis (PyNite)</li>
+            <li>Multi-Model RAG</li>
+          </ul>
+        </div>
+
+        <div class="pg-accordion">
+          <div class="pg-accordion-item" data-section="overview">
+            <div class="pg-accordion-header"><span class="pg-accordion-title">Overview</span><span class="pg-accordion-toggle">+</span></div>
+            <div class="pg-accordion-content"><div class="pg-accordion-inner">
+              <h3 class="pg-s-title">Structural intelligence at concept stage</h3>
+              <div class="pg-s-body">
+                <p>Structural analysis traditionally enters the architectural workflow too late — after design decisions are locked in. Grounded brings <strong>finite element analysis to the earliest design phase</strong>, when changes are cheapest and most impactful.</p>
+                <p>Architects upload a rough 3D model (GLB or OBJ) of orthogonal volumes. The tool automatically detects structural elements, places columns using perimeter-first logic, and runs PyNite FEA to estimate load paths and flag structural weaknesses.</p>
+                <p>A <strong>multi-model RAG</strong> layer then queries structural design codes and best practices to provide actionable recommendations alongside the quantitative FEA results.</p>
+              </div>
+            </div></div>
+          </div>
+
+          <div class="pg-accordion-item" data-section="pipeline">
+            <div class="pg-accordion-header"><span class="pg-accordion-title">Pipeline</span><span class="pg-accordion-toggle">+</span></div>
+            <div class="pg-accordion-content"><div class="pg-accordion-inner">
+              <h3 class="pg-s-title">Automated analysis workflow</h3>
+              <div class="pg-pipeline">
+                <div class="pg-pipeline-step"><div class="pg-pipeline-num">01</div><div class="pg-pipeline-info"><h4>Model Upload</h4><p>Upload .glb or .obj. Trimesh parses the geometry into a raw mesh for processing.</p></div></div>
+                <div class="pg-pipeline-step"><div class="pg-pipeline-num">02</div><div class="pg-pipeline-info"><h4>Mesh Segmentation</h4><p>Walls, floors, and roofs are automatically detected and separated by geometry orientation and area thresholds.</p></div></div>
+                <div class="pg-pipeline-step"><div class="pg-pipeline-num">03</div><div class="pg-pipeline-info"><h4>Structural Grid</h4><p>A custom algorithm generates a structural grid based on floorplate geometry and wall intersections, using perimeter-first column logic.</p></div></div>
+                <div class="pg-pipeline-step"><div class="pg-pipeline-num">04</div><div class="pg-pipeline-info"><h4>FEA Report</h4><p>PyNite runs finite element analysis, outputting displacement maps, reaction forces, and structural warnings.</p></div></div>
+              </div>
+            </div></div>
+          </div>
+
+          <div class="pg-accordion-item" data-section="screens">
+            <div class="pg-accordion-header"><span class="pg-accordion-title">Screens</span><span class="pg-accordion-toggle">+</span></div>
+            <div class="pg-accordion-content"><div class="pg-accordion-inner">
+              <h3 class="pg-s-title">Analysis outputs</h3>
+              <div class="pg-img-grid">
+                <div class="pg-img-cell tall"><img src="https://github.com/user-attachments/assets/30f0e2a6-820d-44de-858f-73b515cb5b02" alt="Structural grid" loading="lazy"><span class="pg-img-label">Structural grid formation</span></div>
+                <div class="pg-img-cell tall"><img src="https://github.com/user-attachments/assets/b90521f5-b0fc-48d7-abb3-d75732b03d25" alt="Column placement" loading="lazy"><span class="pg-img-label">Column placement logic</span></div>
+              </div>
+              <div class="pg-img-grid">
+                <div class="pg-img-cell"><img src="https://github.com/user-attachments/assets/3b896688-e541-4857-b79b-5688208dc4fb" alt="Displacement" loading="lazy"><span class="pg-img-label">PyNite displacement analysis</span></div>
+                <div class="pg-img-cell"><img src="https://github.com/user-attachments/assets/7c22862c-0ae1-448f-aa65-cf5021bdb2e5" alt="FEA report" loading="lazy"><span class="pg-img-label">FEA summary report</span></div>
+              </div>
+              <div class="pg-img-grid single">
+                <div class="pg-img-cell" style="aspect-ratio:21/9;"><img src="https://github.com/user-attachments/assets/7ef3941b-fb94-403c-9431-a79da47691cd" alt="Full structural parse" loading="lazy"><span class="pg-img-label">Multi-model RAG — full structural parse</span></div>
+              </div>
+            </div></div>
+          </div>
+
+          <div class="pg-accordion-item" data-section="team">
+            <div class="pg-accordion-header"><span class="pg-accordion-title">Team</span><span class="pg-accordion-toggle">+</span></div>
+            <div class="pg-accordion-content"><div class="pg-accordion-inner">
+              <div class="pg-team-grid">
+                <div class="pg-team-card highlight"><div class="name">Sahil Yousaf</div><div class="role">Architecture &amp; AI</div><div class="desc">System architecture, AI integration.</div></div>
+                <div class="pg-team-card"><div class="name">Nihal Mannath</div><div class="role">Architect</div><div class="desc">Structural logic and mesh segmentation.</div></div>
+                <div class="pg-team-card"><div class="name">Eleftheria Papadosifou</div><div class="role">Architect</div><div class="desc">FEA validation and design recommendations.</div></div>
+                <div class="pg-team-card"><div class="name">Kacper Wasilewski</div><div class="role">Architect</div><div class="desc">Pipeline integration and QA.</div></div>
+              </div>
+            </div></div>
+          </div>
+
+          <div class="pg-accordion-item" data-section="stack">
+            <div class="pg-accordion-header"><span class="pg-accordion-title">Technology</span><span class="pg-accordion-toggle">+</span></div>
+            <div class="pg-accordion-content"><div class="pg-accordion-inner">
+              <div class="pg-tech-grid">
+                <div class="pg-tech-item"><i class="fab fa-python"></i><span class="name">Python</span><span class="role">Core</span></div>
+                <div class="pg-tech-item"><i class="fas fa-cube"></i><span class="name">Trimesh</span><span class="role">Mesh processing</span></div>
+                <div class="pg-tech-item"><i class="fas fa-vector-square"></i><span class="name">PyNite</span><span class="role">FEA engine</span></div>
+                <div class="pg-tech-item"><i class="fas fa-brain"></i><span class="name">RAG / LLM</span><span class="role">Recommendations</span></div>
+                <div class="pg-tech-item"><i class="fas fa-table"></i><span class="name">JSON / CSV</span><span class="role">Output data</span></div>
+                <div class="pg-tech-item"><i class="fas fa-drafting-compass"></i><span class="name">GLB / OBJ</span><span class="role">3D input</span></div>
+              </div>
+            </div></div>
+          </div>
+        </div>
+      </div>
+      <div class="pg-panel-footer">
+        <a href="https://github.com/sahilyousafp/Grounded.-Structural-Solutions" target="_blank" rel="noopener noreferrer" class="pg-view-btn">View_Full_Project <i class="fas fa-external-link-alt"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+window.PROJECT_DATA = {
+  nodes: [
+    {id:'main', label:'Main Graph', icon:'fas fa-home', type:'branch', color:'#FF3300', x:48, y:10, parent:'center', link:'/sahilyousafp_pages/#code'},
+    {id:'center', label:'GROUNDED', sub:'STRUCTURAL SOLUTIONS', icon:'fas fa-building', type:'center', x:48, y:46, parent:null},
+    {id:'overview', label:'Overview', icon:'fas fa-file-alt', type:'branch', color:'#00F0FF', x:26, y:20, parent:'center', section:'overview'},
+    {id:'pipeline', label:'Pipeline', icon:'fas fa-stream', type:'branch', color:'#FFB800', x:74, y:20, parent:'center', section:'pipeline'},
+    {id:'screens',  label:'Screens',  icon:'fas fa-desktop', type:'branch', color:'#00FF88', x:82, y:55, parent:'center', section:'screens'},
+    {id:'team',     label:'Team',     icon:'fas fa-users', type:'branch', color:'#448AFF', x:65, y:82, parent:'center', section:'team'},
+    {id:'stack',    label:'Stack',    icon:'fas fa-layer-group', type:'branch', color:'#F4F4F0', x:28, y:75, parent:'center', section:'stack'},
+    {id:'upload',  label:'Model Upload', icon:'fas fa-upload', type:'sub', color:'#FFB800', x:60, y:8, parent:'pipeline'},
+    {id:'mesh',    label:'Mesh Seg',     icon:'fas fa-th', type:'sub', color:'#FFB800', x:88, y:10, parent:'pipeline'},
+    {id:'grid',    label:'Struct Grid',  icon:'fas fa-border-all', type:'sub', color:'#00FF88', x:92, y:38, parent:'screens'},
+    {id:'fea',     label:'FEA Engine',   icon:'fas fa-vector-square', type:'sub', color:'#F4F4F0', x:12, y:50, parent:'stack'},
+  ]
+};
+</script>
+<script src="/sahilyousafp_pages/project-graph.js"></script>
+</body>
+</html>

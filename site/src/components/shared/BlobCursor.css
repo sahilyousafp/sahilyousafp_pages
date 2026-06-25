@@ -1,0 +1,40 @@
+.blob-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.blob-main {
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+  user-select: none;
+}
+
+.blob {
+  position: fixed;
+  will-change: left, top, transform, opacity;
+  transition: background-color 0.3s ease;
+  pointer-events: none;
+}
+
+.inner-dot {
+  position: absolute;
+}
+
+.blob-lead {
+  position: fixed;
+  will-change: left, top, transform, opacity;
+  transition: background-color 0.3s ease;
+  pointer-events: none;
+}
+
+.blob-lead .inner-dot {
+  transition: opacity 0.2s ease;
+}

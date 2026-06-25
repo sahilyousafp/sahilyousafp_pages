@@ -1,0 +1,43 @@
+.spotlight-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 120px;
+  height: 120px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 10000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  mix-blend-mode: screen;
+}
+
+.spotlight-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle,
+    rgba(0, 240, 255, 0.4) 0%,
+    rgba(0, 240, 255, 0.2) 40%,
+    rgba(0, 240, 255, 0) 70%
+  );
+  border-radius: 50%;
+  filter: blur(8px);
+}
+
+.spotlight-circle {
+  position: absolute;
+  inset: 0;
+  border: 2px solid rgba(0, 240, 255, 0.3);
+  border-radius: 50%;
+}
+
+.spotlight-cursor.hidden {
+  opacity: 0 !important;
+}
+
+/* On special elements, enhance the spotlight */
+.spotlight-cursor:has(~ a:hover),
+.spotlight-cursor:has(~ button:hover) {
+  mix-blend-mode: lighten;
+}

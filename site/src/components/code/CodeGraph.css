@@ -1,0 +1,273 @@
+/* ── Knowledge Graph Container ────────────── */
+.kg-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--c-black, #0a0a0a);
+  overflow: hidden;
+  cursor: grab;
+}
+.kg-container:active {
+  cursor: grabbing;
+}
+
+.kg-canvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* ── Nodes ────────────────────────────────── */
+.kg-node {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-50%, -50%);
+  user-select: none;
+  z-index: 10;
+  cursor: pointer;
+}
+
+/* Icon base */
+.kg-icon {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1.5px solid var(--cat-color, rgba(255, 255, 255, 0.18));
+  transition: all 0.2s ease;
+  margin-bottom: 6px;
+}
+
+.kg-icon .material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+  font-size: 36px;
+  color: var(--cat-color, rgba(255, 255, 255, 0.8));
+}
+
+/* Hexagon branch icons */
+.kg-icon-hex {
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  width: 72px;
+  height: 72px;
+  background: color-mix(in srgb, var(--cat-color) 12%, transparent);
+}
+
+/* Center node icon */
+.kg-icon-center {
+  background: var(--c-ember, #ff3300);
+  border: none;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: kg-pulse 4s infinite ease-in-out;
+}
+
+.kg-icon-center .material-symbols-outlined {
+  color: #fff;
+  font-size: 40px;
+}
+
+@keyframes kg-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Hover — uses category color */
+.kg-node:hover .kg-icon {
+  border-color: var(--cat-color);
+  transform: scale(1.2);
+  box-shadow: 0 4px 20px color-mix(in srgb, var(--cat-color) 35%, transparent);
+}
+
+.kg-node:hover .kg-icon-center {
+  transform: scale(1.15);
+  box-shadow: 0 4px 24px rgba(255, 51, 0, 0.4);
+}
+
+/* Sub-node smaller icon */
+.kg-node-sub .kg-icon {
+  width: 52px;
+  height: 52px;
+}
+
+.kg-node-sub .kg-icon .material-symbols-outlined {
+  font-size: 28px;
+}
+
+/* ── Labels — inherit category color ─────── */
+.kg-label-main {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 28px;
+  color: #fff;
+}
+
+.kg-label-sub {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.kg-label-branch {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 20px;
+  color: var(--cat-color, rgba(255, 255, 255, 0.9));
+}
+
+.kg-label-leaf {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  color: color-mix(in srgb, var(--cat-color) 70%, rgba(255, 255, 255, 0.5));
+}
+
+/* ── Floating Index Card ──────────────────── */
+.kg-card {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  width: 240px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  padding: 24px;
+  z-index: 50;
+  border-radius: 12px;
+  box-shadow: 0 40px 60px -15px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+}
+
+.kg-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.kg-card-head-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kg-card-icon {
+  color: var(--c-ember, #ff3300);
+  font-size: 18px;
+}
+
+.kg-card-tag {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 16px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.kg-card-divider {
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+  margin-bottom: 16px;
+}
+
+.kg-card-body {
+  margin-bottom: 24px;
+}
+
+.kg-card-title {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 26px;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.kg-card-text {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 22px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.kg-card-link {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--c-ember, #ff3300);
+  text-decoration: underline;
+  display: inline-block;
+  margin-top: 12px;
+}
+
+/* Card sections */
+.kg-card-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.kg-card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.kg-card-row:last-child {
+  border-bottom: none;
+}
+
+.kg-card-row-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kg-card-row-left span:last-child {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.kg-card-row .material-symbols-outlined {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* ── Responsive ───────────────────────────── */
+@media (max-width: 900px) {
+  .kg-card {
+    display: none;
+  }
+
+  .kg-label-main {
+    font-size: 15px;
+  }
+
+  .kg-label-branch {
+    font-size: 11px;
+  }
+
+  .kg-label-leaf {
+    font-size: 10px;
+  }
+}

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B.A.T. · Building Analysis Tool · Sahil Yousaf</title>
+  <link rel="icon" type="image/png" href="/sahilyousafp_pages/References/For website.PNG">
+  <link rel="stylesheet" href="/sahilyousafp_pages/project-graph.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+<div class="pg-app">
+
+  <nav class="pg-nav">
+    <a href="/sahilyousafp_pages/#code" class="pg-nav-logo"><span>&lt;</span>DEV_MACHINE<span> /&gt;</span></a>
+    <div class="pg-nav-links">
+      <a href="/sahilyousafp_pages/#code">Projects</a>
+      <a class="active">Graph_System</a>
+      <a href="/sahilyousafp_pages/#code">Labs</a>
+    </div>
+    <div class="pg-nav-actions">
+      <a href="https://github.com/sahilyousafp/Building_Analysis_Tool" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/sahil-yousaf-882a0b132/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+      <a href="mailto:sahil.yousaf@students.iaac.net" class="pg-connect-btn">Connect</a>
+    </div>
+  </nav>
+
+  <div class="pg-main">
+    <div class="pg-graph" id="pg-graph">
+      <canvas class="pg-graph-canvas" id="pg-canvas"></canvas>
+      <button class="pg-focus-btn"><i class="fas fa-compress-alt"></i> Focus_View</button>
+    </div>
+
+    <div class="pg-panel">
+      <div class="pg-panel-header">
+        <span class="pg-panel-path">Index // B.A.T.</span>
+        <button class="pg-panel-close">&times;</button>
+      </div>
+
+      <div class="pg-panel-body">
+        <h1 class="pg-project-title">Building <em>Analysis Tool</em></h1>
+        <p class="pg-project-desc">An AI-driven accessibility tool that analyses healthcare building layouts for visually impaired navigation. Combining graph-based spatial analysis, image segmentation, and RAG-powered design recommendations — published at ANNSIM 2025.</p>
+
+        <div class="pg-tags">
+          <span class="pg-tag accent">Published · ANNSIM 2025</span>
+          <span class="pg-tag">IAAC · Term 1</span>
+          <span class="pg-tag">2024–25</span>
+        </div>
+
+        <div class="pg-meta-section">
+          <div class="pg-meta-label">Core_Technologies</div>
+          <ul class="pg-meta-list">
+            <li>Python + IFC-to-Graph</li>
+            <li>Image Segmentation</li>
+            <li>RAG / LLM Recommendations</li>
+          </ul>
+        </div>
+
+        <div class="pg-accordion">
+          <div class="pg-accordion-item" data-section="overview">
+            <div class="pg-accordion-header">
+              <span class="pg-accordion-title">Overview</span>
+              <span class="pg-accordion-toggle">+</span>
+            </div>
+            <div class="pg-accordion-content"><div class="pg-accordion-inner">
+              <h3 class="pg-s-title">AI-driven pathfinding for hospitals</h3>
+              <div class="pg-s-body">
+                <p>The Building Analysis Tool (B.A.T.) was designed to address a critical gap in healthcare architecture: the lack of AI-powered tools to assess and optimise accessibility for visually impaired users.</p>
+                <p>The tool ingests IFC or 3D building models and produces: <strong>graph-based navigation analysis</strong> to identify bottlenecks; <strong>semantic image segmentation</strong> of interior photography to detect key accessibility elements; and <strong>RAG-powered recommendations</strong> that query a curated knowledge base of accessible design standards.</p>
+                <p>A priority scoring framework ranks each space (1–10) by its criticality for independent navigation — from entrance and reception (highest) to staff-only storage (lowest).</p>
+              </div>
+              <div class="pg-pub-badge">
+                <i class="fas fa-file-alt"></i>
+                <div class="pg-pub-badge-text">
+                  <span class="pg-pub-badge-label">Published Research</span>
+                  ANNSIM Conference 2025 · Society of Modelling &amp; Simulation International (SCS)
+                </div>
+              </div>
+            </div></div>
+          </div>
+
+          <div class="pg-accordion-item" data-section="pipeline">
+            <div class="pg-accordion-header">
+              <span class="pg-accordion-title">Pipeline</span>
+              <span class="pg-accordion-toggle">+</span>
+            </div>
+            <div class="pg-accordion-content"><div class="pg-accordion-inner">
+              <h3 class="pg-s-title">How it works</h3>
+              <div class="pg-pipeline">
+                <div class="pg-pipeline-step"><div class="pg-pipeline-num">01</div><div class="pg-pipeline-info"><h4>IFC Model Import</h4><p>Architect uploads IFC or 3D model; parser extracts rooms, corridors, doors, and ramps into a spatial graph.</p></div></div>
+                <div class="pg-pipeline-step"><div class="pg-pipeline-num">02</div><div class="pg-pipeline-info"><h4>Graph Analysis</h4><p>NetworkX builds a weighted navigation graph. Betweenness centrality and shortest-path algorithms identify bottlenecks.</p></div></div>
+                <div class="pg-pipeline-step"><div class="pg-pipeline-num">03</div><div class="pg-pipeline-info"><h4>Image Segmentation</h4><p>Interior photographs are segmented to highlight tactile surfaces, ramps, signage, and door widths.</p></div></div>
+                <div class="pg-pipeline-step"><div class="pg-pipeline-num">04</div><div class="pg-pipeline-info"><h4>RAG Recommendations</h4><p>An LLM queries an accessibility standards knowledge base and outputs tailored design improvement suggestions.</p></div></div>
+              </div>
+            </div></div>
+          </div>
+
+          <div class="pg-accordion-item" data-section="visuals">
+            <div class="pg-accordion-header">
+              <span class="pg-accordion-title">Visuals</span>
+              <span class="pg-accordion-toggle">+</span>
+            </div>
+            <div class="pg-accordion-content"><div class="pg-accordion-inner">
+              <h3 class="pg-s-title">System screens &amp; outputs</h3>
+              <div class="pg-img-grid">
+                <div class="pg-img-cell tall"><img src="https://github.com/user-attachments/assets/37cd15bd-9c54-421d-9836-d74158d969a7" alt="Graph-based spatial analysis" loading="lazy"><span class="pg-img-label">Graph-based spatial analysis</span></div>
+                <div class="pg-img-cell tall"><img src="https://github.com/user-attachments/assets/e99fa282-6b6c-4493-b935-05bbaae85f01" alt="Image segmentation" loading="lazy"><span class="pg-img-label">Interior image segmentation</span></div>
+              </div>
+              <div class="pg-img-grid single">
+                <div class="pg-img-cell" style="aspect-ratio:21/9;"><img src="https://github.com/user-attachments/assets/0f118610-ac3f-4724-8b26-c1f6f4731bd4" alt="RAG Recommendations" loading="lazy"><span class="pg-img-label">RAG-powered accessibility recommendations</span></div>
+              </div>
+            </div></div>
+          </div>
+
+          <div class="pg-accordion-item" data-section="data">
+            <div class="pg-accordion-header">
+              <span class="pg-accordion-title">Data</span>
+              <span class="pg-accordion-toggle">+</span>
+            </div>
+            <div class="pg-accordion-content"><div class="pg-accordion-inner">
+              <h3 class="pg-s-title">Space priority scoring</h3>
+              <div class="pg-s-body"><p>A key research contribution was developing a priority hierarchy for healthcare spaces, used to weight the graph analysis and direct AI recommendations toward the most critical navigation zones.</p></div>
+              <table class="pg-table">
+                <thead><tr><th>Space Type</th><th>Priority</th><th>Criticality</th></tr></thead>
+                <tbody>
+                  <tr><td>Entrance / Main Access</td><td>10 / 10</td><td>Critical — first point of independent navigation</td></tr>
+                  <tr><td>Reception / Information</td><td>9 / 10</td><td>Essential for orientation and wayfinding</td></tr>
+                  <tr><td>Restrooms</td><td>9 / 10</td><td>High-frequency need, complex spatial layout</td></tr>
+                  <tr><td>Examination Rooms</td><td>8 / 10</td><td>Destination spaces, require precise navigation</td></tr>
+                  <tr><td>Corridors / Lifts</td><td>8 / 10</td><td>Key connective tissue of movement</td></tr>
+                  <tr><td>Waiting Areas</td><td>6 / 10</td><td>Social spaces with ambient complexity</td></tr>
+                  <tr><td>Staff Areas</td><td>3 / 10</td><td>Occasional access, minimal patient use</td></tr>
+                  <tr><td>Storage / Utility</td><td>1 / 10</td><td>Non-patient-facing, lowest priority</td></tr>
+                </tbody>
+              </table>
+            </div></div>
+          </div>
+
+          <div class="pg-accordion-item" data-section="team">
+            <div class="pg-accordion-header">
+              <span class="pg-accordion-title">Team</span>
+              <span class="pg-accordion-toggle">+</span>
+            </div>
+            <div class="pg-accordion-content"><div class="pg-accordion-inner">
+              <h3 class="pg-s-title">Research collaborators</h3>
+              <div class="pg-team-grid">
+                <div class="pg-team-card highlight"><div class="name">Sahil Yousaf</div><div class="role">Architecture &amp; AI</div><div class="desc">AI integration and system architecture lead.</div></div>
+                <div class="pg-team-card"><div class="name">Eleni Papakosta</div><div class="role">Co-Founder</div><div class="desc">Inclusive design, human psychology focus.</div></div>
+                <div class="pg-team-card"><div class="name">Eleftheria Papadosifou</div><div class="role">Co-Founder</div><div class="desc">Inclusive design research.</div></div>
+                <div class="pg-team-card"><div class="name">Kacper Wasilewski</div><div class="role">Co-Founder</div><div class="desc">Project management, QA.</div></div>
+                <div class="pg-team-card"><div class="name">Nouhaila Elmalouli</div><div class="role">Co-Founder</div><div class="desc">Deliverables and tech lead.</div></div>
+              </div>
+            </div></div>
+          </div>
+
+          <div class="pg-accordion-item" data-section="stack">
+            <div class="pg-accordion-header">
+              <span class="pg-accordion-title">Technology</span>
+              <span class="pg-accordion-toggle">+</span>
+            </div>
+            <div class="pg-accordion-content"><div class="pg-accordion-inner">
+              <div class="pg-tech-grid">
+                <div class="pg-tech-item"><i class="fab fa-python"></i><span class="name">Python</span><span class="role">Core language</span></div>
+                <div class="pg-tech-item"><i class="fas fa-project-diagram"></i><span class="name">NetworkX</span><span class="role">Graph analysis</span></div>
+                <div class="pg-tech-item"><i class="fas fa-eye"></i><span class="name">Segmentation</span><span class="role">Image analysis</span></div>
+                <div class="pg-tech-item"><i class="fas fa-brain"></i><span class="name">RAG / LLM</span><span class="role">AI recommendations</span></div>
+                <div class="pg-tech-item"><i class="fas fa-cube"></i><span class="name">IFC Parser</span><span class="role">BIM import</span></div>
+                <div class="pg-tech-item"><i class="fas fa-table"></i><span class="name">Excel / CSV</span><span class="role">Priority scoring</span></div>
+              </div>
+            </div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pg-panel-footer">
+        <a href="https://github.com/sahilyousafp/Building_Analysis_Tool" target="_blank" rel="noopener noreferrer" class="pg-view-btn">View_Full_Project <i class="fas fa-external-link-alt"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+window.PROJECT_DATA = {
+  nodes: [
+    {id:'main', label:'Main Graph', icon:'fas fa-home', type:'branch', cat:'nav', color:'#FF3300', x:48, y:10, parent:'center', link:'/sahilyousafp_pages/#code'},
+    {id:'center', label:'B.A.T.', sub:'BUILDING ANALYSIS TOOL', icon:'fas fa-crosshairs', type:'center', x:48, y:46, parent:null},
+    {id:'overview', label:'Overview', icon:'fas fa-file-alt', type:'branch', color:'#00F0FF', x:28, y:22, parent:'center', section:'overview'},
+    {id:'pipeline', label:'Pipeline', icon:'fas fa-stream', type:'branch', color:'#FFB800', x:75, y:22, parent:'center', section:'pipeline'},
+    {id:'visuals',  label:'Visuals',  icon:'fas fa-image', type:'branch', color:'#00FF88', x:80, y:55, parent:'center', section:'visuals'},
+    {id:'data',     label:'Data',     icon:'fas fa-chart-bar', type:'branch', color:'#B388FF', x:68, y:80, parent:'center', section:'data'},
+    {id:'team',     label:'Team',     icon:'fas fa-users', type:'branch', color:'#448AFF', x:28, y:80, parent:'center', section:'team'},
+    {id:'stack',    label:'Stack',    icon:'fas fa-layer-group', type:'branch', color:'#F4F4F0', x:15, y:55, parent:'center', section:'stack'},
+    {id:'ifc',     label:'IFC Import',     icon:'fas fa-cube', type:'sub', color:'#FFB800', x:62, y:10, parent:'pipeline'},
+    {id:'graph',   label:'Graph Analysis', icon:'fas fa-project-diagram', type:'sub', color:'#FFB800', x:88, y:12, parent:'pipeline'},
+    {id:'seg',     label:'Segmentation',   icon:'fas fa-eye', type:'sub', color:'#00FF88', x:92, y:40, parent:'visuals'},
+    {id:'rag',     label:'RAG Engine',     icon:'fas fa-brain', type:'sub', color:'#B388FF', x:85, y:70, parent:'data'},
+  ]
+};
+</script>
+<script src="/sahilyousafp_pages/project-graph.js"></script>
+</body>
+</html>

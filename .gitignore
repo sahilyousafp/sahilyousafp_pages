@@ -28,3 +28,7 @@ __pycache__/
 # Local env
 .env
 .env.local
+
+# Large raw 3D assets (use optimized *-opt.glb versions)
+assets/*.glb
+site/public/uploads/city-plan.glb

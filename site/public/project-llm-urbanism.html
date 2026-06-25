@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CityMind · LLM-Powered Urban Agents · Sahil Yousaf</title>
+  <link rel="icon" type="image/png" href="/sahilyousafp_pages/References/For website.PNG">
+  <link rel="stylesheet" href="/sahilyousafp_pages/project-graph.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+<div class="pg-app">
+  <nav class="pg-nav">
+    <a href="/sahilyousafp_pages/#code" class="pg-nav-logo"><span>&lt;</span>DEV_MACHINE<span> /&gt;</span></a>
+    <div class="pg-nav-links">
+      <a href="/sahilyousafp_pages/#code">Projects</a>
+      <a class="active">Graph_System</a>
+      <a href="/sahilyousafp_pages/#code">Labs</a>
+    </div>
+    <div class="pg-nav-actions">
+      <a href="https://github.com/sahilyousafp/LLM-based-UrbanABM" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/sahil-yousaf-882a0b132/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+      <a href="mailto:sahil.yousaf@students.iaac.net" class="pg-connect-btn">Connect</a>
+    </div>
+  </nav>
+
+  <div class="pg-main">
+    <div class="pg-graph" id="pg-graph">
+      <canvas class="pg-graph-canvas" id="pg-canvas"></canvas>
+      <button class="pg-focus-btn"><i class="fas fa-compress-alt"></i> Focus_View</button>
+    </div>
+
+    <div class="pg-panel">
+      <div class="pg-panel-header">
+        <span class="pg-panel-path">Index // CityMind</span>
+        <button class="pg-panel-close">&times;</button>
+      </div>
+      <div class="pg-panel-body">
+        <h1 class="pg-project-title">CityMind <em>LLM Urban Agents</em></h1>
+        <p class="pg-project-desc">A comprehensive modelling of human behaviour in an urban environment. Each of 500 agents reasons about movement using an LLM — perceiving street-level imagery, maintaining memory, and adapting based on needs, personality, and emotional state. Set in Barcelona's Eixample district.</p>
+
+        <div class="pg-tags">
+          <span class="pg-tag accent">MaAI02 Thesis</span>
+          <span class="pg-tag">IAAC · 2025–26</span>
+          <span class="pg-tag">Shajay Bhooshan</span>
+          <span class="pg-tag">Barcelona · Eixample</span>
+        </div>
+
+        <div class="pg-meta-section">
+          <div class="pg-meta-label">Core_Technologies</div>
+          <ul class="pg-meta-list">
+            <li>Mesa ABM + FastAPI + DuckDB Spatial</li>
+            <li>DeepSeek V4 / Ollama LLM Cognition</li>
+            <li>Qwen3 VL 8B Street-Level Perception</li>
+            <li>Mapbox GL + Three.js + Preact Frontend</li>
+          </ul>
+        </div>
+
+        <div class="pg-accordion">
+
+          <!-- OVERVIEW -->
+          <div class="pg-accordion-item" data-section="overview">
+            <div class="pg-accordion-header"><span class="pg-accordion-title">Research Question</span><span class="pg-accordion-toggle">+</span></div>
+            <div class="pg-accordion-content"><div class="pg-accordion-inner">
+              <h3 class="pg-s-title">Can urban ABM simulations be capable of behavioural spatial awareness and action?</h3>
+              <div class="pg-img-grid single">
+                <div class="pg-img-cell" style="aspect-ratio:21/9;"><img src="https://raw.githubusercontent.com/sahilyousafp/LLM-based-UrbanABM/main/docs/images/presentation/slide_13_img_1.gif" alt="CityMind multi-agent simulation" loading="lazy"><span class="pg-img-label">Multi-agent simulation — Barcelona Eixample</span></div>
+              </div>
+              <div class="pg-s-body">
+                <p>CityMind is an agent-based pedestrian simulation where each agent <strong>reasons</strong> about its movement decisions using a large language model instead of following predefined rules. Agents perceive their surroundings through street-level imagery, maintain memory of visited places, and adapt their behavior based on individual needs, personality, and emotional state.</p>
+                <p>The project addresses gaps in prior work: <strong>Generative Agents (Simulacra)</strong> achieved 85% similarity to real human behavior but used planar virtual environments. <strong>CitySim</strong> simulated movement in Shibuya but lacked traceable paths and spatial awareness. CityMind combines traceable spatial movement on real urban networks with street-level visual perception and emotionally-aware LLM cognition.</p>
+              </div>
+              <div class="pg-img-grid">
+                <div class="pg-img-cell tall"><img src="https://raw.githubusercontent.com/sahilyousafp/LLM-based-UrbanABM/main/docs/images/presentation/slide_05_img_1.png" alt="Generative Agents — Simulacra" loading="lazy"><span class="pg-img-label">State of art — Generative Agents (Simulacra)</span></div>
+                <div class="pg-img-cell tall"><img src="https://raw.githubusercontent.com/sahilyousafp/LLM-based-UrbanABM/main/docs/images/presentation/slide_07_img_3.png" alt="CitySim — Shibuya" loading="lazy"><span class="pg-img-label">State of art — CitySim (Shibuya)</span></div>
+              </div>
+            </div></div>
+          </div>
+
+          <!-- KNOWLEDGE -->
+          <div class="pg-accordion-item" data-section="knowledge">
+            <div class="pg-accordion-header"><span class="pg-accordion-title">Knowledge Layer</span><span class="pg-accordion-toggle">+</span></div>
+            <div class="pg-accordion-content"><div class="pg-accordion-inner">
+              <h3 class="pg-s-title">Map data, vision data, VLM analysis</h3>
+              <div class="pg-img-grid">
+                <div class="pg-img-cell tall"><img src="https://raw.githubusercontent.com/sahilyousafp/LLM-based-UrbanABM/main/docs/images/presentation/slide_20_img_1.gif" alt="Pedestrian network — Barcelona Eixample" loading="lazy"><span class="pg-img-label">Pedestrian network — Eixample grid</span></div>
+                <div class="pg-img-cell tall"><img src="https://raw.githubusercontent.com/sahilyousafp/LLM-based-UrbanABM/main/docs/images/presentation/slide_25_img_1.gif" alt="Street View imagery extraction" loading="lazy"><span class="pg-img-label">Street View extraction — 308 viewpoints</span></div>
+              </div>
+              <div class="pg-s-body">
+                <p><strong>Map Data:</strong> Barcelona's Eixample district — walkability-prioritised grid with chamfered intersections and distinct spatial features per block. Data sourced from Overture Maps via BigQuery.</p>
+                <p><strong>Vision Data:</strong> 308 street-level viewpoints at 70m spacing provide panoramic visual context. Agents "see" the environment when passing nearby.</p>
+                <p><strong>VLM Analysis:</strong> Qwen3 VL 8B extracts 7 spatial features per viewpoint with forced JSON structuring via Pydantic. Includes echo detection and reattempt logic for robust extraction.</p>
+              </div>
+              <div class="pg-img-grid">
+                <div class="pg-img-cell"><img src="https://raw.githubusercontent.com/sahilyousafp/LLM-based-UrbanABM/main/docs/images/presentation/slide_28_img_1.gif" alt="VLM comparison" loading="lazy"><span class="pg-img-label">VLM comparison — scene analysis</span></div>
+                <div class="pg-img-cell"><img src="https://raw.githubusercontent.com/sahilyousafp/LLM-based-UrbanABM/main/docs/images/presentation/slide_30_img_1.gif" alt="Qwen3 VL 8B selected" loading="lazy"><span class="pg-img-label">Qwen3 VL 8B — selected model</span></div>
+              </div>
+              <table class="pg-table">
+                <thead><tr><th>Data Source</th><th>Type</th><th>Detail</th></tr></thead>
+                <tbody>
+                  <tr><td>Overture Maps</td><td>Spatial</td><td>Buildings, roads, amenities, pedestrian network</td></tr>
+                  <tr><td>Street View</td><td>Visual</td><td>308 panoramic viewpoints at 70m intervals</td></tr>
+                  <tr><td>Qwen3 VL 8B</td><td>Analysis</td><td>7-feature structured scene extraction per viewpoint</td></tr>
+                </tbody>
+              </table>
+            </div></div>
+          </div>
+
+          <!-- AGENT -->
+          <div class="pg-accordion-item" data-section="agent">
+            <div class="pg-accordion-header"><span class="pg-accordion-title">The Agent</span><span class="pg-accordion-toggle">+</span></div>
+            <div class="pg-accordion-content"><div class="pg-accordion-inner">
+              <h3 class="pg-s-title">Profile, mobility, emotions, LLM selection</h3>
+              <div class="pg-img-grid">
+                <div class="pg-img-cell tall"><img src="https://raw.githubusercontent.com/sahilyousafp/LLM-based-UrbanABM/main/docs/images/presentation/slide_14_img_1.png" alt="Character selection" loading="lazy"><span class="pg-img-label">Character selection — 4 archetypes</span></div>
+                <div class="pg-img-cell tall"><img src="https://raw.githubusercontent.com/sahilyousafp/LLM-based-UrbanABM/main/docs/images/presentation/slide_45_img_1.gif" alt="Agent mobility" loading="lazy"><span class="pg-img-label">Hybrid LLM + rule-based mobility</span></div>
+              </div>
+              <div class="pg-img-grid single">
+                <div class="pg-img-cell"><img src="https://raw.githubusercontent.com/sahilyousafp/LLM-based-UrbanABM/main/docs/images/presentation/slide_51_img_1.jpg" alt="Single Agent Lab" loading="lazy"><span class="pg-img-label">Single Agent Lab — emotion mix, cognition, perception</span></div>
+              </div>
+              <div class="pg-s-body">
+                <p>Each agent has a <strong>profile</strong> (personality, preferences, age, background) and a <strong>daily plan</strong> structured into time blocks driving goal selection. The mobility system uses a hybrid LLM + rule-based approach with four decision blocks per step: Needs, Cognition, Plan, Mobility.</p>
+                <p>Emotions operate on two timescales: <strong>Needs Module</strong> (hunger, energy, social, comfort — updated per step) and <strong>Emotion Module</strong> (excited, stressed, relaxed, bored — updated every 10 steps via Russell's circumplex model).</p>
+                <p>LLM selection guided by <strong>EQ-Bench V2 Emotional Intelligence Score</strong>: DeepSeek V4 Fast (82.6) chosen for best emotional reasoning.</p>
+              </div>
+              <table class="pg-table">
+                <thead><tr><th>Archetype</th><th>Free Steps</th><th>Memory Policy</th><th>Navigation Style</th></tr></thead>
+                <tbody>
+                  <tr><td>Resident</td><td>1 (F→D)</td><td>5 summaries, consolidated</td><td>Familiar routes, shortcuts</td></tr>
+                  <tr><td>Commuter</td><td>0 (Dijkstra)</td><td>2 summaries, FIFO</td><td>GPS, time-optimising</td></tr>
+                  <tr><td>Tourist</td><td>3 (FFF→D)</td><td>1 summary, replaced</td><td>Exploratory, curiosity-driven</td></tr>
+                  <tr><td>Student</td><td>2 (FF→D)</td><td>3 summaries, FIFO</td><td>Social, budget-conscious</td></tr>
+                </tbody>
+              </table>
+            </div></div>
+          </div>
+
+          <!-- PROMPTS -->
+          <div class="pg-accordion-item" data-section="prompts">
+            <div class="pg-accordion-header"><span class="pg-accordion-title">Prompt Architecture</span><span class="pg-accordion-toggle">+</span></div>
+            <div class="pg-accordion-content"><div class="pg-accordion-inner">
+              <h3 class="pg-s-title">Cognition, mobility, needs prompts</h3>
+              <div class="pg-s-body">
+                <p><strong>Cognition Prompt:</strong> Produces vivid inner monologues grounded in specific events. Anti-clich&eacute; rules forbid filler phrases. Needs-to-mood mapping mirrors psychology: hunger &gt; 0.7 → stressed; energy &lt; 0.3 → bored; unmet social → disengaged.</p>
+                <p><strong>Mobility Prompt:</strong> Gives the LLM rich sensory context — scene descriptions, candidate street edges with [NEW]/[visited] tags, distance-aware urgency levels (FREE EXPLORATION → GETTING CLOSE → ALMOST THERE). Archetype-specific perception guidance shapes what the agent notices.</p>
+                <p><strong>Needs Prompt:</strong> Two LLM evaluation paths — Visual Satisfaction (every 5 steps, calibrated +0.06 max for excellent spaces) and Amenity Satisfaction (within 30m, considers agent's mental state). Rule-based fallback for graceful degradation.</p>
+              </div>
+              <div class="pg-arch-box">
+                <pre>  STEP N
+  1. NeedsBlock    → Decay hunger/energy/social/comfort
+                     LLM evaluates visual environment
+  2. PlanBlock     → Advance daily plan, resolve targets
+                     trigger en-route stops
+  3. CognitionBlock→ Every 10 steps: inner monologue
+     (periodic)      updates mood/curiosity/fatigue
+  4. MobilityBlock → LLM chooses next street edge
+                     balancing exploration vs destination</pre>
+              </div>
+            </div></div>
+          </div>
+
+          <!-- CALIBRATION -->
+          <div class="pg-accordion-item" data-section="calibration">
+            <div class="pg-accordion-header"><span class="pg-accordion-title">Human Calibration</span><span class="pg-accordion-toggle">+</span></div>
+            <div class="pg-accordion-content"><div class="pg-accordion-inner">
+              <h3 class="pg-s-title">Needs decay, cross-need coupling, exploration budgets</h3>
+              <div class="pg-s-body">
+                <p>Every parameter calibrated against real-world data. Each simulation step = 15 minutes (96 steps/day). Cross-need coupling models human physiology: hunger → energy loss (×1.3), discomfort → fatigue (×1.2), exhaustion → amplified hunger (×1.2).</p>
+              </div>
+              <table class="pg-table">
+                <thead><tr><th>Need</th><th>Decay/Step</th><th>Calibration Source</th></tr></thead>
+                <tbody>
+                  <tr><td>Hunger</td><td>+0.035</td><td>American Time Use Survey 2024</td></tr>
+                  <tr><td>Energy</td><td>-0.015</td><td>Drapeau et al., 2019</td></tr>
+                  <tr><td>Social</td><td>+0.025</td><td>American Time Use Survey 2024</td></tr>
+                  <tr><td>Comfort</td><td>-0.008</td><td>Urban walking affect study, 2025</td></tr>
+                </tbody>
+              </table>
+            </div></div>
+          </div>
+
+          <!-- OBSERVATIONS -->
+          <div class="pg-accordion-item" data-section="observations">
+            <div class="pg-accordion-header"><span class="pg-accordion-title">Observations</span><span class="pg-accordion-toggle">+</span></div>
+            <div class="pg-accordion-content"><div class="pg-accordion-inner">
+              <h3 class="pg-s-title">Tourist simulation — 25 agents, 4,751 steps</h3>
+              <div class="pg-img-grid single">
+                <div class="pg-img-cell" style="aspect-ratio:21/9;"><img src="https://raw.githubusercontent.com/sahilyousafp/LLM-based-UrbanABM/main/docs/images/presentation/slide_78_img_1.png" alt="25 Tourist agents — trajectories" loading="lazy"><span class="pg-img-label">25 Tourist agents — trajectories color-coded by emotion</span></div>
+              </div>
+              <div class="pg-img-grid">
+                <div class="pg-img-cell"><img src="https://raw.githubusercontent.com/sahilyousafp/LLM-based-UrbanABM/main/docs/images/presentation/slide_59_img_1.gif" alt="Amenities only mode" loading="lazy"><span class="pg-img-label">Amenities only mode</span></div>
+                <div class="pg-img-cell"><img src="https://raw.githubusercontent.com/sahilyousafp/LLM-based-UrbanABM/main/docs/images/presentation/slide_60_img_1.gif" alt="Vision + amenities mode" loading="lazy"><span class="pg-img-label">Vision + amenities mode</span></div>
+              </div>
+              <div class="pg-img-grid">
+                <div class="pg-img-cell"><img src="https://raw.githubusercontent.com/sahilyousafp/LLM-based-UrbanABM/main/docs/images/presentation/slide_79_img_1.png" alt="Tourist coverage density" loading="lazy"><span class="pg-img-label">Coverage density — Placa Catalunya, Casa Batllo</span></div>
+                <div class="pg-img-cell"><img src="https://raw.githubusercontent.com/sahilyousafp/LLM-based-UrbanABM/main/docs/images/presentation/slide_80_img_1.png" alt="Excitement heatmap" loading="lazy"><span class="pg-img-label">Excitement — concentrated around landmarks</span></div>
+              </div>
+              <div class="pg-img-grid">
+                <div class="pg-img-cell"><img src="https://raw.githubusercontent.com/sahilyousafp/LLM-based-UrbanABM/main/docs/images/presentation/slide_81_img_1.png" alt="Stress heatmap" loading="lazy"><span class="pg-img-label">Stress — repetitive environment zones</span></div>
+                <div class="pg-img-cell"><img src="https://raw.githubusercontent.com/sahilyousafp/LLM-based-UrbanABM/main/docs/images/presentation/slide_82_img_1.png" alt="Boredom heatmap" loading="lazy"><span class="pg-img-label">Boredom — monotonous grid areas</span></div>
+              </div>
+              <div class="pg-s-body">
+                <p>Key landmarks attracting tourist agent density: <strong>Pla&ccedil;a Catalunya</strong>, <strong>Casa de Punxes</strong>, <strong>Mu&ntilde;oz Ramonet Gardens</strong>, <strong>Casa Batll&oacute;</strong>. Emotion heatmaps show excitement concentrated around landmarks, stress in repetitive environment zones, and boredom in monotonous grid areas.</p>
+                <p>Comparison between amenities-only and vision+amenities modes demonstrates that visual perception produces more human-like movement diversity and emotional response variation.</p>
+              </div>
+            </div></div>
+          </div>
+
+          <!-- ARCHITECTURE -->
+          <div class="pg-accordion-item" data-section="architecture">
+            <div class="pg-accordion-header"><span class="pg-accordion-title">Architecture</span><span class="pg-accordion-toggle">+</span></div>
+            <div class="pg-accordion-content"><div class="pg-accordion-inner">
+              <h3 class="pg-s-title">System design</h3>
+              <div class="pg-img-grid">
+                <div class="pg-img-cell tall"><img src="https://raw.githubusercontent.com/sahilyousafp/LLM-based-UrbanABM/main/docs/images/presentation/slide_74_img_1.png" alt="LLM Engine architecture" loading="lazy"><span class="pg-img-label">LLM Engine — Ollama, vLLM, DeepSeek</span></div>
+                <div class="pg-img-cell tall"><img src="https://raw.githubusercontent.com/sahilyousafp/LLM-based-UrbanABM/main/docs/images/presentation/slide_69_img_2.png" alt="DuckDB schema" loading="lazy"><span class="pg-img-label">DuckDB Spatial — database schema</span></div>
+              </div>
+              <div class="pg-arch-box">
+                <pre>  Frontend (Mapbox GL + Three.js + Preact)
+           | HTTP/REST
+           v
+  FastAPI Backend (map_server.py, port 8000)
+           |
+     +-----+------------------+------------------+
+     |                        |                   |
+  Mesa ABM Model         LLM Client          DuckDB Spatial
+  (CityModel +           (Ollama/DeepSeek/   (buildings, roads,
+   500 agents)            vLLM/Gemini)        amenities, network)
+     |                        |
+     +----+-------------------+
+          |
+    +-----+------+-------+-------+
+    |            |       |       |
+  Needs     Cognition  Plan  Mobility
+  Block       Block    Block   Block</pre>
+              </div>
+              <table class="pg-table">
+                <thead><tr><th>Method</th><th>Endpoint</th><th>Description</th></tr></thead>
+                <tbody>
+                  <tr><td>POST</td><td>/api/step</td><td>Advance simulation one step</td></tr>
+                  <tr><td>GET</td><td>/api/agents</td><td>All agents as GeoJSON</td></tr>
+                  <tr><td>GET</td><td>/api/agent/{id}/memory</td><td>Full KV + stream memory snapshot</td></tr>
+                  <tr><td>GET</td><td>/api/agent/{id}/cognition</td><td>Current mood, curiosity, fatigue, needs</td></tr>
+                  <tr><td>POST</td><td>/api/config/llm</td><td>Hot-swap LLM provider at runtime</td></tr>
+                </tbody>
+              </table>
+            </div></div>
+          </div>
+
+          <!-- TECHNOLOGY -->
+          <div class="pg-accordion-item" data-section="stack">
+            <div class="pg-accordion-header"><span class="pg-accordion-title">Technology</span><span class="pg-accordion-toggle">+</span></div>
+            <div class="pg-accordion-content"><div class="pg-accordion-inner">
+              <div class="pg-tech-grid">
+                <div class="pg-tech-item"><i class="fab fa-python"></i><span class="name">Python 3.11</span><span class="role">Core backend</span></div>
+                <div class="pg-tech-item"><i class="fas fa-server"></i><span class="name">FastAPI</span><span class="role">REST API</span></div>
+                <div class="pg-tech-item"><i class="fas fa-database"></i><span class="name">DuckDB</span><span class="role">Spatial DB</span></div>
+                <div class="pg-tech-item"><i class="fas fa-brain"></i><span class="name">Mesa ABM</span><span class="role">Agent framework</span></div>
+                <div class="pg-tech-item"><i class="fas fa-robot"></i><span class="name">DeepSeek V4</span><span class="role">LLM cognition</span></div>
+                <div class="pg-tech-item"><i class="fas fa-eye"></i><span class="name">Qwen3 VL</span><span class="role">Street perception</span></div>
+                <div class="pg-tech-item"><i class="fas fa-map"></i><span class="name">Mapbox GL</span><span class="role">3D map UI</span></div>
+                <div class="pg-tech-item"><i class="fas fa-cube"></i><span class="name">Three.js</span><span class="role">3D characters</span></div>
+                <div class="pg-tech-item"><i class="fas fa-code"></i><span class="name">TypeScript</span><span class="role">Frontend logic</span></div>
+                <div class="pg-tech-item"><i class="fas fa-globe"></i><span class="name">Overture Maps</span><span class="role">Spatial data</span></div>
+                <div class="pg-tech-item"><i class="fas fa-code-branch"></i><span class="name">asyncio</span><span class="role">Concurrency</span></div>
+                <div class="pg-tech-item"><i class="fas fa-file-archive"></i><span class="name">GeoParquet</span><span class="role">Recording</span></div>
+              </div>
+            </div></div>
+          </div>
+
+          <!-- BENCHMARKS -->
+          <div class="pg-accordion-item" data-section="benchmarks">
+            <div class="pg-accordion-header"><span class="pg-accordion-title">Benchmarks</span><span class="pg-accordion-toggle">+</span></div>
+            <div class="pg-accordion-content"><div class="pg-accordion-inner">
+              <h3 class="pg-s-title">5-notebook evaluation suite</h3>
+              <table class="pg-table">
+                <thead><tr><th>#</th><th>Compares</th><th>Key Question</th></tr></thead>
+                <tbody>
+                  <tr><td>01</td><td>DuckDB vs SQLite vs PostgreSQL</td><td>Fastest spatial query for 500 agents?</td></tr>
+                  <tr><td>02</td><td>Ollama vs vLLM vs GPT-4o</td><td>Best latency / decision quality trade-off?</td></tr>
+                  <tr><td>03</td><td>Overture Maps vs OpenStreetMap</td><td>Better coverage and schema quality?</td></tr>
+                  <tr><td>04</td><td>Qwen2.5-VL-3B vs 7B</td><td>Street scene analysis accuracy?</td></tr>
+                  <tr><td>05</td><td>LLM-driven vs rule-based</td><td>Humanistic behavior scoring across 5 dimensions</td></tr>
+                </tbody>
+              </table>
+              <div class="pg-s-body" style="margin-top:8px;"><p><strong>Humanistic scoring:</strong> Diversity of routes · Archetype consistency · Amenity plausibility · Spatial realism · Decision coherence.</p></div>
+            </div></div>
+          </div>
+
+          <!-- FUTURE -->
+          <div class="pg-accordion-item" data-section="future">
+            <div class="pg-accordion-header"><span class="pg-accordion-title">Future Applications</span><span class="pg-accordion-toggle">+</span></div>
+            <div class="pg-accordion-content"><div class="pg-accordion-inner">
+              <div class="pg-pipeline">
+                <div class="pg-pipeline-step"><div class="pg-pipeline-num">01</div><div class="pg-pipeline-info"><h4>Inclusive City Design</h4><p>Analyse a city's capability to satisfy varied populations — simulate discrepancies in infrastructure design relating to emotional wellbeing.</p></div></div>
+                <div class="pg-pipeline-step"><div class="pg-pipeline-num">02</div><div class="pg-pipeline-info"><h4>Personalised Navigation</h4><p>Create a persona of yourself, with your emotional and mental database, to propose navigation options from A to B.</p></div></div>
+                <div class="pg-pipeline-step"><div class="pg-pipeline-num">03</div><div class="pg-pipeline-info"><h4>Citizen Journey Simulation</h4><p>Simulate citizen journeys to understand issues related to public image, economic impact, and development opportunities.</p></div></div>
+              </div>
+            </div></div>
+          </div>
+
+        </div>
+      </div>
+      <div class="pg-panel-footer">
+        <a href="https://github.com/sahilyousafp/LLM-based-UrbanABM" target="_blank" rel="noopener noreferrer" class="pg-view-btn">View_Full_Project <i class="fas fa-external-link-alt"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+window.PROJECT_DATA = {
+  nodes: [
+    {id:'main', label:'Main Graph', icon:'fas fa-home', type:'branch', color:'#FF3300', x:48, y:8, parent:'center', link:'/sahilyousafp_pages/#code'},
+    {id:'center', label:'CITYMIND', sub:'LLM URBAN AGENTS', icon:'fas fa-robot', type:'center', x:48, y:46, parent:null},
+    {id:'overview',    label:'Research',      icon:'fas fa-flask',          type:'branch', color:'#00F0FF', x:50, y:20, parent:'center', section:'overview'},
+    {id:'knowledge',   label:'Knowledge',     icon:'fas fa-database',       type:'branch', color:'#FFB800', x:78, y:24, parent:'center', section:'knowledge'},
+    {id:'agent',       label:'The Agent',     icon:'fas fa-user-cog',       type:'branch', color:'#00FF88', x:84, y:50, parent:'center', section:'agent'},
+    {id:'prompts',     label:'Prompts',       icon:'fas fa-terminal',       type:'branch', color:'#B388FF', x:75, y:74, parent:'center', section:'prompts'},
+    {id:'calibration', label:'Calibration',   icon:'fas fa-sliders-h',      type:'branch', color:'#448AFF', x:50, y:82, parent:'center', section:'calibration'},
+    {id:'observations',label:'Observations',  icon:'fas fa-chart-area',     type:'branch', color:'#FF6B6B', x:22, y:74, parent:'center', section:'observations'},
+    {id:'architecture',label:'Architecture',  icon:'fas fa-sitemap',        type:'branch', color:'#F4F4F0', x:14, y:50, parent:'center', section:'architecture'},
+    {id:'stack',       label:'Stack',         icon:'fas fa-layer-group',    type:'branch', color:'#80DEEA', x:20, y:26, parent:'center', section:'stack'},
+    {id:'vlm',      label:'Qwen3 VL',     icon:'fas fa-eye',     type:'sub', color:'#FFB800', x:90, y:14, parent:'knowledge'},
+    {id:'overture', label:'Overture Maps', icon:'fas fa-globe',   type:'sub', color:'#FFB800', x:90, y:32, parent:'knowledge'},
+    {id:'emotions', label:'Emotions',      icon:'fas fa-heart',   type:'sub', color:'#00FF88', x:92, y:58, parent:'agent'},
+    {id:'mobility', label:'Mobility',      icon:'fas fa-route',   type:'sub', color:'#B388FF', x:86, y:82, parent:'prompts'},
+    {id:'duckdb',   label:'DuckDB',        icon:'fas fa-database',type:'sub', color:'#F4F4F0', x:6, y:38, parent:'architecture'},
+    {id:'deepseek', label:'DeepSeek V4',   icon:'fas fa-brain',   type:'sub', color:'#80DEEA', x:10, y:18, parent:'stack'},
+    {id:'benchmarks',label:'Benchmarks',   icon:'fas fa-tachometer-alt', type:'branch', color:'#448AFF', x:30, y:88, parent:'center', section:'benchmarks'},
+    {id:'future',    label:'Future',       icon:'fas fa-rocket',  type:'branch', color:'#FF3300', x:68, y:88, parent:'center', section:'future'},
+  ]
+};
+</script>
+<script src="/sahilyousafp_pages/project-graph.js"></script>
+</body>
+</html>

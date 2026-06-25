@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZONO_NAUTS · AEC Hackathon BIG · Sahil Yousaf</title>
+  <link rel="icon" type="image/png" href="/sahilyousafp_pages/References/For website.PNG">
+  <link rel="stylesheet" href="/sahilyousafp_pages/project-graph.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+<div class="pg-app">
+  <nav class="pg-nav">
+    <a href="/sahilyousafp_pages/#code" class="pg-nav-logo"><span>&lt;</span>DEV_MACHINE<span> /&gt;</span></a>
+    <div class="pg-nav-links">
+      <a href="/sahilyousafp_pages/#code">Projects</a>
+      <a class="active">Graph_System</a>
+      <a href="/sahilyousafp_pages/#code">Labs</a>
+    </div>
+    <div class="pg-nav-actions">
+      <a href="https://github.com/sahilyousafp/AEC_HACKATHON_BIG" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/sahil-yousaf-882a0b132/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+      <a href="mailto:sahil.yousaf@students.iaac.net" class="pg-connect-btn">Connect</a>
+    </div>
+  </nav>
+
+  <div class="pg-main">
+    <div class="pg-graph" id="pg-graph">
+      <canvas class="pg-graph-canvas" id="pg-canvas"></canvas>
+      <button class="pg-focus-btn"><i class="fas fa-compress-alt"></i> Focus_View</button>
+    </div>
+
+    <div class="pg-panel">
+      <div class="pg-panel-header">
+        <span class="pg-panel-path">Index // ZONO_NAUTS</span>
+        <button class="pg-panel-close">&times;</button>
+      </div>
+      <div class="pg-panel-body">
+        <h1 class="pg-project-title">ZONO_NAUTS <em>Urban Growth GNN</em></h1>
+        <p class="pg-project-desc">Built in 48 hours at AEC TECH Hackathon 2025 at BIG's Barcelona office. Graph neural networks predict city growth patterns and Minecraft-style voxelisation makes the predictions tangible to non-experts.</p>
+
+        <div class="pg-tags">
+          <span class="pg-tag accent">AEC TECH 2025</span>
+          <span class="pg-tag">BIG Office · Barcelona</span>
+          <span class="pg-tag">GNN + Voxels</span>
+        </div>
+
+        <div class="pg-meta-section">
+          <div class="pg-meta-label">Core_Technologies</div>
+          <ul class="pg-meta-list">
+            <li>Graph Neural Networks</li>
+            <li>OSMnx Urban Data Extraction</li>
+            <li>Voxelisation Pipeline</li>
+          </ul>
+        </div>
+
+        <div class="pg-accordion">
+          <div class="pg-accordion-item" data-section="overview">
+            <div class="pg-accordion-header"><span class="pg-accordion-title">Overview</span><span class="pg-accordion-toggle">+</span></div>
+            <div class="pg-accordion-content"><div class="pg-accordion-inner">
+              <h3 class="pg-s-title">Urban development meets simulation, meets play</h3>
+              <div class="pg-s-body">
+                <p>City growth models are notoriously opaque — driven by equations planners and citizens can't interpret. The ZONO_NAUTS challenge was: <strong>how do you make urban prediction legible?</strong></p>
+                <p>First, a <strong>Graph Neural Network</strong> trained on Barcelona's urban grid to predict zoning transitions, land use dominance, and new development zones — patterns invisible to traditional analysis.</p>
+                <p>Second, a <strong>Minecraft-style voxelisation</strong> pipeline that converts the city grid into a spatial format anyone can explore. Urban development becomes a world you can walk through.</p>
+              </div>
+            </div></div>
+          </div>
+
+          <div class="pg-accordion-item" data-section="workflow">
+            <div class="pg-accordion-header"><span class="pg-accordion-title">Workflow</span><span class="pg-accordion-toggle">+</span></div>
+            <div class="pg-accordion-content"><div class="pg-accordion-inner">
+              <h3 class="pg-s-title">Modular pipeline</h3>
+              <div class="pg-pipeline">
+                <div class="pg-pipeline-step"><div class="pg-pipeline-num">01</div><div class="pg-pipeline-info"><h4>OSMnx Extraction</h4><p>Building footprints, land use polygons, and POIs extracted from OpenStreetMap for any target city.</p></div></div>
+                <div class="pg-pipeline-step"><div class="pg-pipeline-num">02</div><div class="pg-pipeline-info"><h4>Grid-to-Graph</h4><p>A 250×250m urban grid is converted to a graph format for GNN training, preserving spatial relationships.</p></div></div>
+                <div class="pg-pipeline-step"><div class="pg-pipeline-num">03</div><div class="pg-pipeline-info"><h4>GNN Training</h4><p>Graph Neural Network predicts zoning transitions and land use dominance across urban nodes.</p></div></div>
+                <div class="pg-pipeline-step"><div class="pg-pipeline-num">04</div><div class="pg-pipeline-info"><h4>Voxelisation</h4><p>3D city blocks converted to .schematic format — making urban predictions interactive and spatially immersive.</p></div></div>
+              </div>
+            </div></div>
+          </div>
+
+          <div class="pg-accordion-item" data-section="visuals">
+            <div class="pg-accordion-header"><span class="pg-accordion-title">Visuals</span><span class="pg-accordion-toggle">+</span></div>
+            <div class="pg-accordion-content"><div class="pg-accordion-inner">
+              <h3 class="pg-s-title">Hackathon outputs</h3>
+              <div class="pg-img-grid">
+                <div class="pg-img-cell tall"><img src="https://raw.githubusercontent.com/sahilyousafp/AEC_HACKATHON_BIG/main/assets/ZONO_NAUTS-AEC%20hackathon%20(1).png" alt="Concept board" loading="lazy"><span class="pg-img-label">Concept board — urban growth model</span></div>
+                <div class="pg-img-cell tall"><img src="https://raw.githubusercontent.com/sahilyousafp/AEC_HACKATHON_BIG/main/assets/ZONO_NAUTS-AEC%20hackathon.png" alt="Poster" loading="lazy"><span class="pg-img-label">Hackathon presentation poster</span></div>
+              </div>
+              <div class="pg-img-grid">
+                <div class="pg-img-cell"><img src="https://raw.githubusercontent.com/sahilyousafp/AEC_HACKATHON_BIG/main/assets/Barcelona.png" alt="Barcelona GNN" loading="lazy"><span class="pg-img-label">GNN training — Barcelona</span></div>
+                <div class="pg-img-cell"><img src="https://raw.githubusercontent.com/sahilyousafp/AEC_HACKATHON_BIG/main/assets/ZONO_NAUTS-AEC%20hackathon%20(2).png" alt="Voxelisation" loading="lazy"><span class="pg-img-label">Voxelisation — city as playable space</span></div>
+              </div>
+            </div></div>
+          </div>
+
+          <div class="pg-accordion-item" data-section="team">
+            <div class="pg-accordion-header"><span class="pg-accordion-title">Team</span><span class="pg-accordion-toggle">+</span></div>
+            <div class="pg-accordion-content"><div class="pg-accordion-inner">
+              <h3 class="pg-s-title">ZONO_NAUTS</h3>
+              <div class="pg-team-grid">
+                <div class="pg-team-card highlight"><div class="name">Sahil Yousaf</div><div class="role">Architect</div><div class="desc">GNN pipeline and spatial data.</div></div>
+                <div class="pg-team-card"><div class="name">Nihal Mannath</div><div class="role">Architect</div><div class="desc">Urban data extraction.</div></div>
+                <div class="pg-team-card"><div class="name">Mısra Serenay Özgök</div><div class="role">Architect / Artist</div><div class="desc">Visual communication.</div></div>
+                <div class="pg-team-card"><div class="name">Samarth Pachchigar</div><div class="role">Urban Planner</div><div class="desc">Land use analysis.</div></div>
+                <div class="pg-team-card"><div class="name">Fady Nasr</div><div class="role">Structural Engineer</div><div class="desc">Structural data layer.</div></div>
+                <div class="pg-team-card"><div class="name">Kerollus Makkar</div><div class="role">Structural Engineer</div><div class="desc">3D voxelisation pipeline.</div></div>
+              </div>
+            </div></div>
+          </div>
+
+          <div class="pg-accordion-item" data-section="stack">
+            <div class="pg-accordion-header"><span class="pg-accordion-title">Technology</span><span class="pg-accordion-toggle">+</span></div>
+            <div class="pg-accordion-content"><div class="pg-accordion-inner">
+              <div class="pg-tech-grid">
+                <div class="pg-tech-item"><i class="fab fa-python"></i><span class="name">Python</span><span class="role">Core</span></div>
+                <div class="pg-tech-item"><i class="fas fa-globe"></i><span class="name">OSMnx</span><span class="role">City data</span></div>
+                <div class="pg-tech-item"><i class="fas fa-brain"></i><span class="name">GNN</span><span class="role">Prediction</span></div>
+                <div class="pg-tech-item"><i class="fas fa-project-diagram"></i><span class="name">NetworkX</span><span class="role">Graph structure</span></div>
+                <div class="pg-tech-item"><i class="fas fa-cube"></i><span class="name">Voxeliser</span><span class="role">.schematic out</span></div>
+                <div class="pg-tech-item"><i class="fas fa-book-open"></i><span class="name">Jupyter</span><span class="role">Analysis</span></div>
+              </div>
+            </div></div>
+          </div>
+        </div>
+      </div>
+      <div class="pg-panel-footer">
+        <a href="https://github.com/sahilyousafp/AEC_HACKATHON_BIG" target="_blank" rel="noopener noreferrer" class="pg-view-btn">View_Full_Project <i class="fas fa-external-link-alt"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+window.PROJECT_DATA = {
+  nodes: [
+    {id:'main', label:'Main Graph', icon:'fas fa-home', type:'branch', color:'#FF3300', x:48, y:10, parent:'center', link:'/sahilyousafp_pages/#code'},
+    {id:'center', label:'ZONO_NAUTS', sub:'AEC TECH HACKATHON', icon:'fas fa-city', type:'center', x:48, y:46, parent:null},
+    {id:'overview', label:'Overview',  icon:'fas fa-file-alt', type:'branch', color:'#00F0FF', x:28, y:18, parent:'center', section:'overview'},
+    {id:'workflow', label:'Workflow',  icon:'fas fa-stream', type:'branch', color:'#FFB800', x:75, y:18, parent:'center', section:'workflow'},
+    {id:'visuals',  label:'Visuals',   icon:'fas fa-image', type:'branch', color:'#00FF88', x:82, y:52, parent:'center', section:'visuals'},
+    {id:'team',     label:'Team',      icon:'fas fa-users', type:'branch', color:'#448AFF', x:65, y:82, parent:'center', section:'team'},
+    {id:'stack',    label:'Stack',     icon:'fas fa-layer-group', type:'branch', color:'#F4F4F0', x:22, y:72, parent:'center', section:'stack'},
+    {id:'osmnx',   label:'OSMnx',     icon:'fas fa-globe', type:'sub', color:'#FFB800', x:60, y:6, parent:'workflow'},
+    {id:'gnn',     label:'GNN',        icon:'fas fa-brain', type:'sub', color:'#FFB800', x:90, y:8, parent:'workflow'},
+    {id:'voxel',   label:'Voxels',     icon:'fas fa-cube', type:'sub', color:'#00FF88', x:92, y:35, parent:'visuals'},
+    {id:'networkx',label:'NetworkX',   icon:'fas fa-project-diagram', type:'sub', color:'#F4F4F0', x:10, y:52, parent:'stack'},
+  ]
+};
+</script>
+<script src="/sahilyousafp_pages/project-graph.js"></script>
+</body>
+</html>

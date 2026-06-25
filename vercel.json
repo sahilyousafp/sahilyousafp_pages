@@ -1,0 +1,10 @@
+{
+  "buildCommand": "cd site && npm install && npm run build",
+  "outputDirectory": "site/dist",
+  "installCommand": "cd site && npm install",
+  "framework": null,
+  "rewrites": [
+    { "source": "/sahilyousafp_pages/:path*", "destination": "/:path*" },
+    { "source": "/sahilyousafp_pages", "destination": "/" }
+  ]
+}

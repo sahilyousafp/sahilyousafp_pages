@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pardaz · Exhibition Pedestrian Simulation · Sahil Yousaf</title>
+  <link rel="icon" type="image/png" href="/sahilyousafp_pages/References/For website.PNG">
+  <link rel="stylesheet" href="/sahilyousafp_pages/project-graph.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+<div class="pg-app">
+  <nav class="pg-nav">
+    <a href="/sahilyousafp_pages/#code" class="pg-nav-logo"><span>&lt;</span>DEV_MACHINE<span> /&gt;</span></a>
+    <div class="pg-nav-links">
+      <a href="/sahilyousafp_pages/#code">Projects</a>
+      <a class="active">Graph_System</a>
+      <a href="/sahilyousafp_pages/#code">Labs</a>
+    </div>
+    <div class="pg-nav-actions">
+      <a href="https://github.com/sahilyousafp/Pardaz_Exhibition-Pedestrian-Simulation" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/sahil-yousaf-882a0b132/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+      <a href="mailto:sahil.yousaf@students.iaac.net" class="pg-connect-btn">Connect</a>
+    </div>
+  </nav>
+
+  <div class="pg-main">
+    <div class="pg-graph" id="pg-graph">
+      <canvas class="pg-graph-canvas" id="pg-canvas"></canvas>
+      <button class="pg-focus-btn"><i class="fas fa-compress-alt"></i> Focus_View</button>
+    </div>
+
+    <div class="pg-panel">
+      <div class="pg-panel-header">
+        <span class="pg-panel-path">Index // Pardaz</span>
+        <button class="pg-panel-close">&times;</button>
+      </div>
+      <div class="pg-panel-body">
+        <h1 class="pg-project-title">Pardaz <em>Exhibition Simulation</em></h1>
+        <p class="pg-project-desc">A production-grade pedestrian simulation platform for validating exhibition layouts. Architects draw a floor plan, configure visitor flows, and the backend runs multi-agent simulation — returning heatmaps, centrality scores, and crowding predictions.</p>
+
+        <div class="pg-tags">
+          <span class="pg-tag accent">React + FastAPI</span>
+          <span class="pg-tag">Exhibition Design</span>
+          <span class="pg-tag">IAAC · 2024–25</span>
+        </div>
+
+        <div class="pg-meta-section">
+          <div class="pg-meta-label">Core_Technologies</div>
+          <ul class="pg-meta-list">
+            <li>React + Canvas API</li>
+            <li>FastAPI Simulation Engine</li>
+            <li>Heatmap &amp; Centrality Analysis</li>
+          </ul>
+        </div>
+
+        <div class="pg-accordion">
+          <div class="pg-accordion-item" data-section="overview">
+            <div class="pg-accordion-header"><span class="pg-accordion-title">Overview</span><span class="pg-accordion-toggle">+</span></div>
+            <div class="pg-accordion-content"><div class="pg-accordion-inner">
+              <h3 class="pg-s-title">Validate exhibition spaces before you build them</h3>
+              <div class="pg-s-body">
+                <p>Exhibition designers traditionally rely on intuition and post-occupancy data to understand visitor flow. Pardaz gives them a <strong>predictive simulation tool</strong> that answers critical questions at the design stage: Where will crowds form? Which paths will be underused? Are there bottlenecks near key exhibits?</p>
+                <p>The architect draws directly on an uploaded floor plan image using the annotation canvas, marking pedestrian entry points, exit gates, exhibit locations, and barriers. The backend converts this annotation into a spatial graph and runs agent-based pedestrian simulation.</p>
+                <p>Results arrive as interactive <strong>heatmap overlays</strong> and <strong>centrality scores</strong> — the same metrics used in urban planning, now applied to interior exhibition design.</p>
+              </div>
+            </div></div>
+          </div>
+
+          <div class="pg-accordion-item" data-section="flow">
+            <div class="pg-accordion-header"><span class="pg-accordion-title">User Flow</span><span class="pg-accordion-toggle">+</span></div>
+            <div class="pg-accordion-content"><div class="pg-accordion-inner">
+              <h3 class="pg-s-title">Two-page workflow</h3>
+              <div class="pg-pipeline">
+                <div class="pg-pipeline-step"><div class="pg-pipeline-num">01</div><div class="pg-pipeline-info"><h4>Upload Floor Plan</h4><p>Upload an image of any exhibition floor plan. The canvas renders it as a live drawing surface.</p></div></div>
+                <div class="pg-pipeline-step"><div class="pg-pipeline-num">02</div><div class="pg-pipeline-info"><h4>Annotate</h4><p>Use the Toolbar to mark entrances, exits, barriers, exhibits, and pedestrian zones directly on the plan.</p></div></div>
+                <div class="pg-pipeline-step"><div class="pg-pipeline-num">03</div><div class="pg-pipeline-info"><h4>Run Simulation</h4><p>The backend runs multi-agent pedestrian simulation on the spatial graph derived from your annotations.</p></div></div>
+                <div class="pg-pipeline-step"><div class="pg-pipeline-num">04</div><div class="pg-pipeline-info"><h4>Analyse Results</h4><p>Heatmap overlay shows density. Centrality Panel ranks nodes by betweenness — pinpointing bottlenecks.</p></div></div>
+              </div>
+            </div></div>
+          </div>
+
+          <div class="pg-accordion-item" data-section="design">
+            <div class="pg-accordion-header"><span class="pg-accordion-title">Design System</span><span class="pg-accordion-toggle">+</span></div>
+            <div class="pg-accordion-content"><div class="pg-accordion-inner">
+              <h3 class="pg-s-title">Frontend design system</h3>
+              <div class="pg-s-body"><p>The UI uses a <strong>production-grade dark design system</strong> — reflecting the tool's technical, data-driven nature.</p></div>
+              <table class="pg-table">
+                <thead><tr><th>Token</th><th>Value</th><th>Usage</th></tr></thead>
+                <tbody>
+                  <tr><td>Surface</td><td>#0d1117</td><td>Main background</td></tr>
+                  <tr><td>Panel</td><td>#161b22</td><td>Card / panel bg</td></tr>
+                  <tr><td>Accent</td><td>#10b981</td><td>Primary action (emerald)</td></tr>
+                  <tr><td>Display Font</td><td>Crimson Text</td><td>Headings (serif)</td></tr>
+                  <tr><td>Mono Font</td><td>IBM Plex Mono</td><td>Code / data labels</td></tr>
+                </tbody>
+              </table>
+            </div></div>
+          </div>
+
+          <div class="pg-accordion-item" data-section="stack">
+            <div class="pg-accordion-header"><span class="pg-accordion-title">Technology</span><span class="pg-accordion-toggle">+</span></div>
+            <div class="pg-accordion-content"><div class="pg-accordion-inner">
+              <div class="pg-tech-grid">
+                <div class="pg-tech-item"><i class="fab fa-react"></i><span class="name">React</span><span class="role">UI framework</span></div>
+                <div class="pg-tech-item"><i class="fas fa-bolt"></i><span class="name">Vite</span><span class="role">Build tool</span></div>
+                <div class="pg-tech-item"><i class="fas fa-palette"></i><span class="name">Tailwind</span><span class="role">Styling</span></div>
+                <div class="pg-tech-item"><i class="fas fa-draw-polygon"></i><span class="name">Canvas API</span><span class="role">Annotation</span></div>
+                <div class="pg-tech-item"><i class="fas fa-server"></i><span class="name">FastAPI</span><span class="role">Backend</span></div>
+                <div class="pg-tech-item"><i class="fab fa-python"></i><span class="name">Python</span><span class="role">Simulation</span></div>
+                <div class="pg-tech-item"><i class="fas fa-fire"></i><span class="name">Heatmap</span><span class="role">Density viz</span></div>
+                <div class="pg-tech-item"><i class="fas fa-project-diagram"></i><span class="name">Centrality</span><span class="role">Spatial analysis</span></div>
+              </div>
+            </div></div>
+          </div>
+        </div>
+      </div>
+      <div class="pg-panel-footer">
+        <a href="https://github.com/sahilyousafp/Pardaz_Exhibition-Pedestrian-Simulation" target="_blank" rel="noopener noreferrer" class="pg-view-btn">View_Full_Project <i class="fas fa-external-link-alt"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+window.PROJECT_DATA = {
+  nodes: [
+    {id:'main', label:'Main Graph', icon:'fas fa-home', type:'branch', color:'#FF3300', x:48, y:10, parent:'center', link:'/sahilyousafp_pages/#code'},
+    {id:'center', label:'PARDAZ', sub:'EXHIBITION SIMULATION', icon:'fas fa-walking', type:'center', x:48, y:46, parent:null},
+    {id:'overview', label:'Overview',   icon:'fas fa-file-alt', type:'branch', color:'#00F0FF', x:30, y:20, parent:'center', section:'overview'},
+    {id:'flow',    label:'User Flow',   icon:'fas fa-stream', type:'branch', color:'#FFB800', x:74, y:22, parent:'center', section:'flow'},
+    {id:'design',  label:'Design',      icon:'fas fa-palette', type:'branch', color:'#B388FF', x:78, y:60, parent:'center', section:'design'},
+    {id:'stack',   label:'Stack',       icon:'fas fa-layer-group', type:'branch', color:'#F4F4F0', x:22, y:60, parent:'center', section:'stack'},
+    {id:'upload',  label:'Upload',      icon:'fas fa-upload', type:'sub', color:'#FFB800', x:60, y:8, parent:'flow'},
+    {id:'annotate',label:'Annotate',    icon:'fas fa-pen', type:'sub', color:'#FFB800', x:88, y:12, parent:'flow'},
+    {id:'sim',     label:'Simulate',    icon:'fas fa-cogs', type:'sub', color:'#FFB800', x:90, y:40, parent:'flow'},
+    {id:'heat',    label:'Heatmap',     icon:'fas fa-fire', type:'sub', color:'#B388FF', x:88, y:72, parent:'design'},
+    {id:'canvas',  label:'Canvas API',  icon:'fas fa-draw-polygon', type:'sub', color:'#F4F4F0', x:10, y:40, parent:'stack'},
+  ]
+};
+</script>
+<script src="/sahilyousafp_pages/project-graph.js"></script>
+</body>
+</html>

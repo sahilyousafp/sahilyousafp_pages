@@ -1,0 +1,60 @@
+.edge-arrow {
+  position: fixed;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  pointer-events: auto;
+  cursor: pointer;
+  opacity: 0;
+  transform: scale(0.6);
+  will-change: transform, opacity;
+  top: 0;
+  transition: color 0.3s;
+}
+
+.edge-arrow-left {
+  left: 16px;
+  flex-direction: row;
+}
+
+.edge-arrow-right {
+  right: 16px;
+  flex-direction: row-reverse;
+}
+
+.edge-arrow-right .edge-arrow-svg {
+  transform: scaleX(-1);
+}
+
+.edge-arrow-svg {
+  width: 28px;
+  height: 46px;
+  filter: drop-shadow(0 0 6px currentColor);
+}
+
+.edge-arrow-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 500;
+  white-space: nowrap;
+  text-shadow: 0 0 8px currentColor;
+}
+
+/* CODE MODE — arrow shows "ARCHITECTURE" in clay */
+.edge-arrow-code {
+  color: var(--c-clay, #C75B3A);
+}
+
+/* ARCHITECTURE MODE — arrow shows "CODE" in cyan */
+.edge-arrow-arch {
+  color: var(--c-cyan, #00F0FF);
+}
+
+@media (pointer: coarse) {
+  .edge-arrow {
+    display: none;
+  }
+}
