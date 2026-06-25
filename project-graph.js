@@ -2,6 +2,8 @@
   var DATA = window.PROJECT_DATA;
   if(!DATA) return;
 
+  var BASE = window.location.pathname.indexOf('/sahilyousafp_pages') === 0 ? '/sahilyousafp_pages/' : '/';
+
   var graphEl = document.getElementById('pg-graph');
   var canvas  = document.getElementById('pg-canvas');
   if(!graphEl || !canvas) return;
@@ -53,7 +55,9 @@
 
     el.addEventListener('click', function(){
       if(drag.moved) return;
-      if(node.link){
+      if(node.link === '#back-to-main'){
+        window.location.href = BASE + '#code';
+      } else if(node.link){
         window.location.href = node.link;
       } else if(node.section){
         openSection(node.section);
@@ -223,7 +227,7 @@
   var closeBtn = document.querySelector('.pg-panel-close');
   if(closeBtn){
     closeBtn.addEventListener('click', function(){
-      window.location.href = '/sahilyousafp_pages/#code';
+      window.location.href = BASE + '#code';
     });
   }
 

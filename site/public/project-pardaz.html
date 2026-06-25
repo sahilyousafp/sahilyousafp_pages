@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pardaz · Exhibition Pedestrian Simulation · Sahil Yousaf</title>
-  <link rel="icon" type="image/png" href="/sahilyousafp_pages/References/For website.PNG">
-  <link rel="stylesheet" href="/sahilyousafp_pages/project-graph.css">
+  <link rel="icon" type="image/png" href="References/For website.PNG">
+  <link rel="stylesheet" href="project-graph.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -13,11 +13,11 @@
 <body>
 <div class="pg-app">
   <nav class="pg-nav">
-    <a href="/sahilyousafp_pages/#code" class="pg-nav-logo"><span>&lt;</span>DEV_MACHINE<span> /&gt;</span></a>
+    <a href="#code" onclick="event.preventDefault();window.location.href=(window.location.pathname.indexOf('/sahilyousafp_pages')===0?'/sahilyousafp_pages/':'/')+'#code'" class="pg-nav-logo"><span>&lt;</span>DEV_MACHINE<span> /&gt;</span></a>
     <div class="pg-nav-links">
-      <a href="/sahilyousafp_pages/#code">Projects</a>
+      <a href="#code" onclick="event.preventDefault();window.location.href=(window.location.pathname.indexOf('/sahilyousafp_pages')===0?'/sahilyousafp_pages/':'/')+'#code'">Projects</a>
       <a class="active">Graph_System</a>
-      <a href="/sahilyousafp_pages/#code">Labs</a>
+      <a href="#code" onclick="event.preventDefault();window.location.href=(window.location.pathname.indexOf('/sahilyousafp_pages')===0?'/sahilyousafp_pages/':'/')+'#code'">Labs</a>
     </div>
     <div class="pg-nav-actions">
       <a href="https://github.com/sahilyousafp/Pardaz_Exhibition-Pedestrian-Simulation" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
@@ -126,7 +126,7 @@
 <script>
 window.PROJECT_DATA = {
   nodes: [
-    {id:'main', label:'Main Graph', icon:'fas fa-home', type:'branch', color:'#FF3300', x:48, y:10, parent:'center', link:'/sahilyousafp_pages/#code'},
+    {id:'main', label:'Main Graph', icon:'fas fa-home', type:'branch', color:'#FF3300', x:48, y:10, parent:'center', link:'#back-to-main'},
     {id:'center', label:'PARDAZ', sub:'EXHIBITION SIMULATION', icon:'fas fa-walking', type:'center', x:48, y:46, parent:null},
     {id:'overview', label:'Overview',   icon:'fas fa-file-alt', type:'branch', color:'#00F0FF', x:30, y:20, parent:'center', section:'overview'},
     {id:'flow',    label:'User Flow',   icon:'fas fa-stream', type:'branch', color:'#FFB800', x:74, y:22, parent:'center', section:'flow'},
@@ -140,6 +140,6 @@ window.PROJECT_DATA = {
   ]
 };
 </script>
-<script src="/sahilyousafp_pages/project-graph.js"></script>
+<script src="project-graph.js"></script>
 </body>
 </html>

@@ -6,17 +6,19 @@ const CAT_COLORS = {
   blogs: '#00FF88', experience: '#B388FF', tooling: '#448AFF', contact: '#F4F4F0',
 };
 
+const B = import.meta.env.BASE_URL;
+
 const INIT_NODES = [
   { id: 'center', label: 'Sahil Yousaf', sub: 'Architect | AI Researcher', icon: 'local_florist', type: 'center', cat: 'center', x: 50, y: 50, parent: null },
   { id: 'projects', label: 'Selected Projects', icon: 'code', type: 'branch', cat: 'projects', x: 30, y: 30, parent: 'center', scrollTo: 'code-work' },
-  { id: 'bat', label: 'B.A.T.', icon: 'visibility', type: 'sub', cat: 'projects', x: 18, y: 20, parent: 'projects', line: 'dashed', link: '/sahilyousafp_pages/project-bat.html' },
-  { id: 'grounded', label: 'Grounded', icon: 'architecture', type: 'sub', cat: 'projects', x: 14, y: 36, parent: 'projects', line: 'dashed', link: '/sahilyousafp_pages/project-structural.html' },
-  { id: 'llm', label: 'LLM Urbanism', icon: 'smart_toy', type: 'sub', cat: 'projects', x: 22, y: 14, parent: 'projects', line: 'dashed', link: '/sahilyousafp_pages/project-llm-urbanism.html' },
-  { id: 'pardaz', label: 'Pardaz', icon: 'directions_walk', type: 'sub', cat: 'projects', x: 38, y: 18, parent: 'projects', line: 'dashed', link: '/sahilyousafp_pages/project-pardaz.html' },
-  { id: 'zono', label: 'ZONO_NAUTS', icon: 'terminal', type: 'sub', cat: 'projects', x: 12, y: 28, parent: 'projects', line: 'dashed', link: '/sahilyousafp_pages/project-hackathon.html' },
-  { id: 'ai4all', label: 'AI4ALL', icon: 'satellite_alt', type: 'sub', cat: 'projects', x: 28, y: 12, parent: 'projects', line: 'dashed', link: '/sahilyousafp_pages/project-ai4all.html' },
+  { id: 'bat', label: 'B.A.T.', icon: 'visibility', type: 'sub', cat: 'projects', x: 18, y: 20, parent: 'projects', line: 'dashed', link: B + 'project-bat.html' },
+  { id: 'grounded', label: 'Grounded', icon: 'architecture', type: 'sub', cat: 'projects', x: 14, y: 36, parent: 'projects', line: 'dashed', link: B + 'project-structural.html' },
+  { id: 'llm', label: 'LLM Urbanism', icon: 'smart_toy', type: 'sub', cat: 'projects', x: 22, y: 14, parent: 'projects', line: 'dashed', link: B + 'project-llm-urbanism.html' },
+  { id: 'pardaz', label: 'Pardaz', icon: 'directions_walk', type: 'sub', cat: 'projects', x: 38, y: 18, parent: 'projects', line: 'dashed', link: B + 'project-pardaz.html' },
+  { id: 'zono', label: 'ZONO_NAUTS', icon: 'terminal', type: 'sub', cat: 'projects', x: 12, y: 28, parent: 'projects', line: 'dashed', link: B + 'project-hackathon.html' },
+  { id: 'ai4all', label: 'AI4ALL', icon: 'satellite_alt', type: 'sub', cat: 'projects', x: 28, y: 12, parent: 'projects', line: 'dashed', link: B + 'project-ai4all.html' },
   { id: 'publications', label: 'Publications', icon: 'menu_book', type: 'branch', cat: 'publications', x: 68, y: 30, parent: 'center', scrollTo: 'code-publications' },
-  { id: 'annsim', label: 'ANNSIM 2025', icon: 'school', type: 'sub', cat: 'publications', x: 80, y: 22, parent: 'publications', line: 'dashed', link: '/sahilyousafp_pages/project-bat.html' },
+  { id: 'annsim', label: 'ANNSIM 2025', icon: 'school', type: 'sub', cat: 'publications', x: 80, y: 22, parent: 'publications', line: 'dashed', link: B + 'project-bat.html' },
   { id: 'blogs', label: 'Blogs & Writing', icon: 'edit_note', type: 'branch', cat: 'blogs', x: 74, y: 54, parent: 'center', scrollTo: 'code-blogs' },
   { id: 'iaac_blog', label: 'IAAC Blog', icon: 'rss_feed', type: 'sub', cat: 'blogs', x: 84, y: 48, parent: 'blogs', line: 'dashed', link: 'https://blog.iaac.net/user/sahilyousafp/' },
   { id: 'experience', label: 'Experience', icon: 'timeline', type: 'branch', cat: 'experience', x: 60, y: 72, parent: 'center', scrollTo: 'code-exp' },

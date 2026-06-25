@@ -1,8 +1,10 @@
+const B = import.meta.env.BASE_URL;
+
 export const codeProjects = [
   {
     title: 'Building Analysis Tool',
     tags: 'Healthcare Accessibility · NLP · ANNSIM 2025',
-    link: '/sahilyousafp_pages/project-bat.html',
+    link: B + 'project-bat.html',
     github: 'https://github.com/sahilyousafp/Building_Analysis_Tool',
     img: 'https://github.com/user-attachments/assets/31ea7642-e351-4705-bca2-d248adb6fbbd',
     desc: 'AI accessibility analyser for healthcare architecture. Published at ANNSIM 2025.'
@@ -10,7 +12,7 @@ export const codeProjects = [
   {
     title: 'Grounded · Structural AI',
     tags: 'Finite-Element Analysis on any 3D model',
-    link: '/sahilyousafp_pages/project-structural.html',
+    link: B + 'project-structural.html',
     github: 'https://github.com/sahilyousafp/Grounded.-Structural-Solutions',
     img: 'https://github.com/user-attachments/assets/47e4fe0a-593f-479a-8d31-cb669f6cbc92',
     desc: 'Research studio project for structural generation and analysis tools for architects.'
@@ -18,23 +20,23 @@ export const codeProjects = [
   {
     title: 'LLM Urbanism',
     tags: '500 agents reasoning in natural language',
-    link: '/sahilyousafp_pages/project-llm-urbanism.html',
+    link: B + 'project-llm-urbanism.html',
     github: 'https://github.com/sahilyousafp/LLM-based-UrbanABM',
-    img: '/sahilyousafp_pages/References/For website.PNG',
+    img: B + 'References/For website.PNG',
     desc: 'LLM-based urban agent-based model for natural language reasoning in city simulations.'
   },
   {
     title: 'Pardaz',
     tags: 'Pedestrian simulation for exhibition layouts',
-    link: '/sahilyousafp_pages/project-pardaz.html',
+    link: B + 'project-pardaz.html',
     github: 'https://github.com/sahilyousafp/Pardaz_Exhibition-Pedestrian-Simulation',
-    img: '/sahilyousafp_pages/References/For website.PNG',
+    img: B + 'References/For website.PNG',
     desc: 'A social simulation for exhibition design and validation.'
   },
   {
     title: 'ZONO_NAUTS',
     tags: 'GNN urban growth · AEC Tech Hackathon @ BIG',
-    link: '/sahilyousafp_pages/project-hackathon.html',
+    link: B + 'project-hackathon.html',
     github: 'https://github.com/sahilyousafp/AEC_HACKATHON_BIG',
     img: 'https://raw.githubusercontent.com/sahilyousafp/AEC_HACKATHON_BIG/main/assets/minecraft.gif',
     desc: 'AEC TECH Hackathon 2025 at BIG Barcelona — GNN urban growth prediction voxelised into a Minecraft-style city.'
@@ -42,9 +44,9 @@ export const codeProjects = [
   {
     title: 'AI4ALL Decision',
     tags: '23 yrs satellite land-cover · civic platform',
-    link: '/sahilyousafp_pages/project-ai4all.html',
+    link: B + 'project-ai4all.html',
     github: 'https://github.com/sahilyousafp/AI4ALL_Decision',
-    img: '/sahilyousafp_pages/References/For website.PNG',
+    img: B + 'References/For website.PNG',
     desc: "Citizen's knowledge and participatory decision-making platform using 23 years of satellite land-cover data."
   }
 ];
@@ -55,7 +57,7 @@ export const publications = [
     c: 'Enhancing Accessibility in Healthcare Architecture',
     d: 'Jul 2025',
     conf: 'ANNSIM 2025',
-    u: '/sahilyousafp_pages/project-bat.html',
+    u: B + 'project-bat.html',
     desc: 'Peer-reviewed publication by the Society for Modelling & Simulation International. AI accessibility analyser for healthcare architecture.'
   }
 ];
@@ -85,7 +87,7 @@ export const codeExp = [
 export const graphData = {
   cats:[
     {id:'publications', label:'PUBLICATIONS', link:'#code-publications', desc:'Peer-reviewed research published at ANNSIM 2025.', leaves:[
-      {label:'B.A.T.', desc:'AI accessibility analyser for healthcare architecture.', link:'/sahilyousafp_pages/project-bat.html'},
+      {label:'B.A.T.', desc:'AI accessibility analyser for healthcare architecture.', link:B + 'project-bat.html'},
       {label:'ANNSIM 2025', desc:'Society for Modelling & Simulation International.', link:'https://www.scs.org/'}
     ]},
     {id:'blogs', label:'BLOGS', link:'#code-blogs', desc:'Nine published writings on the IAAC blog.', leaves:[
