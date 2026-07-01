@@ -127,25 +127,25 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    const hash = window.location.hash.replace('#', '');
-    if (hash === 'code' || hash === 'arch') setMode(hash);
+    const path = window.location.pathname.replace('/', '');
+    if (path === 'code' || path === 'arch') setMode(path);
 
-    const onHashChange = () => {
-      const h = window.location.hash.replace('#', '');
-      if (h === 'code' || h === 'arch') setMode(h);
+    const onPopState = () => {
+      const p = window.location.pathname.replace('/', '');
+      if (p === 'code' || p === 'arch') setMode(p);
       else setMode(null);
     };
-    window.addEventListener('hashchange', onHashChange);
-    return () => window.removeEventListener('hashchange', onHashChange);
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
   }, []);
 
   useEffect(() => {
     if (mode) {
-      window.location.hash = mode;
+      history.pushState(null, '', `/${mode}`);
       window.scrollTo(0, 0);
       document.body.style.overflow = 'auto';
     } else {
-      if (window.location.hash) history.replaceState(null, '', window.location.pathname);
+      history.replaceState(null, '', '/');
       document.body.style.overflow = '';
     }
   }, [mode]);
