@@ -1,30 +1,38 @@
-import { useEffect, useRef, useState } from 'react';
-import CodeGraph from './CodeGraph';
-import { codeProjects, publications, blogs, codeExp } from '../../data';
-import './CodeMode.css';
+import { useEffect, useRef, useState } from "react";
+import { track } from "@vercel/analytics";
+import CodeGraph from "./CodeGraph";
+import { codeProjects, publications, blogs, codeExp } from "../../data";
+import "./CodeMode.css";
 
 export default function CodeMode({ onBack }) {
   const sectionRefs = useRef([]);
   const [hoverGraph, setHoverGraph] = useState(false);
 
   useEffect(() => {
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('visible'));
-        }
-      });
-    }, { threshold: 0.12 });
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target
+              .querySelectorAll("[data-reveal]")
+              .forEach((el) => el.classList.add("visible"));
+          }
+        });
+      },
+      { threshold: 0.12 },
+    );
 
-    sectionRefs.current.forEach(s => s && obs.observe(s));
+    sectionRefs.current.forEach((s) => s && obs.observe(s));
     return () => obs.disconnect();
   }, []);
 
-  const addRef = (el) => { if (el && !sectionRefs.current.includes(el)) sectionRefs.current.push(el); };
+  const addRef = (el) => {
+    if (el && !sectionRefs.current.includes(el)) sectionRefs.current.push(el);
+  };
 
   const scrollTo = (id) => {
     const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -34,12 +42,22 @@ export default function CodeMode({ onBack }) {
           <i className="fas fa-arrow-left"></i> MODES
         </button>
         <nav className="code-nav">
-          <button onClick={() => scrollTo('code-work')}>WORK</button>
-          <button onClick={() => scrollTo('code-publications')}>PUBLICATIONS</button>
-          <button onClick={() => scrollTo('code-blogs')}>BLOGS</button>
-          <button onClick={() => scrollTo('code-exp')}>EXPERIENCE</button>
-          <button onClick={() => scrollTo('code-contact')}>CONTACT</button>
-          <a href="https://github.com/sahilyousafp" target="_blank" rel="noreferrer" className="code-nav-github"><i className="fab fa-github"></i></a>
+          <button onClick={() => scrollTo("code-work")}>WORK</button>
+          <button onClick={() => scrollTo("code-publications")}>
+            PUBLICATIONS
+          </button>
+          <button onClick={() => scrollTo("code-blogs")}>BLOGS</button>
+          <button onClick={() => scrollTo("code-exp")}>EXPERIENCE</button>
+          <button onClick={() => scrollTo("code-contact")}>CONTACT</button>
+          <a
+            href="https://github.com/sahilyousafp"
+            target="_blank"
+            rel="noreferrer"
+            className="code-nav-github"
+            onClick={() => track("GitHub Click", { location: "header" })}
+          >
+            <i className="fab fa-github"></i>
+          </a>
         </nav>
       </header>
 
@@ -53,9 +71,20 @@ export default function CodeMode({ onBack }) {
       {/* MARQUEE */}
       <div className="code-marquee">
         <div className="marquee-track">
-          {Array(4).fill(['PYTHON', 'LLMS', 'GRAPH NETWORKS', 'REACT', 'GRASSHOPPER', 'SIMULATION', 'OPENCV']).flat().map((t, i) => (
-            <span key={i}>{t}</span>
-          ))}
+          {Array(4)
+            .fill([
+              "PYTHON",
+              "LLMS",
+              "GRAPH NETWORKS",
+              "REACT",
+              "GRASSHOPPER",
+              "SIMULATION",
+              "OPENCV",
+            ])
+            .flat()
+            .map((t, i) => (
+              <span key={i}>{t}</span>
+            ))}
         </div>
       </div>
 
@@ -67,8 +96,18 @@ export default function CodeMode({ onBack }) {
         </div>
         <div className="code-projects">
           {codeProjects.map((p, i) => (
-            <a key={i} href={p.link} className="code-card cursor-target" data-reveal data-reveal-delay={(i % 3) + 1}>
-              <div className="cc-img" style={{ backgroundImage: `url(${p.img})` }}></div>
+            <a
+              key={i}
+              href={p.link}
+              className="code-card cursor-target"
+              data-reveal
+              data-reveal-delay={(i % 3) + 1}
+              onClick={() => track("Project Click", { project: p.title })}
+            >
+              <div
+                className="cc-img"
+                style={{ backgroundImage: `url(${p.img})` }}
+              ></div>
               <div className="cc-body">
                 <h3>{p.title}</h3>
                 <p className="cc-tags">{p.tags}</p>
@@ -87,7 +126,16 @@ export default function CodeMode({ onBack }) {
         </div>
         <div className="publications-list">
           {publications.map((p, i) => (
-            <a key={i} href={p.u} target="_blank" rel="noreferrer" className="publication-card cursor-target" data-reveal data-reveal-delay={i + 1}>
+            <a
+              key={i}
+              href={p.u}
+              target="_blank"
+              rel="noreferrer"
+              className="publication-card cursor-target"
+              data-reveal
+              data-reveal-delay={i + 1}
+              onClick={() => track("Publication Click", { title: p.t })}
+            >
               <div className="pub-header">
                 <span className="pub-conference">{p.conf}</span>
                 <span className="pub-date">{p.d}</span>
@@ -96,7 +144,9 @@ export default function CodeMode({ onBack }) {
               <p className="pub-subtitle">{p.c}</p>
               <p className="pub-desc">{p.desc}</p>
               <div className="pub-footer">
-                <span className="read-more">Read the paper <i className="fas fa-arrow-right"></i></span>
+                <span className="read-more">
+                  Read the paper <i className="fas fa-arrow-right"></i>
+                </span>
               </div>
             </a>
           ))}
@@ -112,13 +162,25 @@ export default function CodeMode({ onBack }) {
         <div className="blog-carousel" data-reveal>
           <div className="blog-carousel-track">
             {blogs.map((p, i) => (
-              <a key={i} href={p.u} target="_blank" rel="noreferrer" className="blog-card cursor-target">
-                <div className="blog-card-img" style={{ backgroundImage: `url(${p.img})` }}></div>
+              <a
+                key={i}
+                href={p.u}
+                target="_blank"
+                rel="noreferrer"
+                className="blog-card cursor-target"
+                onClick={() => track("Blog Click", { title: p.t })}
+              >
+                <div
+                  className="blog-card-img"
+                  style={{ backgroundImage: `url(${p.img})` }}
+                ></div>
                 <div className="blog-card-body">
                   <span className="blog-card-cat">{p.c}</span>
                   <h3 className="blog-card-title">{p.t}</h3>
                   <span className="blog-card-date">{p.d}</span>
-                  <span className="blog-card-read">Read on IAAC <i className="fas fa-arrow-right"></i></span>
+                  <span className="blog-card-read">
+                    Read on IAAC <i className="fas fa-arrow-right"></i>
+                  </span>
                 </div>
               </a>
             ))}
@@ -134,9 +196,22 @@ export default function CodeMode({ onBack }) {
         </div>
         <div className="exp-list">
           {codeExp.map((e, i) => {
-            const Row = e.link ? 'a' : 'div';
+            const Row = e.link ? "a" : "div";
             return (
-              <Row key={i} className="exp-row cursor-target" href={e.link || undefined} target={e.link ? '_blank' : undefined} rel={e.link ? 'noreferrer' : undefined} data-reveal data-reveal-delay={(i % 2) + 1}>
+              <Row
+                key={i}
+                className="exp-row cursor-target"
+                href={e.link || undefined}
+                target={e.link ? "_blank" : undefined}
+                rel={e.link ? "noreferrer" : undefined}
+                onClick={
+                  e.link
+                    ? () => track("Experience Click", { role: e.role })
+                    : undefined
+                }
+                data-reveal
+                data-reveal-delay={(i % 2) + 1}
+              >
                 <span className="exp-type">{e.type}</span>
                 <span className="exp-date">{e.date}</span>
                 <div className="exp-info">
@@ -156,8 +231,29 @@ export default function CodeMode({ onBack }) {
           <h2>TOOLING</h2>
         </div>
         <div className="skills-cloud" data-reveal>
-          {['Python','TensorFlow','PyTorch','React','Three.js','Node.js','Grasshopper','Rhino 3D','Blender','Unity','OpenCV','LLM Agents','Graph Neural Networks','Reinforcement Learning','SQL','Docker','Git','Pandas'].map((s, i) => (
-            <span key={i} className="skill-pill cursor-target">{s}</span>
+          {[
+            "Python",
+            "TensorFlow",
+            "PyTorch",
+            "React",
+            "Three.js",
+            "Node.js",
+            "Grasshopper",
+            "Rhino 3D",
+            "Blender",
+            "Unity",
+            "OpenCV",
+            "LLM Agents",
+            "Graph Neural Networks",
+            "Reinforcement Learning",
+            "SQL",
+            "Docker",
+            "Git",
+            "Pandas",
+          ].map((s, i) => (
+            <span key={i} className="skill-pill cursor-target">
+              {s}
+            </span>
           ))}
         </div>
       </section>
@@ -169,15 +265,31 @@ export default function CodeMode({ onBack }) {
           <h2>LET'S BUILD</h2>
         </div>
         <div className="contact-grid" data-reveal>
-          <a href="mailto:sahil.yousaf@students.iaac.net" className="contact-big cursor-target">
+          <a
+            href="mailto:sahil.yousaf@students.iaac.net"
+            className="contact-big cursor-target"
+            onClick={() => track("Contact Click", { type: "email" })}
+          >
             <span>EMAIL</span>
             sahil.yousaf@students.iaac.net
           </a>
-          <a href="https://www.linkedin.com/in/sahil-yousaf-882a0b132/" target="_blank" rel="noreferrer" className="contact-big cursor-target">
+          <a
+            href="https://www.linkedin.com/in/sahil-yousaf-882a0b132/"
+            target="_blank"
+            rel="noreferrer"
+            className="contact-big cursor-target"
+            onClick={() => track("Contact Click", { type: "linkedin" })}
+          >
             <span>LINKEDIN</span>
             City Layers · IaaC
           </a>
-          <a href="https://github.com/sahilyousafp" target="_blank" rel="noreferrer" className="contact-big cursor-target">
+          <a
+            href="https://github.com/sahilyousafp"
+            target="_blank"
+            rel="noreferrer"
+            className="contact-big cursor-target"
+            onClick={() => track("Contact Click", { type: "github" })}
+          >
             <span>GITHUB</span>
             @sahilyousafp
           </a>
