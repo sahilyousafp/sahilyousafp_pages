@@ -1,6 +1,6 @@
-import { vi } from 'vitest';
+import { vi } from "vitest";
 
-if (typeof globalThis.IntersectionObserver === 'undefined') {
+if (typeof globalThis.IntersectionObserver === "undefined") {
   globalThis.IntersectionObserver = class {
     constructor(callback) {
       this.callback = callback;
@@ -14,7 +14,7 @@ if (typeof globalThis.IntersectionObserver === 'undefined') {
   };
 }
 
-if (typeof globalThis.ResizeObserver === 'undefined') {
+if (typeof globalThis.ResizeObserver === "undefined") {
   globalThis.ResizeObserver = class {
     observe() {}
     unobserve() {}
@@ -22,7 +22,7 @@ if (typeof globalThis.ResizeObserver === 'undefined') {
   };
 }
 
-if (typeof globalThis.matchMedia === 'undefined') {
+if (typeof globalThis.matchMedia === "undefined") {
   globalThis.matchMedia = vi.fn().mockImplementation((query) => ({
     matches: false,
     media: query,
