@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { track } from '@vercel/analytics';
 import CodeGraph from './CodeGraph';
 import { codeProjects, publications, blogs, codeExp } from '../../data';
 import './CodeMode.css';
@@ -39,7 +40,7 @@ export default function CodeMode({ onBack }) {
           <button onClick={() => scrollTo('code-blogs')}>BLOGS</button>
           <button onClick={() => scrollTo('code-exp')}>EXPERIENCE</button>
           <button onClick={() => scrollTo('code-contact')}>CONTACT</button>
-          <a href="https://github.com/sahilyousafp" target="_blank" rel="noreferrer" className="code-nav-github"><i className="fab fa-github"></i></a>
+          <a href="https://github.com/sahilyousafp" target="_blank" rel="noreferrer" className="code-nav-github" onClick={() => track('GitHub Click', { location: 'header' })}><i className="fab fa-github"></i></a>
         </nav>
       </header>
 
@@ -67,7 +68,14 @@ export default function CodeMode({ onBack }) {
         </div>
         <div className="code-projects">
           {codeProjects.map((p, i) => (
-            <a key={i} href={p.link} className="code-card cursor-target" data-reveal data-reveal-delay={(i % 3) + 1}>
+            <a
+              key={i}
+              href={p.link}
+              className="code-card cursor-target"
+              data-reveal
+              data-reveal-delay={(i % 3) + 1}
+              onClick={() => track('Project Click', { project: p.title })}
+            >
               <div className="cc-img" style={{ backgroundImage: `url(${p.img})` }}></div>
               <div className="cc-body">
                 <h3>{p.title}</h3>
@@ -87,7 +95,7 @@ export default function CodeMode({ onBack }) {
         </div>
         <div className="publications-list">
           {publications.map((p, i) => (
-            <a key={i} href={p.u} target="_blank" rel="noreferrer" className="publication-card cursor-target" data-reveal data-reveal-delay={i + 1}>
+            <a key={i} href={p.u} target="_blank" rel="noreferrer" className="publication-card cursor-target" data-reveal data-reveal-delay={i + 1} onClick={() => track('Publication Click', { title: p.t })}>
               <div className="pub-header">
                 <span className="pub-conference">{p.conf}</span>
                 <span className="pub-date">{p.d}</span>
@@ -112,7 +120,7 @@ export default function CodeMode({ onBack }) {
         <div className="blog-carousel" data-reveal>
           <div className="blog-carousel-track">
             {blogs.map((p, i) => (
-              <a key={i} href={p.u} target="_blank" rel="noreferrer" className="blog-card cursor-target">
+              <a key={i} href={p.u} target="_blank" rel="noreferrer" className="blog-card cursor-target" onClick={() => track('Blog Click', { title: p.t })}>
                 <div className="blog-card-img" style={{ backgroundImage: `url(${p.img})` }}></div>
                 <div className="blog-card-body">
                   <span className="blog-card-cat">{p.c}</span>
@@ -136,7 +144,7 @@ export default function CodeMode({ onBack }) {
           {codeExp.map((e, i) => {
             const Row = e.link ? 'a' : 'div';
             return (
-              <Row key={i} className="exp-row cursor-target" href={e.link || undefined} target={e.link ? '_blank' : undefined} rel={e.link ? 'noreferrer' : undefined} data-reveal data-reveal-delay={(i % 2) + 1}>
+              <Row key={i} className="exp-row cursor-target" href={e.link || undefined} target={e.link ? '_blank' : undefined} rel={e.link ? 'noreferrer' : undefined} onClick={e.link ? () => track('Experience Click', { role: e.role }) : undefined} data-reveal data-reveal-delay={(i % 2) + 1}>
                 <span className="exp-type">{e.type}</span>
                 <span className="exp-date">{e.date}</span>
                 <div className="exp-info">
@@ -169,15 +177,15 @@ export default function CodeMode({ onBack }) {
           <h2>LET'S BUILD</h2>
         </div>
         <div className="contact-grid" data-reveal>
-          <a href="mailto:sahil.yousaf@students.iaac.net" className="contact-big cursor-target">
+          <a href="mailto:sahil.yousaf@students.iaac.net" className="contact-big cursor-target" onClick={() => track('Contact Click', { type: 'email' })}>
             <span>EMAIL</span>
             sahil.yousaf@students.iaac.net
           </a>
-          <a href="https://www.linkedin.com/in/sahil-yousaf-882a0b132/" target="_blank" rel="noreferrer" className="contact-big cursor-target">
+          <a href="https://www.linkedin.com/in/sahil-yousaf-882a0b132/" target="_blank" rel="noreferrer" className="contact-big cursor-target" onClick={() => track('Contact Click', { type: 'linkedin' })}>
             <span>LINKEDIN</span>
             City Layers · IaaC
           </a>
-          <a href="https://github.com/sahilyousafp" target="_blank" rel="noreferrer" className="contact-big cursor-target">
+          <a href="https://github.com/sahilyousafp" target="_blank" rel="noreferrer" className="contact-big cursor-target" onClick={() => track('Contact Click', { type: 'github' })}>
             <span>GITHUB</span>
             @sahilyousafp
           </a>
